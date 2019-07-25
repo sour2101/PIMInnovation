@@ -1,0 +1,23 @@
+2019-07-08 16:20:00,316 [9] INFO  MonitoringLogger - Could not find file 'C:\Sourabh\Examples\PIMInnovation\PIM\PIM.JobService\FileWatcher\inbound\LookupModelExcel\LookupTable20190708125959.xlsx'.
+2019-07-08 17:27:56,574 [64] INFO  MonitoringLogger - The Job "Import Job Created At 7/8/2019 12:00:00 AM" has been deleted
+2019-07-08 18:33:35,528 [8] INFO  MonitoringLogger - The Profile "LookupExcel - Default Lookup Profile" has been added
+2019-07-09 15:38:00,859 [32] WARN  MonitoringLogger - File Uploaded Successfully
+2019-07-09 15:38:49,851 [73] INFO  MonitoringLogger - Cannot create a file when that file already exists.
+
+2019-07-09 15:45:20,639 [8] WARN  MonitoringLogger - File Uploaded Successfully
+2019-07-10 11:27:23,017 [12] INFO  MonitoringLogger - The Job "Import Job Created At 7/10/2019 12:00:00 AM" has been deleted
+2019-07-10 12:24:51,320 [10] WARN  MonitoringLogger - File Uploaded Successfully
+2019-07-10 13:02:18,790 [52] WARN  MonitoringLogger - File Uploaded Successfully
+2019-07-10 13:54:24,188 [12] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2019-07-10 13:54:30,687 [10] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2019-07-12 10:42:38,756 [9] INFO  MonitoringLogger - Object reference not set to an instance of an object.
+2019-07-12 11:15:58,756 [7] WARN  MonitoringLogger - File Uploaded Successfully
+2019-07-12 14:43:54,657 [26] WARN  MonitoringLogger - File Uploaded Successfully
+2019-07-12 15:24:26,091 [86] WARN  MonitoringLogger - File Uploaded Successfully
+2019-07-19 10:42:14,121 [22] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2019-07-19 10:42:14,478 [22] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2019-07-19 11:01:27,363 [13] INFO  MonitoringLogger - The Record Inserted Successfully
+2019-07-19 11:01:34,603 [29] INFO  MonitoringLogger - Record  has been deleted
+2019-07-19 11:04:52,665 [4] INFO  MonitoringLogger - The Table "FunctionalGroup" has been Updated
+2019-07-19 11:05:16,149 [39] INFO  MonitoringLogger - The Table "FunctionalGroup" has been Updated
+2019-07-24 09:53:25,141 [78] INFO  MonitoringLogger - The User Preferences has been Updated

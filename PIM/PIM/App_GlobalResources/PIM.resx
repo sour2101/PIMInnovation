@@ -1,0 +1,492 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="accessError" xml:space="preserve">
+    <value>Do not have the access in the tool please contact to administrator</value>
+  </data>
+  <data name="alertNoRecordFound" xml:space="preserve">
+    <value>No Record Found</value>
+  </data>
+  <data name="alertPasswordLength" xml:space="preserve">
+    <value>Passwords must be between 8 and 20 characters.</value>
+  </data>
+  <data name="alertPasswordRequirement" xml:space="preserve">
+    <value>Must contain one lower &amp;amp; uppercase letter, and one non-alpha character (a number or a symbol.)</value>
+  </data>
+  <data name="btnBack" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="btnCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="btnDelete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="btnEdit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="btnReset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="btnSave" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="btnSearch" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="btnSignIn" xml:space="preserve">
+    <value>Sign In</value>
+  </data>
+  <data name="btnSsoLogin" xml:space="preserve">
+    <value>SSO Login</value>
+  </data>
+  <data name="btnUpload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="emailSubjectPasswordRecovery" xml:space="preserve">
+    <value>PIM Tool Password Reset</value>
+  </data>
+  <data name="headerPIM" xml:space="preserve">
+    <value>PCM</value>
+  </data>
+  <data name="invalidEmail" xml:space="preserve">
+    <value>This is not a valid email</value>
+  </data>
+  <data name="labelNext" xml:space="preserve">
+    <value>next</value>
+  </data>
+  <data name="labelPrevious" xml:space="preserve">
+    <value>previous</value>
+  </data>
+  <data name="lblAddRole" xml:space="preserve">
+    <value>Add Role</value>
+  </data>
+  <data name="lblAddUser" xml:space="preserve">
+    <value>Add New User</value>
+  </data>
+  <data name="lblCatalog" xml:space="preserve">
+    <value>Catalog</value>
+  </data>
+  <data name="lblCategory" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="lblconNewPassword" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="lblCountry" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="lblDataLocal" xml:space="preserve">
+    <value>Data Local</value>
+  </data>
+  <data name="lblDeleteRole" xml:space="preserve">
+    <value>Delete Role</value>
+  </data>
+  <data name="lblDeleteUser" xml:space="preserve">
+    <value>Delete User</value>
+  </data>
+  <data name="lblDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="lblDisabled" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="lblEditUserPref" xml:space="preserve">
+    <value>Edit User Preferences</value>
+  </data>
+  <data name="lblEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="lblFirstName" xml:space="preserve">
+    <value>FirstName</value>
+  </data>
+  <data name="lblForgetPassword" xml:space="preserve">
+    <value>I forgot my password?</value>
+  </data>
+  <data name="lblLanguage" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="lblLastName" xml:space="preserve">
+    <value>LastName</value>
+  </data>
+  <data name="lblMaintainRole" xml:space="preserve">
+    <value>Maintain Role</value>
+  </data>
+  <data name="lblMaintainuser" xml:space="preserve">
+    <value>Maintain User</value>
+  </data>
+  <data name="lblManager" xml:space="preserve">
+    <value>Manager</value>
+  </data>
+  <data name="lblMyWorkItems" xml:space="preserve">
+    <value>My Work Items</value>
+  </data>
+  <data name="lblNewPassword" xml:space="preserve">
+    <value>New password</value>
+  </data>
+  <data name="lblOrganization" xml:space="preserve">
+    <value>Organization</value>
+  </data>
+  <data name="lblOrgHeader" xml:space="preserve">
+    <value>Select Organization and Container</value>
+  </data>
+  <data name="lblPassword" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="lblPlant" xml:space="preserve">
+    <value>Plant</value>
+  </data>
+  <data name="lblRole" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="lblSavedSearched" xml:space="preserve">
+    <value>Saved Searches</value>
+  </data>
+  <data name="lblSearchCriteria" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="lblSearchPanel" xml:space="preserve">
+    <value>Search Panel</value>
+  </data>
+  <data name="lblSgid" xml:space="preserve">
+    <value>Sgid</value>
+  </data>
+  <data name="lblSignOut" xml:space="preserve">
+    <value>Sign Out</value>
+  </data>
+  <data name="lblSsoCon" xml:space="preserve">
+    <value>SSO Connection</value>
+  </data>
+  <data name="lblTaxonomy" xml:space="preserve">
+    <value>Taxonomy</value>
+  </data>
+  <data name="lblTimeZone" xml:space="preserve">
+    <value>TimeZone</value>
+  </data>
+  <data name="lblUILocal" xml:space="preserve">
+    <value>UI Local</value>
+  </data>
+  <data name="lblUserName" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="lblUsers" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="lblView" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="optionNo" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="optionYes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="titleChangeLog" xml:space="preserve">
+    <value>Change Log</value>
+  </data>
+  <data name="emailPasswordRecovery" xml:space="preserve">
+    <value>&amp;lt;html&amp;gt;
+&amp;lt;head&amp;gt;
+&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;
+    Dear {firstname} {lastname},
+    &amp;lt;br /&amp;gt;
+    &amp;lt;br /&amp;gt;
+    Click on the link to change your password : &amp;lt;a href="{link}"&amp;gt;link&amp;lt;/a&amp;gt;
+    &amp;lt;br /&amp;gt;
+    &amp;lt;br /&amp;gt;
+    Regards,
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;</value>
+  </data>
+  <data name="lblPartNumber" xml:space="preserve">
+    <value>PartNumber</value>
+  </data>
+  <data name="lblscentity" xml:space="preserve">
+    <value>Design or Part or GTIN</value>
+  </data>
+  <data name="lblSoa" xml:space="preserve">
+    <value>SOA</value>
+  </data>
+  <data name="menuHome" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="menuRole" xml:space="preserve">
+    <value>Role Managment</value>
+  </data>
+  <data name="menuSysAdmin" xml:space="preserve">
+    <value>MasterData Managment</value>
+  </data>
+  <data name="menuUser" xml:space="preserve">
+    <value>User Managment</value>
+  </data>
+  <data name="headerUploadDataModel" xml:space="preserve">
+    <value>Upload DataModel</value>
+  </data>
+  <data name="lblAddsubsection" xml:space="preserve">
+    <value>Add SubSection</value>
+  </data>
+  <data name="lbleditOrg" xml:space="preserve">
+    <value>Edit Organization</value>
+  </data>
+  <data name="lblFile" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="lblIsCatalog" xml:space="preserve">
+    <value>IsCatalog</value>
+  </data>
+  <data name="lblIsContainor" xml:space="preserve">
+    <value>IsContainor</value>
+  </data>
+  <data name="lblIsOrganization" xml:space="preserve">
+    <value>IsOrganization</value>
+  </data>
+  <data name="lblLongName" xml:space="preserve">
+    <value>LongName</value>
+  </data>
+  <data name="lblShortName" xml:space="preserve">
+    <value>ShortName</value>
+  </data>
+  <data name="menuExportDataModel" xml:space="preserve">
+    <value>Export DataModel</value>
+  </data>
+  <data name="menuImportDataModel" xml:space="preserve">
+    <value>Import DataModel</value>
+  </data>
+  <data name="menuIntegration" xml:space="preserve">
+    <value>Integration</value>
+  </data>
+  <data name="menuModel" xml:space="preserve">
+    <value>MDM Model</value>
+  </data>
+  <data name="menuOrgChart" xml:space="preserve">
+    <value>Organization Chart</value>
+  </data>
+  <data name="menuInterationJobs" xml:space="preserve">
+    <value>Integration Jobs</value>
+  </data>
+  <data name="lblAddAttribute" xml:space="preserve">
+    <value>Add Attribute</value>
+  </data>
+  <data name="menuAttribute" xml:space="preserve">
+    <value>Attribute Managment</value>
+  </data>
+  <data name="menuMasters" xml:space="preserve">
+    <value>MasterData</value>
+  </data>
+  <data name="lblAttributeType" xml:space="preserve">
+    <value>AttributeType</value>
+  </data>
+  <data name="lblDataType" xml:space="preserve">
+    <value>DataType</value>
+  </data>
+  <data name="lblDisplayType" xml:space="preserve">
+    <value>DisplayType</value>
+  </data>
+  <data name="lblAttribute" xml:space="preserve">
+    <value>Attribute</value>
+  </data>
+  <data name="alertInvalidUserName" xml:space="preserve">
+    <value>Invalid Username or Password</value>
+  </data>
+  <data name="lblAddAttributeGroup" xml:space="preserve">
+    <value>Add Attribute Group</value>
+  </data>
+  <data name="lblAddNewAttribute" xml:space="preserve">
+    <value>Add New Attribute</value>
+  </data>
+  <data name="lblAttributeGroup" xml:space="preserve">
+    <value>Attribute Group</value>
+  </data>
+  <data name="lblAttributeMaster" xml:space="preserve">
+    <value>Attribute Master</value>
+  </data>
+  <data name="lblLocalizable" xml:space="preserve">
+    <value>IsLocalizable</value>
+  </data>
+  <data name="lblRequired" xml:space="preserve">
+    <value>Required</value>
+  </data>
+  <data name="lblAddLookUp" xml:space="preserve">
+    <value>Add LookUp Table</value>
+  </data>
+  <data name="lbllookupMaster" xml:space="preserve">
+    <value>LookUp Table Master</value>
+  </data>
+  <data name="lblShowAtCreation" xml:space="preserve">
+    <value>ShowAt Creation</value>
+  </data>
+  <data name="lblAddColumn" xml:space="preserve">
+    <value>Add Column</value>
+  </data>
+  <data name="lblTableName" xml:space="preserve">
+    <value>Table Name</value>
+  </data>
+  <data name="btnAdd" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="lblAddRecord" xml:space="preserve">
+    <value>Add Record</value>
+  </data>
+  <data name="lblEditRecord" xml:space="preserve">
+    <value>Edit Record</value>
+  </data>
+  <data name="lblEditRole" xml:space="preserve">
+    <value>Edit Role</value>
+  </data>
+  <data name="lblRoleName" xml:space="preserve">
+    <value>Role Name</value>
+  </data>
+  <data name="lblEditUser" xml:space="preserve">
+    <value>Edit User</value>
+  </data>
+  <data name="headerDelete" xml:space="preserve">
+    <value>Delete Confirmation</value>
+  </data>
+  <data name="msgDelete" xml:space="preserve">
+    <value>Do you want to delete this record?</value>
+  </data>
+  <data name="btnCreateWorkflow" xml:space="preserve">
+    <value>Create Workflow</value>
+  </data>
+  <data name="lblAddWorkflow" xml:space="preserve">
+    <value>Add Workflow</value>
+  </data>
+  <data name="lblCurrentStatus" xml:space="preserve">
+    <value>Current Status</value>
+  </data>
+  <data name="lblWorkflowName" xml:space="preserve">
+    <value>Workflow Name</value>
+  </data>
+  <data name="menuWorkflow" xml:space="preserve">
+    <value>Workflow Management</value>
+  </data>
+  <data name="lblAction" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="lblBusinessRule" xml:space="preserve">
+    <value>Business Rule</value>
+  </data>
+  <data name="lblStepName" xml:space="preserve">
+    <value>StepName</value>
+  </data>
+  <data name="lblEntity" xml:space="preserve">
+    <value>AddEntity</value>
+  </data>
+</root>

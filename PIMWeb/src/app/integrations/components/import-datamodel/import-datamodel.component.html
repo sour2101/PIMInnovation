@@ -1,0 +1,13 @@
+<div class="col-md-12" style="padding:0px;">
+    <p-panel [styleClass]="'panelStyle'"  [toggleable]="false" >
+       <p-header>
+                  <div class="ui-helper-clearfix">
+                      <span class="ui-panel-title" >{{'data.menuImportDataModel' | translate}}</span>
+                  </div>
+       </p-header>
+                         
+                  <p-fileUpload name="file"  accept=".xlsx,.xls" customUpload="true" (uploadHandler)="myUploader($event)" maxFileSize="1000000000">
+                  </p-fileUpload>  
+  </p-panel>            
+</div>
+  

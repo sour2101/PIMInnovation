@@ -1,0 +1,48 @@
+
+<section class="content">
+    <div class="box-body">
+                  <form [formGroup]="orgForm" #formDir="ngForm" (ngSubmit)="orgForm.valid && submit(orgForm)" class="form-horizontal" novalidate >
+                          <div class="col-md-12">
+                              <div class="form-group" [ngClass]="{'has-error': formDir.submitted && (orgForm.controls.shortName.invalid )}">
+                                  <label class="control-label col-md-3">
+                                                  {{'data.lblShortName' | translate}}
+                                  </label>
+                                  <div class="col-md-9">
+                                      <input pInputText name="shortName" type="text" formControlName="shortName" class="form-control" [required]="true" />
+                                  </div>
+                              </div>
+                              <div class="form-group" [ngClass]="{'has-error': formDir.submitted && (orgForm.controls.longName.invalid )}">
+                                  <label class="control-label col-md-3">
+                                                              {{'data.lblLongName' | translate}}
+                                  </label>
+                                  <div class="col-md-9">
+                                      <input pInputText name="longName" type="text" formControlName="longName" class="form-control" [required]="true" />
+                                  </div>
+                              </div>
+                              <div class="form-group" >
+                                <label class="control-label col-md-3">{{'data.lblIsEnvironment' | translate}}</label>
+                                <div class="col-md-9">
+                                        <p-checkbox name="IsEnvironment" binary="true" [formControl]="orgForm.controls['isEnvironment']"></p-checkbox>
+                                </div>
+                              </div>
+                              <div class="form-group" >
+                                <label class="control-label col-md-3">{{'data.lblIsCatalog' | translate}}</label>
+                                <div class="col-md-9">
+                                        <p-checkbox name="IsCatalog" binary="true" formControlName="isCatalog"></p-checkbox>
+                                </div>
+                              </div>
+                              <div class="form-group" >
+                                <label class="control-label col-md-3">{{'data.lblIsContainor'| translate}}</label>
+                                <div class="col-md-9">
+                                        <p-checkbox name="IsContainor" binary="true" formControlName="isContainor"></p-checkbox>
+                                </div>
+                              </div>
+                          </div>
+                          <div class="box-footer">
+                              <a (click)="back(null)" class="btn btn-default">{{'data.btnBack'| translate}}</a>
+                              <button type="submit" pButton label="{{'data.btnSave'|translate}}"  class="pull-right"></button>
+                          </div>
+                  </form>
+          </div>
+   
+</section>

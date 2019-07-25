@@ -1,0 +1,30 @@
+<div class="col-md-12" style="padding:0px;">
+    <p-panel [styleClass]="'panelStyle'"  [toggleable]="false" >
+       <p-header>
+                  <div class="ui-helper-clearfix">
+                      <span class="ui-panel-title" >{{'data.lblCreateEntity' | translate}}</span>
+                  </div>
+       </p-header>
+        <div class="box-body">
+          <div class="col-md-8 col-md-offset-2">
+            <!-- <form class="form-horizontal" [formGroup]="formGroup" (ngSubmit)="submit(formGroup)">
+                <dynamic-primeng-form-control *ngFor="let controlModel of formModel" [layout]="formLayout" [group]="formGroup" [model]="controlModel"></dynamic-primeng-form-control>
+                <dynamic-bootstrap-form-control *ngFor="let controlModel of formModel" [layout]="formLayout" [group]="formGroup" [model]="controlModel"></dynamic-bootstrap-form-control> 
+                <div class="box-footer">
+                    <a (click)="back()" class="btn btn-default">{{'data.btnBack' | translate}}</a>
+                    <button pButton type="submit"  label="{{'data.btnSave' | translate}}"  class="pull-right"></button>
+                </div>
+            </form> -->
+            <form  (ngSubmit)="form.valid && onSubmit(this.form)"  #formDir="ngForm"  [formGroup]="form" class="form-horizontal" novalidate>
+              <div *ngFor="let field of fields">
+                  <field-builder [field]="field"  [form]="form"></field-builder>
+              </div>
+              <div class="box-footer">
+                  <a (click)="back()" class="btn btn-default">{{'data.btnBack' | translate}}</a>
+                  <button pButton type="submit"  label="{{'data.btnSave' | translate}}"  class="pull-right"></button>
+              </div>
+            </form>
+          </div>  
+        </div>
+        </p-panel>
+     </div>   

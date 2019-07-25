@@ -1,0 +1,206 @@
+﻿/*
+ * override the default CSS as an example
+ */
+.main-header .logo ,.content{
+    padding:0;
+}
+
+.main-header{
+  z-index: 1000;
+}
+
+.navbar-brand {
+    padding: 15px 15px;
+    color:#888888 !important;
+}
+
+ 
+.navbar-nav > li > span{
+color: #888888;
+padding: 0px 15px ;
+font-size:12px
+}
+ 
+body {
+-moz-background-size: cover;
+-webkit-background-size: cover;
+background-size: cover;
+background-position: top center !important;
+/* /background-repeat: no-repeat !important; */
+background-attachment: fixed;  
+margin: 0px !important;
+height: 100%;
+}
+
+body{
+  background-color: #2e2e2e !important;  
+  height:100%;
+  width:100%;
+  margin:0;
+  padding:0; 
+ font-family:  "Roboto",Arial,Helvetica,sans-serif !important;
+}
+
+.hand {
+    cursor: pointer;
+}
+
+.skin-blue .main-header .navbar{
+  background-color:#ffffff !important; 
+}
+
+.skin-blue .main-header .navbar .nav > li > a,
+.dropdown-menu > li > a{
+  color: #888888 !important;
+}
+
+a:hover,
+a:focus {
+  text-decoration: none !important;
+}
+
+/******************************************loader*************/
+.loader {
+  margin: 60px auto;
+  font-size: 10px;
+  position: relative;
+  text-indent: -9999em;
+  border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-right: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-left: 1.1em solid #3C8DBC;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: load8 1.1s infinite linear;
+  animation: load8 1.1s infinite linear;
+}
+.loader,
+.loader:after {
+  border-radius: 50%;
+  width: 10em;
+  height: 10em;
+}
+@-webkit-keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+ .navbar-nav > li > a {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.mainmenu {
+    background-color: transparent;
+    border-color: transparent;
+    margin-bottom: 0;
+	border: 0px !important;
+}
+.navbar-nav > li:last-child > a {
+    padding-right: 0px;
+    margin-right: 0px;
+}
+.dropdown-menu {
+    padding: 0px 0; 
+    margin: 0 0 0; 
+    border: 0px solid transition !important;
+	border: 0px solid rgba(0,0,0,.15);	
+	border-radius: 0px;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+
+}
+
+/*=-====Main Menu=====*/
+.navbar-nav .open .dropdown-menu > li > a {
+    padding: 16px 15px 16px 25px;
+}
+.header_bottom { background: #0071ba }
+.header_area .header_bottom .mainmenu a , .navbar-default .navbar-nav > li > a {
+    color: #fff;
+    /*font-size: 16px;*/
+    text-transform: capitalize;
+    padding: 16px 15px;
+	font-family: 'Roboto', sans-serif;
+}
+.header_area .mainmenu .active a,
+.header_area .mainmenu .active a:focus,
+.header_area .mainmenu .active a:hover,
+.header_area .mainmenu li a:hover,
+.header_area .mainmenu li a:focus ,
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover{
+    color: #646464;
+    background: rgba(186, 179, 179, 0.20);
+    outline: 0;
+}
+/*-----./ Main Menu-----*/
+
+.navbar-default .navbar-toggle { border-color: #fff } /*Toggle Button*/
+.navbar-default .navbar-toggle .icon-bar { background-color: #fff } /*Toggle Button*/
+
+/*==========Sub Menu=v==========*/
+.mainmenu .collapse ul > li:hover > a{background: rgba(255, 255, 255, 0.23);}
+.mainmenu .collapse ul ul > li:hover > a, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus, .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover{background: #e1e3e9;}
+.mainmenu .collapse ul ul ul > li:hover > a{background: #e1e3e9;}
+
+.mainmenu .collapse ul ul, .mainmenu .collapse ul ul.dropdown-menu{background:#ffffff;}
+.mainmenu .collapse ul ul ul, .mainmenu .collapse ul ul ul.dropdown-menu{background:#ffffff}
+.mainmenu .collapse ul ul ul ul, .mainmenu .collapse ul ul ul ul.dropdown-menu{background:#ffffff}
+
+/******************************Drop-down menu work on hover**********************************/
+.mainmenu{background: none;border: 0 solid;margin: 0;padding: 0;min-height:20px}
+@media only screen and (min-width: 767px) {
+.mainmenu .collapse ul li{position:relative;}
+.mainmenu .collapse ul li:hover> ul{display:block}
+.mainmenu .collapse ul ul{position:absolute;top:100%;left:0;min-width:250px;display:none}
+/*******/
+.mainmenu .collapse ul ul li{position:relative}
+.mainmenu .collapse ul ul li:hover> ul{display:block}
+.mainmenu .collapse ul ul ul{position:absolute;top:0;left:100%;min-width:250px;display:none}
+/*******/
+.mainmenu .collapse ul ul ul li{position:relative}
+.mainmenu .collapse ul ul ul li:hover ul{display:block}
+.mainmenu .collapse ul ul ul ul{position:absolute;top:0;left:-100%;min-width:250px;display:none;z-index:1}
+
+}
+
+.form-group.has-error .form-control{
+ border-left: .25rem solid #dd4b39!important;
+}
+
+.form-group.has-error .ui-chips{
+  border:1px solid #dd4b39!important;
+  border-left: .25rem solid #dd4b39!important;
+  border-radius:4px;
+ }
+ 
+
+.login-logo b {
+ color: #8964ce;/*7B95A3*/
+  text-align: center;
+}
+.brand_logo {
+  height: 100px;
+  width: 250px;
+  margin: -5%;
+}
+.justify-content-center{
+  justify-content: center !important;
+  display: flex !important; 
+}

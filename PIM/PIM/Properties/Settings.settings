@@ -1,0 +1,36 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PIM.API.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="CasValidateUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://uat.websso.saint-gobain.com/cas/validate</Value>
+    </Setting>
+    <Setting Name="WebApplicationUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://localhost:4200/</Value>
+    </Setting>
+    <Setting Name="SmtpHost" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">smtp.mail.saint-gobain.net</Value>
+    </Setting>
+    <Setting Name="testing" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Y</Value>
+    </Setting>
+    <Setting Name="DefaultLanguage" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">en</Value>
+    </Setting>
+    <Setting Name="MailFromAddress" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SGAPIM@im.saint-gobain.com</Value>
+    </Setting>
+    <Setting Name="jobServicePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Sourabh\Examples\PIMInnovation\PIM\PIM.JobService\FileWatcher\inbound\</Value>
+    </Setting>
+    <Setting Name="errorPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Sourabh\Examples\PIMInnovation\PIM\PIM.JobService\FileWatcher\error\</Value>
+    </Setting>
+    <Setting Name="completedPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Sourabh\Examples\PIMInnovation\PIM\PIM.JobService\FileWatcher\completed\</Value>
+    </Setting>
+    <Setting Name="progressPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Sourabh\Examples\PIMInnovation\PIM\PIM.JobService\FileWatcher\inprogress\</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

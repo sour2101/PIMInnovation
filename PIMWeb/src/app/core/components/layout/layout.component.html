@@ -1,0 +1,57 @@
+<div class="wrapper"  >
+    <header class="main-header">
+        <nav role="navigation" class="navbar navbar-default mainmenu">
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- <img src="https://www.saint-gobain.com/sites/sgcom.master/themes/sgcom/stgobain/logo.png"> -->
+                    <a class="navbar-brand"><b>{{'data.headerPIM'|translate}}</b></a>
+                    <button type="button" data-target="#navbar-toggle" data-toggle="collapse" class="navbar-toggle">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse pull-left" id="navbar-toggle">
+                  
+                  <app-top-nav admin="principal.admin"></app-top-nav>
+                </div>
+                
+                <div class="navbar-custom-menu pull-right">
+                    <ul class="nav navbar-nav">
+                        <li  class="dropdown">
+                            <a class="spanWhite">
+                                            {{'data.lblDataLocal' |translate}}:
+                            </a>
+                        </li>  
+                        <li class="dropdown" style="padding-top: 12px;">
+                                <select name="dataLocalName" [(ngModel)]="dataLocalId" class="form-control" (change)="changeDataLocal(dataLocalId)"  required>
+                                        <option [ngValue]="dataLocal.id" *ngFor="let dataLocal of dataLocalList">
+                                             {{dataLocal.name}}
+                                        </option> 
+                                     </select>
+                        </li>
+                        <li class="dropdown">
+                            <a (click)="changeUserPref()" class="hand">
+                                <span class="hidden-xs">{{principal.firstname}} {{principal.lastname}}</span>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                                <a class="hand" (click)="logout()"  matTooltip="Sign Out" ><i class="glyphicon glyphicon-off"></i> </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+    </header>
+    
+    <div class="content-wrapper" style="height: 90vh;">
+      <router-outlet (activate)="onActivate($event)"></router-outlet>
+    </div>
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            <b>Version</b> 
+        </div>
+        <strong>2019 &copy; Saint-Gobain</strong>
+    </footer>
+  </div>
+
+ 

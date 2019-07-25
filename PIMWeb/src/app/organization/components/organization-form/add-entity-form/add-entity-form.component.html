@@ -1,0 +1,39 @@
+<p>
+  add-entity-form works!
+</p>
+
+<section class="content">
+  <div class="box-body">
+        <p-dialog [(visible)]="displayDialog" [contentStyle]="{'overflow':'visible'}" [modal]="true" [responsive]="true">
+                <p-header>
+                    {{'data.btnExport' | translate}}
+                </p-header>
+                <p-scrollPanel [styleClass]="'scrollStyle'">
+                      <form [formGroup]="_exportForm" #formDir="ngForm" (ngSubmit)="_exportForm.valid && exportLookup(_exportForm)">
+                          <div class="col-md-12">
+                              <div class="form-group">
+                                  <button pButton type="submit"  icon="pi pi-download"  ></button>
+                              </div>
+                          </div>
+                          <div class="col-md-12">
+                          <p-accordion>
+                              <p-accordionTab header="{{'data.lblTableName' | translate}}" [selected]="true">
+                                  <p-listbox  [listStyle]="{minWidth:'12em','max-height':'250px'}" [styleClass]="'list-box'" name="exportSheets"  [options]="tableNameList" 
+                                   formControlName="selectedTables" optionLabel="tableName"  multiple="multiple" checkbox="checkbox" filter="filter">
+                                  </p-listbox >
+                              </p-accordionTab>
+                              <p-accordionTab header="{{'data.lblDataLocal' | translate}}">
+                                  <p-listbox  [listStyle]="{minWidth:'12em','max-height':'250px'}" [styleClass]="'list-box'" name="selectedLocal"  [options]="dataLocalList" 
+                                  formControlName="selectedLocals" optionLabel="name"  multiple="multiple" checkbox="checkbox" filter="filter">
+                               </p-listbox >
+                              </p-accordionTab>
+                          </p-accordion>    
+                        </div>
+                      </form>
+                   </p-scrollPanel>
+              </p-dialog>
+                
+        </div>
+        
+ 
+</section>

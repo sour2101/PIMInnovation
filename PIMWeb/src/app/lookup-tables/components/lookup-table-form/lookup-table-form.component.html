@@ -1,0 +1,19 @@
+
+  <div class="box-body">
+    <form  (ngSubmit)="tableForm.valid && submit(this.tableForm)"  #formDir="ngForm"  [formGroup]="tableForm" class="form-horizontal" novalidate>
+      <p-scrollPanel [styleClass]="'scrollStyle'">
+        <div class="form-group" [ngClass]="{'has-error':(!col.nullable && !isValid(col.columnName))}"  *ngFor="let col of columnList;index as i">
+            <label class="control-label col-md-3">
+                   {{ col.columnName}}
+            </label>
+            <div class="col-md-9">
+                    <input pInputText   type="text" class="form-control" [id]="i" [name]="col.columnName" [formControlName]="col.columnName">
+            </div>
+        </div>
+      </p-scrollPanel>
+        <div class="box-footer">
+                  <a (click)="back(null)" class="btn btn-default">{{'data.btnBack' | translate}}</a>
+                  <button pButton type="submit"  label="{{'data.btnSave' | translate}}"  class="pull-right"></button>
+        </div>
+    </form>
+</div>

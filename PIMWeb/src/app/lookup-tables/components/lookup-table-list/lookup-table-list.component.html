@@ -1,0 +1,118 @@
+<div class="col-md-12" style="padding:0px;">
+    <p-panel [styleClass]="'panelStyle'"  [toggleable]="false" >
+       <p-header>
+                  <div class="ui-helper-clearfix">
+                      <span class="ui-panel-title" >{{'data.menuLookupTable' | translate}}</span>
+                  </div>
+       </p-header>
+    <div class="row">
+       <div class="form-group col-md-12">
+        <button type="button" pButton icon="pi pi-plus" label="{{'data.btnCreate' | translate}}" (click)="addLookUpTable()"></button>
+        <button type="button" pButton icon="pi pi-pencil" label="{{'data.btnEdit' | translate}}" (click)="editLookUpTable()"></button>
+        <button pButton type="button" label="{{'data.btnExport' | translate}}" icon="fa fa-file-excel-o" (click)="dialogLookupExport()" ></button>
+        <button pButton type="button" label="{{'data.btnImport' | translate}}" icon="fa fa-file-excel-o" (click)="dialogLookupImport()" ></button>
+      </div>
+    </div>
+  <div class="row" style="margin: 0%">
+  <div class="box box-primary box-body">
+      <div class="example-container">
+        <div class="form-group col-md-6">
+            <label class="control-label col-md-3">
+                {{'data.lblTableName' | translate}}:
+            </label>
+            <div class="col-md-9">
+                <select name="TableName" [(ngModel)]="tableId" (ngModelChange)="loadLookup($event)"  class="form-control" >
+                    <option *ngFor="let dt of tableNameList" [ngValue]="dt.id" >{{dt.tableName}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label class="control-label col-md-3">
+              {{'data.lblDataLocal' | translate}}:
+          </label>
+          <div class="col-md-9">
+            <select name="dataLocalName" [(ngModel)]="dataLocalId" class="form-control" (change)="changelocal(dataLocalId)" >
+              <option [ngValue]="dataLocal.id" *ngFor="let dataLocal of dataLocalList">
+                   {{dataLocal.name}}
+              </option> 
+           </select>
+          </div>
+      </div>
+        <div class="form-group col-md-12">
+          <p-table #lookupTable [columns]="columnList" [value]="tableData" [paginator]="true" [rows]="pageSize"   [responsive]="true" [scrollable]="true" scrollHeight="50vh">
+           <ng-template pTemplate="caption">
+            <div class="ui-fluid ui-g" > 
+              <div class="ui-g-1" style="padding:0px;">
+                  <button type="button" pButton icon="fa fa-plus" (click)="addLookupData()" label="{{'data.btnAdd'|translate}}"></button>       
+              </div>
+              <div class="ui-g-11" style="text-align: right;padding:0px;">
+                  <input type="text" pInputText size="50" placeholder="Global Filter" (input)="lookupTable.filterGlobal($event.target.value, 'contains')" style="width:auto">
+              </div>  
+            </div>
+           </ng-template>
+            <ng-template pTemplate="header" let-columns>
+              <tr>
+                  <th *ngFor="let col of columns"  [pSortableColumn]="camalCase(col.columnName)">
+                      {{col.columnName}}
+                      <p-sortIcon [field]="camalCase(col.columnName)"></p-sortIcon>
+                  </th>
+                  <th></th>
+              </tr>
+              <tr>
+                <th *ngFor="let col of columns"  >
+                  <input pInputText type="text" (input)="lookupTable.filter($event.target.value, camalCase(col.columnName), col.filterMatchMode)">
+              </th>
+              <th></th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+              <tr>
+                  <td *ngFor="let col of columns" class="ui-resizable-column">
+                      <span class="ui-column-title">{{col.columnName}}</span> {{rowData[camalCase(col.columnName)]}}
+                  </td>
+                  <td>
+                      <button type="button" pButton icon="pi pi-pencil" tooltipPosition="top" pTooltip="{{'data.btnEdit' | translate}}"  (click)="editRecord(rowData)"></button>
+                      <button type="button" pButton icon="pi pi-trash" tooltipPosition="top" pTooltip="{{'data.btnDelete' | translate}}"  (click)="deleteRecord(rowData)"></button>
+                  </td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="paginatorright">
+                <p-dropdown [options]="pageSizeOptions" (onChange)="pageChange($event)"  optionLabel="name" ></p-dropdown>
+            </ng-template>
+          </p-table>
+          
+          <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+        </div>
+      </div>
+    </div>
+  </div>
+  </p-panel>
+</div>   
+<p-dialog [(visible)]="displayDialog" [contentStyle]="{'overflow':'visible'}" [modal]="true" [responsive]="true">
+  <p-header>
+      {{'data.btnExport' | translate}}
+  </p-header>
+  <p-scrollPanel [styleClass]="'scrollStyle'">
+        <form [formGroup]="_exportForm" #formDir="ngForm" (ngSubmit)="_exportForm.valid && exportLookup(_exportForm)">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <button pButton type="submit"  icon="pi pi-download"  ></button>
+                </div>
+            </div>
+            <div class="col-md-12">
+            <p-accordion>
+                <p-accordionTab header="{{'data.lblTableName' | translate}}" [selected]="true">
+                    <p-listbox  [listStyle]="{minWidth:'12em','max-height':'250px'}" [styleClass]="'list-box'" name="exportSheets"  [options]="tableNameList" 
+                     formControlName="selectedTables" optionLabel="tableName"  multiple="multiple" checkbox="checkbox" filter="filter">
+                    </p-listbox >
+                </p-accordionTab>
+                <p-accordionTab header="{{'data.lblDataLocal' | translate}}">
+                    <p-listbox  [listStyle]="{minWidth:'12em','max-height':'250px'}" [styleClass]="'list-box'" name="selectedLocal"  [options]="dataLocalList" 
+                    formControlName="selectedLocals" optionLabel="name"  multiple="multiple" checkbox="checkbox" filter="filter">
+                </p-listbox >
+                </p-accordionTab>
+            </p-accordion>    
+          </div>
+        </form>
+     </p-scrollPanel>
+</p-dialog>

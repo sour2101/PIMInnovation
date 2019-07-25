@@ -1,0 +1,6 @@
+<div [formGroup]="form">
+          <p-fileUpload name="file"  [id]="field.shortName" accept="" customUpload="true" (uploadHandler)="field.onUpload($event)" maxFileSize="1000000000">
+            </p-fileUpload>
+   <!-- <p-fileUpload #fubauto mode="basic" name="demo[]"  accept="image/*" maxFileSize="1000000" 
+   (uploadHandler)="field.onUpload($event)" auto="true" chooseLabel="Browse"></p-fileUpload> -->
+  </div>

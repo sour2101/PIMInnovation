@@ -1,0 +1,38 @@
+<div class="col-md-12" style="padding:0px;">
+  <p-panel [styleClass]="'panelStyle'"  [toggleable]="false" >
+      <p-header>
+          <div class="ui-helper-clearfix">
+              <span class="ui-panel-title" >{{'data.menuWorkflow' | translate}}</span>
+              <button style="float:right" type="button" pButton icon="pi pi-plus" label="{{'data.btnCreateWorkflow' | translate}}" (click)="addWorkflow()"></button>
+          </div>
+      </p-header>
+      <div class="example-container">
+          <p-table [formGroup]="filterForm"  [value]="workflowList"  (onLazyLoad)="sorting($event)" [responsive]="true" 
+              [lazy]="true" [customSort]="true" [rows]="pageSize" [scrollable]="true" scrollHeight="50vh">
+              <ng-template pTemplate="header">
+                      <tr>
+                          <th [pSortableColumn]="'name'">{{'data.lblWorkflowName' | translate}}<p-sortIcon [field]="'name'" ></p-sortIcon></th>
+                          <th>{{'data.lblCurrentStatus' | translate}}</th>
+                          <th></th>
+                      </tr>
+                      <tr>
+                          <th> <input   pInputText type="text" formControlName="name"></th>
+                          <th></th>
+                          <th><button pButton type="button" icon="fa fa-search" pTooltip="{{'data.btnSearch' | translate}}"  (click)="filtering()"  ></button></th>
+                      </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-workflow>
+                      <tr>
+                          <td><span class="ui-column-title">{{'data.lblWorkflowName' | translate}}</span>{{workflow.name}}</td>
+                          <td><span class="ui-column-title">{{'data.lblCurrentStatus' | translate}}</span>{{workflow.status}}</td>
+                          <td>
+                              <button type="button" pButton icon="pi pi-pencil" tooltipPosition="top" pTooltip="{{'data.btnEdit' | translate}}"  (click)="editWorkflow(workflow)"></button>
+                              <button type="button" pButton icon="pi pi-trash" tooltipPosition="top" pTooltip="{{'data.btnDelete' | translate}}"  (click)="deleteWorkflow(workflow)"></button>
+                          </td>
+                      </tr>
+              </ng-template>
+          </p-table>
+      <p-paginator [rows]="pageSize" [rowsPerPageOptions]="[10,20,50,100]" [totalRecords]="totalRecords" (onPageChange)="pageChange($event)"></p-paginator>
+      </div>
+  </p-panel>
+</div>        

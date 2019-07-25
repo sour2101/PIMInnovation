@@ -1,0 +1,34 @@
+<div class="col-md-12" style="padding:0px;">
+  <p-panel [styleClass]="'panelStyle'"  [toggleable]="false" >
+      <p-header>
+          <div class="ui-helper-clearfix">
+              <span class="ui-panel-title" >{{'data.menuImportProfile' | translate}}</span>
+              <button style="float:right" type="button" pButton icon="pi pi-plus" label="{{'data.btnAddNewProfile' | translate}}" (click)="addImportProfile()"></button>
+          </div>
+      </p-header>
+      <div class="box-body">
+          <p-table [formGroup]="filterForm"  [value]="profileList"  (onLazyLoad)="sorting($event)" [responsive]="true" 
+              [lazy]="true" [customSort]="true" [rows]="pageSize" [scrollable]="true" scrollHeight="50vh">
+              <ng-template pTemplate="header">
+                      <tr>
+                          <th [pSortableColumn]="'name'">{{'data.lblImportProfileName' | translate}}<p-sortIcon [field]="'name'" ></p-sortIcon></th>
+                          <th></th>
+                      </tr>
+                      <tr>
+                          <th> <input   pInputText type="text" formControlName="name"></th>
+                          <th><button pButton type="button" icon="fa fa-search" pTooltip="{{'data.btnSearch' | translate}}"  (click)="filtering()"  ></button></th>
+                      </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-profile>
+                      <tr>
+                          <td><span class="ui-column-title">{{'data.lblImportProfileName' | translate}}</span>{{profile.name}}</td>
+                          <td>
+                              <button type="button" pButton icon="pi pi-upload" tooltipPosition="top" pTooltip="{{'data.btnEdit' | translate}}"  (click)="uploadFile(profile)"></button>
+                          </td>
+                      </tr>
+              </ng-template>
+          </p-table>
+      <p-paginator [rows]="pageSize" [rowsPerPageOptions]="[10,20,50,100]" [totalRecords]="totalRecords" (onPageChange)="pageChange($event)"></p-paginator>
+      </div>
+  </p-panel>
+</div>        

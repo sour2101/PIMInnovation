@@ -1,0 +1,111 @@
+<div class="col-md-12" style="padding:0px;">
+  <p-panel [styleClass]="'panelStyle'"  [toggleable]="false" >
+     <p-header>
+                <div class="ui-helper-clearfix">
+                    <span class="ui-panel-title" >{{'data.lblAddLookUp' | translate}}</span>
+                </div>
+     </p-header>
+  <div class="box-body">
+    <form [formGroup]="lookupTableForm" #formmain="ngForm" (ngSubmit)="lookupTableForm.valid && submit(lookupTableForm)" class="form-horizontal" novalidate >
+      <div class="form-group">
+          <div  [ngClass]="{'has-error': (lookupTableForm.get('tableName').invalid && formmain.submitted) }">
+              <label class="control-label col-md-3">
+                  {{'data.lblTableName' | translate}}*:
+              </label>
+              <div class="col-md-9">
+                  <input pInputText type="text" class="form-control" formControlName="tableName" required>
+              </div>
+            </div>
+      </div>
+      <div class="form-group col-md-12">
+          <p-table formGroupName="columns" [value]="lookupColumnList" [responsive]="true" >
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>{{'data.lblColumn'|translate}}</th>
+                  <th>{{'data.lblDataType'|translate}}</th>
+                  <th>{{'data.lblLength'|translate}}</th>
+                  <th>{{'data.lblNullable'|translate}}</th>
+                  <th>{{'data.lblUnique'|translate}}</th>
+                  <th></th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-columns  let-ri="rowIndex">
+                <tr>
+                  <td>{{columns.columnName}}</td>
+                  <td>{{columns.dataType}}</td>
+                  <td>{{columns.length}}</td>
+                  <td>{{columns.nullable}}</td>
+                  <td>{{columns.unique}}</td>
+                  <td>
+                      <button  type="button" pButton   icon="pi pi-pencil" tooltipPosition="top" pTooltip="{{'data.btnEdit' | translate}}"  (click)="editRow(columns,ri)"></button>
+                      <button  type="button" pButton icon="pi pi-trash" tooltipPosition="top" pTooltip="{{'data.btnDelete' | translate}}"  (click)="deleteRow(columns,ri)"></button>
+                  </td>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="summary" let-rowData>
+                  <div style="text-align:left">
+                      <button type="button" pButton icon="fa fa-plus" (click)="addRow()"></button>
+                  </div>
+              </ng-template>
+            </p-table>
+      </div>
+      <div class="box-footer">
+          <a (click)="back()" class="btn btn-default">{{'data.btnBack' | translate}}</a>
+          <button pButton type="submit" label="{{'data.btnSave' | translate}}"  class="pull-right"></button>
+      </div>
+    </form>
+  </div>
+  </p-panel>
+</div>
+<p-dialog [showHeader]="false" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"  >
+    <div class="box-body">
+  <form [formGroup]="lookupTableColumnForm" #formDir="ngForm" (ngSubmit)="lookupTableColumnForm.valid && saveRow(lookupTableColumnForm)" class="form-horizontal" novalidate >
+  <div class="form-group" [ngClass]="{'has-error': (lookupTableColumnForm.get('columnName').invalid && formDir.submitted) }">
+    <label class="control-label col-md-3">
+        {{'data.lblColumn' | translate}}
+    </label>
+    <div class="col-md-9">
+        <input pInputText type="text" class="form-control" formControlName="columnName" required>
+    </div>
+  </div>
+  <div class="form-group" [ngClass]="{'has-error': (lookupTableColumnForm.get('dataType').invalid && formDir.submitted) }">
+      <label class="control-label col-md-3">
+          {{'data.lblDataType' | translate}}
+      </label>
+      <div class="col-md-9">
+          <select name="DataType"  formControlName="dataType" class="form-control" required>
+              <option *ngFor="let dt of dataTypeList" [ngValue]="dt.name" >{{dt.name}}</option>
+          </select>
+      </div>
+  </div>
+  <div class="form-group" [ngClass]="{'has-error': (lookupTableColumnForm.get('length').invalid && formDir.submitted) }">
+        <label class="control-label col-md-3">
+            {{'data.lblLength' | translate}}
+        </label>
+        <div class="col-md-9">
+            <input   pInputText type="text" class="form-control" formControlName="length" required>
+        </div>
+  </div>   
+  <div class="form-group">
+      <label class="control-label col-md-3">
+          {{'data.lblNullable' | translate}}
+      </label>
+      <div class="col-md-9">
+          <p-checkbox  name="Nullable" binary="true" [formControl]="lookupTableColumnForm.controls['nullable']"></p-checkbox> 
+      </div>
+  </div>
+  <div class="form-group">
+      <label class="control-label col-md-3">
+          {{'data.lblUnique' | translate}}
+      </label>
+      <div class="col-md-9">
+          <p-checkbox  name="Unique" binary="true" [formControl]="lookupTableColumnForm.controls['unique']"></p-checkbox>
+      </div>
+    </div>
+    <div class="box-footer">
+        <a (click)="cancelEditRow()" class="btn btn-default">{{'data.btnBack' | translate}}</a>
+        <button pButton type="submit" label="{{'data.btnSave' | translate}}"  class="pull-right"></button>
+    </div>
+  </form>
+</div>
+</p-dialog>

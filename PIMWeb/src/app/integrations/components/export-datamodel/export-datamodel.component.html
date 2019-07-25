@@ -1,0 +1,36 @@
+<div class="col-md-12" style="padding:0px;">
+        <p-panel [styleClass]="'panelStyle'"  [toggleable]="false" >
+           <p-header>
+                      <div class="ui-helper-clearfix">
+                          <span class="ui-panel-title" >{{'data.menuExportDataModel' | translate}}</span>
+                      </div>
+           </p-header>
+ 
+        <div class="box-body">
+            <form [formGroup]="_exportForm" #formDir="ngForm" (ngSubmit)="_exportForm.valid && submit(_exportForm)">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <button pButton type="submit" label="{{'data.btnExport' | translate}}" icon="fa fa-file-excel-o"  ></button>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">{{'data.lblSheets'|translate}}:</label>
+                        <div class="col-md-8">
+                                <p-multiSelect  name="exportSheets"  [options]="sheetList" [panelStyle]="{minWidth:'12em'}" formControlName="selectedSheets" optionLabel="name" [virtualScroll]="true" [maxSelectedLabels]="2"  ></p-multiSelect>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label col-md-3">{{'data.lblDataLocal'|translate}}:</label>
+                            <div class="col-md-9">
+                                    <p-multiSelect  name="locals"  [options]="dataLocalList" [panelStyle]="{minWidth:'12em'}" formControlName="selectedLocals" optionLabel="name" [virtualScroll]="true" [maxSelectedLabels]="2"  ></p-multiSelect>
+                            </div>
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </p-panel>
+</div>
+ 

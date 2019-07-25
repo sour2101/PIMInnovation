@@ -1,0 +1,59 @@
+<div class="col-md-12" style="padding:0px;">
+  <p-panel [styleClass]="'panelStyle'"  [toggleable]="false" >
+     <p-header>
+                <div class="ui-helper-clearfix">
+                    <span class="ui-panel-title" >{{'data.lblAttributeMaster' | translate}}</span>
+                </div>
+     </p-header>
+     <div class="ui-g">
+     <div class="ui-md-3 col-md-3">
+        <p-panel header="{{'data.lblAttributeType' | translate}}">
+            <p-scrollPanel [style]="{width: '100%', height: '354px'}">                             
+                <p-tree [contextMenu]="cm" [style]="{border:'0px'}" [value]="attrTypeList" (onNodeSelect)="nodeSelect($event)" (onNodeExpand)="loadNode($event)" [(selection)]="selectedNode" selectionMode="single" ></p-tree>
+                <p-contextMenu  appendTo="body"  #cm [model]="menuItems"></p-contextMenu>
+            </p-scrollPanel>
+        </p-panel>
+    </div>
+    <div class="ui-md-9 col-md-9">
+     <p-panel [formGroup]="filterForm" [ngStyle]="{'display': showList?'block':'none'}">
+        <p-header>
+            <div class="ui-helper-clearfix">
+                                        <span class="ui-panel-title" >{{'data.lblAttribute' | translate}}</span>
+                                        <button style="float:right" type="button" pButton icon="pi pi-plus" label="{{'data.lblAddAttribute' | translate}}" (click)="addAttribute()"></button>
+            </div>
+        </p-header>
+        <p-table    [value]="attributeList"  (onLazyLoad)="sorting($event)" [responsive]="true" [scrollable]="true" scrollHeight="50vh"
+                                         [lazy]="true" [customSort]="true" [rows]="pageSize">
+                                            <ng-template pTemplate="header">
+                                                <tr>
+                                                    <th [pSortableColumn]="'shortName'">{{'data.lblShortName' | translate}}<p-sortIcon [field]="'shortName'" ></p-sortIcon></th>
+                                                    <th>{{'data.lblLongName' | translate}}</th>
+                                                    <th>{{'data.lblDataType' | translate}}</th>
+                                                    <th></th>
+                                                </tr>
+                                                <tr>
+                                                    <th> <input   pInputText type="text" formControlName="shortName"></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th><button pButton type="button" icon="fa fa-search" pTooltip="{{'data.btnSearch' | translate}}"  (click)="filtering()"  ></button></th>
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="body" let-attribute  >
+                                                <tr>
+                                                    <td><span class="ui-column-title">{{'data.lblShortName' | translate}}</span> {{attribute.shortName}}</td>
+                                                    <td><span class="ui-column-title">{{'data.lblLongName' | translate}}</span> {{attribute.longName}}</td>
+                                                    <td><span class="ui-column-title">{{'data.lblDataType' | translate}}</span> {{attribute.dataType}}</td>
+                                                    <td>
+                                                        <button type="button" pButton icon="pi pi-pencil" tooltipPosition="top" pTooltip="{{'data.btnEdit' | translate}}"  (click)="editAttribute(attribute)"></button>
+                                                        <button type="button" pButton icon="pi pi-trash" tooltipPosition="top" pTooltip="{{'data.btnDelete' | translate}}"  (click)="deleteAttribute(attribute)"></button>
+                                                    </td>
+                                                </tr>
+                                            </ng-template>
+                                            
+        </p-table>
+        <p-paginator  [rows]="pageSize" [rowsPerPageOptions]="[10,20,50,100]" [totalRecords]="totalRecords" (onPageChange)="pageChange($event)"></p-paginator>
+     </p-panel>
+    </div>
+</div>
+  </p-panel>
+</div>

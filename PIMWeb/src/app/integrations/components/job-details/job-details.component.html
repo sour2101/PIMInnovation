@@ -1,0 +1,47 @@
+<div class="col-md-12" style="padding:0px;">
+    <p-panel [styleClass]="'panelStyle'" [toggleable]="false" >
+       <p-header>
+                  <div class="ui-helper-clearfix">
+                      <span class="ui-panel-title" >{{'data.headerJobDetails' | translate}}</span>
+                  </div>
+       </p-header>
+       <div class="form-group">        
+           <button type="button" pButton icon="pi pi-arrow-circle-left" label="{{'data.btnBack' | translate}}" (click)="back()"></button>  
+           <button type="button" pButton icon="pi pi-refresh" label="{{'data.btnRefresh' | translate}}" (click)="initialize()"></button>  
+       </div>
+       <div class="box box-primary box-body">
+        <p-table [formGroup]="filterForm"  [value]="jobDetailsList"  (onLazyLoad)="sorting($event)" [responsive]="true" 
+            [lazy]="true" [customSort]="true"   [rows]="pageSize" [scrollable]="true" scrollHeight="50vh">
+            <ng-template pTemplate="header">
+                    <tr>
+                        <th [pSortableColumn]="'sheetName'">{{'data.lblSheetName' | translate}}<p-sortIcon [field]="'sheetName'" ></p-sortIcon></th>
+                        <th [pSortableColumn]="'entityName'">{{'data.lblEntityName' | translate}}<p-sortIcon [field]="'entityName'" ></p-sortIcon></th>
+                        <th [pSortableColumn]="'code'">{{'data.lblCode' | translate}}<p-sortIcon [field]="'code'" ></p-sortIcon></th>
+                        <th [pSortableColumn]="'rowNumber'">{{'data.lblRowNumber' | translate}}<p-sortIcon [field]="'rowNumber'" ></p-sortIcon></th>
+                        <th [pSortableColumn]="'errorMessage'">{{'data.lblErrorMessage' | translate}}<p-sortIcon [field]="'errorMessage'" ></p-sortIcon></th>
+                        <th ></th>
+                    </tr>
+                    <tr>
+                        <th> <input   pInputText type="text" formControlName="name"></th>
+                        <th> <input   pInputText type="text" formControlName="entityName"></th>
+                        <th> <input   pInputText type="text" formControlName="code"></th>
+                        <th></th>
+                        <th> <input   pInputText type="text" formControlName="errorMessage"></th>
+                        <th ><button pButton type="button" icon="fa fa-search" pTooltip="{{'data.btnSearch' | translate}}"  (click)="filtering()"  ></button></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-job>
+                    <tr>
+                        <td><span class="ui-column-title">{{'data.lblSheetName' | translate}}</span>{{job.sheetName}}</td>
+                        <td><span class="ui-column-title">{{'data.lblEntityName' | translate}}</span>{{job.entityName}}</td>
+                        <td><span class="ui-column-title">{{'data.lblCode' | translate}}</span>{{job.code}}</td>
+                        <td><span class="ui-column-title">{{'data.lblRowNumber' | translate}}</span>{{job.rowNumber}}</td>
+                        <td><span class="ui-column-title">{{'data.lblErrorMessage' | translate}}</span>{{job.errorMessage}}</td> 
+                        <td></td>
+                    </tr>
+            </ng-template>
+        </p-table>
+    <p-paginator [rows]="pageSize" [rowsPerPageOptions]="[10,20,50,100]" [totalRecords]="totalRecords" (onPageChange)="pageChange($event)"></p-paginator>
+    </div>
+    </p-panel>   
+</div>    

@@ -1,0 +1,5 @@
+<div [formGroup]="form" >
+    <input pInputText  *ngIf="!field.multiline" [attr.type]="field.displayType" class="form-control"  [id]="field.shortName" [name]="field.shortName" [formControlName]="field.shortName">
+    <textarea *ngIf="field.multiline" [class.is-invalid]="isDirty && !isValid" [formControlName]="field.shortName" [id]="field.shortName"
+    rows="9" class="form-control" [placeholder]="field.placeholder"></textarea>
+  </div> 

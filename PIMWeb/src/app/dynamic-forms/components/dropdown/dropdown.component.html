@@ -1,0 +1,5 @@
+<div [formGroup]="form">
+    <select class="form-control" [id]="field.shortName" [formControlName]="field.shortName">
+      <option *ngFor="let opt of field.options" [value]="opt.id">{{opt.name}}</option>
+    </select>
+  </div> 

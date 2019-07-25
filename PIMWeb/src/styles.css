@@ -1,0 +1,170 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~primeng/resources/themes/rhea/theme.css';
+@import '~primeng/resources/primeng.css';
+@import '~primeicons/primeicons.css';
+@import '../src/assets/Content/css/pim.css';
+@import '../src/assets/Content/css/customizeprimeng.css'; 
+body {
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-position: top center !important;
+  /* background-repeat: no-repeat !important; */
+  background-attachment: fixed; 
+ 
+  }
+
+
+.main-header .logo {
+    padding:0;
+}
+
+
+.login-box {
+    margin: 10% auto;
+}
+
+#loginLogo
+{
+  margin-bottom: -25%;
+  margin-top: -5%;
+}
+
+ 
+.has-error{
+    border-color:red;
+    
+}
+.heart-rate {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  margin: 20px auto;
+}
+
+.fade-in {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #FFFFFF;
+  top: 0;
+  right: 0;
+  animation: heartRateIn 2s linear infinite;
+}
+
+.fade-out {
+  position: absolute;
+  width: 120%;
+  height: 100%;
+  top: 0;
+  left: -120%;
+  animation: heartRateOut 2s linear infinite;
+  background: rgba(255, 255, 255, 1);
+  background: -moz-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+  background: -o-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+  background: -ms-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 80%, rgba(255, 255, 255, 0) 100%);
+}
+
+@keyframes heartRateIn {
+  0% {
+    width: 100%;
+  }
+  50% {
+    width: 0;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes heartRateOut {
+  0% {
+    left: -120%;
+  }
+  30% {
+    left: -120%;
+  }
+  100% {
+    left: 0;
+  }
+}
+.stroke{
+  fill:none;
+  stroke-width:2;
+  stroke-opacity: 1;
+}
+
+.stroke1{
+  stroke:#4DB1B3;
+  stroke-dasharray: 69 ,900;
+}
+
+.stroke2{
+  stroke:#0195D6;
+  stroke-dasharray: 0,68 ,900;
+}
+
+.stroke3{
+  stroke:#0F5299;
+  stroke-dasharray: 0,168,900;
+}
+
+.stroke4{
+  stroke:#C5284C;
+  stroke-dasharray: 0,278,900;
+}
+
+.stroke5{
+  stroke:#E83430;
+  stroke-dasharray: 0,440,900;
+}
+
+.stroke6{
+  stroke:#E66407;
+  stroke-dasharray: 0,650,900;
+}
+
+body > .overlay,
+.overlay-wrapper > .overlay,
+.box > .loading-img,
+.overlay-wrapper > .loading-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body .overlay, 
+.overlay-wrapper .overlay {
+  z-index: 1050;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 3px;
+}
+
+body  .overlay-dark {
+  z-index: 1050;
+  background:#2e2e2e;
+  border-radius: 3px;
+}
+
+.body .overlay > .fa,
+.overlay-wrapper .overlay > .fa {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -15px;
+  margin-top: -15px;
+  color: #000;
+  font-size: 30px;
+}
+
+.box-header {
+padding:2px;
+}
+ 
+.content {
+padding:1px;
+}

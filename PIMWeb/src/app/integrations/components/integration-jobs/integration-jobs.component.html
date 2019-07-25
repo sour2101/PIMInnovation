@@ -1,0 +1,75 @@
+<div class="col-md-12" style="padding:0px;">
+    <p-panel [styleClass]="'panelStyle'" [toggleable]="false" >
+       <p-header>
+                  <div class="ui-helper-clearfix">
+                      <span class="ui-panel-title" >{{'data.menuInterationJobs' | translate}}</span>
+                  </div>
+       </p-header>
+       <div class="row">
+        <div class="form-group col-md-1">
+         <button type="button" pButton icon="pi pi-refresh" label="{{'data.btnRefresh' | translate}}" (click)="initialize()"></button>         
+       </div>
+       <div class="form-group col-md-4">
+            <label class="control-label col-md-3">{{'data.lblJobType' | translate}}</label>
+            <div class="col-md-9">
+            <p-dropdown [options]="jobTypeList" placeholder="All" [showClear]="true" (onChange)="changeProfile($event)" optionLabel="name" ></p-dropdown>
+            </div>
+       </div>
+       <div class="form-group col-md-4">
+            <label class="control-label col-md-5">{{'data.lblCurrentStatus' | translate}}</label>
+            <div class="col-md-7">
+            <p-dropdown [options]="statusList" placeholder="All" [showClear]="true" (onChange)="changeStatus($event)" optionLabel="name" ></p-dropdown>
+            </div>
+       </div>
+       <div class="form-group col-md-2" >
+        <label class="control-label col-md-9">{{'data.btnAutoRefresh' | translate}}</label>
+        <div class="col-md-3">
+            <p-inputSwitch (onChange)="autoRefresh($event)" [(ngModel)]="refresh" ></p-inputSwitch>
+        </div>
+      </div>
+     </div>
+   <div class="row" style="margin: 0%">
+   <div class="box box-primary box-body">
+        <p-table [formGroup]="filterForm"  [value]="integrationJobList"  (onLazyLoad)="sorting($event)" [responsive]="true" 
+            [lazy]="true" [customSort]="true"   [rows]="pageSize" [scrollable]="true" scrollHeight="50vh">
+            <ng-template pTemplate="header">
+                    <tr>
+                        <th [pSortableColumn]="'name'">{{'data.lblJobName' | translate}}<p-sortIcon [field]="'name'" ></p-sortIcon></th>
+                        <th [pSortableColumn]="'profileName'">{{'data.lblProfileName' | translate}}<p-sortIcon [field]="'profileName'" ></p-sortIcon></th>
+                        <th [pSortableColumn]="'statusName'">{{'data.lblCurrentStatus' | translate}}<p-sortIcon [field]="'statusName'" ></p-sortIcon></th>
+                        <th [pSortableColumn]="'description'">{{'data.lblDescription' | translate}}<p-sortIcon [field]="'description'" ></p-sortIcon></th>
+                        <th [pSortableColumn]="'createdBy'">{{'data.lblCreatedBy' | translate}}<p-sortIcon [field]="'createdBy'" ></p-sortIcon></th>
+                        <th [pSortableColumn]="'createdDate'">{{'data.lblCreatedDate' | translate}}<p-sortIcon [field]="'createdDate'" ></p-sortIcon></th>
+                        <th ></th>
+                    </tr>
+                    <tr>
+                        <th> <input   pInputText type="text" formControlName="name"></th>
+                        <th> <input   pInputText type="text" formControlName="profileName"></th>
+                        <th> <input   pInputText type="text" formControlName="statusName"></th>
+                        <th></th>
+                        <th> <input   pInputText type="text" formControlName="createdBy"></th>
+                        <th></th>
+                        <th ><button pButton type="button" icon="fa fa-search" pTooltip="{{'data.btnSearch' | translate}}"  (click)="filtering()"  ></button></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-job>
+                    <tr>
+                        <td><span class="ui-column-title">{{'data.lblJobName' | translate}}</span>{{job.name}}</td>
+                        <td><span class="ui-column-title">{{'data.lblProfileName' | translate}}</span>{{job.profileName}}</td>
+                        <td><span class="ui-column-title">{{'data.lblCurrentStatus' | translate}}</span>{{job.statusName}}</td>
+                        <td><span class="ui-column-title">{{'data.lblDescription' | translate}}</span>{{job.description}}</td>
+                        <td><span class="ui-column-title">{{'data.lblCreatedBy' | translate}}</span>{{job.createdBy}}</td>
+                        <td><span class="ui-column-title">{{'data.lblCreatedDate' | translate}}</span>{{job.createdDate | date:'short'}}</td>
+                        <td >
+                            <button type="button" pButton icon="pi pi-trash" tooltipPosition="top" pTooltip="{{'data.btnDelete' | translate}}"  (click)="deleteJob(job)"></button>
+                            <button type="button" pButton icon="pi pi-eye" tooltipPosition="top" pTooltip="{{'data.lblView' | translate}}"  (click)="viewJob(job)"></button>
+                        </td>
+                    </tr>
+            </ng-template>
+        </p-table>
+    <p-paginator [rows]="pageSize" [rowsPerPageOptions]="[10,20,50,100]" [totalRecords]="totalRecords" (onPageChange)="pageChange($event)"></p-paginator>
+    </div>
+   </div>  
+   <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+  </p-panel>
+</div>

@@ -1,0 +1,22 @@
+
+
+
+.ui-tree{
+    width: 0px !important;
+}
+
+.ui-grid-row[_ngcontent-c6] {
+    text-align: center !important;
+}
+
+.ui-grid[_ngcontent-c6] {
+    margin: 10px 0px !important;;
+}
+
+.ui-grid-row[_ngcontent-c6]    > div[_ngcontent-c6] {
+    padding: 4px 10px !important;;
+}
+
+body .ui-chips > ul.ui-inputtext{
+    width: 100% !important;
+}

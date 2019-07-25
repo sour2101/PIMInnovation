@@ -1,0 +1,89 @@
+
+.content {
+    padding:0px;
+}
+    
+     
+.accordion-content {
+      height:75vh;
+    overflow-y: scroll;
+    overflow-x: scroll;
+}
+
+/******customize thead data table******/
+
+ body .ui-table .ui-table-thead > tr > th {
+  background-color: #ffffff !important;
+  border: 1px solid #ddd !important;
+  
+} 
+
+body .ui-table .ui-table-thead > tr > th > input{
+  background-color: #ffffff !important;
+  border: 1px solid #ddd !important;
+  color: #888888 !important;
+  font-weight: normal !important;
+  width: 90%;
+}
+
+body .ui-table .ui-table-tbody > tr{
+  background-color: #FFF;
+}
+
+body .ui-table .ui-table-tbody > tr,
+body .ui-table .ui-table-thead > tr > th
+{
+  font-size: 12px; 
+  color: #888888 !important;
+}
+
+body .ui-paginator{
+  background-color: #ffffff !important;
+}
+     
+/*for chips*/    
+.ui-chips > ul.ui-inputtext{
+    display: block !important;
+  }
+  
+  .ui-inputtext{
+    background: #ffffff !important;
+  }
+
+  /*for multiselect*/
+  body .ui-multiselect,
+  body .ui-multiselect .ui-multiselect-trigger{
+      background-color:#ffffff; 
+  }
+  .ui-multiselect .ui-multiselect-label-container,
+  .ui-multiselect-panel .ui-multiselect-items-wrapper{
+      width: 250px;
+  }
+
+  /*for tab view error*/
+ .scrollStyle{
+   height:350px;
+   width: '100%';
+ } 
+.panelStyle{
+  margin-top:5px;
+  background-color:#ffffff;
+}
+
+.ui-button{
+  margin-right:.5em !important;
+}
+
+.ui-dialog{
+  min-width: 30% !important;
+}
+
+.list-box{
+  min-width: 30em !important;
+}
+
+/* for tree*/
+body .ui-tree{
+  padding:0px !important;
+}
+  

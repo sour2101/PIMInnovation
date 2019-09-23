@@ -1,0 +1,4 @@
+<div [formGroup]="form" >
+    <textarea pInputTextarea *ngIf="!field.isCollection" [class.is-invalid]="isDirty && !isValid" [formControlName]="field.shortName" [id]="field.shortName"
+        rows="4" class="form-control" [placeholder]="field.placeholder" autoResize="autoResize"></textarea>
+</div>

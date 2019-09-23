@@ -323,6 +323,7 @@
     <Compile Include="ExcelExportControllers\ExportLookupTableController.cs" />
     <Compile Include="ExcelExportControllers\TechnicalCategorySheet.cs" />
     <Compile Include="ExcelImportControllers\AbstractDataImport.cs" />
+    <Compile Include="ExcelImportControllers\InsertDataModel.cs" />
     <Compile Include="ExcelImportControllers\InsertLookupSheet.cs" />
     <Compile Include="ExcelImportControllers\JobServiceController.cs" />
     <Compile Include="ExcelImportControllers\LookupUploadController.cs" />
@@ -358,7 +359,9 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="changeLog.xml" />
+    <Content Include="changeLog.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

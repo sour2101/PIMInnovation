@@ -41,15 +41,26 @@
 
         public virtual DbSet<DisplayType> DisplayTypes { get; set; }
 
+        public virtual DbSet<LookupTables> LookupTables { get; set; }
+
+        public virtual DbSet<LookUpColumns> LookUpColumns { get; set; }
+
+        public virtual DbSet<UOMType> UOMTypes { get; set; }
+
+        public virtual DbSet<UOM> UOM { get; set; }
+
         public virtual DbSet<AttributeGroup> AttributeGroups { get; set; }
 
         public virtual DbSet<AttributeType> AttributeTypes { get; set; }
 
         public virtual DbSet<Attribute> Attributes { get; set; }
+      
 
-        public virtual DbSet<LookupTables> LookupTables { get; set; }
+        public virtual DbSet<AttributeLookup> AttributeLookups { get; set; }
 
-        public virtual DbSet<LookUpColumns> LookUpColumns { get; set; }
+        public virtual DbSet<AttributeDropdowns> AtrributeDropdowns { get; set; }
+
+        public virtual DbSet<AttributeUOM> AttributeUOMs { get; set; }
 
         public virtual DbSet<Actions> Actions { get; set; }
 
@@ -70,6 +81,8 @@
         public virtual DbSet<MessageType> MessageTypes { get; set; }
 
         public virtual DbSet<JobDetails> JobDetails { get; set; }
+
+       
 
     }
 }

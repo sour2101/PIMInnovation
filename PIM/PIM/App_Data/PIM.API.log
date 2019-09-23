@@ -21,3 +21,46 @@
 2019-07-19 11:04:52,665 [4] INFO  MonitoringLogger - The Table "FunctionalGroup" has been Updated
 2019-07-19 11:05:16,149 [39] INFO  MonitoringLogger - The Table "FunctionalGroup" has been Updated
 2019-07-24 09:53:25,141 [78] INFO  MonitoringLogger - The User Preferences has been Updated
+2019-08-13 11:14:00,694 [25] INFO  MonitoringLogger - The Table "BrandName" has been Created
+2019-08-13 11:14:29,730 [44] INFO  MonitoringLogger - The Record Inserted Successfully
+2019-08-13 11:14:42,735 [22] INFO  MonitoringLogger - The Record Inserted Successfully
+2019-08-13 11:14:52,151 [47] INFO  MonitoringLogger - The Record Inserted Successfully
+2019-08-13 11:15:31,911 [17] INFO  MonitoringLogger - The Record Inserted Successfully
+2019-08-13 12:16:24,158 [24] INFO  MonitoringLogger - The Attribute "BrandName" has been Updated
+2019-08-13 12:16:45,535 [31] INFO  MonitoringLogger - The Attribute "BrandName" has been Updated
+2019-08-20 16:45:45,788 [38] INFO  MonitoringLogger - The Attribute "BrandName" has been Updated
+2019-08-20 16:55:13,798 [19] INFO  MonitoringLogger - The Attribute "BrandName" has been Updated
+2019-09-09 16:27:27,559 [35] INFO  MonitoringLogger - The Attribute "SOA" has been added
+2019-09-09 17:05:09,001 [12] INFO  MonitoringLogger - The Attribute "SOA" has been Updated
+2019-09-12 12:22:15,339 [31] INFO  MonitoringLogger - The Attribute "SOA" has been Updated
+2019-09-13 10:30:19,331 [52] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2019-09-13 10:30:19,837 [5] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2019-09-13 10:30:30,017 [57] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2019-09-13 10:30:30,121 [57] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2019-09-13 11:12:18,631 [6] INFO  MonitoringLogger - The Attribute "BrandName" has been Updated
+2019-09-18 16:30:30,311 [88] INFO  MonitoringLogger - The Attribute "PartNumbers" has been added
+2019-09-18 16:32:56,175 [75] INFO  MonitoringLogger - The Attribute "PartNumbers" has been Updated
+2019-09-18 16:38:09,424 [62] INFO  MonitoringLogger - The Attribute "PartNumbers" has been Updated
+2019-09-19 10:16:59,492 [34] INFO  MonitoringLogger - The Attribute "PartNumbers" has been Updated
+2019-09-20 11:05:19,990 [52] INFO  MonitoringLogger - The Attribute "PartNumbers" has been Updated
+2019-09-20 13:52:42,004 [42] INFO  MonitoringLogger - The Attribute Group "Marketing-Default" has been added
+2019-09-20 13:53:28,559 [9] INFO  MonitoringLogger - The Attribute "MarketingCopy" has been added
+2019-09-20 14:14:16,692 [42] INFO  MonitoringLogger - The Attribute "ProductGroup" has been added
+2019-09-23 11:26:02,755 [3] INFO  MonitoringLogger - 6
+2019-09-23 11:26:05,625 [42] INFO  MonitoringLogger - The User  has been Added
+2019-09-23 18:29:49,260 [38] INFO  MonitoringLogger - The user "N3930870" has been updated
+2019-09-23 18:29:50,124 [30] INFO  MonitoringLogger - The User Preferences has been Updated
+2019-09-23 18:30:08,700 [26] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2019-09-23 18:30:08,781 [13] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2019-09-23 18:30:13,430 [13] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2019-09-23 18:30:13,510 [30] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2019-09-23 18:30:21,483 [26] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2019-09-23 18:30:21,547 [30] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2019-09-23 18:30:48,278 [26] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2019-09-23 18:30:48,332 [44] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2019-09-23 18:31:42,433 [38] INFO  MonitoringLogger - The user "N3930870" has been updated
+2019-09-23 18:31:43,398 [22] INFO  MonitoringLogger - The User Preferences has been Updated
+2019-09-23 18:32:08,601 [41] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2019-09-23 18:32:08,675 [48] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2019-09-23 18:32:14,654 [4] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2019-09-23 18:32:14,733 [30] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.

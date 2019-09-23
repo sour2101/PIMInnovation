@@ -1,4 +1,5 @@
 ﻿using PIM.Data.Common;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -29,15 +30,26 @@ namespace PIM.Data.MasterData
 
         public bool IsLocalizable { get; set; }
 
-        public string TableName { get; set; }
+        public bool IsCollection { get; set; }
+
+        public string DefaultUOM { get; set; }
+
+        public int? LookupTableId { get; set; }
+
 
         [ForeignKey("AttributeGroupId")]
-        public virtual AttributeGroup AttributeGroup{ get; set; }
+        public virtual AttributeGroup AttributeGroup { get; set; }       
 
         [ForeignKey("DataTypeId")]
         public virtual DataType DataTypes { get; set; }
 
         [ForeignKey("DisplayTypeId")]
         public virtual DisplayType DisplayTypes { get; set; }
+
+        public virtual List<AttributeLookup> AttributeLookups { get; set; }
+
+        public virtual List<AttributeDropdowns> AttributeDropdowns { get; set; }
+
+        //public virtual List<AttributeUOM> AttributeUOMs { get; set; }
     }
 }

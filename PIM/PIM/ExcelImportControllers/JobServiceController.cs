@@ -9,6 +9,7 @@ namespace PIM.API.ExcelImport
     using Logging;
     using Controllers;
     using NPOI.XSSF.UserModel;
+    using Data.Enums;
 
     [AllowAnonymous]
     public class JobServiceController : AbstractController
@@ -24,8 +25,16 @@ namespace PIM.API.ExcelImport
                 {
                     hssfwb = new XSSFWorkbook(file);
                     var result = Repository.FindBy<FileDetails>(f => f.FileName == fileDetails.FileName).SingleOrDefault();
-                    InsertLookupSheet ls = new InsertLookupSheet();
-                    ls.LookupInsert(hssfwb, result);
+                    if (fileDetails.DirectoryName == DirectoryNames.LookupModelExcel.ToString())
+                    {
+                        InsertLookupSheet ls = new InsertLookupSheet();
+                        ls.LookupInsert(hssfwb, result);
+                    }
+                    else if (fileDetails.DirectoryName == DirectoryNames.DataModelExcel.ToString())
+                    {
+                        InsertDataModel dataModel = new InsertDataModel();
+                        dataModel.DataModelInsert(hssfwb, fileDetails);
+                    }
                     File.Move(filePath, Properties.Settings.Default.completedPath + fileDetails.DirectoryName + "\\" + fileDetails.FileName);
                 }
             }

@@ -1,0 +1,7 @@
+<div [formGroup]="form" >
+  <!-- <p-dropdown [options]="tableData" [styleClass]="form-control" showClear="true" placeholder="Select" [formControlName]="field.shortName" optionLabel="description"></p-dropdown> -->
+  <select *ngIf="!field.isCollection" class="form-control" [id]="field.shortName" [formControlName]="field.shortName">
+      <option value="0">--Select--</option>
+    <option *ngFor="let opt of tableData" >{{opt.description}}</option>
+  </select>
+</div> 

@@ -33,8 +33,22 @@ namespace PIM.API.Controllers
                     a.IsLocalizable,
                     a.Required,
                     a.ShowAtCreation,
+                    a.IsCollection,
+                    a.LookupTableId,
                     a.CreatedBy,
-                    a.CreatedDate
+                    a.CreatedDate,
+                    AttributeLookups = a.AttributeLookups.Select(al=>new {
+                        id =al.LookupColumnId,
+                        al.LookupTableId,
+                        al.LookupColumnId,
+                        al.LookupColumns.ColumnName,
+                        al.LookupColumns.Unique,
+                        al.LookupColumns.Nullable
+                    }).ToList(),
+                    attributeDropDowns = a.AttributeDropdowns.Select(ad => new {
+                        ad.Id,
+                        ad.Name
+                    }).ToList()
                 })
                 .SingleOrDefault();
             return Ok(attribute);
@@ -57,6 +71,7 @@ namespace PIM.API.Controllers
                 a.Id,
                 a.ShortName,
                 a.LongName,
+                a.LookupTableId,
                 DataType = a.DataTypes.Name
 
             }).ToPagedList(pageNumber, pageSize, sortBy, Convert.ToBoolean(sortOrder));
@@ -75,10 +90,15 @@ namespace PIM.API.Controllers
                     a.LongName,
                     a.ShortName,
                     a.Required,
+                    a.IsCollection,
+                    a.LookupTableId,
                     dataType = a.DataTypes.Name,
-                    displayType=a.DisplayTypes.Name
+                    displayType=a.DisplayTypes.Name,
+                    ColumnName = a.AttributeLookups.Select(lk=>new {lk.LookupColumns.ColumnName,lk.LookupTables.TableName }).ToList(),
+                    options = a.AttributeDropdowns.Select(ddl =>new {ddl.Id,ddl.Name }).ToList()
 
                 })
+                .OrderBy(a=>a.ShortName)
                 .ToList();
             return Ok(showatcreation);
         }
@@ -97,6 +117,8 @@ namespace PIM.API.Controllers
                 return BadRequest(ModelState);
             }
 
+            
+
             attr.CreatedBy = principal.Username;
             attr.CreatedDate = DateTime.Now;
             Repository.Add(attr);
@@ -113,6 +135,29 @@ namespace PIM.API.Controllers
             var principal = (User)User.Identity;
             attr.ModifiedBy = principal.Id;
             attr.ModifiedDate = DateTime.Now;
+            var attrLookup = Repository.GetAll<data.AttributeLookup>().Where(al => al.AttributeId == attr.Id).ToList();
+            foreach (data.AttributeLookup lk in attrLookup)
+            {
+                Repository.Delete(lk);
+                Repository.Save();
+            }
+
+            foreach (data.AttributeLookup lk in attr.AttributeLookups)
+            {
+                lk.AttributeId = attr.Id;
+                lk.LookupTableId = attr.LookupTableId;
+                Repository.Add(lk);
+            }
+
+            foreach (data.AttributeDropdowns lk in attr.AttributeDropdowns)
+            {
+                lk.AttributeId = attr.Id;
+                if (lk.Id != 0)
+                    Repository.Update(lk);
+                else
+                   Repository.Add(lk);
+            }
+
             Repository.Update(attr);
             Repository.Save();
             var message = "The Attribute \"" + attr.ShortName + "\" has been Updated";

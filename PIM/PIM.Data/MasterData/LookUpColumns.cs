@@ -1,4 +1,5 @@
 ﻿using PIM.Data.Common;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -22,5 +23,7 @@ namespace PIM.Data.MasterData
 
         [ForeignKey("TableId")]
         public virtual LookupTables Table { get; set; }
+
+        //public virtual ICollection<AttributeLookup> AttributeLookup { get; set;}
     }
 }

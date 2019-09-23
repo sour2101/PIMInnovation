@@ -70,6 +70,11 @@ body .ui-paginator{
   background-color:#ffffff;
 }
 
+.entityCollection{
+  height:100px;
+  width: '100%';
+} 
+
 .ui-button{
   margin-right:.5em !important;
 }
@@ -82,8 +87,17 @@ body .ui-paginator{
   min-width: 30em !important;
 }
 
+body .ui-listbox{
+  min-width: 100%;
+}
+
 /* for tree*/
 body .ui-tree{
   padding:0px !important;
+}
+
+.ui-dropdown {
+   
+  min-width: 100%;
 }
   

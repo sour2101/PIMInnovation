@@ -1,12 +1,14 @@
-<div class="form-group row" [ngClass]="{'has-error':(field.required && !form.valid )}"  #formDir="ngForm" [formGroup]="form">
+<div class="form-group row" [ngClass]="{'has-error':(field.required && form.get(field.shortName).invalid )}"  #formDir="ngForm" [formGroup]="form">
     <label class="col-md-3 form-control-label" [attr.for]="field.longName">
       {{field.longName}}
-      <strong class="text-danger" *ngIf="field.required">*</strong>
+     
     </label>
     <div class="col-md-9" [ngSwitch]="field.displayType" >
       <textbox *ngSwitchCase="'TextBox'" [field]="field" [form]="form"></textbox>
+      <text-area *ngSwitchCase="'TextArea'" [field]="field" [form]="form" ></text-area>
       <dropdown *ngSwitchCase="'DropDown'" [field]="field" [form]="form"></dropdown>
       <checkbox *ngSwitchCase="'checkbox'" [field]="field" [form]="form"></checkbox>
+      <lookup *ngSwitchCase="'LookupTable'" [field]="field" [form]="form"></lookup>
       <!-- <radio *ngSwitchCase="'radio'" [field]="field" [form]="form"></radio> -->
       <file *ngSwitchCase="'file'" [field]="field" [form]="form"></file>
       <!-- <div class="alert alert-danger my-1 p-2 fadeInDown animated" *ngIf="!isValid && isDirty">{{field.label}} is required</div> -->

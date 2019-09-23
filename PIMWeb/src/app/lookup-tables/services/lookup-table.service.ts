@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment'; 
 import { LookUpTable } from '../models/LookupTable';
+import { ColumnDetails } from '../models/columnDetails';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,12 @@ export class LookupTableService {
     if (filterBy != undefined) {
       Object.keys(filterBy).forEach(function (key, value) {
         if (filterBy[key] != null && filterBy[key] !== "")
-        param = param.append(key,filterBy[key]);
+        {
+          if(Array.isArray(filterBy[key]))
+            param = param.append(key,filterBy[key]);
+          else
+            param = param.append(key,filterBy[key]);
+        }
       });
   }
 
@@ -35,6 +41,12 @@ export class LookupTableService {
   getLookUpTable(id:number):Observable<LookUpTable>{
     let url = `${this.baseUrl}?id=`+id;
     return this._httpClient.get<LookUpTable>(url)
+    .pipe(map(data => data));
+  }
+
+  getLookupColumnData(model:ColumnDetails[]):Observable<any>{
+    let url = `${this.baseUrl}?columnDetails=`+model;
+    return this._httpClient.get(url)
     .pipe(map(data => data));
   }
 

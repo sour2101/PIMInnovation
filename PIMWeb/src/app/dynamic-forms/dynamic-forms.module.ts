@@ -10,15 +10,17 @@ import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { FileComponent } from './components/file/file.component';
 import { TextboxComponent } from './components/textbox/textbox.component';
+import { LookupComponent } from './components/lookup/lookup.component';
+import { TextAreaComponent } from './components/textarea/textarea.component';
 
 @NgModule({
-  declarations: [ CheckboxComponent, DropdownComponent, FileComponent, TextboxComponent],
+  declarations: [ CheckboxComponent, DropdownComponent, FileComponent, TextboxComponent, LookupComponent,TextAreaComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     TranslateModule,
     PrimengModule
   ],
-  exports: [CheckboxComponent, DropdownComponent, FileComponent, TextboxComponent],
+  exports: [CheckboxComponent, DropdownComponent, FileComponent, TextboxComponent,LookupComponent,TextAreaComponent],
 })
 export class DynamicFormsModule { }

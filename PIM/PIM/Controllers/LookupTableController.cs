@@ -9,17 +9,28 @@ using System.Reflection.Emit;
 using System.Text;
 using PIM.API.Linq;
 using System.Collections.Generic;
+using Newtonsoft;
 
 namespace PIM.API.Controllers
 {
     public class LookupTableController : AbstractController
     {
         [HttpGet]
-        public IHttpActionResult Get(int tableId, int pageSize, int pageNumber, string sortBy = null, string sortOrder = "false", int? local = null)
+        public IHttpActionResult Get(int tableId, int pageSize, int pageNumber, string sortBy = null, string sortOrder = "false", int? local = null, [FromUri]ICollection<string> columnDetails=null)
         {
             var tableDetails = Repository.GetById<LookupTables>(tableId);
             string sort = sortOrder=="false" ? " ORDER BY "+ sortBy + " DESC" : " ORDER BY " + sortBy + " ASC";
-            string query = "SELECT * FROM lk_" + tableDetails.TableName;
+            string column = "*";
+            string query = "SELECT ";
+            if (columnDetails.Any())
+            {
+                column = string.Empty;
+                foreach (string col in columnDetails)
+                    column = !string.IsNullOrEmpty(column) ? column + "," + col : col;
+            }
+
+            query = query + column + " FROM lk_" + tableDetails.TableName;             
+
             if (!string.IsNullOrEmpty(sortBy))
                 query = query + sort;
 
@@ -29,6 +40,24 @@ namespace PIM.API.Controllers
             
             return Ok(tableData);
         }
+
+        //[HttpGet]
+        //public IHttpActionResult Get([FromUri]ICollection<ColumnDetails> columnDetails)
+        //{
+        //    string columnName = string.Empty;
+
+        //    foreach (ColumnDetails col in columnDetails)
+        //        columnName = !string.IsNullOrEmpty(columnName) ? "," + col.ColumnName : col.ColumnName;
+
+
+        //        string query = "SELECT " + columnName + " FROM lk_" + columnDetails(0);
+
+        //    DynamicModel dm = new DynamicModel();
+        //    //var tableData = QueryExtensions.DynamicSqlQuery(Repository.Context.Database, query, dm.GetObject(tableDetails.Columns));
+        //    List<dynamic> tableData = QueryExtensions.DynamicListFromSql(Repository.Context.Database, query, new Dictionary<string, object> { }).ToList();
+
+        //    return Ok(tableData);
+        //}
 
 
         [HttpGet]
@@ -134,5 +163,12 @@ namespace PIM.API.Controllers
             return Ok(message);
         }
 
+    }
+
+    public class ColumnDetails 
+    {
+        public string ColumnName { get; set; }
+
+        public string TableName { get; set; }
     }
 }

@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Common\Created.cs" />
     <Compile Include="Entity\Entity.cs" />
+    <Compile Include="Enums\DirectoryNames.cs" />
     <Compile Include="Enums\EnumDataModel.cs" />
     <Compile Include="Enums\EnumLanguage.cs" />
     <Compile Include="Enums\EnumMessageType.cs" />
@@ -59,9 +60,12 @@
     <Compile Include="Integrations\IntegrationStatus.cs" />
     <Compile Include="Integrations\JobDetails.cs" />
     <Compile Include="MasterData\Actions.cs" />
+    <Compile Include="MasterData\AttributeDropdowns.cs" />
     <Compile Include="MasterData\Attribute.cs" />
+    <Compile Include="MasterData\AttributeLookup.cs" />
     <Compile Include="MasterData\AttributeType.cs" />
     <Compile Include="MasterData\AttributeGroup.cs" />
+    <Compile Include="MasterData\AttributeUOM.cs" />
     <Compile Include="MasterData\Category.cs" />
     <Compile Include="MasterData\Country.cs" />
     <Compile Include="MasterData\DataType.cs" />
@@ -72,6 +76,8 @@
     <Compile Include="MasterData\MessageType.cs" />
     <Compile Include="MasterData\Organization.cs" />
     <Compile Include="MasterData\Plant.cs" />
+    <Compile Include="MasterData\UOM.cs" />
+    <Compile Include="MasterData\UOMType.cs" />
     <Compile Include="MasterData\Workflow.cs" />
     <Compile Include="MasterData\WorkflowSteps.cs" />
     <Compile Include="Users\UserPreferences.cs" />

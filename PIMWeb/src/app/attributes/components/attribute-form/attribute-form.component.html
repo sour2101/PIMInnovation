@@ -1,84 +1,125 @@
- 
-    <section class="content">
-        <div class="box-body">
-                <form [formGroup]="attributeForm" #formDir="ngForm" (ngSubmit)="attributeForm.valid && submit(attributeForm)" class="form-horizontal" novalidate >
-                  <p-tabView>
-                      <p-tabPanel header="General">
-                        <p-scrollPanel [style]="{width:'100%', height: '300px'}">
-                          <div  class="col-md-12">
-                            <div class="form-group" [ngClass]="{'has-error': (attributeForm.get('shortName').invalid && formDir.submitted) }">
-                              <label class="control-label col-md-3">{{'data.lblShortName' | translate}}</label>
-                              <div class="col-md-9">
-                                  <input pInputText type="text" class="form-control" formControlName="shortName" >
-                              </div>
-                            </div>
-                            <div class="form-group" [ngClass]="{'has-error': (attributeForm.get('longName').invalid && formDir.submitted) }">
-                                <label class="control-label col-md-3">{{'data.lblLongName' | translate}}</label>
-                                <div class="col-md-9">
-                                    <input pInputText type="text" class="form-control" formControlName="longName" >
-                                </div>
-                              </div>
-                              <div class="form-group" [ngClass]="{'has-error': (attributeForm.get('attributeGroupId').invalid && formDir.submitted) }">
-                                  <label class="control-label col-md-3">{{'data.lblAttributeGroup' | translate}}</label>
-                                  <div class="col-md-9">
-                                      <select name="attrgroup"  formControlName="attributeGroupId" class="form-control" required>
-                                          <option [ngValue]="ag.id" *ngFor="let ag of attrGroupList">{{ag.shortName}}</option>
-                                  </select>
-                                  </div>
-                                </div>
-                                <div class="form-group" [ngClass]="{'has-error': (attributeForm.get('dataTypeId').invalid && formDir.submitted) }">
-                                    <label class="control-label col-md-3">{{'data.lblDataType' | translate}}</label>
-                                    <div class="col-md-9">
-                                        <select name="dataType" (change)="getDisplayType()" formControlName="dataTypeId" class="form-control" required>
-                                            <option [ngValue]="dt.id" *ngFor="let dt of dataTypeList">{{dt.name}}</option>
-                                    </select>
-                                    </div>
-                                  </div>
-                                  
-                                  <div class="form-group" [ngClass]="{'has-error': (attributeForm.get('displayTypeId').invalid && formDir.submitted) }">
-                                      <label class="control-label col-md-3">{{'data.lblDisplayType' | translate}}</label>
-                                      <div class="col-md-9">
-                                          <select name="DisplayType"  formControlName="displayTypeId" class="form-control" required>
-                                              <option [ngValue]="dt.id" *ngFor="let dt of displayTypeList">{{dt.name}}</option>
-                                      </select>
-                                      </div>
-                                    </div>     
-                          </div>
-                        </p-scrollPanel>
-                      </p-tabPanel>
-                      <p-tabPanel header="Properties">
-                        <p-scrollPanel [style]="{width:'100%', height: '300px'}">
-                          <div class="col-md-12">
-                            <div class="form-group" >
-                              <label class="control-label col-md-3">{{'data.lblRequired' | translate}}</label>
-                              <div class="col-md-9">
-                                          <p-checkbox name="Required" binary="true" [formControl]="attributeForm.controls['required']"></p-checkbox>
-                              </div>
-                            </div>
-                            <div class="form-group" >
-                              <label class="control-label col-md-3">{{'data.lblLocalizable' | translate}}</label>
-                              <div class="col-md-9">
-                                            <p-checkbox name="IsLocalizable" binary="true" [formControl]="attributeForm.controls['isLocalizable']"></p-checkbox>
-                              </div>
-                            </div>
-                            <div class="form-group" >
-                              <label class="control-label col-md-3">{{'data.lblShowAtCreation' | translate}}</label>
-                              <div class="col-md-9">
-                                            <p-checkbox name="ShowAtCreation" binary="true" [formControl]="attributeForm.controls['showAtCreation']"></p-checkbox>
-                              </div>
-                            </div>      
-                          </div>
-                        </p-scrollPanel>
-                      </p-tabPanel>
-                  </p-tabView>  
-                
-                        <div class="box-footer">
-                            <a (click)="back()" class="btn btn-default">{{'data.btnBack' | translate}}</a>
-                            <button pButton type="submit" label="{{'data.btnSave' | translate}}"  class="pull-right"></button>
+<section class="content">
+      <div class="box-body">
+         <form [formGroup]="attributeForm" #formDir="ngForm" (ngSubmit)="attributeForm.valid && submit(attributeForm)" class="form-horizontal" novalidate >
+         <p-tabView>
+            <p-tabPanel  header="General">
+               <p-scrollPanel [style]="{width:'100%', height: '300px'}">
+                  <div  class="col-md-12">
+                     <div class="form-group" [ngClass]="{'has-error': (attributeForm.get('shortName').invalid && formDir.submitted) }">
+                        <label class="control-label col-md-3">{{'data.lblShortName' | translate}}</label>
+                        <div class="col-md-9">
+                           <input pInputText type="text" class="form-control" formControlName="shortName" >
                         </div>
-                    </form>
-                
+                     </div>
+                     <div class="form-group" [ngClass]="{'has-error': (attributeForm.get('longName').invalid && formDir.submitted) }">
+                        <label class="control-label col-md-3">{{'data.lblLongName' | translate}}</label>
+                        <div class="col-md-9">
+                           <input pInputText type="text" class="form-control" formControlName="longName" >
+                        </div>
+                     </div>
+                     <div class="form-group" [ngClass]="{'has-error': (attributeForm.get('attributeGroupId').invalid && formDir.submitted) }">
+                        <label class="control-label col-md-3">{{'data.lblAttributeGroup' | translate}}</label>
+                        <div class="col-md-9">
+                           <select name="attrgroup"  formControlName="attributeGroupId" class="form-control" required>
+                           <option [ngValue]="ag.id" *ngFor="let ag of attrGroupList">{{ag.shortName}}</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="form-group" [ngClass]="{'has-error': (attributeForm.get('dataTypeId').invalid && formDir.submitted) }">
+                        <label class="control-label col-md-3">{{'data.lblDataType' | translate}}</label>
+                        <div class="col-md-9">
+                           <select name="dataType" (change)="getDisplayType()" formControlName="dataTypeId" class="form-control" required>
+                           <option [ngValue]="dt.id" *ngFor="let dt of dataTypeList">{{dt.name}}</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="form-group" [ngClass]="{'has-error': (attributeForm.get('displayTypeId').invalid && formDir.submitted) }">
+                        <label class="control-label col-md-3">{{'data.lblDisplayType' | translate}}</label>
+                        <div class="col-md-9">
+                           <select name="DisplayType"  formControlName="displayTypeId" class="form-control" required>
+                           <option [ngValue]="dt.id" *ngFor="let dt of displayTypeList">{{dt.name}}</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="form-group" >
+                        <label class="control-label col-md-3">{{'data.lblRequired' | translate}}</label>
+                        <div class="col-md-3">
+                           <p-checkbox name="Required" binary="true" [formControl]="attributeForm.controls['required']"></p-checkbox>
+                        </div>
+                        <label class="control-label col-md-3">{{'data.lblShowAtCreation' | translate}}</label>
+                        <div class="col-md-3">
+                           <p-checkbox name="ShowAtCreation" binary="true" [formControl]="attributeForm.controls['showAtCreation']"></p-checkbox>
+                        </div>
+                     </div>
+                     <div class="form-group" >
+                        <label class="control-label col-md-3">{{'data.lblLocalizable' | translate}}</label>
+                        <div class="col-md-3">
+                           <p-checkbox name="IsLocalizable" binary="true" [formControl]="attributeForm.controls['isLocalizable']"></p-checkbox>
+                        </div>
+                        <label class="control-label col-md-3">{{'data.lblCollection' | translate}}</label>
+                        <div class="col-md-3">
+                           <p-checkbox name="IsCollection" binary="true" [formControl]="attributeForm.controls['isCollection']"></p-checkbox>
+                        </div>
+                     </div>
                       
-        </div>
-
-</section>
+                  </div>
+               </p-scrollPanel>
+            </p-tabPanel>
+            <p-tabPanel  header="Lookup" *ngIf="attributeForm.get('displayTypeId').value==16">
+               <p-scrollPanel [style]="{width:'100%', height: '300px'}">
+                  <div  class="col-md-12">
+                     <div class="form-group" >
+                        <label class="control-label col-md-3">
+                        {{'data.lblTableName' | translate}}:
+                        </label>
+                        <div class="col-md-9">
+                           <select name="TableName" required="attributeForm.get('displayTypeId')==16" formControlName="lookupTableId" (ngModelChange)="loadLookup($event)"  class="form-control" >
+                           <option *ngFor="let dt of lookupTableList" [ngValue]="dt.id" >{{dt.tableName}}</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="form-group" >
+                        <label class="control-label col-md-3">{{'data.lblColumn' | translate}}:</label>
+                        <div class="col-md-9">
+                              <p-listbox [options]="lookupColumnList"  formControlName="attributeLookups" (onChange)="lookupColumnClick($event)" multiple="multiple" checkbox="checkbox" optionLabel="columnName">
+                              </p-listbox>
+                           <!-- <div class="form-group col-md-12" *ngFor="let cl of lookupColumnList" >
+                           <p-checkbox name="columnList" label="{{cl.columnName}}" inputId="{{cl.id}}" value="{{cl.id}}" [formControl]="attributeForm.controls['selectedLookupColumns']"></p-checkbox>
+                        </div> -->
+                        </div>
+                     </div>
+                  </div>
+               </p-scrollPanel>
+            </p-tabPanel>
+            <p-tabPanel  header="DropDown" *ngIf="attributeForm.get('displayTypeId').value==12">
+               <p-scrollPanel [style]="{width:'100%', height: '300px'}">
+                  <div class="col-md-12">
+                     <div class="form-group" >
+                        <label class="control-label col-md-3">
+                        {{'data.lblValue' | translate}}:
+                        </label>
+                        <div class="col-md-9">
+                           <div class="ui-inputgroup">
+                              <input type="text" class="form-control" pInputText   formControlName="dropdownName">   
+                              <button pButton (click)="addDropDown()" [disabled]="attributeForm.get('dropdownName').invalid" type="button" label="Add"></button>      
+                          </div>
+                        </div>
+                     </div>
+                     <div class="form-group" >
+                        <label class="control-label col-md-3"></label>
+                        <div class="col-md-9">
+                           <p-listbox  [options]="dropdownList"  optionLabel="name">
+                           </p-listbox>
+                        </div>
+                     </div>
+                  </div>
+               </p-scrollPanel>
+            </p-tabPanel>
+         </p-tabView>
+         <div class="box-footer">
+            <a (click)="back()" class="btn btn-default">{{'data.btnBack' | translate}}</a>
+            <button pButton type="submit" label="{{'data.btnSave' | translate}}"  class="pull-right"></button>
+         </div>
+         </form>
+      </div>
+   </section>

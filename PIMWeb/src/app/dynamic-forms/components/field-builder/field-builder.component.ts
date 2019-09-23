@@ -3,7 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'field-builder',
-  templateUrl: './field-builder.component.html' 
+  templateUrl: './field-builder.component.html' ,
+  styleUrls:['./field-builder.component.css']
 })
 export class FieldBuilderComponent implements OnInit {
 
@@ -13,9 +14,14 @@ export class FieldBuilderComponent implements OnInit {
   get isValid() { return this.form.controls[this.field.shortName].valid; }
   get isDirty() { return this.form.controls[this.field.shortName].dirty; }
 
+ 
   constructor() { }
 
   ngOnInit() {
+     
   }
+
+
+   
 
 }

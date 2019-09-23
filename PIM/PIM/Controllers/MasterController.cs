@@ -219,7 +219,9 @@ namespace PIM.API.Controllers
                     c.Id,
                     c.ColumnName,
                     c.Nullable,
-                    c.Unique
+                    c.Unique,
+                    LookupTableId = c.TableId,
+                    LookupColumnId = c.Id,
                 }).ToList()
             }).ToList();
 

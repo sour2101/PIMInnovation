@@ -1,0 +1,8 @@
+body .ui-inputtext{
+    padding: 0px !important;
+}
+
+.form-control{
+    height: 25px !important;
+    padding: 0px !important; 
+}

@@ -1,8 +1,8 @@
-export class Attributegroup{
-    id:number;
-    shortName:string;
-    longName:string;
-    attrTypeId:number;
-    createdBy:number;
-    createdDate:Date;
+export class Attributegroup {
+    id: number;
+    shortName: string;
+    longName: string;
+    attrTypeId: number;
+    createdBy: number;
+    createdDate: Date;
 }

@@ -57,7 +57,7 @@
   </div>
   </p-panel>
 </div>
-<p-dialog [showHeader]="false" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"  >
+<p-dialog [showHeader]="false" [(visible)]="displayDialog" [responsive]="true" [style]="{width: '350px', minWidth: '200px'}" showEffect="fade" [modal]="true"  >
     <div class="box-body">
   <form [formGroup]="lookupTableColumnForm" #formDir="ngForm" (ngSubmit)="lookupTableColumnForm.valid && saveRow(lookupTableColumnForm)" class="form-horizontal" novalidate >
   <div class="form-group" [ngClass]="{'has-error': (lookupTableColumnForm.get('columnName').invalid && formDir.submitted) }">

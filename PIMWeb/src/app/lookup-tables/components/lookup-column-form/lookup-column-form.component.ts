@@ -53,7 +53,6 @@ export class LookupColumnFormComponent implements OnInit {
       
       this.lookupColumnList= [this.lookupTableColumnForm.value];
       this._activateRoute.paramMap.subscribe(params => {
-           debugger;
            if(params.get('id')!==null)
            this.getLookUptable(+params.get('id'));
         });

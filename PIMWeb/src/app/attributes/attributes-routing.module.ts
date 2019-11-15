@@ -9,19 +9,19 @@ import { ForbiddenComponent } from '../core/components/forbidden/forbidden.compo
 
 const routes: Routes = [
   {
-    path:'',
-    component:LayoutComponent,
-    canActivate:[AuthGuard],
-    children:[
+    path: '',
+    component: LayoutComponent,
+    canActivate: [AuthGuard],
+    children: [
       {
-        path:'attributeList',
-        component:AttributeListComponent
+        path: 'attributeList',
+        component: AttributeListComponent
       },
       { path: 'createAttribute', component: AttributeFormComponent },
       { path: 'createAttributeGroup', component: AttributegroupFromComponent },
       {
-        path:'forbidden',
-        component:ForbiddenComponent
+        path: 'forbidden',
+        component: ForbiddenComponent
       }
     ]
   }

@@ -12,15 +12,16 @@ import { FileComponent } from './components/file/file.component';
 import { TextboxComponent } from './components/textbox/textbox.component';
 import { LookupComponent } from './components/lookup/lookup.component';
 import { TextAreaComponent } from './components/textarea/textarea.component';
+import { NumericTextBoxComponent } from './components/numeric-text-box/numeric-text-box.component';  
 
 @NgModule({
-  declarations: [ CheckboxComponent, DropdownComponent, FileComponent, TextboxComponent, LookupComponent,TextAreaComponent],
+  declarations: [ CheckboxComponent, DropdownComponent, FileComponent, TextboxComponent, LookupComponent,TextAreaComponent, NumericTextBoxComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     TranslateModule,
     PrimengModule
   ],
-  exports: [CheckboxComponent, DropdownComponent, FileComponent, TextboxComponent,LookupComponent,TextAreaComponent],
+  exports: [CheckboxComponent, DropdownComponent, FileComponent, TextboxComponent,LookupComponent,TextAreaComponent,NumericTextBoxComponent],
 })
 export class DynamicFormsModule { }

@@ -16,10 +16,16 @@ export class EntityService {
 
   constructor(private _httpClient:HttpClient) { }
 
-  getShowAtCreation():Observable<entity[]>{
-    let url=`${this.baseUrl}/showAtCreation`;
+  getShowAtCreation(catalogId):Observable<entity[]>{
+    let url=`${this.baseUrl}/showAtCreation?catalogId=`+catalogId;
   
     return this._httpClient.get<entity[]>(url)
     .pipe(map(data => data));
+  }
+
+  saveEntityData(model:any):Observable<any>{
+    let url=`${this.baseUrl}/entity`;
+    return this._httpClient.post(url,model)
+    .pipe(map(data=>data));
   }
 }

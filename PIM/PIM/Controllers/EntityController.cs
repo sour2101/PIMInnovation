@@ -1,19 +1,24 @@
-﻿using PIM.Data.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-
-namespace PIM.API.Controllers
+﻿namespace PIM.API.Controllers
 {
+    using Newtonsoft.Json;
+    using Data.Entity;
+    using System.Linq;
+    using System.Web.Http;
+
     public class EntityController : AbstractController
     {
         public IHttpActionResult Get()
         {
             var entities = Repository.GetAll<Entity>().ToList();
             return Ok(entities);
+        }
+
+        [HttpPost]
+        public IHttpActionResult Post(dynamic attributeData)
+        {
+
+            var result = JsonConvert.SerializeObject(attributeData);
+            return Ok(result);
         }
     }
 }

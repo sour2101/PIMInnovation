@@ -618,7 +618,7 @@ module.exports = ".tabScrollPanel{\r\n    width:100%;\r\n    height:300px;\r\n}\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"content\">\r\n      <div class=\"box-body\">\r\n         <form [formGroup]=\"attributeForm\" #formDir=\"ngForm\" (ngSubmit)=\"attributeForm.valid && submit(attributeForm)\" class=\"form-horizontal\" novalidate >\r\n         <p-tabView>\r\n            <p-tabPanel  header=\"General\">\r\n               <p-scrollPanel [style]=\"{width:'100%', height: '300px'}\">\r\n                  <div  class=\"col-md-12\">\r\n                     <div class=\"form-group\" [ngClass]=\"{'has-error': (attributeForm.get('shortName').invalid && formDir.submitted) }\">\r\n                        <label class=\"control-label col-md-3\">{{'data.lblShortName' | translate}}</label>\r\n                        <div class=\"col-md-9\">\r\n                           <input pInputText type=\"text\" class=\"form-control\" formControlName=\"shortName\" >\r\n                        </div>\r\n                     </div>\r\n                     <div class=\"form-group\" [ngClass]=\"{'has-error': (attributeForm.get('longName').invalid && formDir.submitted) }\">\r\n                        <label class=\"control-label col-md-3\">{{'data.lblLongName' | translate}}</label>\r\n                        <div class=\"col-md-9\">\r\n                           <input pInputText type=\"text\" class=\"form-control\" formControlName=\"longName\" >\r\n                        </div>\r\n                     </div>\r\n                     <div class=\"form-group\" [ngClass]=\"{'has-error': (attributeForm.get('attributeGroupId').invalid && formDir.submitted) }\">\r\n                        <label class=\"control-label col-md-3\">{{'data.lblAttributeGroup' | translate}}</label>\r\n                        <div class=\"col-md-9\">\r\n                           <select name=\"attrgroup\"  formControlName=\"attributeGroupId\" class=\"form-control\" required>\r\n                           <option [ngValue]=\"ag.id\" *ngFor=\"let ag of attrGroupList\">{{ag.shortName}}</option>\r\n                           </select>\r\n                        </div>\r\n                     </div>\r\n                     <div class=\"form-group\" [ngClass]=\"{'has-error': (attributeForm.get('dataTypeId').invalid && formDir.submitted) }\">\r\n                        <label class=\"control-label col-md-3\">{{'data.lblDataType' | translate}}</label>\r\n                        <div class=\"col-md-9\">\r\n                           <select name=\"dataType\" (change)=\"getDisplayType()\" formControlName=\"dataTypeId\" class=\"form-control\" required>\r\n                           <option [ngValue]=\"dt.id\" *ngFor=\"let dt of dataTypeList\">{{dt.name}}</option>\r\n                           </select>\r\n                        </div>\r\n                     </div>\r\n                     <div class=\"form-group\" [ngClass]=\"{'has-error': (attributeForm.get('displayTypeId').invalid && formDir.submitted) }\">\r\n                        <label class=\"control-label col-md-3\">{{'data.lblDisplayType' | translate}}</label>\r\n                        <div class=\"col-md-9\">\r\n                           <select name=\"DisplayType\"  formControlName=\"displayTypeId\" class=\"form-control\" required>\r\n                           <option [ngValue]=\"dt.id\" *ngFor=\"let dt of displayTypeList\">{{dt.name}}</option>\r\n                           </select>\r\n                        </div>\r\n                     </div>\r\n                     <div class=\"form-group\" >\r\n                        <label class=\"control-label col-md-3\">{{'data.lblRequired' | translate}}</label>\r\n                        <div class=\"col-md-3\">\r\n                           <p-checkbox name=\"Required\" binary=\"true\" [formControl]=\"attributeForm.controls['required']\"></p-checkbox>\r\n                        </div>\r\n                        <label class=\"control-label col-md-3\">{{'data.lblShowAtCreation' | translate}}</label>\r\n                        <div class=\"col-md-3\">\r\n                           <p-checkbox name=\"ShowAtCreation\" binary=\"true\" [formControl]=\"attributeForm.controls['showAtCreation']\"></p-checkbox>\r\n                        </div>\r\n                     </div>\r\n                     <div class=\"form-group\" >\r\n                        <label class=\"control-label col-md-3\">{{'data.lblLocalizable' | translate}}</label>\r\n                        <div class=\"col-md-3\">\r\n                           <p-checkbox name=\"IsLocalizable\" binary=\"true\" [formControl]=\"attributeForm.controls['isLocalizable']\"></p-checkbox>\r\n                        </div>\r\n                        <label class=\"control-label col-md-3\">{{'data.lblCollection' | translate}}</label>\r\n                        <div class=\"col-md-3\">\r\n                           <p-checkbox name=\"IsCollection\" binary=\"true\" [formControl]=\"attributeForm.controls['isCollection']\"></p-checkbox>\r\n                        </div>\r\n                     </div>\r\n                      \r\n                  </div>\r\n               </p-scrollPanel>\r\n            </p-tabPanel>\r\n            <p-tabPanel  header=\"Lookup\" *ngIf=\"attributeForm.get('displayTypeId').value==16\">\r\n               <p-scrollPanel [style]=\"{width:'100%', height: '300px'}\">\r\n                  <div  class=\"col-md-12\">\r\n                     <div class=\"form-group\" >\r\n                        <label class=\"control-label col-md-3\">\r\n                        {{'data.lblTableName' | translate}}:\r\n                        </label>\r\n                        <div class=\"col-md-9\">\r\n                           <select name=\"TableName\" required=\"attributeForm.get('displayTypeId')==16\" formControlName=\"lookupTableId\" (ngModelChange)=\"loadLookup($event)\"  class=\"form-control\" >\r\n                           <option *ngFor=\"let dt of lookupTableList\" [ngValue]=\"dt.id\" >{{dt.tableName}}</option>\r\n                           </select>\r\n                        </div>\r\n                     </div>\r\n                     <div class=\"form-group\" >\r\n                        <label class=\"control-label col-md-3\">{{'data.lblColumn' | translate}}:</label>\r\n                        <div class=\"col-md-9\">\r\n                              <p-listbox [options]=\"lookupColumnList\"  formControlName=\"attributeLookups\" (onChange)=\"lookupColumnClick($event)\" multiple=\"multiple\" checkbox=\"checkbox\" optionLabel=\"columnName\">\r\n                              </p-listbox>\r\n                           <!-- <div class=\"form-group col-md-12\" *ngFor=\"let cl of lookupColumnList\" >\r\n                           <p-checkbox name=\"columnList\" label=\"{{cl.columnName}}\" inputId=\"{{cl.id}}\" value=\"{{cl.id}}\" [formControl]=\"attributeForm.controls['selectedLookupColumns']\"></p-checkbox>\r\n                        </div> -->\r\n                        </div>\r\n                     </div>\r\n                  </div>\r\n               </p-scrollPanel>\r\n            </p-tabPanel>\r\n            <p-tabPanel  header=\"DropDown\" *ngIf=\"attributeForm.get('displayTypeId').value==12\">\r\n               <p-scrollPanel [style]=\"{width:'100%', height: '300px'}\">\r\n                  <div class=\"col-md-12\">\r\n                     <div class=\"form-group\" >\r\n                        <label class=\"control-label col-md-3\">\r\n                        {{'data.lblValue' | translate}}:\r\n                        </label>\r\n                        <div class=\"col-md-9\">\r\n                           <div class=\"ui-inputgroup\">\r\n                              <input type=\"text\" class=\"form-control\" pInputText   formControlName=\"dropdownName\">   \r\n                              <button pButton (click)=\"addDropDown()\" [disabled]=\"attributeForm.get('dropdownName').invalid\" type=\"button\" label=\"Add\"></button>      \r\n                          </div>\r\n                        </div>\r\n                     </div>\r\n                     <div class=\"form-group\" >\r\n                        <label class=\"control-label col-md-3\"></label>\r\n                        <div class=\"col-md-9\">\r\n                           <p-listbox  [options]=\"dropdownList\"  optionLabel=\"name\">\r\n                           </p-listbox>\r\n                        </div>\r\n                     </div>\r\n                  </div>\r\n               </p-scrollPanel>\r\n            </p-tabPanel>\r\n         </p-tabView>\r\n         <div class=\"box-footer\">\r\n            <a (click)=\"back()\" class=\"btn btn-default\">{{'data.btnBack' | translate}}</a>\r\n            <button pButton type=\"submit\" label=\"{{'data.btnSave' | translate}}\"  class=\"pull-right\"></button>\r\n         </div>\r\n         </form>\r\n      </div>\r\n   </section>"
+module.exports = "<section class=\"content\">\r\n      <div class=\"box-body\">\r\n         <form [formGroup]=\"attributeForm\" #formDir=\"ngForm\" (ngSubmit)=\"attributeForm.valid && submit(attributeForm)\" class=\"form-horizontal\" novalidate >\r\n         <p-tabView>\r\n            <p-tabPanel  header=\"General\">\r\n               <p-scrollPanel [style]=\"{width:'100%', height: '300px'}\">\r\n                  <div  class=\"col-md-12\">\r\n                     <div class=\"form-group\" [ngClass]=\"{'has-error': (attributeForm.get('shortName').invalid && formDir.submitted) }\">\r\n                        <label class=\"control-label col-md-3\">{{'data.lblShortName' | translate}}</label>\r\n                        <div class=\"col-md-9\">\r\n                           <input pInputText type=\"text\" class=\"form-control\" formControlName=\"shortName\" >\r\n                        </div>\r\n                     </div>\r\n                     <div class=\"form-group\" [ngClass]=\"{'has-error': (attributeForm.get('longName').invalid && formDir.submitted) }\">\r\n                        <label class=\"control-label col-md-3\">{{'data.lblLongName' | translate}}</label>\r\n                        <div class=\"col-md-9\">\r\n                           <input pInputText type=\"text\" class=\"form-control\" formControlName=\"longName\" >\r\n                        </div>\r\n                     </div>\r\n                     <div class=\"form-group\" [ngClass]=\"{'has-error': (attributeForm.get('attributeGroupId').invalid && formDir.submitted) }\">\r\n                        <label class=\"control-label col-md-3\">{{'data.lblAttributeGroup' | translate}}</label>\r\n                        <div class=\"col-md-9\">\r\n                           <select name=\"attrgroup\"  formControlName=\"attributeGroupId\" class=\"form-control\" required>\r\n                           <option [ngValue]=\"ag.id\" *ngFor=\"let ag of attrGroupList\">{{ag.shortName}}</option>\r\n                           </select>\r\n                        </div>\r\n                     </div>\r\n                     <div class=\"form-group\" [ngClass]=\"{'has-error': (attributeForm.get('dataTypeId').invalid && formDir.submitted) }\">\r\n                        <label class=\"control-label col-md-3\">{{'data.lblDataType' | translate}}</label>\r\n                        <div class=\"col-md-9\">\r\n                           <select name=\"dataType\" (change)=\"getDisplayType()\" formControlName=\"dataTypeId\" class=\"form-control\" required>\r\n                           <option [ngValue]=\"dt.id\" *ngFor=\"let dt of dataTypeList\">{{dt.name}}</option>\r\n                           </select>\r\n                        </div>\r\n                     </div>\r\n                     <div class=\"form-group\" [ngClass]=\"{'has-error': (attributeForm.get('displayTypeId').invalid && formDir.submitted) }\">\r\n                        <label class=\"control-label col-md-3\">{{'data.lblDisplayType' | translate}}</label>\r\n                        <div class=\"col-md-9\">\r\n                           <select name=\"DisplayType\"  formControlName=\"displayTypeId\" class=\"form-control\" required>\r\n                           <option [ngValue]=\"dt.id\" *ngFor=\"let dt of displayTypeList\">{{dt.name}}</option>\r\n                           </select>\r\n                        </div>\r\n                     </div>\r\n                     <div class=\"form-group\" >\r\n                        <label class=\"control-label col-md-3\">{{'data.lblRequired' | translate}}</label>\r\n                        <div class=\"col-md-3\">\r\n                           <p-checkbox name=\"Required\" binary=\"true\" [formControl]=\"attributeForm.controls['required']\"></p-checkbox>\r\n                        </div>\r\n                        <label class=\"control-label col-md-3\">{{'data.lblShowAtCreation' | translate}}</label>\r\n                        <div class=\"col-md-3\">\r\n                           <p-checkbox name=\"ShowAtCreation\" binary=\"true\" [formControl]=\"attributeForm.controls['showAtCreation']\"></p-checkbox>\r\n                        </div>\r\n                     </div>\r\n                     <div class=\"form-group\" >\r\n                        <label class=\"control-label col-md-3\">{{'data.lblLocalizable' | translate}}</label>\r\n                        <div class=\"col-md-3\">\r\n                           <p-checkbox name=\"IsLocalizable\" binary=\"true\" [formControl]=\"attributeForm.controls['isLocalizable']\"></p-checkbox>\r\n                        </div>\r\n                        <label class=\"control-label col-md-3\">{{'data.lblCollection' | translate}}</label>\r\n                        <div class=\"col-md-3\">\r\n                           <p-checkbox name=\"IsCollection\" binary=\"true\" [formControl]=\"attributeForm.controls['isCollection']\"></p-checkbox>\r\n                        </div>\r\n                     </div>\r\n                      \r\n                  </div>\r\n               </p-scrollPanel>\r\n            </p-tabPanel>\r\n            <p-tabPanel  header=\"Lookup\" *ngIf=\"attributeForm.get('displayTypeId').value==16\">\r\n               <p-scrollPanel [style]=\"{width:'100%', height: '300px'}\">\r\n                  <div  class=\"col-md-12\">\r\n                     <div class=\"form-group\" >\r\n                        <label class=\"control-label col-md-3\">\r\n                        {{'data.lblTableName' | translate}}:\r\n                        </label>\r\n                        <div class=\"col-md-9\">\r\n                           <select name=\"TableName\" required=\"attributeForm.get('displayTypeId')==16\" formControlName=\"lookupTableId\" (ngModelChange)=\"loadLookup($event)\"  class=\"form-control\" >\r\n                           <option *ngFor=\"let dt of lookupTableList\" [ngValue]=\"dt.id\" >{{dt.tableName}}</option>\r\n                           </select>\r\n                        </div>\r\n                     </div>\r\n                     <div class=\"form-group\" >\r\n                        <label class=\"control-label col-md-3\">{{'data.lblColumn' | translate}}:</label>\r\n                        <div class=\"col-md-9\">\r\n                              <p-listbox [options]=\"lookupColumnList\"  formControlName=\"attributeLookups\" (onChange)=\"lookupColumnClick($event)\" multiple=\"multiple\" checkbox=\"checkbox\" optionLabel=\"columnName\">\r\n                              </p-listbox>\r\n                           <!-- <div class=\"form-group col-md-12\" *ngFor=\"let cl of lookupColumnList\" >\r\n                           <p-checkbox name=\"columnList\" label=\"{{cl.columnName}}\" inputId=\"{{cl.id}}\" value=\"{{cl.id}}\" [formControl]=\"attributeForm.controls['selectedLookupColumns']\"></p-checkbox>\r\n                        </div> -->\r\n                        </div>\r\n                     </div>\r\n                  </div>\r\n               </p-scrollPanel>\r\n            </p-tabPanel>\r\n            <p-tabPanel  header=\"DropDown\" *ngIf=\"attributeForm.get('displayTypeId').value==12\">\r\n               <p-scrollPanel [style]=\"{width:'100%', height: '300px'}\">\r\n                  <div class=\"col-md-12\">\r\n                     <div class=\"form-group\" >\r\n                        <label class=\"control-label col-md-3\">\r\n                        {{'data.lblValue' | translate}}:\r\n                        </label>\r\n                        <div class=\"col-md-9\">\r\n                           <div class=\"ui-inputgroup\">\r\n                              <input type=\"text\" class=\"form-control\" pInputText   formControlName=\"dropdownName\">   \r\n                              <button pButton (click)=\"addDropDown()\" [disabled]=\"attributeForm.get('dropdownName').invalid\" type=\"button\" label=\"Add\"></button>      \r\n                          </div>\r\n                        </div>\r\n                     </div>\r\n                     <div class=\"form-group\" >\r\n                        <label class=\"control-label col-md-3\"></label>\r\n                        <div class=\"col-md-9\">\r\n                           <p-listbox  [options]=\"dropdownList\"  optionLabel=\"name\">\r\n                           </p-listbox>\r\n                        </div>\r\n                     </div>\r\n                  </div>\r\n               </p-scrollPanel>\r\n            </p-tabPanel>\r\n            <p-tabPanel   header=\"UOM\" *ngIf=\"attributeForm.get('displayTypeId').value==7 || attributeForm.get('displayTypeId').value==8\">\r\n               <p-scrollPanel  [style]=\"{width:'100%', height: '300px'}\">\r\n                  <div  class=\"col-md-12\">\r\n                     <div class=\"form-group\" >\r\n                        <label class=\"control-label col-md-3\">\r\n                        {{'data.lblUomType' | translate}}:\r\n                        </label>\r\n                        <div class=\"col-md-9\">\r\n                           <select name=\"uomType\"  formControlName=\"uomTypeId\" (ngModelChange)=\"uomTypeChange($event)\"  class=\"form-control\" >\r\n                           <option *ngFor=\"let uom of uomTypeList\" [ngValue]=\"uom.id\" >{{uom.name}}</option>\r\n                           </select>\r\n                        </div>\r\n                     </div>\r\n                     <div class=\"form-group\" >\r\n                        <label class=\"control-label col-md-3\">{{'data.lblValidUOM' | translate}}:</label>\r\n                        <div class=\"col-md-9\">\r\n                              <p-listbox [options]=\"uomList\"  formControlName=\"attributeUOMs\"  multiple=\"multiple\" checkbox=\"checkbox\" optionLabel=\"name\">\r\n                              </p-listbox>\r\n                        </div>\r\n                     </div>\r\n                  </div>\r\n               </p-scrollPanel>\r\n            </p-tabPanel>\r\n         </p-tabView>\r\n         <div class=\"box-footer\">\r\n            <a (click)=\"back()\" class=\"btn btn-default\">{{'data.btnBack' | translate}}</a>\r\n            <button pButton type=\"submit\" label=\"{{'data.btnSave' | translate}}\"  class=\"pull-right\"></button>\r\n         </div>\r\n         </form>\r\n      </div>\r\n   </section>"
 
 /***/ }),
 
@@ -676,14 +676,16 @@ var AttributeFormComponent = /** @class */ (function () {
             isCollection: new _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormControl"](false),
             showAtCreation: new _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormControl"](false),
             lookupTableId: new _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormControl"](),
+            uomTypeId: new _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormControl"](),
             attributeLookups: new _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormControl"]([]),
             attributeDropdowns: new _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormControl"]([]),
-            dropdownName: new _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormControl"]()
-            // attributeUOMs:new FormArray([])
+            dropdownName: new _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormControl"](),
+            attributeUOMs: new _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormControl"]([])
         });
         this.getAttributeGroup();
         this.getDataType();
         this.getLookupTable();
+        this.getUOMType();
         if (this.config.data.attrId !== null && this.config.data.attrId !== undefined)
             this.getAttribute(this.config.data.attrId);
     };
@@ -716,8 +718,25 @@ var AttributeFormComponent = /** @class */ (function () {
             _this.lookupTableList = data;
         });
     };
+    AttributeFormComponent.prototype.getUOMType = function () {
+        var _this = this;
+        this._pimService.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].attribute_UomType)
+            .subscribe(function (data) {
+            _this.uomTypeList = data;
+        });
+    };
+    AttributeFormComponent.prototype.getUom = function (id) {
+        var _this = this;
+        this._pimService.getById(src_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].attribute_Uom, id)
+            .subscribe(function (res) {
+            _this.uomList = res;
+        });
+    };
+    AttributeFormComponent.prototype.uomTypeChange = function (event) {
+        this.attributeForm.controls["attributeUOMs"].patchValue([]);
+        this.getUom(event);
+    };
     AttributeFormComponent.prototype.lookupColumnClick = function () {
-        debugger;
         this.attributeForm.value.attributeLookups = this.attributeForm.value.attributeLookups;
     };
     AttributeFormComponent.prototype.addDropDown = function () {
@@ -730,16 +749,13 @@ var AttributeFormComponent = /** @class */ (function () {
             });
         }
     };
-    AttributeFormComponent.prototype.addUOM = function () {
-        this._formBuilder.group({
-            id: new _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormControl"](0),
-            name: new _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormControl"](),
-            attributeId: new _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormControl"](),
-        });
-    };
     AttributeFormComponent.prototype.loadLookup = function (event) {
+        this.attributeForm.controls["attributeLookups"].patchValue([]);
+        this.getLookupColumnList(event);
+    };
+    AttributeFormComponent.prototype.getLookupColumnList = function (id) {
         var _this = this;
-        this._pimService.getById("lookupTableList", event)
+        this._pimService.getById("lookupTableList", id)
             .subscribe(function (res) {
             _this.lookupColumnList = res[0].columns;
         });
@@ -754,12 +770,6 @@ var AttributeFormComponent = /** @class */ (function () {
         var _this = this;
         this._attrService.getAttribute(id)
             .subscribe(function (res) {
-            // let selectedColumn=[];
-            // debugger;
-            // for(let i=0;i<res.attributeLookups.length;i++)
-            // {
-            //   selectedColumn.push(res.attributeLookups[i].lookupColumnId.toString());
-            // }
             _this.attributeForm = _this._formBuilder.group({
                 id: new _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormControl"](res.id),
                 shortName: new _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormControl"](res.shortName, _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required),
@@ -775,13 +785,16 @@ var AttributeFormComponent = /** @class */ (function () {
                 createdBy: new _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormControl"](res.createdBy),
                 createdDate: new _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormControl"](res.createdDate),
                 lookupTableId: new _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormControl"](res.lookupTableId),
+                uomTypeId: new _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormControl"](res.uomTypeId),
                 attributeLookups: new _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormControl"](res.attributeLookups),
                 attributeDropdowns: new _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormControl"](res.attributeDropDowns),
-                dropdownName: new _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormControl"]()
-                // attributeUOMs:new FormArray([])
+                dropdownName: new _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormControl"](),
+                attributeUOMs: new _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormControl"](res.attributeUoms)
             });
             _this.getDisplayType();
-            _this.loadLookup(res.lookupTableId);
+            _this.getUOMType();
+            _this.getLookupColumnList(res.lookupTableId);
+            _this.getUom(res.uomTypeId);
             _this.dropdownList = res.attributeDropDowns;
         });
     };
@@ -789,7 +802,6 @@ var AttributeFormComponent = /** @class */ (function () {
     AttributeFormComponent.prototype.submit = function (attributeDetails) {
         var _this = this;
         var submitAttr;
-        debugger;
         if (this.config.data.attrId !== null && this.config.data.attrId !== undefined)
             submitAttr = this._attrService.updateAttribute(attributeDetails.value);
         else
@@ -1083,7 +1095,6 @@ var AttributegroupFromComponent = /** @class */ (function () {
     AttributegroupFromComponent.prototype.submit = function (attrgroup) {
         var _this = this;
         var submit;
-        debugger;
         if (this.config.data.id !== null && this.config.data.id !== undefined)
             submit = this._attrgroupService.updateAttributeGroup(attrgroup.value);
         else
@@ -1160,12 +1171,10 @@ var AttrService = /** @class */ (function () {
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (data) { return data; }));
     };
     AttrService.prototype.saveAttribute = function (model) {
-        debugger;
         return this._httpClient.post(this.baseUrl, model)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (data) { return data; }));
     };
     AttrService.prototype.updateAttribute = function (model) {
-        debugger;
         return this._httpClient.put(this.baseUrl, model)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (data) { return data; }));
     };
@@ -1495,7 +1504,7 @@ var LayoutComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = " <ul  class=\"nav navbar-nav\">\r\n                    <li class=\"nav-item\" >\r\n                        <a routerLink=\"/home\" #home=\"routerLinkActive\" routerLinkActive=\"active\" class=\"nav-link\" >{{'data.menuHome' | translate}}</a>\r\n                    </li>\r\n                    <li class=\"nav-item\" >\r\n                            <a [routerLink]=\"['/entity']\"  routerLinkActive=\"active\" class=\"nav-link\" >{{'data.menuEntity' | translate}}</a>\r\n                        </li>\r\n                    <li class=\"nav-item\" *ngIf=\"admin\">\r\n                        <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" >{{'data.menuIntegration' | translate}}</a>\r\n                        <ul class=\"dropdown-menu\" role=\"menu\">\r\n                            <li class=\"nav-item\" >\r\n                                <a class=\"nav-link\" routerLink=\"/importdatamodel\" #importdatamodel=\"routerLinkActive\" routerLinkActive=\"active\">{{'data.menuImportDataModel' | translate}}</a>\r\n                            </li>\r\n                            <li class=\"nav-item\" >\r\n                                <a class=\"nav-link\" routerLink=\"/exportdatamodel\" #exportdatamodel=\"routerLinkActive\" routerLinkActive=\"active\">{{'data.menuExportDataModel' |translate}}</a>\r\n                            </li>\r\n                            <li class=\"nav-item\" >\r\n                                <a class=\"nav-link\" routerLink=\"/integrationjobs\" #integrationjobs=\"routerLinkActive\" routerLinkActive=\"active\">{{'data.menuInterationJobs'|translate}}</a>\r\n                            </li>  \r\n                            <li class=\"nav-item\" >\r\n                                <a class=\"nav-link\" routerLink=\"/importProfileList\" #integrationjobs=\"routerLinkActive\" routerLinkActive=\"active\">{{'data.menuImportProfile'|translate}}</a>\r\n                            </li>  \r\n                        </ul>\r\n                    </li>\r\n                    <li class=\"nav-item\" *ngIf=\"admin\">\r\n                        <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" >{{'data.menuModel'|translate}}</a>\r\n                        <ul class=\"dropdown-menu\" role=\"menu\">\r\n                            <li class=\"nav-item\" >\r\n                            <a class=\"nav-link\"  routerLink=\"/orgChart\" #orgChart=\"routerLinkActive\" routerLinkActive=\"active\">{{'data.menuOrgChart'| translate}}</a>\r\n                            </li>\r\n                        </ul>\r\n                    </li>\r\n                    <li class=\"nav-item\" *ngIf=\"admin\">\r\n                        <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" >{{'data.menuSysAdmin'|translate}}</a>\r\n                        <ul class=\"dropdown-menu\" role=\"menu\">\r\n                            <li class=\"nav-item\" >\r\n                                <a class=\"nav-link\" routerLink=\"/roleList\" #roleList=\"routerLinkActive\" routerLinkActive=\"active\">{{'data.menuRole' | translate}} </a>\r\n                            </li>\r\n                            <li class=\"nav-item\" >\r\n                                <a routerLink=\"/userList\" #userList=\"routerLinkActive\" routerLinkActive=\"active\" class=\"nav-link\" >{{'data.menuUser' | translate}}</a>\r\n                            </li>\r\n                            <li class=\"nav-item\" >\r\n                                <a class=\"nav-link\" #attributeList=\"routerLinkActive\" routerLinkActive=\"active\" routerLink=\"/attributeList\">{{'data.menuAttribute' |translate}} </a>\r\n                            </li>\r\n                            <li class=\"nav-item\" >\r\n                                <a class=\"nav-link\" #attributeList=\"routerLinkActive\" routerLinkActive=\"active\" routerLink=\"/lookuptableList\">{{'data.menuLookupTable' |translate}} </a>\r\n                            </li>\r\n                            <li class=\"nav-item\" >\r\n                                <a class=\"nav-link\" #attributeList=\"routerLinkActive\" routerLinkActive=\"active\" routerLink=\"/workflowList\">{{'data.menuWorkflow' |translate}} </a>\r\n                            </li> \r\n                        </ul>\r\n                        </li>\r\n                  </ul> \r\n<!-- <ul  class=\"nav navbar-nav\">\r\n  <li class=\"nav-item\" *ngFor=\"let item of navItems;let i=index\">\r\n      <a *ngIf=\"item.childrens===null\" routerLink=\"{{item.link}}\"  routerLinkActive=\"active\" class=\"nav-link\" >{{item.name}}</a>\r\n      <ng-container *ngIf=\"item.childrens!==null\" [ngTemplateOutlet]=\"childrens\"[ngTemplateOutletContext]=\"{$implicit:item}\">\r\n      </ng-container>\r\n        \r\n  </li>\r\n</ul>  \r\n\r\n<ng-template  #childrens let-navItems>\r\n   \r\n    <a  class=\"dropdown-toggle\" data-toggle=\"dropdown\" >{{navItems.name}}</a>\r\n   <ul class=\"dropdown-menu\" role=\"menu\">\r\n        <li class=\"nav-item\" *ngFor=\"let item of navItems.childrens;let i=index\">\r\n            <a *ngIf=\"item.childrens===null\" [routerLink]=\"item.link\"  routerLinkActive=\"active\" class=\"nav-link\" >{{item.name}}</a>\r\n            <ng-container *ngIf=\"item.childrens!==null\" [ngTemplateOutlet]=\"childrens\"[ngTemplateOutletContext]=\"{$implicit:item}\">\r\n            </ng-container>\r\n        </li>\r\n    </ul>\r\n</ng-template> -->\r\n"
+module.exports = "<ul class=\"nav navbar-nav\">\r\n    <li class=\"nav-item\">\r\n        <a routerLink=\"/home\" #home=\"routerLinkActive\" routerLinkActive=\"active\"\r\n            class=\"nav-link\">{{'data.menuHome' | translate}}</a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n        <a class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{'data.menuEntity' | translate}}</a>\r\n        <ul class=\"dropdown-menu\" role=\"menu\">\r\n            <li class=\"nav-item\">\r\n                <a [routerLink]=\"['/createEntity']\" routerLinkActive=\"active\"\r\n                    class=\"nav-link\">{{'data.lblCreateEntity' | translate}}</a>\r\n            </li>\r\n            <li class=\"nav-item\">\r\n                <a [routerLink]=\"['/searchEntity']\" routerLinkActive=\"active\"\r\n                    class=\"nav-link\">{{'data.lblSearchEntity' | translate}}</a>\r\n            </li>\r\n        </ul>\r\n    </li>\r\n    <li class=\"nav-item\" *ngIf=\"admin\">\r\n        <a class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{'data.menuIntegration' | translate}}</a>\r\n        <ul class=\"dropdown-menu\" role=\"menu\">\r\n            <li class=\"nav-item\">\r\n                <a class=\"nav-link\" routerLink=\"/importdatamodel\" #importdatamodel=\"routerLinkActive\"\r\n                    routerLinkActive=\"active\">{{'data.menuImportDataModel' | translate}}</a>\r\n            </li>\r\n            <li class=\"nav-item\">\r\n                <a class=\"nav-link\" routerLink=\"/exportdatamodel\" #exportdatamodel=\"routerLinkActive\"\r\n                    routerLinkActive=\"active\">{{'data.menuExportDataModel' |translate}}</a>\r\n            </li>\r\n            <li class=\"nav-item\">\r\n                <a class=\"nav-link\" routerLink=\"/integrationjobs\" #integrationjobs=\"routerLinkActive\"\r\n                    routerLinkActive=\"active\">{{'data.menuInterationJobs'|translate}}</a>\r\n            </li>\r\n            <li class=\"nav-item\">\r\n                <a class=\"nav-link\" routerLink=\"/importProfileList\" #integrationjobs=\"routerLinkActive\"\r\n                    routerLinkActive=\"active\">{{'data.menuImportProfile'|translate}}</a>\r\n            </li>\r\n        </ul>\r\n    </li>\r\n    <li class=\"nav-item\" *ngIf=\"admin\">\r\n        <a class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{'data.menuModel'|translate}}</a>\r\n        <ul class=\"dropdown-menu\" role=\"menu\">\r\n            <li class=\"nav-item\">\r\n                <a class=\"nav-link\" routerLink=\"/orgChart\" #orgChart=\"routerLinkActive\"\r\n                    routerLinkActive=\"active\">{{'data.menuOrgChart'| translate}}</a>\r\n            </li>\r\n        </ul>\r\n    </li>\r\n    <li class=\"nav-item\" *ngIf=\"admin\">\r\n        <a class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{'data.menuSysAdmin'|translate}}</a>\r\n        <ul class=\"dropdown-menu\" role=\"menu\">\r\n            <li class=\"nav-item\">\r\n                <a class=\"nav-link\" routerLink=\"/roleList\" #roleList=\"routerLinkActive\"\r\n                    routerLinkActive=\"active\">{{'data.menuRole' | translate}} </a>\r\n            </li>\r\n            <li class=\"nav-item\">\r\n                <a routerLink=\"/userList\" #userList=\"routerLinkActive\" routerLinkActive=\"active\"\r\n                    class=\"nav-link\">{{'data.menuUser' | translate}}</a>\r\n            </li>\r\n            <li class=\"nav-item\">\r\n                <a class=\"nav-link\" #attributeList=\"routerLinkActive\" routerLinkActive=\"active\"\r\n                    routerLink=\"/attributeList\">{{'data.menuAttribute' |translate}} </a>\r\n            </li>\r\n            <li class=\"nav-item\">\r\n                <a class=\"nav-link\" #attributeList=\"routerLinkActive\" routerLinkActive=\"active\"\r\n                    routerLink=\"/lookuptableList\">{{'data.menuLookupTable' |translate}} </a>\r\n            </li>\r\n            <li class=\"nav-item\">\r\n                <a class=\"nav-link\" #attributeList=\"routerLinkActive\" routerLinkActive=\"active\"\r\n                    routerLink=\"/workflowList\">{{'data.menuWorkflow' |translate}} </a>\r\n            </li>\r\n        </ul>\r\n    </li>\r\n</ul>\r\n<!-- <ul  class=\"nav navbar-nav\">\r\n  <li class=\"nav-item\" *ngFor=\"let item of navItems;let i=index\">\r\n      <a *ngIf=\"item.childrens===null\" routerLink=\"{{item.link}}\"  routerLinkActive=\"active\" class=\"nav-link\" >{{item.name}}</a>\r\n      <ng-container *ngIf=\"item.childrens!==null\" [ngTemplateOutlet]=\"childrens\"[ngTemplateOutletContext]=\"{$implicit:item}\">\r\n      </ng-container>\r\n        \r\n  </li>\r\n</ul>  \r\n\r\n<ng-template  #childrens let-navItems>\r\n   \r\n    <a  class=\"dropdown-toggle\" data-toggle=\"dropdown\" >{{navItems.name}}</a>\r\n   <ul class=\"dropdown-menu\" role=\"menu\">\r\n        <li class=\"nav-item\" *ngFor=\"let item of navItems.childrens;let i=index\">\r\n            <a *ngIf=\"item.childrens===null\" [routerLink]=\"item.link\"  routerLinkActive=\"active\" class=\"nav-link\" >{{item.name}}</a>\r\n            <ng-container *ngIf=\"item.childrens!==null\" [ngTemplateOutlet]=\"childrens\"[ngTemplateOutletContext]=\"{$implicit:item}\">\r\n            </ng-container>\r\n        </li>\r\n    </ul>\r\n</ng-template> -->"
 
 /***/ }),
 
@@ -2088,7 +2097,7 @@ var FileService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div [formGroup]=\"form\">\r\n    <div [formGroupName]=\"field.shortName\" >\r\n      <div *ngFor=\"let opt of field.options\" class=\"form-check\">\r\n      <label class=\"form-check-label\">\r\n         <input [formControlName]=\"opt.id\" class=\"form-check-input\"  type=\"checkbox\"   />\r\n         {{opt.name}}</label>\r\n      </div>\r\n    </div>\r\n\r\n  </div> "
+module.exports = "<div [formGroup]=\"form\">\r\n  <div [formArrayName]=\"field.shortName\" *ngFor=\"let cd of formArray.controls ;let i=index;\">\r\n    <div [formGroupName]=\"i\">\r\n      <div *ngFor=\"let opt of field.options\" class=\"form-check\">\r\n        <label class=\"form-check-label\">\r\n          <input [formControlName]=\"opt.id\" class=\"form-check-input\" type=\"checkbox\" />\r\n          {{opt.attributeValue}}</label>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -2122,6 +2131,10 @@ var CheckboxComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    CheckboxComponent.prototype.ngOnInit = function () {
+        this.formArray = this.form.controls[this.field.shortName];
+        // this.tableData = <FormArray>this.form.controls[this.field.shortName].value;
+    };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
@@ -2150,7 +2163,7 @@ var CheckboxComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div [formGroup]=\"form\">\r\n  <!-- <select class=\"form-control\" [id]=\"field.shortName\" [formControlName]=\"field.shortName\">\r\n        <option value=\"null\">--Select--</option>\r\n      <option *ngFor=\"let opt of field.options\" [ngValue]=\"opt.id\">{{opt.name}}</option>\r\n    </select> -->\r\n  <p-dropdown [options]=\"field.options\" [formControlName]=\"field.shortName\" [filter]=\"true\"\r\n    placeholder=\"Select\" optionLabel=\"name\" [showClear]=\"true\"></p-dropdown>\r\n</div>"
+module.exports = "<div [formGroup]=\"form\">\r\n  <!--  <p-dropdown [options]=\"field.options\" formControlName=\"attributeValue\" [filter]=\"true\" placeholder=\"Select\"\r\n        optionLabel=\"name\" [showClear]=\"true\"></p-dropdown> -->\r\n  <div [formArrayName]=\"field.shortName\" *ngFor=\"let cd of formArray.controls ;let i=index;\">\r\n    <div [formGroupName]=\"i\">\r\n      <select class=\"form-control\" formControlName=\"attributeValue\">\r\n        <option value=\"\">--Select--</option>\r\n        <option *ngFor=\"let opt of field.options\" [ngValue]=\"opt.id\">{{opt.name}}</option>\r\n      </select>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -2174,6 +2187,10 @@ var DropdownComponent = /** @class */ (function () {
     function DropdownComponent() {
         this.field = {};
     }
+    DropdownComponent.prototype.ngOnInit = function () {
+        this.formArray = this.form.controls[this.field.shortName];
+        // this.tableData = <FormArray>this.form.controls[this.field.shortName].value;
+    };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
@@ -2185,7 +2202,8 @@ var DropdownComponent = /** @class */ (function () {
     DropdownComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'dropdown',
-            template: __webpack_require__(/*! ./dropdown.component.html */ "./src/app/dynamic-forms/components/dropdown/dropdown.component.html")
+            template: __webpack_require__(/*! ./dropdown.component.html */ "./src/app/dynamic-forms/components/dropdown/dropdown.component.html"),
+            styles: [__webpack_require__(/*! ../field-builder/field-builder.component.css */ "./src/app/dynamic-forms/components/field-builder/field-builder.component.css")]
         })
     ], DropdownComponent);
     return DropdownComponent;
@@ -2202,7 +2220,7 @@ var DropdownComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "body .ui-inputtext{\r\n    padding: 0px !important;\r\n}\r\n\r\n.form-control{\r\n    height: 25px !important;\r\n    padding: 0px !important; \r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZHluYW1pYy1mb3Jtcy9jb21wb25lbnRzL2ZpZWxkLWJ1aWxkZXIvZmllbGQtYnVpbGRlci5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksdUJBQXVCO0FBQzNCOztBQUVBO0lBQ0ksdUJBQXVCO0lBQ3ZCLHVCQUF1QjtBQUMzQiIsImZpbGUiOiJzcmMvYXBwL2R5bmFtaWMtZm9ybXMvY29tcG9uZW50cy9maWVsZC1idWlsZGVyL2ZpZWxkLWJ1aWxkZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImJvZHkgLnVpLWlucHV0dGV4dHtcclxuICAgIHBhZGRpbmc6IDBweCAhaW1wb3J0YW50O1xyXG59XHJcblxyXG4uZm9ybS1jb250cm9se1xyXG4gICAgaGVpZ2h0OiAyNXB4ICFpbXBvcnRhbnQ7XHJcbiAgICBwYWRkaW5nOiAwcHggIWltcG9ydGFudDsgXHJcbn0iXX0= */"
+module.exports = "/*\r\n body .ui-inputtext{\r\n    padding: 1px !important;\r\n}\r\n\r\n.form-control{\r\n    height: 25px !important;\r\n    padding: 1px !important; \r\n}\r\n\r\nbody .ui-table .ui-table-tbody > tr > td{\r\npadding: 0px !important;    \r\n}\r\n\r\n\r\nbody .ui-button.ui-button-icon-only .ui-button-text{\r\n padding:    0px !important;\r\n}\r\n\r\n.customTable{\r\n    padding: 0px !important;\r\n}\r\n\r\nbody .ui-button.ui-button-icon-only{\r\n    width: 1.5em !important;\r\n} */\r\n\r\n\r\n.ui-button{\r\n margin: 0px !important;   \r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZHluYW1pYy1mb3Jtcy9jb21wb25lbnRzL2ZpZWxkLWJ1aWxkZXIvZmllbGQtYnVpbGRlci5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0dBeUJHOzs7QUFHSDtDQUNDLHNCQUFzQjtBQUN2QiIsImZpbGUiOiJzcmMvYXBwL2R5bmFtaWMtZm9ybXMvY29tcG9uZW50cy9maWVsZC1idWlsZGVyL2ZpZWxkLWJ1aWxkZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qXHJcbiBib2R5IC51aS1pbnB1dHRleHR7XHJcbiAgICBwYWRkaW5nOiAxcHggIWltcG9ydGFudDtcclxufVxyXG5cclxuLmZvcm0tY29udHJvbHtcclxuICAgIGhlaWdodDogMjVweCAhaW1wb3J0YW50O1xyXG4gICAgcGFkZGluZzogMXB4ICFpbXBvcnRhbnQ7IFxyXG59XHJcblxyXG5ib2R5IC51aS10YWJsZSAudWktdGFibGUtdGJvZHkgPiB0ciA+IHRke1xyXG5wYWRkaW5nOiAwcHggIWltcG9ydGFudDsgICAgXHJcbn1cclxuXHJcblxyXG5ib2R5IC51aS1idXR0b24udWktYnV0dG9uLWljb24tb25seSAudWktYnV0dG9uLXRleHR7XHJcbiBwYWRkaW5nOiAgICAwcHggIWltcG9ydGFudDtcclxufVxyXG5cclxuLmN1c3RvbVRhYmxle1xyXG4gICAgcGFkZGluZzogMHB4ICFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbmJvZHkgLnVpLWJ1dHRvbi51aS1idXR0b24taWNvbi1vbmx5e1xyXG4gICAgd2lkdGg6IDEuNWVtICFpbXBvcnRhbnQ7XHJcbn0gKi9cclxuXHJcblxyXG4udWktYnV0dG9ue1xyXG4gbWFyZ2luOiAwcHggIWltcG9ydGFudDsgICBcclxufSJdfQ== */"
 
 /***/ }),
 
@@ -2213,7 +2231,7 @@ module.exports = "body .ui-inputtext{\r\n    padding: 0px !important;\r\n}\r\n\r
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"form-group row\" [ngClass]=\"{'has-error':(field.required && form.get(field.shortName).invalid )}\"  #formDir=\"ngForm\" [formGroup]=\"form\">\r\n    <label class=\"col-md-3 form-control-label\" [attr.for]=\"field.longName\">\r\n      {{field.longName}}\r\n     \r\n    </label>\r\n    <div class=\"col-md-9\" [ngSwitch]=\"field.displayType\" >\r\n      <textbox *ngSwitchCase=\"'TextBox'\" [field]=\"field\" [form]=\"form\"></textbox>\r\n      <text-area *ngSwitchCase=\"'TextArea'\" [field]=\"field\" [form]=\"form\" ></text-area>\r\n      <dropdown *ngSwitchCase=\"'DropDown'\" [field]=\"field\" [form]=\"form\"></dropdown>\r\n      <checkbox *ngSwitchCase=\"'checkbox'\" [field]=\"field\" [form]=\"form\"></checkbox>\r\n      <lookup *ngSwitchCase=\"'LookupTable'\" [field]=\"field\" [form]=\"form\"></lookup>\r\n      <!-- <radio *ngSwitchCase=\"'radio'\" [field]=\"field\" [form]=\"form\"></radio> -->\r\n      <file *ngSwitchCase=\"'file'\" [field]=\"field\" [form]=\"form\"></file>\r\n      <!-- <div class=\"alert alert-danger my-1 p-2 fadeInDown animated\" *ngIf=\"!isValid && isDirty\">{{field.label}} is required</div> -->\r\n      \r\n    </div>\r\n  </div>"
+module.exports = "<div class=\"form-group\" [ngClass]=\"{'has-error':(field.required && form.get(field.shortName).invalid )}\"  #formDir=\"ngForm\" [formGroup]=\"form\">\r\n    <label class=\"col-md-3 form-control-label\" [attr.for]=\"field.longName\">\r\n      {{field.longName}}\r\n     \r\n    </label>\r\n    <div class=\"col-md-9\" [ngSwitch]=\"field.displayType\" >\r\n      <textbox *ngSwitchCase=\"'TextBox'\" [field]=\"field\" [form]=\"form\"></textbox>\r\n      <text-area *ngSwitchCase=\"'TextArea'\" [field]=\"field\" [form]=\"form\" ></text-area>\r\n      <dropdown *ngSwitchCase=\"'DropDown'\" [field]=\"field\" [form]=\"form\"></dropdown>\r\n      <checkbox *ngSwitchCase=\"'checkbox'\" [field]=\"field\" [form]=\"form\"></checkbox>\r\n      <lookup *ngSwitchCase=\"'LookupTable'\" [field]=\"field\" [form]=\"form\"></lookup>\r\n      <app-numeric-text-box *ngSwitchCase=\"'NumericTextBox'\" [field]=\"field\" [form]=\"form\"></app-numeric-text-box>\r\n      <!-- <radio *ngSwitchCase=\"'radio'\" [field]=\"field\" [form]=\"form\"></radio> -->\r\n      <file *ngSwitchCase=\"'file'\" [field]=\"field\" [form]=\"form\"></file>\r\n      <!-- <div class=\"alert alert-danger my-1 p-2 fadeInDown animated\" *ngIf=\"!isValid && isDirty\">{{field.label}} is required</div> -->\r\n      \r\n    </div>\r\n  </div>"
 
 /***/ }),
 
@@ -2343,7 +2361,7 @@ var FileComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div [formGroup]=\"form\" >\n  <!-- <p-dropdown [options]=\"tableData\" [styleClass]=\"form-control\" showClear=\"true\" placeholder=\"Select\" [formControlName]=\"field.shortName\" optionLabel=\"description\"></p-dropdown> -->\n  <select *ngIf=\"!field.isCollection\" class=\"form-control\" [id]=\"field.shortName\" [formControlName]=\"field.shortName\">\n      <option value=\"0\">--Select--</option>\n    <option *ngFor=\"let opt of tableData\" >{{opt.description}}</option>\n  </select>\n</div> "
+module.exports = "<div [formGroup]=\"form\">\n  <div [formArrayName]=\"field.shortName\" *ngFor=\"let cd of formArray.controls ;let i=index;\">\n    <div [formGroupName]=\"i\">\n      <!-- <select *ngIf=\"!field.isCollection\" class=\"form-control\" formControlName=\"attributeValue\">\n        <option value=\"0\">--Select--</option>\n        <option *ngFor=\"let opt of tableData\">{{opt.description}}</option>\n      </select> -->\n\n      <div class=\"ui-inputgroup\">\n        <input type=\"text\" (input)=\"onSearch($event.target.value)\" class=\"form-control\" pInputText placeholder=\"Select\" formControlName=\"name\">\n        <button pButton type=\"button\" icon=\"pi pi-sort-down\" (click)=\"toggle($event,field.shortName)\"\n          class=\"ui-button-warn\"></button>\n      </div>\n      <div *ngIf=\"show\" class=\"dropdown-content\" >\n        <p-table #lookupTable [tableStyleClass]=\"customTable\" [scrollable]=\"true\" scrollHeight=\"100px\" selectionMode=\"single\" (onRowSelect)=\"onRowSelect($event)\"\n          [columns]=\"lookupColumnList\" [value]=\"filterData\">\n          <ng-template pTemplate=\"header\" let-columns>\n            <tr>\n              <th *ngFor=\"let col of columns\">\n                {{col.columnName}}\n              </th>\n            </tr>\n            <tr>\n            <!-- <th *ngFor=\"let col of columns\"  >\n                <input pInputText type=\"text\" (input)=\"lookupTable.filter($event.target.value, camalCase(col.columnName), col.filterMatchMode)\">\n            </th> -->\n          </tr>\n          </ng-template>\n          <ng-template pTemplate=\"body\" let-rowData let-columns=\"columns\">\n            <tr [pSelectableRow]=\"rowData\">\n              <td *ngFor=\"let col of columns\">\n                {{rowData[camalCase(col.columnName)]}}\n              </td>\n            </tr>\n          </ng-template>\n        </p-table>\n      </div>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -2370,9 +2388,13 @@ var LookupComponent = /** @class */ (function () {
         this._lookupTableService = _lookupTableService;
         this.field = {};
         this.lookupColumnList = [];
+        this.show = false;
     }
     LookupComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.formArray = this.form.controls[this.field.shortName];
         this.getLookUptable();
+        this.form.get(this.field.shortName).valueChanges.subscribe(function (val) { return _this.getLookUptable(); });
     };
     LookupComponent.prototype.camalCase = function (text) {
         return text[0].toLocaleLowerCase() + text.substring(1, text.length);
@@ -2395,7 +2417,31 @@ var LookupComponent = /** @class */ (function () {
         this._lookupTableService.getLookUpTableList(pageSize, pageNumber, sortBy, sortOrder, filterBy)
             .subscribe(function (res) {
             _this.tableData = res;
+            _this.filterData = _this.tableData;
         });
+    };
+    LookupComponent.prototype.toggle = function (e, arrayName) {
+        this.filterData = this.tableData;
+        this.show = !this.show;
+    };
+    LookupComponent.prototype.onRowSelect = function (e) {
+        this.formArray = this.form.get(this.field.shortName);
+        var formGroup = this.formArray.controls[0];
+        var columnName = this.lookupColumnList.length > 1 ? this.field.shortName : this.lookupColumnList[0].columnName;
+        formGroup.controls['name'].patchValue(e.data[this.camalCase(columnName)]);
+        formGroup.controls['attributeValue'].patchValue(e.data['id']);
+        this._dynamicFunction.form = this.form;
+        this._dynamicFunction.lookupFunctions(this.field.shortName);
+        this.show = !this.show;
+    };
+    LookupComponent.prototype.onSearch = function (e) {
+        this.getFilterData(e);
+        this.show = true;
+    };
+    LookupComponent.prototype.getFilterData = function (value) {
+        var _this = this;
+        var columnName = this.lookupColumnList.length > 1 ? this.field.shortName : this.lookupColumnList[0].columnName;
+        this.filterData = this.tableData.filter(function (f) { return f[_this.camalCase(columnName)].toString().toLocaleLowerCase().includes(value.toLocaleLowerCase()); });
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
@@ -2408,11 +2454,120 @@ var LookupComponent = /** @class */ (function () {
     LookupComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'lookup',
-            template: __webpack_require__(/*! ./lookup.component.html */ "./src/app/dynamic-forms/components/lookup/lookup.component.html")
+            template: __webpack_require__(/*! ./lookup.component.html */ "./src/app/dynamic-forms/components/lookup/lookup.component.html"),
+            styles: [__webpack_require__(/*! ../field-builder/field-builder.component.css */ "./src/app/dynamic-forms/components/field-builder/field-builder.component.css")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_lookup_tables_services_lookup_table_service__WEBPACK_IMPORTED_MODULE_3__["LookupTableService"]])
     ], LookupComponent);
     return LookupComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/dynamic-forms/components/numeric-text-box/numeric-text-box.component.html":
+/*!*******************************************************************************************!*\
+  !*** ./src/app/dynamic-forms/components/numeric-text-box/numeric-text-box.component.html ***!
+  \*******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div [formGroup]=\"form\">\n  <div *ngIf=\"!field.isCollection\">\n    <div [formArrayName]=\"field.shortName\" *ngFor=\"let cd of formArray.controls ;let i=index;\">\n      <div [formGroupName]=\"i\">\n        <input pInputText pKeyFilter=\"num\" type=\"text\" class=\"form-control\" formControlName=\"attributeValue\">\n      </div>\n    </div>\n  </div>\n\n  <div *ngIf=\"field.isCollection\">\n    <p-table #lookupTable [scrollable]=\"true\" scrollHeight=\"100px\" [formArrayName]=\"field.shortName\"\n      [value]=\"tableData\">\n      <ng-template pTemplate=\"body\" let-rowData let-ri=\"rowIndex\">\n        <tr [formGroupName]=\"ri\">\n          <td>\n            <input pInputText pKeyFilter=\"num\" type=\"text\" class=\"form-control\" [class.is-invalid]=\"isDirty && !isValid\"\n              formControlName=\"attributeValue\">\n          </td>\n          <td style=\"width:8%\">\n            <button type=\"button\" pButton icon=\"pi pi-trash\" tooltipPosition=\"top\" (click)=\"deleteRow(ri)\"></button>\n          </td>\n          <td style=\"width:8%;vertical-align: bottom;\" *ngIf=\"ri==0\" [attr.rowspan]=\"tableData?.length\">\n            <button type=\"button\" pButton icon=\"fa fa-plus\" (click)=\"this[functionName]()\"></button>\n          </td>\n        </tr>\n      </ng-template>\n    </p-table>\n  </div>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/dynamic-forms/components/numeric-text-box/numeric-text-box.component.ts":
+/*!*****************************************************************************************!*\
+  !*** ./src/app/dynamic-forms/components/numeric-text-box/numeric-text-box.component.ts ***!
+  \*****************************************************************************************/
+/*! exports provided: NumericTextBoxComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NumericTextBoxComponent", function() { return NumericTextBoxComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+
+
+
+var NumericTextBoxComponent = /** @class */ (function () {
+    function NumericTextBoxComponent(_fb) {
+        this._fb = _fb;
+        this.field = {};
+    }
+    Object.defineProperty(NumericTextBoxComponent.prototype, "isValid", {
+        get: function () { return this.form.controls[this.field.shortName].valid; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(NumericTextBoxComponent.prototype, "isDirty", {
+        get: function () { return this.form.controls[this.field.shortName].dirty; },
+        enumerable: true,
+        configurable: true
+    });
+    NumericTextBoxComponent.prototype.ngOnInit = function () {
+        this.functionName = "addRow";
+        this.formArray = this.form.controls[this.field.shortName];
+        if (this.field.isCollection)
+            this.tableData = this.form.controls[this.field.shortName].value;
+    };
+    NumericTextBoxComponent.prototype.addRow = function () {
+        var catalogId;
+        var attributeId;
+        var control = this.form.controls[this.field.shortName];
+        for (var i = 0; i < control.value.length; i++) {
+            if (control.value[i].attributeValue === null || control.value[i].attributeValue === "")
+                return false;
+        }
+        if (this.field.required) {
+            control.push(this._fb.group({
+                attributeId: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](control.value[0].attributeId),
+                catalogId: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](control.value[0].catalogId),
+                name: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](""),
+                attributeValue: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required)
+            }));
+        }
+        else {
+            control.push(this._fb.group({
+                attributeId: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](control.value[0].attributeId),
+                catalogId: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](control.value[0].catalogId),
+                name: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](""),
+                attributeValue: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("")
+            }));
+        }
+        this.tableData = control.value;
+    };
+    NumericTextBoxComponent.prototype.deleteRow = function (rowIndex) {
+        var control = this.form.controls[this.field.shortName];
+        if (control.value.length == 1) {
+            var formGroup = this.formArray.controls[0];
+            formGroup.controls['attributeValue'].patchValue("");
+        }
+        else {
+            control.removeAt(rowIndex);
+        }
+        this.tableData = control.value;
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], NumericTextBoxComponent.prototype, "field", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"])
+    ], NumericTextBoxComponent.prototype, "form", void 0);
+    NumericTextBoxComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-numeric-text-box',
+            template: __webpack_require__(/*! ./numeric-text-box.component.html */ "./src/app/dynamic-forms/components/numeric-text-box/numeric-text-box.component.html"),
+            styles: [__webpack_require__(/*! ../field-builder/field-builder.component.css */ "./src/app/dynamic-forms/components/field-builder/field-builder.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"]])
+    ], NumericTextBoxComponent);
+    return NumericTextBoxComponent;
 }());
 
 
@@ -2426,7 +2581,7 @@ var LookupComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div [formGroup]=\"form\" >\r\n    <textarea pInputTextarea *ngIf=\"!field.isCollection\" [class.is-invalid]=\"isDirty && !isValid\" [formControlName]=\"field.shortName\" [id]=\"field.shortName\"\r\n        rows=\"4\" class=\"form-control\" [placeholder]=\"field.placeholder\" autoResize=\"autoResize\"></textarea>\r\n</div>"
+module.exports = "<div [formGroup]=\"form\">\r\n    <div [formArrayName]=\"field.shortName\" *ngFor=\"let cd of formArray.controls ;let i=index;\">\r\n        <div [formGroupName]=\"i\">\r\n            <textarea pInputTextarea *ngIf=\"!field.isCollection\" [class.is-invalid]=\"isDirty && !isValid\"\r\n                formControlName=\"attributeValue\"   rows=\"4\" class=\"form-control\"\r\n                 autoResize=\"autoResize\"></textarea>\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -2461,6 +2616,10 @@ var TextAreaComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    TextAreaComponent.prototype.ngOnInit = function () {
+        this.formArray = this.form.controls[this.field.shortName];
+        // this.tableData = <FormArray>this.form.controls[this.field.shortName].value;
+    };
     TextAreaComponent.prototype.addRow = function () {
         var control = this.form.controls[this.field.shortName];
         for (var i = 0; i < control.value.length; i++) {
@@ -2510,7 +2669,7 @@ var TextAreaComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div [formGroup]=\"form\">\r\n  <input pInputText *ngIf=\"!field.multiline && !field.isCollection\" [attr.type]=\"field.displayType\" class=\"form-control\"\r\n    [id]=\"field.shortName\" [name]=\"field.shortName\" [formControlName]=\"field.shortName\">\r\n\r\n  <div *ngIf=\"field.isCollection\">\r\n    <p-table *ngIf=\"field.isCollection\" [scrollable]=\"true\" scrollHeight=\"100px\" [formArrayName]=\"field.shortName\"\r\n      [value]=\"tableData\">\r\n      <ng-template pTemplate=\"body\" let-rowData let-ri=\"rowIndex\">\r\n        <tr [formGroupName]=\"ri\">\r\n          <td>\r\n            <input pInputText [attr.type]=\"field.displayType\" class=\"form-control\" \r\n              [class.is-invalid]=\"isDirty && !isValid\" formControlName=\"name\">\r\n          </td>\r\n          <td style=\"width:10%\">\r\n            <button type=\"button\" pButton icon=\"pi pi-trash\" tooltipPosition=\"top\" (click)=\"deleteRow(ri)\"></button>\r\n          </td>\r\n          <td style=\"width:10%;vertical-align: bottom;\" *ngIf=\"ri==0\" [attr.rowspan]=\"tableData?.length\">\r\n            <button type=\"button\" pButton icon=\"fa fa-plus\" (click)=\"addRow()\"></button>\r\n          </td>\r\n        </tr>\r\n      </ng-template>\r\n    </p-table>\r\n  </div>\r\n</div>"
+module.exports = "<div [formGroup]=\"form\">\r\n  <div *ngIf=\"!field.isCollection\">\r\n    <div [formArrayName]=\"field.shortName\" *ngFor=\"let cd of formArray.controls ;let i=index;\">\r\n      <div [formGroupName]=\"i\">\r\n        <input pInputText type=\"text\" class=\"form-control\" formControlName=\"attributeValue\">\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div *ngIf=\"field.isCollection\">\r\n    <p-table #lookupTable [scrollable]=\"true\" scrollHeight=\"100px\" [formArrayName]=\"field.shortName\"\r\n      [value]=\"tableData\">\r\n      <ng-template pTemplate=\"body\" let-rowData let-ri=\"rowIndex\">\r\n        <tr [formGroupName]=\"ri\">\r\n          <td>\r\n            <input pInputText type=\"text\" class=\"form-control\" [class.is-invalid]=\"isDirty && !isValid\"\r\n              formControlName=\"attributeValue\">\r\n          </td>\r\n          <td style=\"width:8%\">\r\n            <button type=\"button\" pButton icon=\"pi pi-trash\" tooltipPosition=\"top\" (click)=\"deleteRow(ri)\"></button>\r\n          </td>\r\n          <td style=\"width:8%;vertical-align: bottom;\" *ngIf=\"ri==0\" [attr.rowspan]=\"tableData?.length\">\r\n            <button type=\"button\" pButton icon=\"fa fa-plus\" (click)=\"this[functionName]()\"></button>\r\n          </td>\r\n        </tr>\r\n      </ng-template>\r\n    </p-table>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -2546,35 +2705,47 @@ var TextboxComponent = /** @class */ (function () {
         configurable: true
     });
     TextboxComponent.prototype.ngOnInit = function () {
-        this.tableData = this.form.controls[this.field.shortName].value;
+        this.functionName = "addRow";
+        this.formArray = this.form.controls[this.field.shortName];
+        if (this.field.isCollection)
+            this.tableData = this.form.controls[this.field.shortName].value;
     };
     TextboxComponent.prototype.addRow = function () {
+        var catalogId;
+        var attributeId;
         var control = this.form.controls[this.field.shortName];
         for (var i = 0; i < control.value.length; i++) {
-            if (control.value[i].name === null)
+            if (control.value[i].attributeValue === null || control.value[i].attributeValue === "")
                 return false;
         }
         if (this.field.required) {
             control.push(this._fb.group({
-                id: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
-                name: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required)
+                attributeId: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](control.value[0].attributeId),
+                catalogId: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](control.value[0].catalogId),
+                name: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](""),
+                attributeValue: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required)
             }));
         }
         else {
             control.push(this._fb.group({
-                id: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
-                name: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]()
+                attributeId: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](control.value[0].attributeId),
+                catalogId: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](control.value[0].catalogId),
+                name: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](""),
+                attributeValue: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("")
             }));
         }
         this.tableData = control.value;
     };
     TextboxComponent.prototype.deleteRow = function (rowIndex) {
         var control = this.form.controls[this.field.shortName];
-        control.removeAt(rowIndex);
-        this.tableData = control.value;
-        if (control.value.length == 0) {
-            this.addRow();
+        if (control.value.length == 1) {
+            var formGroup = this.formArray.controls[0];
+            formGroup.controls['attributeValue'].patchValue("");
         }
+        else {
+            control.removeAt(rowIndex);
+        }
+        this.tableData = control.value;
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
@@ -2587,7 +2758,8 @@ var TextboxComponent = /** @class */ (function () {
     TextboxComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'textbox',
-            template: __webpack_require__(/*! ./textbox.component.html */ "./src/app/dynamic-forms/components/textbox/textbox.component.html")
+            template: __webpack_require__(/*! ./textbox.component.html */ "./src/app/dynamic-forms/components/textbox/textbox.component.html"),
+            styles: [__webpack_require__(/*! ../field-builder/field-builder.component.css */ "./src/app/dynamic-forms/components/field-builder/field-builder.component.css")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"]])
     ], TextboxComponent);
@@ -2620,6 +2792,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_textbox_textbox_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/textbox/textbox.component */ "./src/app/dynamic-forms/components/textbox/textbox.component.ts");
 /* harmony import */ var _components_lookup_lookup_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/lookup/lookup.component */ "./src/app/dynamic-forms/components/lookup/lookup.component.ts");
 /* harmony import */ var _components_textarea_textarea_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/textarea/textarea.component */ "./src/app/dynamic-forms/components/textarea/textarea.component.ts");
+/* harmony import */ var _components_numeric_text_box_numeric_text_box_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/numeric-text-box/numeric-text-box.component */ "./src/app/dynamic-forms/components/numeric-text-box/numeric-text-box.component.ts");
 
 
 
@@ -2633,19 +2806,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var DynamicFormsModule = /** @class */ (function () {
     function DynamicFormsModule() {
     }
     DynamicFormsModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-            declarations: [_components_checkbox_checkbox_component__WEBPACK_IMPORTED_MODULE_6__["CheckboxComponent"], _components_dropdown_dropdown_component__WEBPACK_IMPORTED_MODULE_7__["DropdownComponent"], _components_file_file_component__WEBPACK_IMPORTED_MODULE_8__["FileComponent"], _components_textbox_textbox_component__WEBPACK_IMPORTED_MODULE_9__["TextboxComponent"], _components_lookup_lookup_component__WEBPACK_IMPORTED_MODULE_10__["LookupComponent"], _components_textarea_textarea_component__WEBPACK_IMPORTED_MODULE_11__["TextAreaComponent"]],
+            declarations: [_components_checkbox_checkbox_component__WEBPACK_IMPORTED_MODULE_6__["CheckboxComponent"], _components_dropdown_dropdown_component__WEBPACK_IMPORTED_MODULE_7__["DropdownComponent"], _components_file_file_component__WEBPACK_IMPORTED_MODULE_8__["FileComponent"], _components_textbox_textbox_component__WEBPACK_IMPORTED_MODULE_9__["TextboxComponent"], _components_lookup_lookup_component__WEBPACK_IMPORTED_MODULE_10__["LookupComponent"], _components_textarea_textarea_component__WEBPACK_IMPORTED_MODULE_11__["TextAreaComponent"], _components_numeric_text_box_numeric_text_box_component__WEBPACK_IMPORTED_MODULE_12__["NumericTextBoxComponent"]],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
                 _ngx_translate_core__WEBPACK_IMPORTED_MODULE_4__["TranslateModule"],
                 _externalmodule_primeng_module__WEBPACK_IMPORTED_MODULE_5__["PrimengModule"]
             ],
-            exports: [_components_checkbox_checkbox_component__WEBPACK_IMPORTED_MODULE_6__["CheckboxComponent"], _components_dropdown_dropdown_component__WEBPACK_IMPORTED_MODULE_7__["DropdownComponent"], _components_file_file_component__WEBPACK_IMPORTED_MODULE_8__["FileComponent"], _components_textbox_textbox_component__WEBPACK_IMPORTED_MODULE_9__["TextboxComponent"], _components_lookup_lookup_component__WEBPACK_IMPORTED_MODULE_10__["LookupComponent"], _components_textarea_textarea_component__WEBPACK_IMPORTED_MODULE_11__["TextAreaComponent"]],
+            exports: [_components_checkbox_checkbox_component__WEBPACK_IMPORTED_MODULE_6__["CheckboxComponent"], _components_dropdown_dropdown_component__WEBPACK_IMPORTED_MODULE_7__["DropdownComponent"], _components_file_file_component__WEBPACK_IMPORTED_MODULE_8__["FileComponent"], _components_textbox_textbox_component__WEBPACK_IMPORTED_MODULE_9__["TextboxComponent"], _components_lookup_lookup_component__WEBPACK_IMPORTED_MODULE_10__["LookupComponent"], _components_textarea_textarea_component__WEBPACK_IMPORTED_MODULE_11__["TextAreaComponent"], _components_numeric_text_box_numeric_text_box_component__WEBPACK_IMPORTED_MODULE_12__["NumericTextBoxComponent"]],
         })
     ], DynamicFormsModule);
     return DynamicFormsModule;
@@ -2662,7 +2836,7 @@ var DynamicFormsModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-md-12\" style=\"padding:0px;\">\r\n    <p-panel [styleClass]=\"'panelStyle'\"  [toggleable]=\"false\" >\r\n       <p-header>\r\n                  <div class=\"ui-helper-clearfix\">\r\n                      <span class=\"ui-panel-title\" >{{'data.lblCreateEntity' | translate}}</span>\r\n                  </div>\r\n       </p-header>\r\n        <div class=\"box-body\">\r\n          <div class=\"col-md-8 col-md-offset-2\">\r\n            <!-- <form class=\"form-horizontal\" [formGroup]=\"formGroup\" (ngSubmit)=\"submit(formGroup)\">\r\n                <dynamic-primeng-form-control *ngFor=\"let controlModel of formModel\" [layout]=\"formLayout\" [group]=\"formGroup\" [model]=\"controlModel\"></dynamic-primeng-form-control>\r\n                <dynamic-bootstrap-form-control *ngFor=\"let controlModel of formModel\" [layout]=\"formLayout\" [group]=\"formGroup\" [model]=\"controlModel\"></dynamic-bootstrap-form-control> \r\n                <div class=\"box-footer\">\r\n                    <a (click)=\"back()\" class=\"btn btn-default\">{{'data.btnBack' | translate}}</a>\r\n                    <button pButton type=\"submit\"  label=\"{{'data.btnSave' | translate}}\"  class=\"pull-right\"></button>\r\n                </div>\r\n            </form> -->\r\n            <form  (ngSubmit)=\"form.valid && onSubmit(this.form)\"  #formDir=\"ngForm\"  [formGroup]=\"form\" class=\"form-horizontal\" novalidate>\r\n              <div *ngFor=\"let field of fields\">\r\n                  <field-builder [field]=\"field\"  [form]=\"form\"></field-builder>\r\n              </div>\r\n              <div class=\"box-footer\">\r\n                  <a (click)=\"back()\" class=\"btn btn-default\">{{'data.btnBack' | translate}}</a>\r\n                  <button pButton type=\"submit\"  label=\"{{'data.btnSave' | translate}}\"  class=\"pull-right\"></button>\r\n              </div>\r\n            </form>\r\n          </div>  \r\n        </div>\r\n        </p-panel>\r\n     </div>   \r\n"
+module.exports = "<div class=\"col-md-12\" style=\"padding:0px;\">\r\n    <p-panel [styleClass]=\"'panelStyle'\" [toggleable]=\"false\">\r\n        <p-header>\r\n            <div class=\"ui-helper-clearfix\">\r\n                <span class=\"ui-panel-title\">{{'data.lblCreateEntity' | translate}}</span>\r\n            </div>\r\n        </p-header>\r\n        <div class=\"box-body\">\r\n            <div class=\"col-md-8 col-md-offset-2\">\r\n                <div class=\"form-horizontal\">\r\n                    <div class=\" form-group\">\r\n                        <label class=\"form-control-label col-md-3\">{{'data.lblCatalog' | translate}}</label>\r\n                        <div class=\"col-md-9\">\r\n                            <select [(ngModel)]=\"catalogId\" (change)=\"changeCatalog($event)\" class=\"form-control\">\r\n                                <option value=\"1\">NA Master</option>\r\n                                <option value=\"0\">ANZ Master</option>\r\n                            </select>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div>\r\n                    <form (ngSubmit)=\"form.valid && onSubmit(this.form)\" #formDir=\"ngForm\" [formGroup]=\"form\"\r\n                        class=\"form-horizontal\" novalidate>\r\n\r\n                        <div *ngFor=\"let field of fields\">\r\n                            <field-builder [field]=\"field\" [form]=\"form\"></field-builder>\r\n                        </div>\r\n                        <div class=\"box-footer\">\r\n                            <a (click)=\"back()\" class=\"btn btn-default\">{{'data.btnBack' | translate}}</a>\r\n                            <button pButton type=\"submit\" label=\"{{'data.btnSave' | translate}}\"\r\n                                class=\"pull-right\"></button>\r\n                        </div>\r\n                    </form>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </p-panel>\r\n</div>"
 
 /***/ }),
 
@@ -2688,59 +2862,61 @@ var CreateEntityComponent = /** @class */ (function () {
     function CreateEntityComponent(_fb, _entityService) {
         this._fb = _fb;
         this._entityService = _entityService;
+        this.form = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({});
     }
     CreateEntityComponent.prototype.ngOnInit = function () {
         this.initialize();
     };
     CreateEntityComponent.prototype.initialize = function () {
-        this.getFields();
+        //this.getFields(0);
     };
     CreateEntityComponent.prototype.onSubmit = function (form) {
         debugger;
-        alert(form.value);
+        this._entityService.saveEntityData(form.value)
+            .subscribe(function (res) {
+            console.log(res);
+        });
     };
-    CreateEntityComponent.prototype.getFields = function () {
+    CreateEntityComponent.prototype.changeCatalog = function (e) {
+        this.catalogId = e.target.value;
+        this.getFields(e.target.value);
+    };
+    CreateEntityComponent.prototype.getFields = function (catalogId) {
         var _this = this;
         var fieldsCtrls = {};
-        this._entityService.getShowAtCreation()
+        this._entityService.getShowAtCreation(this.catalogId)
             .subscribe(function (res) {
             _this.fields = res;
             for (var _i = 0, _a = _this.fields; _i < _a.length; _i++) {
                 var f = _a[_i];
-                if (f.dataType == 'checkbox') {
-                    var opts = {};
-                    for (var _b = 0, _c = f.options; _b < _c.length; _b++) {
-                        var opt = _c[_b];
-                        opts[opt.id] = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](opt.name);
-                    }
-                    fieldsCtrls[f.shortName] = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"](opts);
-                }
-                else if (f.isCollection) {
-                    if (f.required) {
-                        fieldsCtrls[f.shortName] = _this._fb.array([_this._fb.group({
-                                id: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
-                                name: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](null, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required)
-                            })]);
-                    }
-                    else {
-                        fieldsCtrls[f.shortName] = _this._fb.array([_this._fb.group({
-                                id: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
-                                name: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]()
-                            })]);
-                    }
-                }
-                else {
-                    if (f.required)
-                        fieldsCtrls[f.shortName] = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](f.attributeValue || '', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required);
-                    else
-                        fieldsCtrls[f.shortName] = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](f.attributeValue || '');
-                    // if (f.displayType == 'LookupTable') {
-                    //   fieldsCtrls[f.lookupTableId] = new FormControl(f.lookupTableId)
-                    // }
-                }
+                fieldsCtrls[f.shortName] = _this._fb.array([_this.createFormGroup(f)]);
             }
             _this.form = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"](fieldsCtrls);
         });
+    };
+    CreateEntityComponent.prototype.createFormGroup = function (data) {
+        if (data.required)
+            if (data.displayType == "LookupTable")
+                return this._fb.group({
+                    attributeId: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](data.id),
+                    catalogId: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](this.catalogId),
+                    name: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](data.attributeValue || '', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+                    attributeValue: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](data.attributeValue || '', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required)
+                });
+            else
+                return this._fb.group({
+                    attributeId: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](data.id),
+                    catalogId: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](this.catalogId),
+                    name: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](data.attributeValue || ''),
+                    attributeValue: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](data.attributeValue || '', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required)
+                });
+        else
+            return this._fb.group({
+                attributeId: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](data.id),
+                catalogId: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](this.catalogId),
+                name: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](data.attributeValue || ''),
+                attributeValue: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](data.attributeValue || '')
+            });
     };
     CreateEntityComponent.prototype.onUpload = function () {
         debugger;
@@ -2754,6 +2930,125 @@ var CreateEntityComponent = /** @class */ (function () {
             _services_entity_service__WEBPACK_IMPORTED_MODULE_3__["EntityService"]])
     ], CreateEntityComponent);
     return CreateEntityComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/entities/components/search-entity/search-entity.component.css":
+/*!*******************************************************************************!*\
+  !*** ./src/app/entities/components/search-entity/search-entity.component.css ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2VudGl0aWVzL2NvbXBvbmVudHMvc2VhcmNoLWVudGl0eS9zZWFyY2gtZW50aXR5LmNvbXBvbmVudC5jc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/entities/components/search-entity/search-entity.component.html":
+/*!********************************************************************************!*\
+  !*** ./src/app/entities/components/search-entity/search-entity.component.html ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"col-md-12\" style=\"padding:0px;\">\n\n  <p-panel header=\"{{'data.lblSearchCriteria' |translate}}\" [styleClass]=\"'panelStyle'\" [toggleable]=\"true\">\n    <div class=\"row box-body\">\n      <div class=\"col-md-12\">\n        <div class=\"col-md-9\">\n          <label>Entity Explorer For: <a (click)=\"changeCatalog()\">{{orgName}}>>{{catalogName}} </a></label>\n        </div>\n        <div class=\"col-md-3 pull-right\">\n          <label class=\"entityHeader\">{{todayDate |date:'fullDate' }}</label>\n        </div>\n      </div>\n      <div class=\"col-md-3\">\n        <div class=\"col-md-12\" style=\"padding:0px;\">\n          <p-panel header=\"{{'data.lblCategory' | translate}}\">\n            <p-scrollPanel [style]=\"{width: '100%', height: '154px'}\">\n              <p-tree [style]=\"{border:'0px'}\" [value]=\"treeData\" [filter]=\"true\" selectionMode=\"checkbox\"></p-tree>\n            </p-scrollPanel>\n          </p-panel>\n        </div>\n      </div>\n      <div class=\"col-md-9\">\n        <form class=\"form-horizontal\">\n          \n            <div class=\"form-group\">\n              <label class=\"control-label col-md-3\">{{'data.lblscentity'|translate}}</label>\n              <div class=\"col-md-9\">\n                <p-chips id=\"entity\" name=\"entities\" [inputStyle]=\"{'width':'100%'}\" [(ngModel)]=\"entities\"></p-chips>\n              </div>\n            </div>\n            <div class=\"form-group\">\n              <label class=\"control-label col-md-3\">{{'data.lblPartNumber'|translate}}</label>\n              <div class=\"col-md-9\">\n                <input pInputText type=\"text\" class=\"form-control\">\n              </div>\n            </div>\n            <div class=\"form-group\">\n              <label class=\"control-label col-md-3\">{{'data.lblSoa'|translate}}</label>\n              <div class=\"col-md-9\">\n                <input pInputText type=\"text\" class=\"form-control\">\n              </div>\n            </div>\n          \n          <div class=\"box-footer\">\n            <!-- <a (click)=\"back()\" class=\"btn btn-default\">{{loc.btnBack}}</a> -->\n            <button type=\"submit\" pButton label=\"{{'data.btnSave'|translate}}\" class=\"pull-right\"></button>\n          </div>\n        </form>\n      </div>\n    </div>\n  </p-panel>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/entities/components/search-entity/search-entity.component.ts":
+/*!******************************************************************************!*\
+  !*** ./src/app/entities/components/search-entity/search-entity.component.ts ***!
+  \******************************************************************************/
+/*! exports provided: SearchEntityComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SearchEntityComponent", function() { return SearchEntityComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _shared_pimConstant__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../shared/pimConstant */ "./src/app/shared/pimConstant.ts");
+/* harmony import */ var primeng_api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! primeng/api */ "./node_modules/primeng/api.js");
+/* harmony import */ var primeng_api__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(primeng_api__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ngx-translate/core */ "./node_modules/@ngx-translate/core/fesm5/ngx-translate-core.js");
+/* harmony import */ var src_app_home_services_category_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/home/services/category.service */ "./src/app/home/services/category.service.ts");
+/* harmony import */ var src_app_home_components_entity_entity_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/home/components/entity/entity.component */ "./src/app/home/components/entity/entity.component.ts");
+/* harmony import */ var src_app_home_services_user_preference_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/home/services/user-preference.service */ "./src/app/home/services/user-preference.service.ts");
+
+
+
+
+
+
+
+
+var SearchEntityComponent = /** @class */ (function () {
+    function SearchEntityComponent(dialogService, _userPrefService, translate, _pimService) {
+        this.dialogService = dialogService;
+        this._userPrefService = _userPrefService;
+        this.translate = translate;
+        this._pimService = _pimService;
+    }
+    SearchEntityComponent.prototype.ngOnInit = function () {
+        this.initialize();
+    };
+    SearchEntityComponent.prototype.initialize = function () {
+        this.todayDate = new Date();
+        this.getCategory();
+        this.getUserPref();
+    };
+    SearchEntityComponent.prototype.getCategory = function () {
+        var _this = this;
+        this._pimService.getCategory(_shared_pimConstant__WEBPACK_IMPORTED_MODULE_2__["GlobalVariable"].dataLocal)
+            .subscribe(function (res) {
+            _this.categoryList = res;
+            _this.treeData = _this.categoryList;
+        }, function (error) { return _this.msg = error; });
+    };
+    SearchEntityComponent.prototype.getUserPref = function () {
+        var _this = this;
+        this._userPrefService.getUserPreference(_shared_pimConstant__WEBPACK_IMPORTED_MODULE_2__["GlobalVariable"].currentUser.token.userId)
+            .subscribe(function (res) {
+            _this.orgName = res.organizationName;
+            _this.catalogName = res.catalogName;
+        }, function (error) { return _this.msg = error; });
+    };
+    SearchEntityComponent.prototype.changeCatalog = function () {
+        this.openDialog(this.orgName, this.catalogName);
+    };
+    SearchEntityComponent.prototype.openDialog = function (orgId, catId) {
+        var _this = this;
+        var header;
+        this.translate.get('data.lblOrgHeader').subscribe(function (res) { header = res; });
+        var ref = this.dialogService.open(src_app_home_components_entity_entity_component__WEBPACK_IMPORTED_MODULE_6__["EntityComponent"], {
+            data: { orgId: orgId, catId: catId },
+            header: header,
+            width: '500px'
+        });
+        ref.onClose.subscribe(function (result) {
+            if (result !== null && result !== undefined) {
+                _this.orgName = result.organizationId;
+                _this.catalogName = result.catalogId;
+                _this.initialize();
+            }
+        });
+    };
+    SearchEntityComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-search-entity',
+            template: __webpack_require__(/*! ./search-entity.component.html */ "./src/app/entities/components/search-entity/search-entity.component.html"),
+            providers: [primeng_api__WEBPACK_IMPORTED_MODULE_3__["DialogService"]],
+            styles: [__webpack_require__(/*! ./search-entity.component.css */ "./src/app/entities/components/search-entity/search-entity.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [primeng_api__WEBPACK_IMPORTED_MODULE_3__["DialogService"],
+            src_app_home_services_user_preference_service__WEBPACK_IMPORTED_MODULE_7__["UserPreferenceService"],
+            _ngx_translate_core__WEBPACK_IMPORTED_MODULE_4__["TranslateService"],
+            src_app_home_services_category_service__WEBPACK_IMPORTED_MODULE_5__["CategoryService"]])
+    ], SearchEntityComponent);
+    return SearchEntityComponent;
 }());
 
 
@@ -2776,6 +3071,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../core/guards/auth.guard */ "./src/app/core/guards/auth.guard.ts");
 /* harmony import */ var _core_components_layout_layout_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../core/components/layout/layout.component */ "./src/app/core/components/layout/layout.component.ts");
 /* harmony import */ var _components_create_entity_create_entity_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/create-entity/create-entity.component */ "./src/app/entities/components/create-entity/create-entity.component.ts");
+/* harmony import */ var _components_search_entity_search_entity_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/search-entity/search-entity.component */ "./src/app/entities/components/search-entity/search-entity.component.ts");
+
 
 
 
@@ -2789,8 +3086,12 @@ var routes = [
         canActivate: [_core_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]],
         children: [
             {
-                path: 'entity',
+                path: 'createEntity',
                 component: _components_create_entity_create_entity_component__WEBPACK_IMPORTED_MODULE_5__["CreateEntityComponent"]
+            },
+            {
+                path: 'searchEntity',
+                component: _components_search_entity_search_entity_component__WEBPACK_IMPORTED_MODULE_6__["SearchEntityComponent"]
             }
         ]
     }
@@ -2834,6 +3135,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_create_entity_create_entity_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/create-entity/create-entity.component */ "./src/app/entities/components/create-entity/create-entity.component.ts");
 /* harmony import */ var _dynamic_forms_components_field_builder_field_builder_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../dynamic-forms/components/field-builder/field-builder.component */ "./src/app/dynamic-forms/components/field-builder/field-builder.component.ts");
 /* harmony import */ var _dynamic_forms_dynamic_forms_module__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../dynamic-forms/dynamic-forms.module */ "./src/app/dynamic-forms/dynamic-forms.module.ts");
+/* harmony import */ var _components_search_entity_search_entity_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/search-entity/search-entity.component */ "./src/app/entities/components/search-entity/search-entity.component.ts");
+
 
 
 
@@ -2852,7 +3155,7 @@ var EntitiesModule = /** @class */ (function () {
     }
     EntitiesModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-            declarations: [_components_create_entity_create_entity_component__WEBPACK_IMPORTED_MODULE_10__["CreateEntityComponent"], _dynamic_forms_components_field_builder_field_builder_component__WEBPACK_IMPORTED_MODULE_11__["FieldBuilderComponent"]],
+            declarations: [_components_create_entity_create_entity_component__WEBPACK_IMPORTED_MODULE_10__["CreateEntityComponent"], _dynamic_forms_components_field_builder_field_builder_component__WEBPACK_IMPORTED_MODULE_11__["FieldBuilderComponent"], _components_search_entity_search_entity_component__WEBPACK_IMPORTED_MODULE_13__["SearchEntityComponent"]],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
                 _entities_routing_module__WEBPACK_IMPORTED_MODULE_9__["EntitiesRoutingModule"],
@@ -2900,9 +3203,14 @@ var EntityService = /** @class */ (function () {
         this._httpClient = _httpClient;
         this.baseUrl = "" + src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].api.endPoint;
     }
-    EntityService.prototype.getShowAtCreation = function () {
-        var url = this.baseUrl + "/showAtCreation";
+    EntityService.prototype.getShowAtCreation = function (catalogId) {
+        var url = this.baseUrl + "/showAtCreation?catalogId=" + catalogId;
         return this._httpClient.get(url)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (data) { return data; }));
+    };
+    EntityService.prototype.saveEntityData = function (model) {
+        var url = this.baseUrl + "/entity";
+        return this._httpClient.post(url, model)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (data) { return data; }));
     };
     EntityService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -2979,8 +3287,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var primeng_table__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(primeng_table__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var primeng_virtualscroller__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! primeng/virtualscroller */ "./node_modules/primeng/virtualscroller.js");
 /* harmony import */ var primeng_virtualscroller__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(primeng_virtualscroller__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var primeng_primeng__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! primeng/primeng */ "./node_modules/primeng/primeng.js");
-/* harmony import */ var primeng_primeng__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(primeng_primeng__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var primeng_inplace__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! primeng/inplace */ "./node_modules/primeng/inplace.js");
+/* harmony import */ var primeng_inplace__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(primeng_inplace__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var primeng_keyfilter__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! primeng/keyfilter */ "./node_modules/primeng/keyfilter.js");
+/* harmony import */ var primeng_keyfilter__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(primeng_keyfilter__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var primeng_primeng__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! primeng/primeng */ "./node_modules/primeng/primeng.js");
+/* harmony import */ var primeng_primeng__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(primeng_primeng__WEBPACK_IMPORTED_MODULE_9__);
+
+
 
 
 
@@ -2997,152 +3311,156 @@ var PrimengModule = /** @class */ (function () {
             declarations: [],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["AccordionModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["AutoCompleteModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["BreadcrumbModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["ButtonModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["OrganizationChartModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["CalendarModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["SidebarModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["CarouselModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["ChartModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["CheckboxModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["ChipsModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["CodeHighlighterModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["ConfirmDialogModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["SharedModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["ContextMenuModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["DataGridModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["DataListModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["DataScrollerModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["DataTableModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["DialogModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["DragDropModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["DropdownModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["EditorModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["FieldsetModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["FileUploadModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["GalleriaModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["GMapModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["GrowlModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["InputMaskModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["InputSwitchModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["InputTextModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["InputTextareaModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["LightboxModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["ListboxModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["MegaMenuModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["MenuModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["MenubarModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["MessagesModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["MultiSelectModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["OrderListModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["OverlayPanelModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["PaginatorModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["PanelModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["PanelMenuModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["PasswordModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["PickListModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["ProgressBarModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["ProgressSpinnerModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["RadioButtonModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["RatingModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["ScheduleModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["SelectButtonModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["SlideMenuModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["SliderModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["SpinnerModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["SplitButtonModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["ScrollPanelModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["StepsModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["TabMenuModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["TabViewModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["TerminalModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["TieredMenuModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["ToggleButtonModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["ToolbarModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["TooltipModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["TreeModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["BlockUIModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["TreeTableModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["AccordionModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["AutoCompleteModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["BreadcrumbModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["ButtonModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["OrganizationChartModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["CalendarModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["SidebarModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["CarouselModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["ChartModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["CheckboxModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["ChipsModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["CodeHighlighterModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["ConfirmDialogModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["SharedModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["ContextMenuModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["DataGridModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["DataListModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["DataScrollerModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["DataTableModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["DialogModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["DragDropModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["DropdownModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["EditorModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["FieldsetModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["FileUploadModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["GalleriaModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["GMapModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["GrowlModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["InputMaskModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["InputSwitchModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["InputTextModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["InputTextareaModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["LightboxModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["ListboxModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["MegaMenuModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["MenuModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["MenubarModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["MessagesModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["MultiSelectModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["OrderListModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["OverlayPanelModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["PaginatorModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["PanelModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["PanelMenuModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["PasswordModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["PickListModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["ProgressBarModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["ProgressSpinnerModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["RadioButtonModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["RatingModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["ScheduleModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["SelectButtonModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["SlideMenuModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["SliderModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["SpinnerModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["SplitButtonModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["ScrollPanelModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["StepsModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["TabMenuModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["TabViewModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["TerminalModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["TieredMenuModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["ToggleButtonModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["ToolbarModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["TooltipModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["TreeModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["BlockUIModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["TreeTableModule"],
                 primeng_table__WEBPACK_IMPORTED_MODULE_5__["TableModule"],
                 primeng_dynamicdialog__WEBPACK_IMPORTED_MODULE_4__["DynamicDialogModule"],
                 primeng_virtualscroller__WEBPACK_IMPORTED_MODULE_6__["VirtualScrollerModule"],
-                primeng_toast__WEBPACK_IMPORTED_MODULE_3__["ToastModule"]
+                primeng_toast__WEBPACK_IMPORTED_MODULE_3__["ToastModule"],
+                primeng_inplace__WEBPACK_IMPORTED_MODULE_7__["InplaceModule"],
+                primeng_keyfilter__WEBPACK_IMPORTED_MODULE_8__["KeyFilterModule"]
             ],
             exports: [
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["AccordionModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["AutoCompleteModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["BreadcrumbModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["ButtonModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["OrganizationChartModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["CalendarModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["SidebarModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["CarouselModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["ChartModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["CheckboxModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["ChipsModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["CodeHighlighterModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["ConfirmDialogModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["SharedModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["ContextMenuModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["DataGridModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["DataListModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["DataScrollerModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["DataTableModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["DialogModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["DragDropModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["DropdownModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["EditorModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["FieldsetModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["FileUploadModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["GalleriaModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["GMapModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["GrowlModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["InputMaskModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["InputSwitchModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["InputTextModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["InputTextareaModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["LightboxModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["ListboxModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["MegaMenuModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["MenuModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["MenubarModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["MessagesModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["MultiSelectModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["OrderListModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["OverlayPanelModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["PaginatorModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["PanelModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["PanelMenuModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["PasswordModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["PickListModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["ProgressBarModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["ProgressSpinnerModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["RadioButtonModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["RatingModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["ScheduleModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["SelectButtonModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["SlideMenuModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["SliderModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["SpinnerModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["SplitButtonModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["ScrollPanelModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["StepsModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["TabMenuModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["TabViewModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["TerminalModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["TieredMenuModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["ToggleButtonModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["ToolbarModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["TooltipModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["TreeModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["BlockUIModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["TreeTableModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["AccordionModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["AutoCompleteModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["BreadcrumbModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["ButtonModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["OrganizationChartModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["CalendarModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["SidebarModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["CarouselModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["ChartModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["CheckboxModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["ChipsModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["CodeHighlighterModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["ConfirmDialogModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["SharedModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["ContextMenuModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["DataGridModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["DataListModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["DataScrollerModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["DataTableModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["DialogModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["DragDropModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["DropdownModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["EditorModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["FieldsetModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["FileUploadModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["GalleriaModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["GMapModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["GrowlModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["InputMaskModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["InputSwitchModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["InputTextModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["InputTextareaModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["LightboxModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["ListboxModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["MegaMenuModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["MenuModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["MenubarModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["MessagesModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["MultiSelectModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["OrderListModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["OverlayPanelModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["PaginatorModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["PanelModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["PanelMenuModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["PasswordModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["PickListModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["ProgressBarModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["ProgressSpinnerModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["RadioButtonModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["RatingModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["ScheduleModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["SelectButtonModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["SlideMenuModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["SliderModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["SpinnerModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["SplitButtonModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["ScrollPanelModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["StepsModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["TabMenuModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["TabViewModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["TerminalModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["TieredMenuModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["ToggleButtonModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["ToolbarModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["TooltipModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["TreeModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["BlockUIModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_9__["TreeTableModule"],
                 primeng_table__WEBPACK_IMPORTED_MODULE_5__["TableModule"],
                 primeng_dynamicdialog__WEBPACK_IMPORTED_MODULE_4__["DynamicDialogModule"],
                 primeng_virtualscroller__WEBPACK_IMPORTED_MODULE_6__["VirtualScrollerModule"],
-                primeng_toast__WEBPACK_IMPORTED_MODULE_3__["ToastModule"]
+                primeng_toast__WEBPACK_IMPORTED_MODULE_3__["ToastModule"],
+                primeng_inplace__WEBPACK_IMPORTED_MODULE_7__["InplaceModule"],
+                primeng_keyfilter__WEBPACK_IMPORTED_MODULE_8__["KeyFilterModule"]
             ]
         })
     ], PrimengModule);
@@ -3171,7 +3489,7 @@ module.exports = "\r\n\r\n\r\n.ui-tree{\r\n    width: 0px !important;\r\n}\r\n\r
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<div class=\"col-md-12\" style=\"padding:0px;\">\r\n \r\n   <p-panel header=\"Dashboard\" [styleClass]=\"'panelStyle'\"  [toggleable]=\"true\" >\r\n      <div class=\"row box-body\" >\r\n         <div class=\"col-md-12\">\r\n               <div class=\"col-md-10\">\r\n                  <label>Entity Explorer For: <a (click)=\"changeCatalog()\">{{orgName}}>>{{catalogName}} </a></label>\r\n               </div>\r\n               <!-- <div class=\"col-md-1\">\r\n                  <label class=\"entityHeader\">{{loc.lblUILocal}}: {{uiLocalName}}</label>\r\n               </div> -->\r\n               <div class=\"col-md-2 pull-right\">\r\n                  <label class=\"entityHeader\">{{todayDate |date:'fullDate' }}</label>\r\n               </div>\r\n             </div>\r\n        <div class=\"col-md-3\">\r\n            <div  class=\"col-md-12\" style=\"padding:0px;\">\r\n                  <p-panel header=\"{{'data.lblCategory' | translate}}\">\r\n                     <p-scrollPanel [style]=\"{width: '100%', height: '154px'}\">                             \r\n                        <p-tree [style]=\"{border:'0px'}\" [value]=\"treeData\" [filter]=\"true\"  selectionMode=\"checkbox\" ></p-tree>\r\n                     </p-scrollPanel>\r\n                  </p-panel>\r\n            </div>\r\n        </div>\r\n        <div class=\"col-md-9\">\r\n        <p-carousel headerText=\"Work Items\" numVisible=\"2\" [value]=\"workflows\">\r\n            <ng-template let-item pTemplate=\"item\">\r\n                  <div class=\"ui-grid ui-grid-responsive\">\r\n                     <div class=\"ui-grid-row\">\r\n                        <div class=\"ui-grid-col-12\" ui-knob [value]=\"item.count\" [options]=\"knOptions\"></div>\r\n                     </div>\r\n                     <div class=\"ui-grid-row\">\r\n                        <div class=\"ui-grid-col-12\">{{item.stage}}</div>\r\n                    </div>\r\n                  </div>\r\n            </ng-template>\r\n        </p-carousel>\r\n      </div>\r\n     </div>\r\n   </p-panel>\r\n  \r\n  <p-panel header=\"{{'data.lblSearchCriteria' |translate}}\" [style]=\"{'margin-top':'20px','background-color':'#ffffff'}\" [collapsed]=\"true\"  [toggleable]=\"true\" >\r\n         <form>\r\n            <div class=\"col-md-12 form-horizontal\">\r\n               <div class=\"form-group\">\r\n                  <label class=\"control-label col-md-3\">{{'data.lblscentity'|translate}}</label>\r\n                  <div class=\"col-md-9\">\r\n                     <p-chips id=\"entity\" name=\"entities\" [inputStyle]=\"{'width':'100%'}\"  [(ngModel)]=\"entities\" ></p-chips>\r\n                  </div>\r\n               </div>\r\n               <div class=\"form-group\">\r\n                  <label class=\"control-label col-md-3\">{{'data.lblPartNumber'|translate}}</label>\r\n                  <div class=\"col-md-9\">\r\n                     <input  pInputText type=\"text\" class=\"form-control\">\r\n                  </div>\r\n               </div>\r\n               <div class=\"form-group\">\r\n                  <label class=\"control-label col-md-3\">{{'data.lblSoa'|translate}}</label>\r\n                  <div class=\"col-md-9\">\r\n                     <input pInputText type=\"text\" class=\"form-control\">\r\n                  </div>\r\n               </div>\r\n            </div>\r\n            <div class=\"box-footer\">\r\n                  <!-- <a (click)=\"back()\" class=\"btn btn-default\">{{loc.btnBack}}</a> -->\r\n                  <button type=\"submit\" pButton label=\"{{'data.btnSave'|translate}}\"  class=\"pull-right\"></button>\r\n              </div>\r\n         </form>\r\n</p-panel>\r\n</div>"
+module.exports = "<div class=\"col-md-12\" style=\"padding:0px;\">\r\n\r\n   <p-panel header=\"Dashboard\" [styleClass]=\"'panelStyle'\" [toggleable]=\"true\">\r\n      <div class=\"row box-body\">\r\n         <div class=\"col-md-12\">\r\n            <div class=\"col-md-9\">\r\n               <label>Entity Explorer For: <a (click)=\"changeCatalog()\">{{orgName}}>>{{catalogName}} </a></label>\r\n            </div>\r\n            <!-- <div class=\"col-md-1\">\r\n                  <label class=\"entityHeader\">{{loc.lblUILocal}}: {{uiLocalName}}</label>\r\n               </div> -->\r\n            <div class=\"col-md-3 pull-right\">\r\n               <label class=\"entityHeader\">{{todayDate |date:'fullDate' }}</label>\r\n            </div>\r\n         </div>\r\n         <div class=\"col-md-12\">\r\n            <p-carousel headerText=\"Work Items\" numVisible=\"3\" [value]=\"workflows\">\r\n               <ng-template let-item pTemplate=\"item\">\r\n                  <div class=\"ui-grid ui-grid-responsive\">\r\n                     <div class=\"ui-grid-row\">\r\n                        <div class=\"ui-grid-col-12\" ui-knob [value]=\"item.count\" [options]=\"knOptions\"></div>\r\n                     </div>\r\n                     <div class=\"ui-grid-row\">\r\n                        <div class=\"ui-grid-col-12\">{{item.stage}}</div>\r\n                     </div>\r\n                  </div>\r\n               </ng-template>\r\n            </p-carousel>\r\n         </div>\r\n      </div>\r\n   </p-panel>\r\n</div>"
 
 /***/ }),
 
@@ -3240,14 +3558,14 @@ var DashboardComponent = /** @class */ (function () {
             { count: 11, stage: 'MIS Approval' },
             { count: 4, stage: 'Marketing Steward attibute approval' }];
         this.childCmp = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
-        this.todayDate = new Date();
-        this.getUserPref();
+        this.initialize();
     }
     DashboardComponent.prototype.sendComponantName = function () {
         this.childCmp.emit(this.cmpName);
     };
     DashboardComponent.prototype.initialize = function () {
-        this.getCategory();
+        this.todayDate = new Date();
+        this.getUserPref();
     };
     DashboardComponent.prototype.getUserPref = function () {
         var _this = this;
@@ -3256,15 +3574,6 @@ var DashboardComponent = /** @class */ (function () {
             _this.userPrefList = res;
             _this.orgName = res.organizationName;
             _this.catalogName = res.catalogName;
-            _this.getCategory();
-        }, function (error) { return _this.msg = error; });
-    };
-    DashboardComponent.prototype.getCategory = function () {
-        var _this = this;
-        this._pimService.getCategory(_shared_pimConstant__WEBPACK_IMPORTED_MODULE_2__["GlobalVariable"].dataLocal)
-            .subscribe(function (res) {
-            _this.categoryList = res;
-            _this.treeData = _this.categoryList;
         }, function (error) { return _this.msg = error; });
     };
     DashboardComponent.prototype.changeCatalog = function () {
@@ -3299,7 +3608,10 @@ var DashboardComponent = /** @class */ (function () {
             styles: ["\n        .ui-grid-row {\n            text-align: center;\n        }\n        .ui-grid {\n            margin: 10px 0px;\n        }\n        .ui-grid-row > div {\n            padding: 4px 10px;\n        }\n    ", __webpack_require__(/*! ./dashboard.component.css */ "./src/app/home/components/dashboard/dashboard.component.css")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_app_service__WEBPACK_IMPORTED_MODULE_3__["AppService"],
-            _services_user_preference_service__WEBPACK_IMPORTED_MODULE_8__["UserPreferenceService"], primeng_api__WEBPACK_IMPORTED_MODULE_4__["DialogService"], _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__["TranslateService"], _services_category_service__WEBPACK_IMPORTED_MODULE_7__["CategoryService"]])
+            _services_user_preference_service__WEBPACK_IMPORTED_MODULE_8__["UserPreferenceService"],
+            primeng_api__WEBPACK_IMPORTED_MODULE_4__["DialogService"],
+            _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__["TranslateService"],
+            _services_category_service__WEBPACK_IMPORTED_MODULE_7__["CategoryService"]])
     ], DashboardComponent);
     return DashboardComponent;
 }());
@@ -3315,7 +3627,7 @@ var DashboardComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"content\">\r\n    <div class=\"box-body\">\r\n                        <form [formGroup]=\"orgform\" #formDir=\"ngForm\" (ngSubmit)=\"orgform.valid && submit(orgform)\" class=\"form-horizontal\" novalidate >\r\n                            <div class=\"col-md-12\">\r\n                                <div class=\"form-group\" [ngClass]=\"{'has-error': (orgform.controls.organizationId.invalid && formDir.submitted) }\">\r\n                                        <label class=\"control-label col-md-3\">{{'data.lblOrganization'|translate}}</label>\r\n                                        <div class=\"col-md-9\">\r\n                                            <select name=\"organizationName\"  formControlName=\"organizationId\" class=\"form-control\" required>\r\n                                                <!-- <option value=\"\">-- {{data.lblOrganization}} --</option> -->\r\n                                                <option *ngFor=\"let org of organizationList\" [ngValue]=\"org.shortName\" >{{org.longName}}</option>\r\n                                            </select>\r\n                                        </div>\r\n                                    </div>\r\n                                    <div class=\"form-group\" [ngClass]=\"{'has-error': (orgform.controls.catalogId.invalid && formDir.submitted) }\">\r\n                                            <label class=\"control-label col-md-3\">{{'data.lblCatalog'|translate}}</label>\r\n                                            <div class=\"col-md-9\">\r\n                                                <select name=\"catalogName\"  formControlName=\"catalogId\" class=\"form-control\" required>\r\n                                                    <!-- <option value=\"\">-- {{data.lblCatalog}} --</option> -->\r\n                                                    <option *ngFor=\"let cat of catalogList\" [ngValue]=\"cat.shortName\" >{{cat.longName}}</option>\r\n                                                </select>\r\n                                            </div>\r\n                                        </div>\r\n                                    \r\n                            </div>\r\n                            <div class=\"box-footer\">\r\n                                <a (click)=\"back()\" class=\"btn btn-default\">{{'data.btnBack'|translate}}</a>\r\n                                <button pButton type=\"submit\" label=\"{{'data.btnSave'|translate}}\" class=\"pull-right\"></button>\r\n                            </div>\r\n                                     \r\n                        </form>\r\n\r\n    </div>\r\n</section>"
+module.exports = "<section class=\"content\">\r\n    <div class=\"box-body\">\r\n                        <form [formGroup]=\"orgform\" #formDir=\"ngForm\" (ngSubmit)=\"orgform.valid && submit(orgform)\" class=\"form-horizontal\" novalidate >\r\n                            \r\n                                <div class=\"form-group\" [ngClass]=\"{'has-error': (orgform.controls.organizationId.invalid && formDir.submitted) }\">\r\n                                        <label class=\"control-label col-md-3\">{{'data.lblOrganization'|translate}}</label>\r\n                                        <div class=\"col-md-9\">\r\n                                            <select name=\"organizationName\"  formControlName=\"organizationId\" class=\"form-control\" required>\r\n                                                <!-- <option value=\"\">-- {{data.lblOrganization}} --</option> -->\r\n                                                <option *ngFor=\"let org of organizationList\" [ngValue]=\"org.shortName\" >{{org.longName}}</option>\r\n                                            </select>\r\n                                        </div>\r\n                                    </div>\r\n                                    <div class=\"form-group\" [ngClass]=\"{'has-error': (orgform.controls.catalogId.invalid && formDir.submitted) }\">\r\n                                            <label class=\"control-label col-md-3\">{{'data.lblCatalog'|translate}}</label>\r\n                                            <div class=\"col-md-9\">\r\n                                                <select name=\"catalogName\"  formControlName=\"catalogId\" class=\"form-control\" required>\r\n                                                    <!-- <option value=\"\">-- {{data.lblCatalog}} --</option> -->\r\n                                                    <option *ngFor=\"let cat of catalogList\" [ngValue]=\"cat.shortName\" >{{cat.longName}}</option>\r\n                                                </select>\r\n                                            </div>\r\n                                        </div>\r\n                                    \r\n                            \r\n                            <div class=\"box-footer\">\r\n                                <a (click)=\"back()\" class=\"btn btn-default\">{{'data.btnBack'|translate}}</a>\r\n                                <button pButton type=\"submit\" label=\"{{'data.btnSave'|translate}}\" class=\"pull-right\"></button>\r\n                            </div>\r\n                                     \r\n                        </form>\r\n\r\n    </div>\r\n</section>"
 
 /***/ }),
 
@@ -3408,7 +3720,7 @@ var EntityComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"content\">\r\n                <div class=\"box-body\">\r\n                        <form [formGroup]=\"prefform\" #formDir=\"ngForm\" (ngSubmit)=\"prefform.valid && submit(prefform)\" class=\"form-horizontal\" novalidate >\r\n                                <div class=\"col-md-12\">\r\n                                        <div class=\"form-group\" [ngClass]=\"{'has-error': (prefform.controls.dataLocal.invalid && formDir.submitted) }\">\r\n                                                <label class=\"control-label col-md-3\">{{'data.lblDataLocal'|translate}}</label>\r\n                                                <div class=\"col-md-9\">\r\n                                                        <select formControlName=\"dataLocal\" name=\"dataLocalName\" class=\"form-control\"  >\r\n                                                                <option [ngValue]=\"dt.id\" *ngFor=\"let dt of dataLocalList\">{{dt.name}}</option> \r\n                                                        </select>\r\n                                                </div>\r\n                                            </div>\r\n                                            <div class=\"form-group\" [ngClass]=\"{'has-error': (prefform.controls.timeZone.invalid && formDir.submitted) }\">\r\n                                                    <label class=\"control-label col-md-3\">{{'data.lblTimeZone'|translate}}</label>\r\n                                                    <div class=\"col-md-9\">\r\n                                                        <select name=\"timeZoneName\"  formControlName=\"timeZone\" class=\"form-control\" >\r\n                                                                <option [ngValue]=\"tz.name\" *ngFor=\"let tz of timeZoneList\">{{tz.name}}</option>\r\n                                                        </select>\r\n                                                    </div>\r\n                                            </div>\r\n                                            <div class=\"form-group\" [ngClass]=\"{'has-error': (prefform.controls.taxonomy.invalid && formDir.submitted) }\">\r\n                                                        <label class=\"control-label col-md-3\">{{'data.lblTaxonomy'|translate}}</label>\r\n                                                        <div class=\"col-md-9\">\r\n                                                            <select name=\"taxonomyName\"  formControlName=\"taxonomy\" class=\"form-control\" >\r\n                                                                    <option  [ngValue]=\"t.id\" *ngFor=\"let t of taxonomyList\">{{t.longName}}</option>\r\n                                                            </select>\r\n                                                        </div>\r\n                                            </div>       \r\n                                            <div class=\"form-group\" [ngClass]=\"{'has-error': (prefform.controls.organizationId.invalid && formDir.submitted) }\">\r\n                                                    <label class=\"control-label col-md-3\">{{'data.lblOrganization'|translate}}</label>\r\n                                                    <div class=\"col-md-9\">\r\n                                                        <select name=\"organizationName\"  formControlName=\"organizationId\" class=\"form-control\" >\r\n                                                            <option *ngFor=\"let org of organizationList\" [ngValue]=\"org.id\" >{{org.longName}}</option>\r\n                                                        </select>\r\n                                                    </div>\r\n                                            </div>\r\n                                            <div class=\"form-group\" [ngClass]=\"{'has-error': (prefform.controls.catalogId.invalid && formDir.submitted) }\">\r\n                                                        <label class=\"control-label col-md-3\">{{'data.lblCatalog'|translate}}</label>\r\n                                                        <div class=\"col-md-9\">\r\n                                                            <select name=\"catalogName\"  formControlName=\"catalogId\" class=\"form-control\" >\r\n                                                                <option *ngFor=\"let cat of catalogList\" [ngValue]=\"cat.id\" >{{cat.longName}}</option>\r\n                                                            </select>\r\n                                                        </div>\r\n                                            </div>\r\n                                            <div class=\"form-group\" [ngClass]=\"{'has-error': (prefform.controls.roleId.invalid && formDir.submitted) }\">\r\n                                                    <label class=\"control-label col-md-3\">{{'data.lblRole'|translate}}</label>\r\n                                                    <div class=\"col-md-9\">\r\n                                                        <select name=\"roleName\"  formControlName=\"roleId\" class=\"form-control\" >\r\n                                                            <!-- <option value=\"\">-- {{data.lblCatalog}} --</option> -->\r\n                                                            <option *ngFor=\"let role of roleList\" [ngValue]=\"role.id\" >{{role.name}}</option>\r\n                                                        </select>\r\n                                                    </div>\r\n                                        </div>\r\n                                    \r\n                                </div>\r\n                                <div class=\"box-footer\">\r\n                                        <a (click)=\"back()\" class=\"btn btn-default\">{{'data.btnBack'|translate}}</a>\r\n                                        <button type=\"submit\" pButton label=\"{{'data.btnSave'|translate}}\" class=\"pull-right\"></button>\r\n                                </div>\r\n                        </form>\r\n                </div>\r\n</section>"
+module.exports = "<section class=\"content\">\r\n        <div class=\"box-body\">\r\n                <form [formGroup]=\"prefform\" #formDir=\"ngForm\" (ngSubmit)=\"prefform.valid && submit(prefform)\"\r\n                        class=\"form-horizontal\" novalidate>\r\n\r\n                        <div class=\"form-group\"\r\n                                [ngClass]=\"{'has-error': (prefform.controls.dataLocal.invalid && formDir.submitted) }\">\r\n                                <label class=\"control-label col-md-3\">{{'data.lblDataLocal'|translate}}</label>\r\n                                <div class=\"col-md-9\">\r\n                                        <select formControlName=\"dataLocal\" name=\"dataLocalName\" class=\"form-control\">\r\n                                                <option [ngValue]=\"dt.id\" *ngFor=\"let dt of dataLocalList\">{{dt.name}}\r\n                                                </option>\r\n                                        </select>\r\n                                </div>\r\n                        </div>\r\n                        <div class=\"form-group\"\r\n                                [ngClass]=\"{'has-error': (prefform.controls.timeZone.invalid && formDir.submitted) }\">\r\n                                <label class=\"control-label col-md-3\">{{'data.lblTimeZone'|translate}}</label>\r\n                                <div class=\"col-md-9\">\r\n                                        <select name=\"timeZoneName\" formControlName=\"timeZone\" class=\"form-control\">\r\n                                                <option [ngValue]=\"tz.name\" *ngFor=\"let tz of timeZoneList\">{{tz.name}}\r\n                                                </option>\r\n                                        </select>\r\n                                </div>\r\n                        </div>\r\n                        <div class=\"form-group\"\r\n                                [ngClass]=\"{'has-error': (prefform.controls.taxonomy.invalid && formDir.submitted) }\">\r\n                                <label class=\"control-label col-md-3\">{{'data.lblTaxonomy'|translate}}</label>\r\n                                <div class=\"col-md-9\">\r\n                                        <select name=\"taxonomyName\" formControlName=\"taxonomy\" class=\"form-control\">\r\n                                                <option [ngValue]=\"t.id\" *ngFor=\"let t of taxonomyList\">{{t.longName}}\r\n                                                </option>\r\n                                        </select>\r\n                                </div>\r\n                        </div>\r\n                        <div class=\"form-group\"\r\n                                [ngClass]=\"{'has-error': (prefform.controls.organizationId.invalid && formDir.submitted) }\">\r\n                                <label class=\"control-label col-md-3\">{{'data.lblOrganization'|translate}}</label>\r\n                                <div class=\"col-md-9\">\r\n                                        <select name=\"organizationName\" formControlName=\"organizationId\"\r\n                                                class=\"form-control\">\r\n                                                <option *ngFor=\"let org of organizationList\" [ngValue]=\"org.id\">\r\n                                                        {{org.longName}}</option>\r\n                                        </select>\r\n                                </div>\r\n                        </div>\r\n                        <div class=\"form-group\"\r\n                                [ngClass]=\"{'has-error': (prefform.controls.catalogId.invalid && formDir.submitted) }\">\r\n                                <label class=\"control-label col-md-3\">{{'data.lblCatalog'|translate}}</label>\r\n                                <div class=\"col-md-9\">\r\n                                        <select name=\"catalogName\" formControlName=\"catalogId\" class=\"form-control\">\r\n                                                <option *ngFor=\"let cat of catalogList\" [ngValue]=\"cat.id\">\r\n                                                        {{cat.longName}}</option>\r\n                                        </select>\r\n                                </div>\r\n                        </div>\r\n                        <div class=\"form-group\"\r\n                                [ngClass]=\"{'has-error': (prefform.controls.roleId.invalid && formDir.submitted) }\">\r\n                                <label class=\"control-label col-md-3\">{{'data.lblRole'|translate}}</label>\r\n                                <div class=\"col-md-9\">\r\n                                        <select name=\"roleName\" formControlName=\"roleId\" class=\"form-control\">\r\n                                                <!-- <option value=\"\">-- {{data.lblCatalog}} --</option> -->\r\n                                                <option *ngFor=\"let role of roleList\" [ngValue]=\"role.id\">{{role.name}}\r\n                                                </option>\r\n                                        </select>\r\n                                </div>\r\n                        </div>\r\n\r\n\r\n                        <div class=\"box-footer\">\r\n                                <a (click)=\"back()\" class=\"btn btn-default\">{{'data.btnBack'|translate}}</a>\r\n                                <button type=\"submit\" pButton label=\"{{'data.btnSave'|translate}}\"\r\n                                        class=\"pull-right\"></button>\r\n                        </div>\r\n                </form>\r\n        </div>\r\n</section>"
 
 /***/ }),
 
@@ -5224,7 +5536,7 @@ var LoginService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-md-12\" style=\"padding:0px;\">\r\n  <p-panel [styleClass]=\"'panelStyle'\"  [toggleable]=\"false\" >\r\n     <p-header>\r\n                <div class=\"ui-helper-clearfix\">\r\n                    <span class=\"ui-panel-title\" >{{'data.lblAddLookUp' | translate}}</span>\r\n                </div>\r\n     </p-header>\r\n  <div class=\"box-body\">\r\n    <form [formGroup]=\"lookupTableForm\" #formmain=\"ngForm\" (ngSubmit)=\"lookupTableForm.valid && submit(lookupTableForm)\" class=\"form-horizontal\" novalidate >\r\n      <div class=\"form-group\">\r\n          <div  [ngClass]=\"{'has-error': (lookupTableForm.get('tableName').invalid && formmain.submitted) }\">\r\n              <label class=\"control-label col-md-3\">\r\n                  {{'data.lblTableName' | translate}}*:\r\n              </label>\r\n              <div class=\"col-md-9\">\r\n                  <input pInputText type=\"text\" class=\"form-control\" formControlName=\"tableName\" required>\r\n              </div>\r\n            </div>\r\n      </div>\r\n      <div class=\"form-group col-md-12\">\r\n          <p-table formGroupName=\"columns\" [value]=\"lookupColumnList\" [responsive]=\"true\" >\r\n              <ng-template pTemplate=\"header\">\r\n                <tr>\r\n                  <th>{{'data.lblColumn'|translate}}</th>\r\n                  <th>{{'data.lblDataType'|translate}}</th>\r\n                  <th>{{'data.lblLength'|translate}}</th>\r\n                  <th>{{'data.lblNullable'|translate}}</th>\r\n                  <th>{{'data.lblUnique'|translate}}</th>\r\n                  <th></th>\r\n                </tr>\r\n              </ng-template>\r\n              <ng-template pTemplate=\"body\" let-columns  let-ri=\"rowIndex\">\r\n                <tr>\r\n                  <td>{{columns.columnName}}</td>\r\n                  <td>{{columns.dataType}}</td>\r\n                  <td>{{columns.length}}</td>\r\n                  <td>{{columns.nullable}}</td>\r\n                  <td>{{columns.unique}}</td>\r\n                  <td>\r\n                      <button  type=\"button\" pButton   icon=\"pi pi-pencil\" tooltipPosition=\"top\" pTooltip=\"{{'data.btnEdit' | translate}}\"  (click)=\"editRow(columns,ri)\"></button>\r\n                      <button  type=\"button\" pButton icon=\"pi pi-trash\" tooltipPosition=\"top\" pTooltip=\"{{'data.btnDelete' | translate}}\"  (click)=\"deleteRow(columns,ri)\"></button>\r\n                  </td>\r\n                </tr>\r\n              </ng-template>\r\n              <ng-template pTemplate=\"summary\" let-rowData>\r\n                  <div style=\"text-align:left\">\r\n                      <button type=\"button\" pButton icon=\"fa fa-plus\" (click)=\"addRow()\"></button>\r\n                  </div>\r\n              </ng-template>\r\n            </p-table>\r\n      </div>\r\n      <div class=\"box-footer\">\r\n          <a (click)=\"back()\" class=\"btn btn-default\">{{'data.btnBack' | translate}}</a>\r\n          <button pButton type=\"submit\" label=\"{{'data.btnSave' | translate}}\"  class=\"pull-right\"></button>\r\n      </div>\r\n    </form>\r\n  </div>\r\n  </p-panel>\r\n</div>\r\n<p-dialog [showHeader]=\"false\" [(visible)]=\"displayDialog\" [responsive]=\"true\" showEffect=\"fade\" [modal]=\"true\"  >\r\n    <div class=\"box-body\">\r\n  <form [formGroup]=\"lookupTableColumnForm\" #formDir=\"ngForm\" (ngSubmit)=\"lookupTableColumnForm.valid && saveRow(lookupTableColumnForm)\" class=\"form-horizontal\" novalidate >\r\n  <div class=\"form-group\" [ngClass]=\"{'has-error': (lookupTableColumnForm.get('columnName').invalid && formDir.submitted) }\">\r\n    <label class=\"control-label col-md-3\">\r\n        {{'data.lblColumn' | translate}}\r\n    </label>\r\n    <div class=\"col-md-9\">\r\n        <input pInputText type=\"text\" class=\"form-control\" formControlName=\"columnName\" required>\r\n    </div>\r\n  </div>\r\n  <div class=\"form-group\" [ngClass]=\"{'has-error': (lookupTableColumnForm.get('dataType').invalid && formDir.submitted) }\">\r\n      <label class=\"control-label col-md-3\">\r\n          {{'data.lblDataType' | translate}}\r\n      </label>\r\n      <div class=\"col-md-9\">\r\n          <select name=\"DataType\"  formControlName=\"dataType\" class=\"form-control\" required>\r\n              <option *ngFor=\"let dt of dataTypeList\" [ngValue]=\"dt.name\" >{{dt.name}}</option>\r\n          </select>\r\n      </div>\r\n  </div>\r\n  <div class=\"form-group\" [ngClass]=\"{'has-error': (lookupTableColumnForm.get('length').invalid && formDir.submitted) }\">\r\n        <label class=\"control-label col-md-3\">\r\n            {{'data.lblLength' | translate}}\r\n        </label>\r\n        <div class=\"col-md-9\">\r\n            <input   pInputText type=\"text\" class=\"form-control\" formControlName=\"length\" required>\r\n        </div>\r\n  </div>   \r\n  <div class=\"form-group\">\r\n      <label class=\"control-label col-md-3\">\r\n          {{'data.lblNullable' | translate}}\r\n      </label>\r\n      <div class=\"col-md-9\">\r\n          <p-checkbox  name=\"Nullable\" binary=\"true\" [formControl]=\"lookupTableColumnForm.controls['nullable']\"></p-checkbox> \r\n      </div>\r\n  </div>\r\n  <div class=\"form-group\">\r\n      <label class=\"control-label col-md-3\">\r\n          {{'data.lblUnique' | translate}}\r\n      </label>\r\n      <div class=\"col-md-9\">\r\n          <p-checkbox  name=\"Unique\" binary=\"true\" [formControl]=\"lookupTableColumnForm.controls['unique']\"></p-checkbox>\r\n      </div>\r\n    </div>\r\n    <div class=\"box-footer\">\r\n        <a (click)=\"cancelEditRow()\" class=\"btn btn-default\">{{'data.btnBack' | translate}}</a>\r\n        <button pButton type=\"submit\" label=\"{{'data.btnSave' | translate}}\"  class=\"pull-right\"></button>\r\n    </div>\r\n  </form>\r\n</div>\r\n</p-dialog>"
+module.exports = "<div class=\"col-md-12\" style=\"padding:0px;\">\r\n  <p-panel [styleClass]=\"'panelStyle'\"  [toggleable]=\"false\" >\r\n     <p-header>\r\n                <div class=\"ui-helper-clearfix\">\r\n                    <span class=\"ui-panel-title\" >{{'data.lblAddLookUp' | translate}}</span>\r\n                </div>\r\n     </p-header>\r\n  <div class=\"box-body\">\r\n    <form [formGroup]=\"lookupTableForm\" #formmain=\"ngForm\" (ngSubmit)=\"lookupTableForm.valid && submit(lookupTableForm)\" class=\"form-horizontal\" novalidate >\r\n      <div class=\"form-group\">\r\n          <div  [ngClass]=\"{'has-error': (lookupTableForm.get('tableName').invalid && formmain.submitted) }\">\r\n              <label class=\"control-label col-md-3\">\r\n                  {{'data.lblTableName' | translate}}*:\r\n              </label>\r\n              <div class=\"col-md-9\">\r\n                  <input pInputText type=\"text\" class=\"form-control\" formControlName=\"tableName\" required>\r\n              </div>\r\n            </div>\r\n      </div>\r\n      <div class=\"form-group col-md-12\">\r\n          <p-table formGroupName=\"columns\" [value]=\"lookupColumnList\" [responsive]=\"true\" >\r\n              <ng-template pTemplate=\"header\">\r\n                <tr>\r\n                  <th>{{'data.lblColumn'|translate}}</th>\r\n                  <th>{{'data.lblDataType'|translate}}</th>\r\n                  <th>{{'data.lblLength'|translate}}</th>\r\n                  <th>{{'data.lblNullable'|translate}}</th>\r\n                  <th>{{'data.lblUnique'|translate}}</th>\r\n                  <th></th>\r\n                </tr>\r\n              </ng-template>\r\n              <ng-template pTemplate=\"body\" let-columns  let-ri=\"rowIndex\">\r\n                <tr>\r\n                  <td>{{columns.columnName}}</td>\r\n                  <td>{{columns.dataType}}</td>\r\n                  <td>{{columns.length}}</td>\r\n                  <td>{{columns.nullable}}</td>\r\n                  <td>{{columns.unique}}</td>\r\n                  <td>\r\n                      <button  type=\"button\" pButton   icon=\"pi pi-pencil\" tooltipPosition=\"top\" pTooltip=\"{{'data.btnEdit' | translate}}\"  (click)=\"editRow(columns,ri)\"></button>\r\n                      <button  type=\"button\" pButton icon=\"pi pi-trash\" tooltipPosition=\"top\" pTooltip=\"{{'data.btnDelete' | translate}}\"  (click)=\"deleteRow(columns,ri)\"></button>\r\n                  </td>\r\n                </tr>\r\n              </ng-template>\r\n              <ng-template pTemplate=\"summary\" let-rowData>\r\n                  <div style=\"text-align:left\">\r\n                      <button type=\"button\" pButton icon=\"fa fa-plus\" (click)=\"addRow()\"></button>\r\n                  </div>\r\n              </ng-template>\r\n            </p-table>\r\n      </div>\r\n      <div class=\"box-footer\">\r\n          <a (click)=\"back()\" class=\"btn btn-default\">{{'data.btnBack' | translate}}</a>\r\n          <button pButton type=\"submit\" label=\"{{'data.btnSave' | translate}}\"  class=\"pull-right\"></button>\r\n      </div>\r\n    </form>\r\n  </div>\r\n  </p-panel>\r\n</div>\r\n<p-dialog [showHeader]=\"false\" [(visible)]=\"displayDialog\" [responsive]=\"true\" [style]=\"{width: '350px', minWidth: '200px'}\" showEffect=\"fade\" [modal]=\"true\"  >\r\n    <div class=\"box-body\">\r\n  <form [formGroup]=\"lookupTableColumnForm\" #formDir=\"ngForm\" (ngSubmit)=\"lookupTableColumnForm.valid && saveRow(lookupTableColumnForm)\" class=\"form-horizontal\" novalidate >\r\n  <div class=\"form-group\" [ngClass]=\"{'has-error': (lookupTableColumnForm.get('columnName').invalid && formDir.submitted) }\">\r\n    <label class=\"control-label col-md-3\">\r\n        {{'data.lblColumn' | translate}}\r\n    </label>\r\n    <div class=\"col-md-9\">\r\n        <input pInputText type=\"text\" class=\"form-control\" formControlName=\"columnName\" required>\r\n    </div>\r\n  </div>\r\n  <div class=\"form-group\" [ngClass]=\"{'has-error': (lookupTableColumnForm.get('dataType').invalid && formDir.submitted) }\">\r\n      <label class=\"control-label col-md-3\">\r\n          {{'data.lblDataType' | translate}}\r\n      </label>\r\n      <div class=\"col-md-9\">\r\n          <select name=\"DataType\"  formControlName=\"dataType\" class=\"form-control\" required>\r\n              <option *ngFor=\"let dt of dataTypeList\" [ngValue]=\"dt.name\" >{{dt.name}}</option>\r\n          </select>\r\n      </div>\r\n  </div>\r\n  <div class=\"form-group\" [ngClass]=\"{'has-error': (lookupTableColumnForm.get('length').invalid && formDir.submitted) }\">\r\n        <label class=\"control-label col-md-3\">\r\n            {{'data.lblLength' | translate}}\r\n        </label>\r\n        <div class=\"col-md-9\">\r\n            <input   pInputText type=\"text\" class=\"form-control\" formControlName=\"length\" required>\r\n        </div>\r\n  </div>   \r\n  <div class=\"form-group\">\r\n      <label class=\"control-label col-md-3\">\r\n          {{'data.lblNullable' | translate}}\r\n      </label>\r\n      <div class=\"col-md-9\">\r\n          <p-checkbox  name=\"Nullable\" binary=\"true\" [formControl]=\"lookupTableColumnForm.controls['nullable']\"></p-checkbox> \r\n      </div>\r\n  </div>\r\n  <div class=\"form-group\">\r\n      <label class=\"control-label col-md-3\">\r\n          {{'data.lblUnique' | translate}}\r\n      </label>\r\n      <div class=\"col-md-9\">\r\n          <p-checkbox  name=\"Unique\" binary=\"true\" [formControl]=\"lookupTableColumnForm.controls['unique']\"></p-checkbox>\r\n      </div>\r\n    </div>\r\n    <div class=\"box-footer\">\r\n        <a (click)=\"cancelEditRow()\" class=\"btn btn-default\">{{'data.btnBack' | translate}}</a>\r\n        <button pButton type=\"submit\" label=\"{{'data.btnSave' | translate}}\"  class=\"pull-right\"></button>\r\n    </div>\r\n  </form>\r\n</div>\r\n</p-dialog>"
 
 /***/ }),
 
@@ -5283,7 +5595,6 @@ var LookupColumnFormComponent = /** @class */ (function () {
         });
         this.lookupColumnList = [this.lookupTableColumnForm.value];
         this._activateRoute.paramMap.subscribe(function (params) {
-            debugger;
             if (params.get('id') !== null)
                 _this.getLookUptable(+params.get('id'));
         });
@@ -5451,7 +5762,6 @@ var LookupImportComponent = /** @class */ (function () {
             _this.toastr.success("File uploaded successfully");
             _this.router.navigate(["/integrationjobs"]);
         }, function (error) {
-            debugger;
             _this.msg = error;
             if (error.status === 403) {
                 _this.router.navigate(['/forbidden']);
@@ -6190,7 +6500,6 @@ var OrganizationChartComponent = /** @class */ (function () {
     };
     OrganizationChartComponent.prototype.initialize = function () {
         this.treeData = [];
-        debugger;
         this.loadOrganization();
     };
     OrganizationChartComponent.prototype.loadOrganization = function () {
@@ -7222,7 +7531,7 @@ var SharedModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n          <div class=\"box-body\">\r\n                  <form [formGroup]=\"userForm\" #formDir=\"ngForm\" (ngSubmit)=\"userForm.valid && submit(userForm)\" class=\"form-horizontal\" novalidate >\r\n                    <p-tabView>\r\n                        <p-tabPanel formGroupName=\"userGroup\" [headerStyleClass]=\"{'has-error': (userForm.get('userGroup').invalid && formDir.submitted)}\" header=\"UserDetails\">\r\n                                <p-scrollPanel [styleClass]=\"'scrollStyle'\">\r\n                                        <div  class=\"col-md-12\">\r\n                                            <div class=\"col-md-10\">\r\n                                                    <div class=\"form-group\">\r\n                                                            <label class=\"control-label col-md-3\">{{'data.lblSsoCon' | translate}}</label>\r\n                                                            <div class=\"col-md-9\">\r\n                                                                <select formControlName=\"sso\" class=\"form-control\">\r\n                                                                    <option value=\"1\">{{'data.optionYes' | translate}}</option>\r\n                                                                    <option value=\"0\">{{'data.optionNo' | translate}}</option>\r\n                                                                </select>\r\n                                                            </div>\r\n                                                        </div>\r\n                                                <div class=\"form-group\" [ngClass]=\"{'has-error': (userForm.get('userGroup.firstName').invalid && formDir.submitted) }\">\r\n                                                    <label class=\"control-label col-md-3 \">\r\n                                                        {{(userForm.get('userGroup.sso').value == 0 ? 'data.lblUserName' : 'data.lblSgid') | translate}}\r\n                                                    </label>\r\n                                                    <div class=\"col-md-9\">\r\n                                                        <div class=\"input-group  col-md-12\" style=\"padding: 0px\">\r\n                                                            <input pInputText type=\"text\" name=\"username1\" formControlName=\"username\" class=\"form-control\"  />\r\n                                                            <span class=\"input-group-btn\">\r\n                                                                <button [disabled]=\"userForm.get('userGroup.sso').value == 0?true:false\" class=\"btn btn-default\" (click)=\"LdapSearch()\" type=\"button\">\r\n                                                                    <i class=\"fa fa-search\"></i>\r\n                                                                </button>\r\n                                                            </span>\r\n                                                        </div>\r\n                                                       \r\n                                                    </div>\r\n                                                </div>\r\n                                                <div class=\"form-group\" *ngIf=\"userForm.get('userGroup.sso').value == 0\" [ngClass]=\"{'has-error': formDir.submitted && (userForm.get('userGroup.password').invalid )}\">\r\n                                                        <label class=\"control-label col-md-3\">\r\n                                                          {{'data.lblPassword' | translate}}\r\n                                                        </label>\r\n                                                        <div class=\"col-md-9\">\r\n                                                            <input pPassword  name=\"password\" type=\"password\" formControlName=\"password\" class=\"form-control\" [required]=\"userForm.get('userGroup.sso').value == 0?true:false\" />\r\n                                                            <span class=\"help-block\" *ngIf=\"userForm.get('userGroup.password').hasError('minlength')\">{{'data.alertPasswordLength'|translate}}</span>\r\n                                                            <span class=\"help-block\" *ngIf=\"userForm.get('userGroup.password').hasError('pattern')\">{{'data.alertPasswordRequirement'|translate}}</span>\r\n                                                        </div>\r\n                                                    </div>\r\n                                                <div class=\"form-group\" [ngClass]=\"{'has-error': (userForm.get('userGroup.firstName').invalid && formDir.submitted) }\" >\r\n                                                    <label class=\"control-label col-md-3\">\r\n                                                      {{'data.lblFirstName' | translate}}\r\n                                                    </label>\r\n                                                    <div class=\"col-md-9\">\r\n                                                        <input name=\"firstname\" pInputText type=\"text\" formControlName=\"firstName\" class=\"form-control\" [readonly]=\"userForm.get('userGroup.sso').value == 0?false:true\"  />\r\n                                                    </div>\r\n                                                </div>\r\n                                                <div class=\"form-group\" [ngClass]=\"{'has-error': (userForm.get('userGroup.lastName').invalid && formDir.submitted) }\">\r\n                                                    <label class=\"control-label col-md-3\">\r\n                                                      {{'data.lblLastName' | translate}}\r\n                                                    </label>\r\n                                                    <div class=\"col-md-9\">\r\n                                                        <input name=\"lastname\" pInputText type=\"text\" formControlName=\"lastName\" class=\"form-control\" [readonly]=\"userForm.get('userGroup.sso').value == 0?false:true\"  />\r\n                                                    </div>\r\n                                                </div>\r\n                                                <div class=\"form-group\" [ngClass]=\"{'has-error': (userForm.get('userGroup.email').invalid && formDir.submitted) }\">\r\n                                                    <label class=\"control-label col-md-3\">\r\n                                                      {{'data.lblEmail' | translate}}\r\n                                                    </label>\r\n                                                    <div class=\"col-md-9\">\r\n                                                        <input name=\"email\" pInputText type=\"email\" formControlName=\"email\" class=\"form-control\" [readonly]=\"userForm.get('userGroup.sso').value == 0?false:true\"  />\r\n                                                        <span class=\"help-block\" *ngIf=\"userForm.get('userGroup.email').touched  && userForm.get('userGroup.email').hasError('email')\">{{loc.invalidEmail}}</span>\r\n                                                    </div>\r\n                                                </div>\r\n                                                <div class=\"form-group\" [ngClass]=\"{'has-error': (userForm.get('userGroup.languageId').invalid && formDir.submitted) }\">\r\n                                                    <label class=\"control-label col-md-3\">{{'data.lblLanguage' | translate}}</label>\r\n                                                    <div class=\"col-md-9\">\r\n                                                        <select name=\"languageName\"  formControlName=\"languageId\" class=\"form-control\" required>\r\n                                                            <option value=\"\">-- {{'data.lblLanguage' | translate}} --</option>\r\n                                                            <option *ngFor=\"let lang of languageList\" [ngValue]=\"lang.id\" >{{lang.name}}</option>\r\n                                                        </select>\r\n                                                    </div>\r\n                                                </div>\r\n                                                <div class=\"form-group\" >\r\n                                                    <label class=\"control-label col-md-3\">{{'data.lblManager' | translate}}</label>\r\n                                                    <div class=\"col-md-9\">\r\n                                                        <select name=\"managerName\"  formControlName=\"managerId\" class=\"form-control\"  > \r\n                                                            <option value=\"\">-- {{'data.lblManager' | translate}} --</option>\r\n                                                            <option *ngFor=\"let manager of managerList\" [ngValue]=\"manager.id\"  >{{manager.name}}</option> \r\n                                                        </select>\r\n                                                         \r\n                                                    </div>\r\n                                                </div>\r\n                                                <div class=\"form-group\" >\r\n                                                    <label class=\"control-label col-md-3\">{{'data.lblDisabled' | translate}}</label>\r\n                                                    <div class=\"col-md-9\">\r\n                                                        <input type=\"checkbox\" formControlName=\"disabled\"  />\r\n                                                    </div>\r\n                                                </div>\r\n                                                <div class=\"form-group\" >\r\n                                                    <label class=\"control-label col-md-3\">{{'data.lblRole' | translate}}</label>\r\n                                                    <div class=\"col-md-9\">\r\n                                                        <p-pickList [showSourceFilter]=\"true\" [responsive]=\"true\" [source]=\"roles\" [target]=\"selectedRoleList\" filterBy=\"name\"\r\n                                                        [showSourceControls]=\"false\" [showTargetControls]=\"false\">\r\n                                                            <ng-template let-role pTemplate=\"item\">\r\n                                                                <div class=\"ui-helper-clearfix\">\r\n                                                                  {{role.name}}\r\n                                                                </div>\r\n                                                            </ng-template>\r\n                                                        </p-pickList>\r\n                \r\n                                                    </div>\r\n                                                </div>\r\n                                            </div>\r\n                                        </div>\r\n                                      </p-scrollPanel>\r\n\r\n                        </p-tabPanel>\r\n                        <p-tabPanel header=\"UserPrefrences\">\r\n                                <p-scrollPanel [styleClass]=\"'scrollStyle'\">\r\n                                <div formGroupName=\"userPrefGroup\" class=\"col-md-12\">\r\n                                    <div class=\"col-md-10\">\r\n                                        <div class=\"form-group\" [ngClass]=\"{'has-error': (userForm.get('userPrefGroup.dataLocal').invalid && formDir.submitted) }\">\r\n                                                <label class=\"control-label col-md-3\">{{'data.lblDataLocal'|translate}}</label>\r\n                                                <div class=\"col-md-9\">\r\n                                                        <select formControlName=\"dataLocal\" name=\"dataLocalName\" class=\"form-control\"  >\r\n                                                                <option [ngValue]=\"dt.id\" *ngFor=\"let dt of languageList\">{{dt.name}}</option> \r\n                                                        </select>\r\n                                                </div>\r\n                                            </div>\r\n                                            <div class=\"form-group\" [ngClass]=\"{'has-error': (userForm.get('userPrefGroup.timeZone').invalid && formDir.submitted) }\">\r\n                                                    <label class=\"control-label col-md-3\">{{'data.lblTimeZone'|translate}}</label>\r\n                                                    <div class=\"col-md-9\">\r\n                                                        <select name=\"timeZoneName\"  formControlName=\"timeZone\" class=\"form-control\" >\r\n                                                                <option [ngValue]=\"tz.name\" *ngFor=\"let tz of timeZoneList\">{{tz.name}}</option>\r\n                                                        </select>\r\n                                                    </div>\r\n                                            </div>\r\n                                            <div class=\"form-group\" [ngClass]=\"{'has-error': (userForm.get('userPrefGroup.taxonomy').invalid && formDir.submitted) }\">\r\n                                                        <label class=\"control-label col-md-3\">{{'data.lblTaxonomy'|translate}}</label>\r\n                                                        <div class=\"col-md-9\">\r\n                                                            <select name=\"taxonomyName\"  formControlName=\"taxonomy\" class=\"form-control\" >\r\n                                                                    <option  [ngValue]=\"t.id\" *ngFor=\"let t of taxonomyList\">{{t.longName}}</option>\r\n                                                            </select>\r\n                                                        </div>\r\n                                            </div>       \r\n                                            <div class=\"form-group\" [ngClass]=\"{'has-error': (userForm.get('userPrefGroup.organizationId').invalid && formDir.submitted) }\">\r\n                                                    <label class=\"control-label col-md-3\">{{'data.lblOrganization'|translate}}</label>\r\n                                                    <div class=\"col-md-9\">\r\n                                                        <select name=\"organizationName\"  formControlName=\"organizationId\" class=\"form-control\" >\r\n                                                            <option *ngFor=\"let org of organizationList\" [ngValue]=\"org.id\" >{{org.longName}}</option>\r\n                                                        </select>\r\n                                                    </div>\r\n                                            </div>\r\n                                            <div class=\"form-group\" [ngClass]=\"{'has-error': (userForm.get('userPrefGroup.catalogId').invalid && formDir.submitted) }\">\r\n                                                        <label class=\"control-label col-md-3\">{{'data.lblCatalog'|translate}}</label>\r\n                                                        <div class=\"col-md-9\">\r\n                                                            <select name=\"catalogName\"  formControlName=\"catalogId\" class=\"form-control\" >\r\n                                                                <option *ngFor=\"let cat of catalogList\" [ngValue]=\"cat.id\" >{{cat.longName}}</option>\r\n                                                            </select>\r\n                                                        </div>\r\n                                            </div>\r\n                                            <div class=\"form-group\" [ngClass]=\"{'has-error': (userForm.get('userPrefGroup.roleId').invalid && formDir.submitted) }\">\r\n                                                    <label class=\"control-label col-md-3\">{{'data.lblRole'|translate}}</label>\r\n                                                    <div class=\"col-md-9\">\r\n                                                        <select name=\"roleName\"  formControlName=\"roleId\" class=\"form-control\" >\r\n                                                            <!-- <option value=\"\">-- {{data.lblCatalog}} --</option> -->\r\n                                                            <option *ngFor=\"let role of roleList\" [ngValue]=\"role.id\" >{{role.name}}</option>\r\n                                                        </select>\r\n                                                    </div>\r\n                                        </div>\r\n                                    </div>\r\n                                </div>\r\n</p-scrollPanel>\r\n                        </p-tabPanel>\r\n                    </p-tabView>  \r\n                  \r\n                          <div class=\"box-footer\">\r\n                              <a (click)=\"back(null)\" class=\"btn btn-default\">{{'data.btnBack' | translate}}</a>\r\n                              <button pButton type=\"submit\" label=\"{{'data.btnSave' | translate}}\"  class=\"pull-right\"></button>\r\n                          </div>\r\n                      </form>\r\n          </div>\r\n   "
+module.exports = "<div class=\"box-body\">\r\n    <form [formGroup]=\"userForm\" #formDir=\"ngForm\" (ngSubmit)=\"userForm.valid && submit(userForm)\"\r\n        class=\"form-horizontal\" novalidate>\r\n        <p-tabView>\r\n            <p-tabPanel formGroupName=\"userGroup\"\r\n                [headerStyleClass]=\"{'has-error': (userForm.get('userGroup').invalid && formDir.submitted)}\"\r\n                header=\"UserDetails\">\r\n                <p-scrollPanel [styleClass]=\"'scrollStyle'\">\r\n                    <div class=\"col-md-12\">\r\n                        <div class=\"col-md-10\">\r\n                            <div class=\"form-group\">\r\n                                <label class=\"control-label col-md-3\">{{'data.lblSsoCon' | translate}}</label>\r\n                                <div class=\"col-md-9\">\r\n                                    <select formControlName=\"sso\" class=\"form-control\">\r\n                                        <option value=\"1\">{{'data.optionYes' | translate}}</option>\r\n                                        <option value=\"0\">{{'data.optionNo' | translate}}</option>\r\n                                    </select>\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"form-group\"\r\n                                [ngClass]=\"{'has-error': (userForm.get('userGroup.firstName').invalid && formDir.submitted) }\">\r\n                                <label class=\"control-label col-md-3 \">\r\n                                    {{(userForm.get('userGroup.sso').value == 0 ? 'data.lblUserName' : 'data.lblSgid') | translate}}\r\n                                </label>\r\n                                <div class=\"col-md-9\">\r\n                                    <div class=\"input-group  col-md-12\" style=\"padding: 0px\">\r\n                                        <input pInputText type=\"text\" name=\"username1\" formControlName=\"username\"\r\n                                            class=\"form-control\" />\r\n                                        <span class=\"input-group-btn\">\r\n                                            <button [disabled]=\"userForm.get('userGroup.sso').value == 0?true:false\"\r\n                                                class=\"btn btn-default\" (click)=\"LdapSearch()\" type=\"button\">\r\n                                                <i class=\"fa fa-search\"></i>\r\n                                            </button>\r\n                                        </span>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"form-group\" *ngIf=\"userForm.get('userGroup.sso').value == 0\"\r\n                                [ngClass]=\"{'has-error': formDir.submitted && (userForm.get('userGroup.password').invalid )}\">\r\n                                <label class=\"control-label col-md-3\">\r\n                                    {{'data.lblPassword' | translate}}\r\n                                </label>\r\n                                <div class=\"col-md-9\">\r\n                                    <input pPassword name=\"password\" type=\"password\" formControlName=\"password\"\r\n                                        class=\"form-control\"\r\n                                        [required]=\"userForm.get('userGroup.sso').value == 0?true:false\" />\r\n                                    <span class=\"help-block\"\r\n                                        *ngIf=\"userForm.get('userGroup.password').hasError('minlength')\">{{'data.alertPasswordLength'|translate}}</span>\r\n                                    <span class=\"help-block\"\r\n                                        *ngIf=\"userForm.get('userGroup.password').hasError('pattern')\">{{'data.alertPasswordRequirement'|translate}}</span>\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"form-group\"\r\n                                [ngClass]=\"{'has-error': (userForm.get('userGroup.firstName').invalid && formDir.submitted) }\">\r\n                                <label class=\"control-label col-md-3\">\r\n                                    {{'data.lblFirstName' | translate}}\r\n                                </label>\r\n                                <div class=\"col-md-9\">\r\n                                    <input name=\"firstname\" pInputText type=\"text\" formControlName=\"firstName\"\r\n                                        class=\"form-control\"\r\n                                        [readonly]=\"userForm.get('userGroup.sso').value == 0?false:true\" />\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"form-group\"\r\n                                [ngClass]=\"{'has-error': (userForm.get('userGroup.lastName').invalid && formDir.submitted) }\">\r\n                                <label class=\"control-label col-md-3\">\r\n                                    {{'data.lblLastName' | translate}}\r\n                                </label>\r\n                                <div class=\"col-md-9\">\r\n                                    <input name=\"lastname\" pInputText type=\"text\" formControlName=\"lastName\"\r\n                                        class=\"form-control\"\r\n                                        [readonly]=\"userForm.get('userGroup.sso').value == 0?false:true\" />\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"form-group\"\r\n                                [ngClass]=\"{'has-error': (userForm.get('userGroup.email').invalid && formDir.submitted) }\">\r\n                                <label class=\"control-label col-md-3\">\r\n                                    {{'data.lblEmail' | translate}}\r\n                                </label>\r\n                                <div class=\"col-md-9\">\r\n                                    <input name=\"email\" pInputText type=\"email\" formControlName=\"email\"\r\n                                        class=\"form-control\"\r\n                                        [readonly]=\"userForm.get('userGroup.sso').value == 0?false:true\" />\r\n                                    <span class=\"help-block\"\r\n                                        *ngIf=\"userForm.get('userGroup.email').touched  && userForm.get('userGroup.email').hasError('email')\">{{loc.invalidEmail}}</span>\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"form-group\"\r\n                                [ngClass]=\"{'has-error': (userForm.get('userGroup.languageId').invalid && formDir.submitted) }\">\r\n                                <label class=\"control-label col-md-3\">{{'data.lblLanguage' | translate}}</label>\r\n                                <div class=\"col-md-9\">\r\n                                    <select name=\"languageName\" formControlName=\"languageId\" class=\"form-control\"\r\n                                        required>\r\n                                        <option value=\"\">-- {{'data.lblLanguage' | translate}} --</option>\r\n                                        <option *ngFor=\"let lang of languageList\" [ngValue]=\"lang.id\">{{lang.name}}\r\n                                        </option>\r\n                                    </select>\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"form-group\">\r\n                                <label class=\"control-label col-md-3\">{{'data.lblManager' | translate}}</label>\r\n                                <div class=\"col-md-9\">\r\n                                    <select name=\"managerName\" formControlName=\"managerId\" class=\"form-control\">\r\n                                        <option value=\"\">-- {{'data.lblManager' | translate}} --</option>\r\n                                        <option *ngFor=\"let manager of managerList\" [ngValue]=\"manager.id\">\r\n                                            {{manager.name}}</option>\r\n                                    </select>\r\n\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"form-group\">\r\n                                <label class=\"control-label col-md-3\">{{'data.lblDisabled' | translate}}</label>\r\n                                <div class=\"col-md-9\">\r\n                                    <input type=\"checkbox\" formControlName=\"disabled\" />\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"form-group\">\r\n                                <label class=\"control-label col-md-3\">{{'data.lblRole' | translate}}</label>\r\n                                <div class=\"col-md-9\">\r\n                                    <p-pickList [showSourceFilter]=\"true\" [responsive]=\"true\" [source]=\"roles\"\r\n                                        [target]=\"selectedRoleList\" filterBy=\"name\" [showSourceControls]=\"false\"\r\n                                        [showTargetControls]=\"false\">\r\n                                        <ng-template let-role pTemplate=\"item\">\r\n                                            <div class=\"ui-helper-clearfix\">\r\n                                                {{role.name}}\r\n                                            </div>\r\n                                        </ng-template>\r\n                                    </p-pickList>\r\n\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </p-scrollPanel>\r\n\r\n            </p-tabPanel>\r\n            <p-tabPanel header=\"UserPrefrences\">\r\n                <p-scrollPanel [styleClass]=\"'scrollStyle'\">\r\n                    <div formGroupName=\"userPrefGroup\" class=\"col-md-12\">\r\n                        <div class=\"col-md-10\">\r\n                            <div class=\"form-group\"\r\n                                [ngClass]=\"{'has-error': (userForm.get('userPrefGroup.dataLocal').invalid && formDir.submitted) }\">\r\n                                <label class=\"control-label col-md-3\">{{'data.lblDataLocal'|translate}}</label>\r\n                                <div class=\"col-md-9\">\r\n                                    <select formControlName=\"dataLocal\" name=\"dataLocalName\" class=\"form-control\">\r\n                                        <option [ngValue]=\"dt.id\" *ngFor=\"let dt of languageList\">{{dt.name}}</option>\r\n                                    </select>\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"form-group\"\r\n                                [ngClass]=\"{'has-error': (userForm.get('userPrefGroup.timeZone').invalid && formDir.submitted) }\">\r\n                                <label class=\"control-label col-md-3\">{{'data.lblTimeZone'|translate}}</label>\r\n                                <div class=\"col-md-9\">\r\n                                    <select name=\"timeZoneName\" formControlName=\"timeZone\" class=\"form-control\">\r\n                                        <option [ngValue]=\"tz.name\" *ngFor=\"let tz of timeZoneList\">{{tz.name}}</option>\r\n                                    </select>\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"form-group\"\r\n                                [ngClass]=\"{'has-error': (userForm.get('userPrefGroup.taxonomy').invalid && formDir.submitted) }\">\r\n                                <label class=\"control-label col-md-3\">{{'data.lblTaxonomy'|translate}}</label>\r\n                                <div class=\"col-md-9\">\r\n                                    <select name=\"taxonomyName\" formControlName=\"taxonomy\" class=\"form-control\">\r\n                                        <option [ngValue]=\"t.id\" *ngFor=\"let t of taxonomyList\">{{t.longName}}</option>\r\n                                    </select>\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"form-group\"\r\n                                [ngClass]=\"{'has-error': (userForm.get('userPrefGroup.organizationId').invalid && formDir.submitted) }\">\r\n                                <label class=\"control-label col-md-3\">{{'data.lblOrganization'|translate}}</label>\r\n                                <div class=\"col-md-9\">\r\n                                    <select name=\"organizationName\" formControlName=\"organizationId\"\r\n                                        class=\"form-control\">\r\n                                        <option *ngFor=\"let org of organizationList\" [ngValue]=\"org.id\">{{org.longName}}\r\n                                        </option>\r\n                                    </select>\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"form-group\"\r\n                                [ngClass]=\"{'has-error': (userForm.get('userPrefGroup.catalogId').invalid && formDir.submitted) }\">\r\n                                <label class=\"control-label col-md-3\">{{'data.lblCatalog'|translate}}</label>\r\n                                <div class=\"col-md-9\">\r\n                                    <select name=\"catalogName\" formControlName=\"catalogId\" class=\"form-control\">\r\n                                        <option *ngFor=\"let cat of catalogList\" [ngValue]=\"cat.id\">{{cat.longName}}\r\n                                        </option>\r\n                                    </select>\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"form-group\"\r\n                                [ngClass]=\"{'has-error': (userForm.get('userPrefGroup.roleId').invalid && formDir.submitted) }\">\r\n                                <label class=\"control-label col-md-3\">{{'data.lblRole'|translate}}</label>\r\n                                <div class=\"col-md-9\">\r\n                                    <select name=\"roleName\" formControlName=\"roleId\" class=\"form-control\">\r\n                                        <!-- <option value=\"\">-- {{data.lblCatalog}} --</option> -->\r\n                                        <option *ngFor=\"let role of roleList\" [ngValue]=\"role.id\">{{role.name}}</option>\r\n                                    </select>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </p-scrollPanel>\r\n            </p-tabPanel>\r\n        </p-tabView>\r\n\r\n        <div class=\"box-footer\">\r\n            <a (click)=\"back(null)\" class=\"btn btn-default\">{{'data.btnBack' | translate}}</a>\r\n            <button pButton type=\"submit\" label=\"{{'data.btnSave' | translate}}\" class=\"pull-right\"></button>\r\n        </div>\r\n    </form>\r\n</div>"
 
 /***/ }),
 
@@ -8311,7 +8620,9 @@ var environment = {
     dataType_url: 'dataType',
     displayType_url: 'displayType',
     attributeType_url: 'attributeTypes',
-    attributeGroup_url: 'attributeGroup'
+    attributeGroup_url: 'attributeGroup',
+    attribute_UomType: "uomType",
+    attribute_Uom: "uom"
 };
 //'http://localhost/pimapi/api',//'http://localhost:54450/api/'
 /*

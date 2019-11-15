@@ -1,8 +1,31 @@
-body .ui-inputtext{
-    padding: 0px !important;
+/*
+ body .ui-inputtext{
+    padding: 1px !important;
 }
 
 .form-control{
     height: 25px !important;
-    padding: 0px !important; 
+    padding: 1px !important; 
+}
+
+body .ui-table .ui-table-tbody > tr > td{
+padding: 0px !important;    
+}
+
+
+body .ui-button.ui-button-icon-only .ui-button-text{
+ padding:    0px !important;
+}
+
+.customTable{
+    padding: 0px !important;
+}
+
+body .ui-button.ui-button-icon-only{
+    width: 1.5em !important;
+} */
+
+
+.ui-button{
+ margin: 0px !important;   
 }

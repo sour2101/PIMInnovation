@@ -43,6 +43,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\AttributeCatalog.cs" />
+    <Compile Include="Attributes\AttributeValues.cs" />
     <Compile Include="Common\Created.cs" />
     <Compile Include="Entity\Entity.cs" />
     <Compile Include="Enums\DirectoryNames.cs" />
@@ -60,12 +62,12 @@
     <Compile Include="Integrations\IntegrationStatus.cs" />
     <Compile Include="Integrations\JobDetails.cs" />
     <Compile Include="MasterData\Actions.cs" />
-    <Compile Include="MasterData\AttributeDropdowns.cs" />
-    <Compile Include="MasterData\Attribute.cs" />
-    <Compile Include="MasterData\AttributeLookup.cs" />
-    <Compile Include="MasterData\AttributeType.cs" />
-    <Compile Include="MasterData\AttributeGroup.cs" />
-    <Compile Include="MasterData\AttributeUOM.cs" />
+    <Compile Include="Attributes\AttributeDropdowns.cs" />
+    <Compile Include="Attributes\Attribute.cs" />
+    <Compile Include="Attributes\AttributeLookup.cs" />
+    <Compile Include="Attributes\AttributeType.cs" />
+    <Compile Include="Attributes\AttributeGroup.cs" />
+    <Compile Include="Attributes\AttributeUOM.cs" />
     <Compile Include="MasterData\Category.cs" />
     <Compile Include="MasterData\Country.cs" />
     <Compile Include="MasterData\DataType.cs" />

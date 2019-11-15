@@ -4,7 +4,7 @@ import { ToastsManager } from 'ng6-toastr';
 import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/api';
 import { environment } from 'src/environments/environment';
 import { AttrService } from '../../services/attr.service';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { LookupTableService } from 'src/app/lookup-tables/services/lookup-table.service';
 import { attributeDropDowns } from '../../models/attributeDropDown';
 
@@ -22,6 +22,8 @@ export class AttributeFormComponent implements OnInit {
   lookupTableList: any;
   lookupColumnList: any;
   dropdownList: any = [];
+  uomTypeList:any;
+  uomList:any;
 
   constructor(public _pimService: AppService,
     private _attrService: AttrService,
@@ -45,19 +47,20 @@ export class AttributeFormComponent implements OnInit {
       required: new FormControl(false),
       isActive: new FormControl(true),
       isLocalizable: new FormControl(false),
-      isCollection:new FormControl(false),
+      isCollection: new FormControl(false),
       showAtCreation: new FormControl(false),
       lookupTableId: new FormControl(),
+      uomTypeId: new FormControl(),
       attributeLookups: new FormControl([]),
-      attributeDropdowns:   new FormControl([]),
-        dropdownName: new FormControl()
-      // attributeUOMs:new FormArray([])
+      attributeDropdowns: new FormControl([]),
+      dropdownName: new FormControl(),
+      attributeUOMs:new FormControl([])
     });
 
     this.getAttributeGroup();
     this.getDataType();
     this.getLookupTable();
-
+    this.getUOMType();
     if (this.config.data.attrId !== null && this.config.data.attrId !== undefined)
       this.getAttribute(this.config.data.attrId);
 
@@ -83,6 +86,7 @@ export class AttributeFormComponent implements OnInit {
     this._pimService.getById(environment.displayType_url, this.attributeForm.value.dataTypeId)
       .subscribe(res => {
         this.displayTypeList = res;
+        
       });
   }
 
@@ -93,36 +97,50 @@ export class AttributeFormComponent implements OnInit {
       });
   }
 
+  getUOMType(){
+    this._pimService.get(environment.attribute_UomType)
+    .subscribe(data => {
+      this.uomTypeList = data;
+    });
+  }
+
+  getUom(id){
+    this._pimService.getById(environment.attribute_Uom, id)
+    .subscribe(res => {
+      this.uomList = res;
+    });
+  }
+
+  uomTypeChange(event){
+    this.attributeForm.controls["attributeUOMs"].patchValue([]);
+    this.getUom(event);
+  }
+
   lookupColumnClick() {
-    debugger;
     this.attributeForm.value.attributeLookups = this.attributeForm.value.attributeLookups;
   }
 
   addDropDown() {
-    
     let dropdownName = this.attributeForm.value.dropdownName;
     if (dropdownName !== "" && dropdownName !== null) {
-      this.dropdownList = [...this.dropdownList, {id:0, name: dropdownName }];
+      this.dropdownList = [...this.dropdownList, { id: 0, name: dropdownName }];
       this.attributeForm.patchValue({
-        attributeDropdowns:this.dropdownList,
-        dropdownName:""
-      }); 
+        attributeDropdowns: this.dropdownList,
+        dropdownName: ""
+      });
     }
   }
 
-  addUOM() {
-    this._formBuilder.group({
-      id: new FormControl(0),
-      name: new FormControl(),
-      attributeId: new FormControl(),
-    });
+  loadLookup(event) {
+    this.attributeForm.controls["attributeLookups"].patchValue([]);
+    this.getLookupColumnList(event);
   }
 
-  loadLookup(event) {
-    this._pimService.getById("lookupTableList", event)
-      .subscribe(res => {
-        this.lookupColumnList = res[0].columns;
-      });
+  getLookupColumnList(id){
+    this._pimService.getById("lookupTableList", id)
+    .subscribe(res => {
+      this.lookupColumnList = res[0].columns;
+    });
   }
 
 
@@ -135,13 +153,6 @@ export class AttributeFormComponent implements OnInit {
   getAttribute(id) {
     this._attrService.getAttribute(id)
       .subscribe(res => {
-        // let selectedColumn=[];
-        // debugger;
-        // for(let i=0;i<res.attributeLookups.length;i++)
-        // {
-        //   selectedColumn.push(res.attributeLookups[i].lookupColumnId.toString());
-        // }
-
         this.attributeForm = this._formBuilder.group({
           id: new FormControl(res.id),
           shortName: new FormControl(res.shortName, Validators.required),
@@ -152,27 +163,29 @@ export class AttributeFormComponent implements OnInit {
           required: new FormControl(res.required),
           isActive: new FormControl(res.isActive),
           isLocalizable: new FormControl(res.isLocalizable),
-          isCollection:new FormControl(res.isCollection),
+          isCollection: new FormControl(res.isCollection),
           showAtCreation: new FormControl(res.showAtCreation),
           createdBy: new FormControl(res.createdBy),
           createdDate: new FormControl(res.createdDate),
           lookupTableId: new FormControl(res.lookupTableId),
+          uomTypeId:new FormControl(res.uomTypeId),
           attributeLookups: new FormControl(res.attributeLookups),
-          attributeDropdowns: new FormControl(res.attributeDropDowns)  ,
-          dropdownName:new FormControl()
-          // attributeUOMs:new FormArray([])
+          attributeDropdowns: new FormControl(res.attributeDropDowns),
+          dropdownName: new FormControl(),
+          attributeUOMs:new FormControl(res.attributeUoms)
         });
 
         this.getDisplayType();
-        this.loadLookup(res.lookupTableId);
-        this.dropdownList=res.attributeDropDowns;
+        this.getUOMType();
+        this.getLookupColumnList(res.lookupTableId);
+        this.getUom(res.uomTypeId);
+        this.dropdownList = res.attributeDropDowns;
       });
   }
 
   //save attribute
   submit(attributeDetails) {
     let submitAttr: any;
-    debugger;
     if (this.config.data.attrId !== null && this.config.data.attrId !== undefined)
       submitAttr = this._attrService.updateAttribute(attributeDetails.value);
     else

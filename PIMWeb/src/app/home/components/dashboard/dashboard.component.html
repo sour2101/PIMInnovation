@@ -1,71 +1,32 @@
-
 <div class="col-md-12" style="padding:0px;">
- 
-   <p-panel header="Dashboard" [styleClass]="'panelStyle'"  [toggleable]="true" >
-      <div class="row box-body" >
+
+   <p-panel header="Dashboard" [styleClass]="'panelStyle'" [toggleable]="true">
+      <div class="row box-body">
          <div class="col-md-12">
-               <div class="col-md-10">
-                  <label>Entity Explorer For: <a (click)="changeCatalog()">{{orgName}}>>{{catalogName}} </a></label>
-               </div>
-               <!-- <div class="col-md-1">
+            <div class="col-md-9">
+               <label>Entity Explorer For: <a (click)="changeCatalog()">{{orgName}}>>{{catalogName}} </a></label>
+            </div>
+            <!-- <div class="col-md-1">
                   <label class="entityHeader">{{loc.lblUILocal}}: {{uiLocalName}}</label>
                </div> -->
-               <div class="col-md-2 pull-right">
-                  <label class="entityHeader">{{todayDate |date:'fullDate' }}</label>
-               </div>
-             </div>
-        <div class="col-md-3">
-            <div  class="col-md-12" style="padding:0px;">
-                  <p-panel header="{{'data.lblCategory' | translate}}">
-                     <p-scrollPanel [style]="{width: '100%', height: '154px'}">                             
-                        <p-tree [style]="{border:'0px'}" [value]="treeData" [filter]="true"  selectionMode="checkbox" ></p-tree>
-                     </p-scrollPanel>
-                  </p-panel>
+            <div class="col-md-3 pull-right">
+               <label class="entityHeader">{{todayDate |date:'fullDate' }}</label>
             </div>
-        </div>
-        <div class="col-md-9">
-        <p-carousel headerText="Work Items" numVisible="2" [value]="workflows">
-            <ng-template let-item pTemplate="item">
+         </div>
+         <div class="col-md-12">
+            <p-carousel headerText="Work Items" numVisible="3" [value]="workflows">
+               <ng-template let-item pTemplate="item">
                   <div class="ui-grid ui-grid-responsive">
                      <div class="ui-grid-row">
                         <div class="ui-grid-col-12" ui-knob [value]="item.count" [options]="knOptions"></div>
                      </div>
                      <div class="ui-grid-row">
                         <div class="ui-grid-col-12">{{item.stage}}</div>
-                    </div>
+                     </div>
                   </div>
-            </ng-template>
-        </p-carousel>
+               </ng-template>
+            </p-carousel>
+         </div>
       </div>
-     </div>
    </p-panel>
-  
-  <p-panel header="{{'data.lblSearchCriteria' |translate}}" [style]="{'margin-top':'20px','background-color':'#ffffff'}" [collapsed]="true"  [toggleable]="true" >
-         <form>
-            <div class="col-md-12 form-horizontal">
-               <div class="form-group">
-                  <label class="control-label col-md-3">{{'data.lblscentity'|translate}}</label>
-                  <div class="col-md-9">
-                     <p-chips id="entity" name="entities" [inputStyle]="{'width':'100%'}"  [(ngModel)]="entities" ></p-chips>
-                  </div>
-               </div>
-               <div class="form-group">
-                  <label class="control-label col-md-3">{{'data.lblPartNumber'|translate}}</label>
-                  <div class="col-md-9">
-                     <input  pInputText type="text" class="form-control">
-                  </div>
-               </div>
-               <div class="form-group">
-                  <label class="control-label col-md-3">{{'data.lblSoa'|translate}}</label>
-                  <div class="col-md-9">
-                     <input pInputText type="text" class="form-control">
-                  </div>
-               </div>
-            </div>
-            <div class="box-footer">
-                  <!-- <a (click)="back()" class="btn btn-default">{{loc.btnBack}}</a> -->
-                  <button type="submit" pButton label="{{'data.btnSave'|translate}}"  class="pull-right"></button>
-              </div>
-         </form>
-</p-panel>
 </div>

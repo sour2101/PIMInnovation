@@ -12,10 +12,11 @@ import { CreateEntityComponent } from './components/create-entity/create-entity.
 import { FieldBuilderComponent } from '../dynamic-forms/components/field-builder/field-builder.component';
 
 import { DynamicFormsModule } from '../dynamic-forms/dynamic-forms.module';
+import { SearchEntityComponent } from './components/search-entity/search-entity.component';
 
 
 @NgModule({
-  declarations: [CreateEntityComponent,FieldBuilderComponent],
+  declarations: [CreateEntityComponent,FieldBuilderComponent, SearchEntityComponent],
   imports: [
     CommonModule,
     EntitiesRoutingModule,

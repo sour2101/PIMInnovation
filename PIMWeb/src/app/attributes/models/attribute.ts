@@ -1,5 +1,6 @@
 import { attributeLookups } from './attributeLookups';
 import { attributeDropDowns } from './attributeDropDown';
+import { attributeUoms } from './attributeUom';
 
 export class Attribute {
     id: number;
@@ -13,12 +14,14 @@ export class Attribute {
     required: boolean;
     isActive: boolean;
     isLocalizable: boolean;
-    isCollection:boolean;
+    isCollection: boolean;
     showAtCreation: boolean;
     lookupTableId: number;
-    selectedLookupColumns:[];
+    uomTypeId:number;
+    selectedLookupColumns: [];
     attributeLookups: attributeLookups[];
-    attributeDropDowns:attributeDropDowns[];
+    attributeDropDowns: attributeDropDowns[];
+    attributeUoms:attributeUoms[];
     createdBy: number;
     createdDate: Date;
 }

@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="accessError" xml:space="preserve">
+    <value>Ne pas avoir l'accès dans l'outil s'il vous plaît contacter à l'administrateur</value>
+  </data>
+  <data name="alertNoRecordFound" xml:space="preserve">
+    <value>Aucun Enregistrement Trouvé</value>
+  </data>
+  <data name="alertPasswordLength" xml:space="preserve">
+    <value>Les mots de passe doivent comporter entre 8 et 20 caractères.</value>
+  </data>
+  <data name="alertPasswordRequirement" xml:space="preserve">
+    <value>Doit contenir une valeur inférieure &amp; amp; lettre majuscule et un caractère non-alpha (un chiffre ou un symbole)</value>
+  </data>
+  <data name="btnBack" xml:space="preserve">
+    <value>Retour</value>
+  </data>
+  <data name="btnCancel" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="btnDelete" xml:space="preserve">
+    <value>Effacer</value>
+  </data>
+  <data name="btnEdit" xml:space="preserve">
+    <value>modifier</value>
+  </data>
+  <data name="btnReset" xml:space="preserve">
+    <value>Réinitialiser</value>
+  </data>
+  <data name="btnSave" xml:space="preserve">
+    <value>Soumettre</value>
+  </data>
+  <data name="btnSearch" xml:space="preserve">
+    <value>Chercher</value>
+  </data>
+  <data name="btnSignIn" xml:space="preserve">
+    <value>Se connecter</value>
+  </data>
+  <data name="btnSsoLogin" xml:space="preserve">
+    <value>Connexion SSO</value>
+  </data>
+  <data name="btnUpload" xml:space="preserve">
+    <value>Télécharger</value>
+  </data>
+  <data name="emailSubjectPasswordRecovery" xml:space="preserve">
+    <value>Réinitialisation du mot de passe de l'outil PIM</value>
+  </data>
+  <data name="headerPIM" xml:space="preserve">
+    <value>PIM</value>
+  </data>
+  <data name="invalidEmail" xml:space="preserve">
+    <value>Ce n'est pas un email valide</value>
+  </data>
+  <data name="labelNext" xml:space="preserve">
+    <value>suivant</value>
+  </data>
+  <data name="labelPrevious" xml:space="preserve">
+    <value>précédent</value>
+  </data>
+  <data name="lblAddRole" xml:space="preserve">
+    <value>Ajouter un rôle</value>
+  </data>
+  <data name="lblAddUser" xml:space="preserve">
+    <value>Ajouter un nouvel utilisateur</value>
+  </data>
+  <data name="lblCatalog" xml:space="preserve">
+    <value>Catalogue</value>
+  </data>
+  <data name="lblCategory" xml:space="preserve">
+    <value>Catégorie</value>
+  </data>
+  <data name="lblconNewPassword" xml:space="preserve">
+    <value>Confirmez le mot de passe</value>
+  </data>
+  <data name="lblCountry" xml:space="preserve">
+    <value>Pays</value>
+  </data>
+  <data name="lblDataLocal" xml:space="preserve">
+    <value>Données locales</value>
+  </data>
+  <data name="lblDeleteRole" xml:space="preserve">
+    <value>Supprimer le rôle</value>
+  </data>
+  <data name="lblDeleteUser" xml:space="preserve">
+    <value>Supprimer l'utilisateur</value>
+  </data>
+  <data name="lblDescription" xml:space="preserve">
+    <value>La description</value>
+  </data>
+  <data name="lblDisabled" xml:space="preserve">
+    <value>désactivé</value>
+  </data>
+  <data name="lblEditUserPref" xml:space="preserve">
+    <value>Modifier les préférences de l'utilisateur</value>
+  </data>
+  <data name="lblEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="lblFirstName" xml:space="preserve">
+    <value>Prénom</value>
+  </data>
+  <data name="lblForgetPassword" xml:space="preserve">
+    <value>J'ai oublié mon mot de passe?</value>
+  </data>
+  <data name="lblLanguage" xml:space="preserve">
+    <value>La langue</value>
+  </data>
+  <data name="lblLastName" xml:space="preserve">
+    <value>Nom de famille</value>
+  </data>
+  <data name="lblMaintainRole" xml:space="preserve">
+    <value>Maintenir le rôle</value>
+  </data>
+  <data name="lblMaintainuser" xml:space="preserve">
+    <value>Maintenir l'utilisateur</value>
+  </data>
+  <data name="lblManager" xml:space="preserve">
+    <value>Directeur</value>
+  </data>
+  <data name="lblMyWorkItems" xml:space="preserve">
+    <value>Mes objets de travail</value>
+  </data>
+  <data name="lblNewPassword" xml:space="preserve">
+    <value>Nouveau mot de passe</value>
+  </data>
+  <data name="lblOrganization" xml:space="preserve">
+    <value>Organisation</value>
+  </data>
+  <data name="lblOrgHeader" xml:space="preserve">
+    <value>Sélectionner une organisation et un conteneur</value>
+  </data>
+  <data name="lblPassword" xml:space="preserve">
+    <value>Mot de passe</value>
+  </data>
+  <data name="lblPlant" xml:space="preserve">
+    <value>Plante</value>
+  </data>
+  <data name="lblRole" xml:space="preserve">
+    <value>Rôle</value>
+  </data>
+  <data name="lblSavedSearched" xml:space="preserve">
+    <value>Recherches sauvegardées</value>
+  </data>
+  <data name="lblSearchCriteria" xml:space="preserve">
+    <value>Critères de recherche</value>
+  </data>
+  <data name="lblSearchPanel" xml:space="preserve">
+    <value>Panneau de recherche</value>
+  </data>
+  <data name="lblSgid" xml:space="preserve">
+    <value>Sgid</value>
+  </data>
+  <data name="lblSignOut" xml:space="preserve">
+    <value>Déconnexion</value>
+  </data>
+  <data name="lblSsoCon" xml:space="preserve">
+    <value>Connexion SSO</value>
+  </data>
+  <data name="lblTaxonomy" xml:space="preserve">
+    <value>Taxonomie</value>
+  </data>
+  <data name="lblTimeZone" xml:space="preserve">
+    <value>Fuseau horaire</value>
+  </data>
+  <data name="lblUILocal" xml:space="preserve">
+    <value>UI Local</value>
+  </data>
+  <data name="lblUserName" xml:space="preserve">
+    <value>Nom d'utilisateur</value>
+  </data>
+  <data name="lblUsers" xml:space="preserve">
+    <value>Utilisateurs</value>
+  </data>
+  <data name="lblView" xml:space="preserve">
+    <value>Vue</value>
+  </data>
+  <data name="optionNo" xml:space="preserve">
+    <value>Non</value>
+  </data>
+  <data name="optionYes" xml:space="preserve">
+    <value>Oui</value>
+  </data>
+  <data name="titleChangeLog" xml:space="preserve">
+    <value>Changer le journal</value>
+  </data>
+  <data name="menuHome" xml:space="preserve">
+    <value>Accueil</value>
+  </data>
+  <data name="menuRole" xml:space="preserve">
+    <value>Maintenir le rôle</value>
+  </data>
+  <data name="menuSysAdmin" xml:space="preserve">
+    <value>L'administration du système</value>
+  </data>
+  <data name="menuUser" xml:space="preserve">
+    <value>Maintenir l'utilisateur</value>
+  </data>
+</root>

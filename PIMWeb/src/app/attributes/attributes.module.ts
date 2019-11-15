@@ -19,7 +19,7 @@ import { AttributegroupFromComponent } from './components/attributegroup-from/at
     TranslateModule,
     PrimengModule
   ],
-  exports:[
+  exports: [
     AttributeListComponent
   ]
 })

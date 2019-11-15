@@ -1,10 +1,12 @@
-﻿using PIM.Data.Common;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿
 
 namespace PIM.Data.MasterData
 {
+    using Common;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public class LookUpColumns : Created
     {
         [Key]

@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿
 
 namespace PIM.Data.Entity
 {
+    using Attributes;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public class Entity
     {
         [Key]
@@ -17,7 +19,7 @@ namespace PIM.Data.Entity
         public int CatalogId { get; set; }
 
         [ForeignKey("AttributeId")]
-        public virtual List<MasterData.Attribute> Attributes { get; set; }
+        public virtual List<Attribute> Attributes { get; set; }
 
     }
 }

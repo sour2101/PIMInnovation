@@ -34,6 +34,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <FilesToIncludeForPublish>AllFilesInTheProject</FilesToIncludeForPublish>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -290,17 +291,19 @@
     <Compile Include="App_Start\HttpFilters\RoleAuthorizeAttribute.cs" />
     <Compile Include="App_Start\HttpFilters\ValidationActionFilterAttribute.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="AttributeController\AttributeValueController.cs" />
     <Compile Include="Controllers\AbstractController.cs" />
-    <Compile Include="Controllers\AttributeController.cs" />
-    <Compile Include="Controllers\AttributeGroupController.cs" />
+    <Compile Include="AttributeController\AttributeController.cs" />
+    <Compile Include="AttributeController\AttributeGroupController.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\CatalogsController.cs" />
     <Compile Include="Controllers\ChangeLogController.cs" />
     <Compile Include="Controllers\EntityController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\LdapController.cs" />
-    <Compile Include="Controllers\LookupColumnController.cs" />
-    <Compile Include="Controllers\LookupTableController.cs" />
+    <Compile Include="LookupControllers\LookupColumnController.cs" />
+    <Compile Include="LookupControllers\LookupController.cs" />
+    <Compile Include="LookupControllers\LookupTableController.cs" />
     <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\OrganizationController.cs" />
     <Compile Include="Controllers\ResourcesController.cs" />
@@ -384,6 +387,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\PublishProfiles\pimapi.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -115,6 +115,29 @@
                   </div>
                </p-scrollPanel>
             </p-tabPanel>
+            <p-tabPanel   header="UOM" *ngIf="attributeForm.get('displayTypeId').value==7 || attributeForm.get('displayTypeId').value==8">
+               <p-scrollPanel  [style]="{width:'100%', height: '300px'}">
+                  <div  class="col-md-12">
+                     <div class="form-group" >
+                        <label class="control-label col-md-3">
+                        {{'data.lblUomType' | translate}}:
+                        </label>
+                        <div class="col-md-9">
+                           <select name="uomType"  formControlName="uomTypeId" (ngModelChange)="uomTypeChange($event)"  class="form-control" >
+                           <option *ngFor="let uom of uomTypeList" [ngValue]="uom.id" >{{uom.name}}</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="form-group" >
+                        <label class="control-label col-md-3">{{'data.lblValidUOM' | translate}}:</label>
+                        <div class="col-md-9">
+                              <p-listbox [options]="uomList"  formControlName="attributeUOMs"  multiple="multiple" checkbox="checkbox" optionLabel="name">
+                              </p-listbox>
+                        </div>
+                     </div>
+                  </div>
+               </p-scrollPanel>
+            </p-tabPanel>
          </p-tabView>
          <div class="box-footer">
             <a (click)="back()" class="btn btn-default">{{'data.btnBack' | translate}}</a>

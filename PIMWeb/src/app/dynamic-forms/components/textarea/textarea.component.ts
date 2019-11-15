@@ -5,8 +5,9 @@ import { FormGroup, FormArray, FormBuilder, FormControl } from '@angular/forms';
   selector: 'text-area',
   templateUrl: './textarea.component.html'
 })
-export class TextAreaComponent  {
+export class TextAreaComponent implements OnInit {
 
+  formArray;
   tableData;
   @Input() field: any = {};
   @Input() form: FormGroup;
@@ -15,7 +16,10 @@ export class TextAreaComponent  {
 
   constructor(private _fb: FormBuilder) { }
 
- 
+  ngOnInit() {
+    this.formArray=<FormArray>this.form.controls[this.field.shortName];
+   // this.tableData = <FormArray>this.form.controls[this.field.shortName].value;
+  }
 
 
 

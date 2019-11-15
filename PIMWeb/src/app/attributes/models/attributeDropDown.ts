@@ -1,4 +1,4 @@
-export class attributeDropDowns{
-    id:number;
-    name:string;
+export class attributeDropDowns {
+    id: number;
+    name: string;
 }

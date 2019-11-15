@@ -6,6 +6,7 @@
     using Users;
     using MasterData;
     using Integrations;
+    using Attributes;
 
     public class PIMContext:DbContext
     {
@@ -61,6 +62,9 @@
         public virtual DbSet<AttributeDropdowns> AtrributeDropdowns { get; set; }
 
         public virtual DbSet<AttributeUOM> AttributeUOMs { get; set; }
+
+
+        public virtual DbSet<AttributeCatalog> AttributeCatalogs { get; set; }
 
         public virtual DbSet<Actions> Actions { get; set; }
 

@@ -1,62 +1,77 @@
 <section class="content">
-                <div class="box-body">
-                        <form [formGroup]="prefform" #formDir="ngForm" (ngSubmit)="prefform.valid && submit(prefform)" class="form-horizontal" novalidate >
-                                <div class="col-md-12">
-                                        <div class="form-group" [ngClass]="{'has-error': (prefform.controls.dataLocal.invalid && formDir.submitted) }">
-                                                <label class="control-label col-md-3">{{'data.lblDataLocal'|translate}}</label>
-                                                <div class="col-md-9">
-                                                        <select formControlName="dataLocal" name="dataLocalName" class="form-control"  >
-                                                                <option [ngValue]="dt.id" *ngFor="let dt of dataLocalList">{{dt.name}}</option> 
-                                                        </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group" [ngClass]="{'has-error': (prefform.controls.timeZone.invalid && formDir.submitted) }">
-                                                    <label class="control-label col-md-3">{{'data.lblTimeZone'|translate}}</label>
-                                                    <div class="col-md-9">
-                                                        <select name="timeZoneName"  formControlName="timeZone" class="form-control" >
-                                                                <option [ngValue]="tz.name" *ngFor="let tz of timeZoneList">{{tz.name}}</option>
-                                                        </select>
-                                                    </div>
-                                            </div>
-                                            <div class="form-group" [ngClass]="{'has-error': (prefform.controls.taxonomy.invalid && formDir.submitted) }">
-                                                        <label class="control-label col-md-3">{{'data.lblTaxonomy'|translate}}</label>
-                                                        <div class="col-md-9">
-                                                            <select name="taxonomyName"  formControlName="taxonomy" class="form-control" >
-                                                                    <option  [ngValue]="t.id" *ngFor="let t of taxonomyList">{{t.longName}}</option>
-                                                            </select>
-                                                        </div>
-                                            </div>       
-                                            <div class="form-group" [ngClass]="{'has-error': (prefform.controls.organizationId.invalid && formDir.submitted) }">
-                                                    <label class="control-label col-md-3">{{'data.lblOrganization'|translate}}</label>
-                                                    <div class="col-md-9">
-                                                        <select name="organizationName"  formControlName="organizationId" class="form-control" >
-                                                            <option *ngFor="let org of organizationList" [ngValue]="org.id" >{{org.longName}}</option>
-                                                        </select>
-                                                    </div>
-                                            </div>
-                                            <div class="form-group" [ngClass]="{'has-error': (prefform.controls.catalogId.invalid && formDir.submitted) }">
-                                                        <label class="control-label col-md-3">{{'data.lblCatalog'|translate}}</label>
-                                                        <div class="col-md-9">
-                                                            <select name="catalogName"  formControlName="catalogId" class="form-control" >
-                                                                <option *ngFor="let cat of catalogList" [ngValue]="cat.id" >{{cat.longName}}</option>
-                                                            </select>
-                                                        </div>
-                                            </div>
-                                            <div class="form-group" [ngClass]="{'has-error': (prefform.controls.roleId.invalid && formDir.submitted) }">
-                                                    <label class="control-label col-md-3">{{'data.lblRole'|translate}}</label>
-                                                    <div class="col-md-9">
-                                                        <select name="roleName"  formControlName="roleId" class="form-control" >
-                                                            <!-- <option value="">-- {{data.lblCatalog}} --</option> -->
-                                                            <option *ngFor="let role of roleList" [ngValue]="role.id" >{{role.name}}</option>
-                                                        </select>
-                                                    </div>
-                                        </div>
-                                    
+        <div class="box-body">
+                <form [formGroup]="prefform" #formDir="ngForm" (ngSubmit)="prefform.valid && submit(prefform)"
+                        class="form-horizontal" novalidate>
+
+                        <div class="form-group"
+                                [ngClass]="{'has-error': (prefform.controls.dataLocal.invalid && formDir.submitted) }">
+                                <label class="control-label col-md-3">{{'data.lblDataLocal'|translate}}</label>
+                                <div class="col-md-9">
+                                        <select formControlName="dataLocal" name="dataLocalName" class="form-control">
+                                                <option [ngValue]="dt.id" *ngFor="let dt of dataLocalList">{{dt.name}}
+                                                </option>
+                                        </select>
                                 </div>
-                                <div class="box-footer">
-                                        <a (click)="back()" class="btn btn-default">{{'data.btnBack'|translate}}</a>
-                                        <button type="submit" pButton label="{{'data.btnSave'|translate}}" class="pull-right"></button>
+                        </div>
+                        <div class="form-group"
+                                [ngClass]="{'has-error': (prefform.controls.timeZone.invalid && formDir.submitted) }">
+                                <label class="control-label col-md-3">{{'data.lblTimeZone'|translate}}</label>
+                                <div class="col-md-9">
+                                        <select name="timeZoneName" formControlName="timeZone" class="form-control">
+                                                <option [ngValue]="tz.name" *ngFor="let tz of timeZoneList">{{tz.name}}
+                                                </option>
+                                        </select>
                                 </div>
-                        </form>
-                </div>
+                        </div>
+                        <div class="form-group"
+                                [ngClass]="{'has-error': (prefform.controls.taxonomy.invalid && formDir.submitted) }">
+                                <label class="control-label col-md-3">{{'data.lblTaxonomy'|translate}}</label>
+                                <div class="col-md-9">
+                                        <select name="taxonomyName" formControlName="taxonomy" class="form-control">
+                                                <option [ngValue]="t.id" *ngFor="let t of taxonomyList">{{t.longName}}
+                                                </option>
+                                        </select>
+                                </div>
+                        </div>
+                        <div class="form-group"
+                                [ngClass]="{'has-error': (prefform.controls.organizationId.invalid && formDir.submitted) }">
+                                <label class="control-label col-md-3">{{'data.lblOrganization'|translate}}</label>
+                                <div class="col-md-9">
+                                        <select name="organizationName" formControlName="organizationId"
+                                                class="form-control">
+                                                <option *ngFor="let org of organizationList" [ngValue]="org.id">
+                                                        {{org.longName}}</option>
+                                        </select>
+                                </div>
+                        </div>
+                        <div class="form-group"
+                                [ngClass]="{'has-error': (prefform.controls.catalogId.invalid && formDir.submitted) }">
+                                <label class="control-label col-md-3">{{'data.lblCatalog'|translate}}</label>
+                                <div class="col-md-9">
+                                        <select name="catalogName" formControlName="catalogId" class="form-control">
+                                                <option *ngFor="let cat of catalogList" [ngValue]="cat.id">
+                                                        {{cat.longName}}</option>
+                                        </select>
+                                </div>
+                        </div>
+                        <div class="form-group"
+                                [ngClass]="{'has-error': (prefform.controls.roleId.invalid && formDir.submitted) }">
+                                <label class="control-label col-md-3">{{'data.lblRole'|translate}}</label>
+                                <div class="col-md-9">
+                                        <select name="roleName" formControlName="roleId" class="form-control">
+                                                <!-- <option value="">-- {{data.lblCatalog}} --</option> -->
+                                                <option *ngFor="let role of roleList" [ngValue]="role.id">{{role.name}}
+                                                </option>
+                                        </select>
+                                </div>
+                        </div>
+
+
+                        <div class="box-footer">
+                                <a (click)="back()" class="btn btn-default">{{'data.btnBack'|translate}}</a>
+                                <button type="submit" pButton label="{{'data.btnSave'|translate}}"
+                                        class="pull-right"></button>
+                        </div>
+                </form>
+        </div>
 </section>

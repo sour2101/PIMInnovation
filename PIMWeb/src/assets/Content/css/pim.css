@@ -204,3 +204,9 @@ a:focus {
   justify-content: center !important;
   display: flex !important; 
 }
+
+
+.dropdown-content{
+  position: absolute;
+  z-index: 1;
+}

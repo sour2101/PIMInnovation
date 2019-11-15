@@ -1,8 +1,12 @@
 <div [formGroup]="form">
-  <!-- <select class="form-control" [id]="field.shortName" [formControlName]="field.shortName">
-        <option value="null">--Select--</option>
-      <option *ngFor="let opt of field.options" [ngValue]="opt.id">{{opt.name}}</option>
-    </select> -->
-  <p-dropdown [options]="field.options" [formControlName]="field.shortName" [filter]="true"
-    placeholder="Select" optionLabel="name" [showClear]="true"></p-dropdown>
+  <!--  <p-dropdown [options]="field.options" formControlName="attributeValue" [filter]="true" placeholder="Select"
+        optionLabel="name" [showClear]="true"></p-dropdown> -->
+  <div [formArrayName]="field.shortName" *ngFor="let cd of formArray.controls ;let i=index;">
+    <div [formGroupName]="i">
+      <select class="form-control" formControlName="attributeValue">
+        <option value="">--Select--</option>
+        <option *ngFor="let opt of field.options" [ngValue]="opt.id">{{opt.name}}</option>
+      </select>
+    </div>
+  </div>
 </div>

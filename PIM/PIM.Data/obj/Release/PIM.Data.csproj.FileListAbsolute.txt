@@ -1,0 +1,10 @@
+C:\Sourabh\Examples\PIMInnovation\PIM\PIM.Data\bin\Release\PIM.Data.dll.config
+C:\Sourabh\Examples\PIMInnovation\PIM\PIM.Data\bin\Release\PIM.Data.dll
+C:\Sourabh\Examples\PIMInnovation\PIM\PIM.Data\bin\Release\PIM.Data.pdb
+C:\Sourabh\Examples\PIMInnovation\PIM\PIM.Data\bin\Release\EntityFramework.dll
+C:\Sourabh\Examples\PIMInnovation\PIM\PIM.Data\bin\Release\EntityFramework.SqlServer.dll
+C:\Sourabh\Examples\PIMInnovation\PIM\PIM.Data\bin\Release\EntityFramework.xml
+C:\Sourabh\Examples\PIMInnovation\PIM\PIM.Data\bin\Release\EntityFramework.SqlServer.xml
+C:\Sourabh\Examples\PIMInnovation\PIM\PIM.Data\obj\Release\PIM.Data.csprojResolveAssemblyReference.cache
+C:\Sourabh\Examples\PIMInnovation\PIM\PIM.Data\obj\Release\PIM.Data.dll
+C:\Sourabh\Examples\PIMInnovation\PIM\PIM.Data\obj\Release\PIM.Data.pdb

@@ -1,4 +1,9 @@
-<div [formGroup]="form" >
-    <textarea pInputTextarea *ngIf="!field.isCollection" [class.is-invalid]="isDirty && !isValid" [formControlName]="field.shortName" [id]="field.shortName"
-        rows="4" class="form-control" [placeholder]="field.placeholder" autoResize="autoResize"></textarea>
+<div [formGroup]="form">
+    <div [formArrayName]="field.shortName" *ngFor="let cd of formArray.controls ;let i=index;">
+        <div [formGroupName]="i">
+            <textarea pInputTextarea *ngIf="!field.isCollection" [class.is-invalid]="isDirty && !isValid"
+                formControlName="attributeValue"   rows="4" class="form-control"
+                 autoResize="autoResize"></textarea>
+        </div>
+    </div>
 </div>

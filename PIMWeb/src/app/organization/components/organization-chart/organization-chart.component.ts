@@ -36,7 +36,6 @@ export class OrganizationChartComponent implements OnInit {
 
   initialize(){
     this.treeData=[];
-    debugger;
     this.loadOrganization();
   }
 

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<changeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <changes>
+    <change date="2017-01-04" version="1.0.0">
+      <items>
+        <item>
+          <serviceNowTicket></serviceNowTicket>
+          <message>First release</message>
+        </item>
+      </items>
+    </change>
+  </changes>
+</changeLog>

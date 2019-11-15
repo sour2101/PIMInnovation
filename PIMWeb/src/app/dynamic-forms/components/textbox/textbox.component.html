@@ -1,21 +1,26 @@
 <div [formGroup]="form">
-  <input pInputText *ngIf="!field.multiline && !field.isCollection" [attr.type]="field.displayType" class="form-control"
-    [id]="field.shortName" [name]="field.shortName" [formControlName]="field.shortName">
+  <div *ngIf="!field.isCollection">
+    <div [formArrayName]="field.shortName" *ngFor="let cd of formArray.controls ;let i=index;">
+      <div [formGroupName]="i">
+        <input pInputText type="text" class="form-control" formControlName="attributeValue">
+      </div>
+    </div>
+  </div>
 
   <div *ngIf="field.isCollection">
-    <p-table *ngIf="field.isCollection" [scrollable]="true" scrollHeight="100px" [formArrayName]="field.shortName"
+    <p-table #lookupTable [scrollable]="true" scrollHeight="100px" [formArrayName]="field.shortName"
       [value]="tableData">
       <ng-template pTemplate="body" let-rowData let-ri="rowIndex">
         <tr [formGroupName]="ri">
           <td>
-            <input pInputText [attr.type]="field.displayType" class="form-control" 
-              [class.is-invalid]="isDirty && !isValid" formControlName="name">
+            <input pInputText type="text" class="form-control" [class.is-invalid]="isDirty && !isValid"
+              formControlName="attributeValue">
           </td>
-          <td style="width:10%">
+          <td style="width:8%">
             <button type="button" pButton icon="pi pi-trash" tooltipPosition="top" (click)="deleteRow(ri)"></button>
           </td>
-          <td style="width:10%;vertical-align: bottom;" *ngIf="ri==0" [attr.rowspan]="tableData?.length">
-            <button type="button" pButton icon="fa fa-plus" (click)="addRow()"></button>
+          <td style="width:8%;vertical-align: bottom;" *ngIf="ri==0" [attr.rowspan]="tableData?.length">
+            <button type="button" pButton icon="fa fa-plus" (click)="this[functionName]()"></button>
           </td>
         </tr>
       </ng-template>

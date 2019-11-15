@@ -5,6 +5,8 @@ import {ToastModule} from 'primeng/toast';
 import {DynamicDialogModule} from 'primeng/dynamicdialog'; 
 import {TableModule} from 'primeng/table';
 import {VirtualScrollerModule} from 'primeng/virtualscroller'; 
+import {InplaceModule} from 'primeng/inplace';
+import {KeyFilterModule} from 'primeng/keyfilter';
 
 import { 
   AccordionModule,
@@ -73,7 +75,9 @@ import {
   ToolbarModule,
   TooltipModule,
   TreeModule,
-  TreeTableModule,BlockUIModule } from "primeng/primeng";
+  TreeTableModule,
+  BlockUIModule
+ } from "primeng/primeng";
 
 @NgModule({
   declarations: [],
@@ -150,7 +154,9 @@ import {
   TableModule,
   DynamicDialogModule,
   VirtualScrollerModule,
-  ToastModule
+  ToastModule,
+  InplaceModule,
+  KeyFilterModule
   ],
   exports:[
     AccordionModule,
@@ -224,7 +230,9 @@ import {
   TableModule,
   DynamicDialogModule,
   VirtualScrollerModule,
-  ToastModule
+  ToastModule,
+  InplaceModule,
+  KeyFilterModule
   ]
 })
 export class PrimengModule { }

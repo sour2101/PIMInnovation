@@ -1,7 +1,7 @@
 <section class="content">
     <div class="box-body">
                         <form [formGroup]="orgform" #formDir="ngForm" (ngSubmit)="orgform.valid && submit(orgform)" class="form-horizontal" novalidate >
-                            <div class="col-md-12">
+                            
                                 <div class="form-group" [ngClass]="{'has-error': (orgform.controls.organizationId.invalid && formDir.submitted) }">
                                         <label class="control-label col-md-3">{{'data.lblOrganization'|translate}}</label>
                                         <div class="col-md-9">
@@ -21,7 +21,7 @@
                                             </div>
                                         </div>
                                     
-                            </div>
+                            
                             <div class="box-footer">
                                 <a (click)="back()" class="btn btn-default">{{'data.btnBack'|translate}}</a>
                                 <button pButton type="submit" label="{{'data.btnSave'|translate}}" class="pull-right"></button>

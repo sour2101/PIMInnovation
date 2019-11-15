@@ -121,8 +121,7 @@ namespace PIM.API.Controllers
             var principal = (User)User.Identity;
             if (!principal.UserRights.Any(ur => ur.RoleId == (int)Roles.Administrator))
                 return new StatusCodeResult(HttpStatusCode.Forbidden, Request);
-            user.Active = true;
-            user.Password =  PasswordManagerProvider.Hash(user.Password);
+            
             if (Repository.FindBy<User>(u => u.Username == user.Username).Any())
             {
                 var warningMessage = "The username \"" + user.Username + "\" already exists";
@@ -131,6 +130,8 @@ namespace PIM.API.Controllers
                 return BadRequest(ModelState);
             }
 
+            user.Active = true;
+            user.Password = PasswordManagerProvider.Hash(user.Password);
             Repository.Add(user);
             Repository.Save();
             var message =  user.Id ;
@@ -164,6 +165,7 @@ namespace PIM.API.Controllers
                 Repository.Add(ur);
             }
 
+            user.Password = PasswordManagerProvider.Hash(user.Password);
             Repository.Update(user);
             Repository.Save();
             var message = "The user \"" + user.Username + "\" has been updated";

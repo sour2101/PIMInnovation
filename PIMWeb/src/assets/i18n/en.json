@@ -147,7 +147,10 @@
     "lblErrorMessage":"Error Message",
     "headerJobDetails":"Job Details",
     "lblValue":"Values",
-    "lblCollection":"IsCollection"
+    "lblCollection":"IsCollection",
+    "lblSearchEntity":"Search Entity" ,
+    "lblUomType":"UOM Type",
+    "lblValidUOM":"Valid UOMs"
     }
 }
     

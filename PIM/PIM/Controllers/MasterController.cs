@@ -10,6 +10,7 @@ namespace PIM.API.Controllers
     using Data.Users;
     using Data.Enums;
     using Data.Integrations;
+    using Data.Attributes;
 
     [AllowAnonymous]
     public class MasterController : AbstractController
@@ -157,6 +158,32 @@ namespace PIM.API.Controllers
                 m.Id,
                m.Name
             }).ToList();
+
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("api/uomType")]
+        public IHttpActionResult GetUOMType()
+        {
+            var result = Repository.GetAll<UOMType>()
+                .Select(m => new {
+                m.Id,
+                m.Name
+            }).ToList();
+
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("api/uom")]
+        public IHttpActionResult GetUOM(int id)
+        {
+            var result = Repository.GetAll<UOM>().Where(u=>u.UomTypeId==id)
+                .Select(m => new {
+                    uomId= m.Id,
+                    m.Name
+                }).ToList();
 
             return Ok(result);
         }

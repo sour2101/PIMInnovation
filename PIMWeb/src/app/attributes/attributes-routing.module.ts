@@ -6,6 +6,7 @@ import { AttributeListComponent } from './components/attribute-list/attribute-li
 import { AttributeFormComponent } from './components/attribute-form/attribute-form.component';
 import { AttributegroupFromComponent } from "./components/attributegroup-from/attributegroup-from.component";
 import { ForbiddenComponent } from '../core/components/forbidden/forbidden.component';
+import { AttributebrsComponent } from './components/attributebrs/attributebrs.component';
 
 const routes: Routes = [
   {
@@ -17,8 +18,10 @@ const routes: Routes = [
         path: 'attributeList',
         component: AttributeListComponent
       },
-      { path: 'createAttribute', component: AttributeFormComponent },
+      { path: 'createattribute', component: AttributeFormComponent },
+      { path: 'createattribute/:id', component: AttributeFormComponent },
       { path: 'createAttributeGroup', component: AttributegroupFromComponent },
+      { path: 'attributebr/:id', component: AttributebrsComponent },
       {
         path: 'forbidden',
         component: ForbiddenComponent

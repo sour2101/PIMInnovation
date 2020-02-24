@@ -26,7 +26,8 @@ export class UserListComponent implements OnInit {
   sortBy:string;
   sortOrder:string; 
   totalRecords:number;
-  constructor(private _pimService:UserService,
+  constructor(
+    public _userService:UserService,
     public router:Router,
     public dialogService: DialogService,
     private toastr:ToastsManager,
@@ -54,7 +55,7 @@ export class UserListComponent implements OnInit {
 
   LoadUserList(pageSize,pageNumber,sortBy,sortOrder,filterBy){
     this.loading=true;
-    this._pimService.getUserList(pageSize,pageNumber,sortBy,sortOrder,filterBy)
+    this._userService.getUserList(pageSize,pageNumber,sortBy,sortOrder,filterBy)
     .subscribe((res) => { 
       this.totalRecords=res.totalCount;
       this.userList = res.entries;
@@ -93,19 +94,21 @@ export class UserListComponent implements OnInit {
   }
 
   editUser(selectedUser){
-    this.translate.get('data.lblEditUser').subscribe((res)=> 
-    {
-      this.dialogheader = res
-    });
-    this.openDialog(selectedUser.id);
+    // this.translate.get('data.lblEditUser').subscribe((res)=> 
+    // {
+    //   this.dialogheader = res
+    // });
+    // this.openDialog(selectedUser.id);
+    this.router.navigate(["user/"+selectedUser.id]);
   }
 
   addUser(){ 
-    this.translate.get('data.lblAddUser').subscribe((res)=> 
-    {
-      this.dialogheader = res
-    });
-    this.openDialog(null);
+    // this.translate.get('data.lblAddUser').subscribe((res)=> 
+    // {
+    //   this.dialogheader = res
+    // });
+    // this.openDialog(null);
+    this.router.navigate(["user"]);
   }
 
   deleteUser(selectedUser){
@@ -115,7 +118,7 @@ export class UserListComponent implements OnInit {
       header: 'Delete Confirmation',
       icon: 'pi pi-info-circle',
       accept: () => {
-        this._pimService.deleteUsers(selectedUser.id)
+        this._userService.deleteUsers(selectedUser.id)
         .subscribe((res)=>{
           this.toastr.success(res);
           this.LoadUserList(this.pageSize,this.pageNumber,this.sortBy,this.sortOrder,null);

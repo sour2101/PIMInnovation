@@ -18,6 +18,19 @@
     {
         [HttpGet]
         [Route("api/attribute")]
+        public IHttpActionResult Get()
+        {
+            var attribute = Repository.GetAll<data.Attribute>()
+                .Select(a => new
+                {
+                    Name = a.ShortName
+                }).ToList();
+
+            return Ok(attribute);
+        }
+
+        [HttpGet]
+        [Route("api/attribute")]
         public IHttpActionResult Get(int id) {
 
             var attribute = Repository.GetAll<data.Attribute>()
@@ -54,7 +67,7 @@
                     attributeUoms=a.AttributeUOMs.Select(u=>new {
                         u.Uoms.Name,
                         u.UomId
-                    })
+                    }) 
                 })
                 .SingleOrDefault();
             return Ok(attribute);
@@ -101,7 +114,14 @@
                     dataType = a.DataTypes.Name,
                     displayType=a.DisplayTypes.Name,
                     ColumnName = a.AttributeLookups.Select(lk=>new {lk.LookupColumns.ColumnName,lk.LookupTables.TableName }).ToList(),
-                    options = a.AttributeDropdowns.Select(ddl =>new {ddl.Id,ddl.Name }).ToList()
+                    options = a.AttributeDropdowns.Select(ddl =>new {ddl.Id,ddl.Name }).ToList(),
+                    attributeBRs = a.AttributeBRs.Select(b => new {
+                        b.AttributeId,
+                        b.Name,
+                        b.Id,
+                        b.SortOrder,
+                        b.Description
+                    }).OrderBy(b=>b.SortOrder)
 
                 })
                 .OrderBy(a=>a.ShortName)
@@ -136,6 +156,8 @@
                 Repository.Add(uom);
             }
 
+             
+
             attr.CreatedBy = principal.Username;
             attr.CreatedDate = DateTime.Now;
             Repository.Add(attr);
@@ -153,18 +175,18 @@
             attr.ModifiedBy = principal.Id;
             attr.ModifiedDate = DateTime.Now;
             var attrLookup = Repository.GetAll<data.AttributeLookup>().Where(al => al.AttributeId == attr.Id).ToList();
-            var attrUOM = Repository.GetAll<data.AttributeUOM>().Where(al => al.AttributeId == attr.Id).ToList();
+           // var attrUOM = Repository.GetAll<data.AttributeUOM>().Where(al => al.AttributeId == attr.Id).ToList();
             foreach (data.AttributeLookup lk in attrLookup)
             {
                 Repository.Delete(lk);
                 Repository.Save();
             }
 
-            foreach (data.AttributeUOM uom in attrUOM)
-            {
-                Repository.Delete(uom);
-                Repository.Save(); ;
-            }
+            //foreach (data.AttributeUOM uom in attrUOM)
+            //{
+            //    Repository.Delete(uom);
+            //    Repository.Save(); ;
+            //}
 
             foreach (data.AttributeLookup lk in attr.AttributeLookups)
             {
@@ -173,20 +195,22 @@
                 Repository.Add(lk);
             }
 
-            foreach (data.AttributeDropdowns lk in attr.AttributeDropdowns)
-            {
-                lk.AttributeId = attr.Id;
-                if (lk.Id != 0)
-                    Repository.Update(lk);
-                else
-                   Repository.Add(lk);
-            }
+            //foreach (data.AttributeDropdowns lk in attr.AttributeDropdowns)
+            //{
+            //    lk.AttributeId = attr.Id;
+            //    if (lk.Id != 0)
+            //        Repository.Update(lk);
+            //    else
+            //       Repository.Add(lk);
+            //}
 
-            foreach (data.AttributeUOM uom in attr.AttributeUOMs)
-            {
-                uom.AttributeId = attr.Id;
-                Repository.Add(uom);
-            }
+            //foreach (data.AttributeUOM uom in attr.AttributeUOMs)
+            //{
+            //    uom.AttributeId = attr.Id;
+            //    Repository.Add(uom);
+            //}
+
+             
 
             Repository.Update(attr);
             Repository.Save();

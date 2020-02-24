@@ -1,148 +1,153 @@
-<section class="content">
+<div class="col-sm-12" style="padding:0px;">
+   <p-panel [styleClass]="'panelStyle'"  [toggleable]="false" >
+   <p-header>
+           <div class="ui-helper-clearfix">
+               <span class="ui-panel-title" >Attribute Details</span>
+           </div>
+   </p-header>
       <div class="box-body">
-         <form [formGroup]="attributeForm" #formDir="ngForm" (ngSubmit)="attributeForm.valid && submit(attributeForm)" class="form-horizontal" novalidate >
-         <p-tabView>
-            <p-tabPanel  header="General">
-               <p-scrollPanel [style]="{width:'100%', height: '300px'}">
-                  <div  class="col-md-12">
-                     <div class="form-group" [ngClass]="{'has-error': (attributeForm.get('shortName').invalid && formDir.submitted) }">
-                        <label class="control-label col-md-3">{{'data.lblShortName' | translate}}</label>
-                        <div class="col-md-9">
-                           <input pInputText type="text" class="form-control" formControlName="shortName" >
-                        </div>
+         <form [formGroup]="attributeForm" #formDir="ngForm" (ngSubmit)="attributeForm.valid && submit(attributeForm)"  novalidate >
+          <p-accordion >
+            <p-accordionTab [selected]="true" header="General" >
+               <p-scrollPanel [style]="{width:'100%', 'min-height': '250px'}">
+                  <div class="form-row">   
+                     <div class="form-group col-sm-4" [ngClass]="{'has-error': (attributeForm.get('shortName').invalid && formDir.submitted) }">
+                        <label >{{'data.lblShortName' | translate}}</label>
+                        <input pInputText type="text" class="form-control form-control-sm" formControlName="shortName" >
                      </div>
-                     <div class="form-group" [ngClass]="{'has-error': (attributeForm.get('longName').invalid && formDir.submitted) }">
-                        <label class="control-label col-md-3">{{'data.lblLongName' | translate}}</label>
-                        <div class="col-md-9">
-                           <input pInputText type="text" class="form-control" formControlName="longName" >
-                        </div>
+                     <div class="form-group col-sm-4" [ngClass]="{'has-error': (attributeForm.get('longName').invalid && formDir.submitted) }">
+                        <label >{{'data.lblLongName' | translate}}</label>
+                        <input pInputText type="text" class="form-control form-control-sm" formControlName="longName" >
                      </div>
-                     <div class="form-group" [ngClass]="{'has-error': (attributeForm.get('attributeGroupId').invalid && formDir.submitted) }">
-                        <label class="control-label col-md-3">{{'data.lblAttributeGroup' | translate}}</label>
-                        <div class="col-md-9">
-                           <select name="attrgroup"  formControlName="attributeGroupId" class="form-control" required>
+                     <div class="form-group col-sm-4" [ngClass]="{'has-error': (attributeForm.get('attributeGroupId').invalid && formDir.submitted) }">
+                        <label >{{'data.lblAttributeGroup' | translate}}</label>
+                        <select name="attrgroup"  formControlName="attributeGroupId" class="form-control form-control-sm" required>
                            <option [ngValue]="ag.id" *ngFor="let ag of attrGroupList">{{ag.shortName}}</option>
-                           </select>
-                        </div>
+                        </select>
                      </div>
-                     <div class="form-group" [ngClass]="{'has-error': (attributeForm.get('dataTypeId').invalid && formDir.submitted) }">
-                        <label class="control-label col-md-3">{{'data.lblDataType' | translate}}</label>
-                        <div class="col-md-9">
-                           <select name="dataType" (change)="getDisplayType()" formControlName="dataTypeId" class="form-control" required>
+                     <div class="form-group col-sm-4" [ngClass]="{'has-error': (attributeForm.get('dataTypeId').invalid && formDir.submitted) }">
+                        <label >{{'data.lblDataType' | translate}}</label>
+                        <select name="dataType" (change)="getDisplayType()" formControlName="dataTypeId" class="form-control form-control-sm" required>
                            <option [ngValue]="dt.id" *ngFor="let dt of dataTypeList">{{dt.name}}</option>
-                           </select>
-                        </div>
+                        </select>
                      </div>
-                     <div class="form-group" [ngClass]="{'has-error': (attributeForm.get('displayTypeId').invalid && formDir.submitted) }">
-                        <label class="control-label col-md-3">{{'data.lblDisplayType' | translate}}</label>
-                        <div class="col-md-9">
-                           <select name="DisplayType"  formControlName="displayTypeId" class="form-control" required>
+                     <div class="form-group col-sm-4" [ngClass]="{'has-error': (attributeForm.get('displayTypeId').invalid && formDir.submitted) }">
+                        <label >{{'data.lblDisplayType' | translate}}</label>
+                        <select name="DisplayType"  formControlName="displayTypeId" class="form-control form-control-sm" required>
                            <option [ngValue]="dt.id" *ngFor="let dt of displayTypeList">{{dt.name}}</option>
-                           </select>
-                        </div>
+                        </select>
                      </div>
-                     <div class="form-group" >
-                        <label class="control-label col-md-3">{{'data.lblRequired' | translate}}</label>
-                        <div class="col-md-3">
-                           <p-checkbox name="Required" binary="true" [formControl]="attributeForm.controls['required']"></p-checkbox>
-                        </div>
-                        <label class="control-label col-md-3">{{'data.lblShowAtCreation' | translate}}</label>
-                        <div class="col-md-3">
-                           <p-checkbox name="ShowAtCreation" binary="true" [formControl]="attributeForm.controls['showAtCreation']"></p-checkbox>
-                        </div>
+                     <div class="form-group col-sm-4" >
+                        <label >{{'data.lblRequired' | translate}}</label>
+                        <p-toggleButton [styleClass]="'form-control form-control-sm'" formControlName="required"></p-toggleButton>
                      </div>
-                     <div class="form-group" >
-                        <label class="control-label col-md-3">{{'data.lblLocalizable' | translate}}</label>
-                        <div class="col-md-3">
-                           <p-checkbox name="IsLocalizable" binary="true" [formControl]="attributeForm.controls['isLocalizable']"></p-checkbox>
-                        </div>
-                        <label class="control-label col-md-3">{{'data.lblCollection' | translate}}</label>
-                        <div class="col-md-3">
-                           <p-checkbox name="IsCollection" binary="true" [formControl]="attributeForm.controls['isCollection']"></p-checkbox>
-                        </div>
+
+                     <div class="form-group col-sm-4">
+                        <label >{{'data.lblShowAtCreation' | translate}}</label>
+                        <p-toggleButton [styleClass]="'form-control form-control-sm'" formControlName="required"></p-toggleButton>
                      </div>
-                      
+
+                     <div class="form-group col-sm-4" >
+                        <label >{{'data.lblLocalizable' | translate}}</label>
+                        <p-toggleButton [styleClass]="'form-control form-control-sm'" formControlName="required"></p-toggleButton>
+                     </div>
+                     <div class="form-group col-sm-4" >   
+                        <label >{{'data.lblCollection' | translate}}</label>
+                        <p-toggleButton [styleClass]="'form-control form-control-sm'" formControlName="isCollection"></p-toggleButton>
+                     </div>
                   </div>
                </p-scrollPanel>
-            </p-tabPanel>
-            <p-tabPanel  header="Lookup" *ngIf="attributeForm.get('displayTypeId').value==16">
-               <p-scrollPanel [style]="{width:'100%', height: '300px'}">
-                  <div  class="col-md-12">
-                     <div class="form-group" >
-                        <label class="control-label col-md-3">
-                        {{'data.lblTableName' | translate}}:
-                        </label>
-                        <div class="col-md-9">
-                           <select name="TableName" required="attributeForm.get('displayTypeId')==16" formControlName="lookupTableId" (ngModelChange)="loadLookup($event)"  class="form-control" >
+            </p-accordionTab>
+             <p-accordionTab  header="Lookup" *ngIf="attributeForm.get('displayTypeId').value==16">
+               <p-scrollPanel [style]="{width:'100%', 'min-height': '200px'}">
+                  <div  class="form-row">
+                     <div class="form-group col-sm-4" >
+                        <label >{{'data.lblTableName' | translate}}:</label>
+                        <select name="TableName" required="attributeForm.get('displayTypeId')==16" formControlName="lookupTableId" (ngModelChange)="loadLookup($event)"  class="form-control form-control-sm" >
                            <option *ngFor="let dt of lookupTableList" [ngValue]="dt.id" >{{dt.tableName}}</option>
-                           </select>
-                        </div>
+                        </select>
                      </div>
-                     <div class="form-group" >
-                        <label class="control-label col-md-3">{{'data.lblColumn' | translate}}:</label>
-                        <div class="col-md-9">
-                              <p-listbox [options]="lookupColumnList"  formControlName="attributeLookups" (onChange)="lookupColumnClick($event)" multiple="multiple" checkbox="checkbox" optionLabel="columnName">
-                              </p-listbox>
-                           <!-- <div class="form-group col-md-12" *ngFor="let cl of lookupColumnList" >
-                           <p-checkbox name="columnList" label="{{cl.columnName}}" inputId="{{cl.id}}" value="{{cl.id}}" [formControl]="attributeForm.controls['selectedLookupColumns']"></p-checkbox>
-                        </div> -->
-                        </div>
+                     <div class="form-group col-sm-4" >
+                        <label >{{'data.lblColumn' | translate}}:</label>
+                        <p-listbox [options]="lookupColumnList"  formControlName="attributeLookups" (onChange)="lookupColumnClick($event)" multiple="multiple" checkbox="checkbox" optionLabel="columnName">
+                        </p-listbox>
                      </div>
                   </div>
                </p-scrollPanel>
-            </p-tabPanel>
-            <p-tabPanel  header="DropDown" *ngIf="attributeForm.get('displayTypeId').value==12">
-               <p-scrollPanel [style]="{width:'100%', height: '300px'}">
+            </p-accordionTab>
+            <p-accordionTab  header="DropDown" *ngIf="attributeForm.get('displayTypeId').value==12">
+               <p-scrollPanel [style]="{width:'100%', 'min-height': '200px'}">
                   <div class="col-md-12">
-                     <div class="form-group" >
-                        <label class="control-label col-md-3">
+                     <div class="form-group col-sm-4" >
+                        <label >
                         {{'data.lblValue' | translate}}:
                         </label>
-                        <div class="col-md-9">
                            <div class="ui-inputgroup">
-                              <input type="text" class="form-control" pInputText   formControlName="dropdownName">   
+                              <input type="text" class="form-control form-control-sm" pInputText   formControlName="dropdownName">   
+                              <button pButton (click)="addDropDown()" [disabled]="attributeForm.get('dropdownName').invalid" type="button" label="Add"></button>      
+                          </div>
+                     </div>
+                     <div class="form-group col-sm-4" >
+                        <label ></label>
+                           <p-listbox  [options]="dropdownList"  optionLabel="name">
+                           </p-listbox>
+                        </div>
+                  </div>
+               </p-scrollPanel>
+            </p-accordionTab>
+         </p-accordion>
+         <div class="col-sm-12">
+            <a (click)="back()" class="btn btn-default">{{'data.btnBack' | translate}}</a>
+            <button pButton type="submit" label="{{'data.btnSave' | translate}}"  class="pull-right"></button>
+         </div>
+         </form>
+      </div>
+  </p-panel>
+</div>
+ <!-- <p-accordionTab  header="DropDown" [disabled]="attributeForm.get('displayTypeId').value!=12">
+               <p-scrollPanel [style]="{width:'100%', height: '300px'}">
+                  <div class="col-md-12">
+                     <div class="form-group col-sm-4" >
+                        <label >
+                        {{'data.lblValue' | translate}}:
+                        </label>
+                       
+                           <div class="ui-inputgroup">
+                              <input type="text" class="form-control form-control-sm" pInputText   formControlName="dropdownName">   
                               <button pButton (click)="addDropDown()" [disabled]="attributeForm.get('dropdownName').invalid" type="button" label="Add"></button>      
                           </div>
                         </div>
                      </div>
-                     <div class="form-group" >
-                        <label class="control-label col-md-3"></label>
-                        <div class="col-md-9">
+                     <div class="form-group col-sm-4" >
+                        <label ></label>
+                       
                            <p-listbox  [options]="dropdownList"  optionLabel="name">
                            </p-listbox>
                         </div>
                      </div>
                   </div>
                </p-scrollPanel>
-            </p-tabPanel>
-            <p-tabPanel   header="UOM" *ngIf="attributeForm.get('displayTypeId').value==7 || attributeForm.get('displayTypeId').value==8">
+            </p-accordionTab>
+            <p-accordionTab   header="UOM" *ngIf="attributeForm.get('displayTypeId').value==7 || attributeForm.get('displayTypeId').value==8">
                <p-scrollPanel  [style]="{width:'100%', height: '300px'}">
                   <div  class="col-md-12">
-                     <div class="form-group" >
-                        <label class="control-label col-md-3">
+                     <div class="form-group col-sm-4" >
+                        <label >
                         {{'data.lblUomType' | translate}}:
                         </label>
-                        <div class="col-md-9">
-                           <select name="uomType"  formControlName="uomTypeId" (ngModelChange)="uomTypeChange($event)"  class="form-control" >
+                       
+                           <select name="uomType"  formControlName="uomTypeId" (ngModelChange)="uomTypeChange($event)"  class="form-control form-control-sm" >
                            <option *ngFor="let uom of uomTypeList" [ngValue]="uom.id" >{{uom.name}}</option>
                            </select>
                         </div>
                      </div>
-                     <div class="form-group" >
-                        <label class="control-label col-md-3">{{'data.lblValidUOM' | translate}}:</label>
-                        <div class="col-md-9">
+                     <div class="form-group col-sm-4" >
+                        <label >{{'data.lblValidUOM' | translate}}:</label>
+                       
                               <p-listbox [options]="uomList"  formControlName="attributeUOMs"  multiple="multiple" checkbox="checkbox" optionLabel="name">
                               </p-listbox>
                         </div>
                      </div>
                   </div>
                </p-scrollPanel>
-            </p-tabPanel>
-         </p-tabView>
-         <div class="box-footer">
-            <a (click)="back()" class="btn btn-default">{{'data.btnBack' | translate}}</a>
-            <button pButton type="submit" label="{{'data.btnSave' | translate}}"  class="pull-right"></button>
-         </div>
-         </form>
-      </div>
-   </section>
+            </p-accordionTab>  -->

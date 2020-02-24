@@ -1,0 +1,87 @@
+<div class="col-sm-12" style="padding:0px;">
+  <p-panel [styleClass]="'panelStyle'"  [toggleable]="false" >
+  <p-header>
+          <div class="ui-helper-clearfix">
+              <span class="ui-panel-title" >Attribute BR Details</span>
+              <button style="float:right;background-color: #ffffff;color: #888888;" type="button" pButton 
+              label="{{'data.btnBack' | translate}}" [routerLink]="['/attributeList']"></button>
+          </div>
+  </p-header>
+  <div class="box-body">
+ 
+    <p-table [value]="attrBRList">
+          <ng-template pTemplate="header" >
+            <tr>
+              <th>Attribute Name</th>
+              <th>Description</th>
+              <th>SortOrder</th>
+              <th></th>
+            </tr>
+            <tr>
+          </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-ri="rowIndex" >
+            <tr>
+               <td>{{rowData.name}}</td>
+               <td>{{rowData.description}}</td>
+               <td>{{rowData.sortOrder}}</td>
+               <td>
+                <button  type="button" pButton   icon="pi pi-pencil" tooltipPosition="top" pTooltip="{{'data.btnEdit' | translate}}"  (click)="editRow(rowData.id)"></button>
+                <button  type="button" pButton icon="pi pi-trash" tooltipPosition="top" pTooltip="{{'data.btnDelete' | translate}}"  (click)="deleteRow(rowData.id)"></button>
+               </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="summary" let-rowData>
+            <div style="text-align:left">
+                <button type="button" pButton icon="fa fa-plus" (click)="addAttrBr()"></button>
+            </div>
+        </ng-template>
+        </p-table>
+ 
+      
+  </div>
+</p-panel>
+</div>
+
+<p-dialog [showHeader]="false" [(visible)]="displayDialog" [responsive]="true" [style]="{width: '450px', minWidth: '200px'}" showEffect="fade"   >
+   <div class="box-body">
+ <form [formGroup]="attributebrForm" #formDir="ngForm" (ngSubmit)="attributebrForm.valid && submit(attributebrForm)" class="form-horizontal" novalidate >
+ <div class="form-group" [ngClass]="{'has-error': (attributebrForm.get('name').invalid && formDir.submitted) }">
+   <label class="control-label col-md-3">
+       {{'data.lblAttribute' | translate}}
+   </label>
+   <div class="col-md-9">
+       <p-autoComplete [inputStyleClass]="form-control" [styleClass]="form-control" formControlName="name" [suggestions]="filteredAttributeList" field="name" (completeMethod)="filterAttributes($event)" required></p-autoComplete>                                
+ 
+   </div>
+ </div>
+ <div class="form-group" [ngClass]="{'has-error': (attributebrForm.get('description').invalid && formDir.submitted) }">
+     <label class="control-label col-md-3">
+         {{'data.lblDescription' | translate}}
+     </label>
+     <div class="col-md-9">
+      <select name="description" formControlName="description" class="form-control" >
+         <option *ngFor="let dt of descriptionList" [ngValue]="dt.name" >{{dt.name}}</option>
+         </select>
+     </div>
+ </div>
+ <div class="form-group" [ngClass]="{'has-error': (attributebrForm.get('sortOrder').invalid && formDir.submitted) }">
+       <label class="control-label col-md-3">
+           {{'data.lblSortOrder' | translate}}
+       </label>
+       <div class="col-md-9">
+           <input   pInputText type="text" class="form-control" formControlName="sortOrder" required>
+       </div>
+ </div>   
+  
+   <div class="box-footer">
+       <a (click)="cancel()" class="btn btn-default">{{'data.btnBack' | translate}}</a>
+       <button pButton type="submit" label="{{'data.btnSave' | translate}}"  class="pull-right"></button>
+   </div>
+ </form>
+
+ <ng-template #itemTemplate let-item>
+  <a [innerHTML]="item.name"></a>
+</ng-template>
+</div>
+</p-dialog>

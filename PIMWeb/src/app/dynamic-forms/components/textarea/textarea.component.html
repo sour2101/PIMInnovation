@@ -2,7 +2,7 @@
     <div [formArrayName]="field.shortName" *ngFor="let cd of formArray.controls ;let i=index;">
         <div [formGroupName]="i">
             <textarea pInputTextarea *ngIf="!field.isCollection" [class.is-invalid]="isDirty && !isValid"
-                formControlName="attributeValue"   rows="4" class="form-control"
+                formControlName="attributeValue"   rows="4" class="form-control form-control-sm"
                  autoResize="autoResize"></textarea>
         </div>
     </div>

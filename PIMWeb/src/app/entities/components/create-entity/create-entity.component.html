@@ -6,7 +6,7 @@
             </div>
         </p-header>
         <div class="box-body">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-sm-12">
                 <div class="form-horizontal">
                     <div class=" form-group">
                         <label class="form-control-label col-md-3">{{'data.lblCatalog' | translate}}</label>
@@ -20,12 +20,13 @@
                 </div>
                 <div>
                     <form (ngSubmit)="form.valid && onSubmit(this.form)" #formDir="ngForm" [formGroup]="form"
-                        class="form-horizontal" novalidate>
-
+                         novalidate>
+                        <div class="form-row">
                         <div *ngFor="let field of fields">
                             <field-builder [field]="field" [form]="form"></field-builder>
                         </div>
-                        <div class="box-footer">
+                        </div>
+                        <div class="col-sm-12">
                             <a (click)="back()" class="btn btn-default">{{'data.btnBack' | translate}}</a>
                             <button pButton type="submit" label="{{'data.btnSave' | translate}}"
                                 class="pull-right"></button>
@@ -34,5 +35,8 @@
                 </div>
             </div>
         </div>
+        <app-loader *ngIf="!_entityService.isLoading" ></app-loader>
     </p-panel>
+   
 </div>
+

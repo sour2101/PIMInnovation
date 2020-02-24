@@ -84,10 +84,13 @@
           <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
         </div>
       </div>
+      <app-loader *ngIf="!_lookupTableService.isLoading || !_pimService.isLoading || !_lookupColumnService.isLoading "></app-loader>
     </div>
   </div>
   </p-panel>
+
 </div>   
+
 <p-dialog [(visible)]="displayDialog" [contentStyle]="{'overflow':'visible'}" [modal]="true" [responsive]="true">
   <p-header>
       {{'data.btnExport' | translate}}

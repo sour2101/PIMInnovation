@@ -28,14 +28,54 @@
                                         </option> 
                                      </select>
                         </li>
-                        <li class="dropdown">
-                            <a (click)="changeUserPref()" class="hand">
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                              <img src="../../../../assets/images/User_Avatar.png" class="user-image" >
+                              <span class="hidden-xs">{{principal.firstname}} {{principal.lastname}}</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                              <!-- User image -->
+                              <li class="user-header">
+                                <img src="../../assets/images/User_Avatar.png" class="img-circle" alt="User Image">
+                
+                                <p>
+                                    {{principal.firstname}} {{principal.lastname}}
+                                </p>
+                              </li>
+                              <!-- Menu Body -->
+                              <li class="user-body">
+                                <div class="row">
+                                  <div class="col-xs-4 text-center">
+                                    <a href="#">Followers</a>
+                                  </div>
+                                  <div class="col-xs-4 text-center">
+                                    <a href="#">Sales</a>
+                                  </div>
+                                  <div class="col-xs-4 text-center">
+                                    <a href="#">Friends</a>
+                                  </div>
+                                </div>
+                                <!-- /.row -->
+                              </li>
+                              <!-- Menu Footer-->
+                              <li class="user-footer">
+                                <div class="pull-left">
+                                  <a  (click)="changeUserPref()" class="btn btn-default btn-flat">Preference</a>
+                                </div>
+                                <div class="pull-right">
+                                  <a  (click)="logout()" class="btn btn-default btn-flat">Sign out</a>
+                                </div>
+                              </li>
+                            </ul>
+                          </li>
+                        <!-- <li class="dropdown">
+                            <a  class="hand">
                                 <span class="hidden-xs">{{principal.firstname}} {{principal.lastname}}</span>
                             </a>
-                        </li>
+                        </li> 
                         <li class="dropdown">
                                 <a class="hand" (click)="logout()"  matTooltip="Sign Out" ><i class="glyphicon glyphicon-off"></i> </a>
-                        </li>
+                        </li>-->
                     </ul>
                 </div>
             </div>

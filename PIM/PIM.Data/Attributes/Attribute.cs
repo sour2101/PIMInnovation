@@ -57,5 +57,7 @@
         public virtual List<AttributeDropdowns> AttributeDropdowns { get; set; }
 
         public virtual List<AttributeUOM> AttributeUOMs { get; set; }
+
+        public virtual List<AttributeBRs> AttributeBRs { get; set; }
     }
 }

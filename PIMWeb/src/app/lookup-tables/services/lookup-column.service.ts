@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, finalize } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment'; 
 import { DynamicColumn } from '../models/DynamicColumn';
@@ -11,18 +11,22 @@ import { DynamicColumn } from '../models/DynamicColumn';
 })
 export class LookupColumnService {
   private readonly baseUrl = `${environment.api.endPoint}/lookupColumn`; 
-
+  isLoading=false;
   constructor(private _httpClient:HttpClient) { }
 
 
   saveColumnRecord(model:DynamicColumn[]):Observable<any>{
     return this._httpClient.post<DynamicColumn[]>(this.baseUrl,model)
-    .pipe(map(data => data));
+    .pipe(finalize(() => {
+              this.isLoading = true;
+            }));
   }
 
   updateColumnRecord(model:DynamicColumn[]):Observable<any>{
     return this._httpClient.put<DynamicColumn[]>(this.baseUrl,model)
-    .pipe(map(data => data));
+    .pipe(finalize(() => {
+              this.isLoading = true;
+            }));
   }
 
   deleteColumnRecord(tableId,id):Observable<any>{
@@ -30,6 +34,8 @@ export class LookupColumnService {
     .append('id',id);
     let url = `${this.baseUrl}`;
     return this._httpClient.delete(url,{params:param})
-    .pipe(map(data => data));
+    .pipe(finalize(() => {
+              this.isLoading = true;
+            }));
   }
 }

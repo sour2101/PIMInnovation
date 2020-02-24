@@ -65,6 +65,12 @@ body .ui-paginator{
    height:350px;
    width: '100%';
  } 
+
+ .attribute-scroll{
+   min-height: 200px;
+   width: 100%;
+ }
+
 .panelStyle{
   margin-top:5px;
   background-color:#ffffff;
@@ -100,4 +106,7 @@ body .ui-tree{
    
   min-width: 100%;
 }
-  
+
+body .ui-dropdown .ui-dropdown-trigger {
+background-color: #ffffff;
+}

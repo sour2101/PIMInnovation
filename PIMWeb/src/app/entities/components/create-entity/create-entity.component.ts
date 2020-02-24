@@ -15,7 +15,7 @@ export class CreateEntityComponent implements OnInit {
 
   constructor(
     private _fb: FormBuilder,
-    private _entityService: EntityService) {
+    public _entityService: EntityService) {
   }
 
   ngOnInit() {
@@ -46,21 +46,10 @@ export class CreateEntityComponent implements OnInit {
         this.fields = res;
         for (let f of this.fields) {
           fieldsCtrls[f.shortName] = this._fb.array([this.createFormGroup(f)]);
-          fieldsCtrls[f.shortName+"Value"] = this._fb.array([this.createFormGroupValue(f)]);
         }
 
         this.form = new FormGroup(fieldsCtrls);
       });
-  }
-
-  createFormGroupValue(data): FormGroup {
-
-    if (data.required)
-      if (data.displayType == "LookupTable")
-        return this._fb.group({
-          filterData: new FormControl([]),
-          lookupData: new FormControl([])
-        });
   }
 
 

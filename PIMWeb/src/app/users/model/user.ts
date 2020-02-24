@@ -1,16 +1,16 @@
 export class User{
-    id:number;
-    firstname:string;
-    lastname:string;
-    email:string;
-    active:boolean;
-    username:string;
-    password:string;
-    managerId:number;
-    languageId:number;
-    sso:boolean;
-    disabled:boolean;
-    userRights:UserRights;
+    id:number = 0;
+    firstname:string= "";
+    lastname:string = "";
+    email:string ="";
+    active:boolean=true;
+    username:string="";
+    password:string="";
+    managerId:number=0;
+    languageId:number=0;
+    sso:number=0;
+    disabled:boolean=false;
+    userRights:UserRights[]=[];
 }
 
 export  class UserRights{

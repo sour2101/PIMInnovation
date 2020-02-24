@@ -25,7 +25,7 @@ export class LookupColumnFormComponent implements OnInit {
     public toastr: ToastsManager,
     private _router:Router,
     private _activateRoute:ActivatedRoute,
-    private _lookupTableService:LookupTableService) {
+    public _lookupTableService:LookupTableService) {
 
     this.dataTypeList=[
       {name:'varchar'},

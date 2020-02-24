@@ -2,28 +2,38 @@
   <div *ngIf="!field.isCollection">
     <div [formArrayName]="field.shortName" *ngFor="let cd of formArray.controls ;let i=index;">
       <div [formGroupName]="i">
-        <input pInputText type="text" class="form-control" formControlName="attributeValue">
+        <input pInputText type="text" class="form-control form-control-sm" formControlName="attributeValue">
       </div>
     </div>
   </div>
 
   <div *ngIf="field.isCollection">
-    <p-table #lookupTable [scrollable]="true" scrollHeight="100px" [formArrayName]="field.shortName"
-      [value]="tableData">
-      <ng-template pTemplate="body" let-rowData let-ri="rowIndex">
-        <tr [formGroupName]="ri">
-          <td>
-            <input pInputText type="text" class="form-control" [class.is-invalid]="isDirty && !isValid"
-              formControlName="attributeValue">
-          </td>
-          <td style="width:8%">
-            <button type="button" pButton icon="pi pi-trash" tooltipPosition="top" (click)="deleteRow(ri)"></button>
-          </td>
-          <td style="width:8%;vertical-align: bottom;" *ngIf="ri==0" [attr.rowspan]="tableData?.length">
-            <button type="button" pButton icon="fa fa-plus" (click)="this[functionName]()"></button>
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
+    <p-table #textboxTable [scrollable]="true"  scrollHeight="100px" [formArrayName]="field.shortName"
+[value]="tableData">
+<ng-template pTemplate="body" let-rowData let-ri="rowIndex">
+  <tr  [formGroupName]="ri">
+    <td style="padding:.2em;">
+      <input pInputText type="text" [style]="{'height':'25px'}" class="form-control form-control-sm" [class.is-invalid]="isDirty && !isValid"
+        formControlName="attributeValue">
+    </td>
+    <td style="width:8%;padding:.2em;">
+      <button type="button" pButton icon="pi pi-trash" tooltipPosition="top" (click)="deleteRow(ri)"></button>
+    </td>
+    <td style="width:8%;vertical-align: bottom;padding:.2em;" *ngIf="ri==0" [attr.rowspan]="tableData?.length">
+      <button type="button" pButton icon="fa fa-plus" (click)="this[functionName]()"></button>
+    </td>
+  </tr>
+</ng-template>
+</p-table>
+    <!-- <div class="ui-inputgroup">
+      <input type="text" (input)="onSearch($event.target.value)" class="form-control  form-control-sm" pInputText placeholder="Select" >
+      <button pButton type="button" icon="pi pi-refresh" (click)="toggle()"
+        class="ui-button-warn"></button>
+    </div> -->
   </div>
 </div>
+
+<!-- <p-dialog  [formGroup]="form" [(visible)]="show" [style]="{width: '700px', height: '300px'}" 
+[minY]="70" [contentStyle]="{'overflow':'visible'}" [modal]="true" [responsive]="true" (onHide)="close($event)">
+
+</p-dialog> -->

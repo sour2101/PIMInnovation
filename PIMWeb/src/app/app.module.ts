@@ -87,14 +87,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       useClass: LoaderInterceptorService,
       multi: true
     },
-    // { 
-    //   provide: APP_INITIALIZER,
-    //   useFactory:  (_resourceService:ResourceService)=>function(){
-    //     return _resourceService.loadResource(localStorage.getItem('apiToken')===null ||localStorage.getItem('apiToken')==='' || localStorage.getItem('apiToken')===undefined? '0':localStorage.getItem('apiToken'))
-    //   },
-    //   deps: [ResourceService],
-    //   multi:true
-    // },
     AuthGuard,
     AuthService,
     AppService,

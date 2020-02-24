@@ -43,6 +43,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\AttributeBRs.cs" />
     <Compile Include="Attributes\AttributeCatalog.cs" />
     <Compile Include="Attributes\AttributeValues.cs" />
     <Compile Include="Common\Created.cs" />

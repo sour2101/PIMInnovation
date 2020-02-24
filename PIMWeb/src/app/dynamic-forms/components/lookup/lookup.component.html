@@ -1,40 +1,43 @@
 <div [formGroup]="form">
   <div [formArrayName]="field.shortName" *ngFor="let cd of formArray.controls ;let i=index;">
     <div [formGroupName]="i">
-      <!-- <select *ngIf="!field.isCollection" class="form-control" formControlName="attributeValue">
-        <option value="0">--Select--</option>
-        <option *ngFor="let opt of tableData">{{opt.description}}</option>
-      </select> -->
-
       <div class="ui-inputgroup">
-        <input type="text" (input)="onSearch($event.target.value)" class="form-control" pInputText placeholder="Select" formControlName="name">
-        <button pButton type="button" icon="pi pi-sort-down" (click)="toggle($event,field.shortName)"
+        <input type="text" (input)="onSearch($event.target.value)" class="form-control  form-control-sm" pInputText placeholder="Select" formControlName="name">
+        <button pButton type="button" icon="pi pi-refresh" (click)="toggle($event,field.shortName)"
           class="ui-button-warn"></button>
       </div>
-      <div *ngIf="show" class="dropdown-content" >
-        <p-table #lookupTable [tableStyleClass]="customTable" [scrollable]="true" scrollHeight="100px" selectionMode="single" (onRowSelect)="onRowSelect($event)"
-          [columns]="lookupColumnList" [value]="filterData">
-          <ng-template pTemplate="header" let-columns>
-            <tr>
-              <th *ngFor="let col of columns">
-                {{col.columnName}}
-              </th>
-            </tr>
-            <tr>
-            <!-- <th *ngFor="let col of columns"  >
-                <input pInputText type="text" (input)="lookupTable.filter($event.target.value, camalCase(col.columnName), col.filterMatchMode)">
-            </th> -->
-          </tr>
-          </ng-template>
-          <ng-template pTemplate="body" let-rowData let-columns="columns">
-            <tr [pSelectableRow]="rowData">
-              <td *ngFor="let col of columns">
-                {{rowData[camalCase(col.columnName)]}}
-              </td>
-            </tr>
-          </ng-template>
-        </p-table>
-      </div>
+      <!-- <div *ngIf="show" class="dropdown-content" >
+      
+      </div> -->
     </div>
   </div>
 </div>
+
+<p-dialog [(visible)]="show" [style]="{width: '500px', height: '300px'}" 
+[minY]="70" [contentStyle]="{'overflow':'visible'}" [modal]="true" [responsive]="true">
+    <p-table #lookupTable [tableStyleClass]="customTable" [scrollable]="true" scrollHeight="300px" 
+    selectionMode="single" (onRowSelect)="onRowSelect($event)"
+    [columns]="lookupColumnList" [value]="filterData">
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns">
+          {{col.columnName}}
+        </th>
+      </tr>
+      <tr>
+      <th *ngFor="let col of columns"  >
+          <input pInputText type="text" (input)="lookupTable.filter($event.target.value, camalCase(col.columnName), col.filterMatchMode)">
+      </th>
+    </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr [pSelectableRow]="rowData">
+        <td *ngFor="let col of columns">
+          {{rowData[camalCase(col.columnName)]}}
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+   
+    </p-dialog>
+    

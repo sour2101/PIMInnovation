@@ -150,7 +150,10 @@
     "lblCollection":"IsCollection",
     "lblSearchEntity":"Search Entity" ,
     "lblUomType":"UOM Type",
-    "lblValidUOM":"Valid UOMs"
+    "lblValidUOM":"Valid UOMs",
+    "addBr":"Add BusinessRule",
+    "lblAddAttributeBr":"Attribute BR",
+    "lblSortOrder":"Sort Order"
     }
 }
     

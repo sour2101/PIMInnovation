@@ -1,95 +1,83 @@
-<div class="box-body">
+<div class="col-sm-12" style="padding:0px;">
+    <p-panel [styleClass]="'panelStyle'"  [toggleable]="false" >
+    <p-header>
+            <div class="ui-helper-clearfix">
+                <span class="ui-panel-title" >UserDetails</span>
+            </div>
+    </p-header>
+    <div class="box-body">
     <form [formGroup]="userForm" #formDir="ngForm" (ngSubmit)="userForm.valid && submit(userForm)"
-        class="form-horizontal" novalidate>
-        <p-tabView>
-            <p-tabPanel formGroupName="userGroup"
-                [headerStyleClass]="{'has-error': (userForm.get('userGroup').invalid && formDir.submitted)}"
-                header="UserDetails">
-                <p-scrollPanel [styleClass]="'scrollStyle'">
-                    <div class="col-md-12">
-                        <div class="col-md-10">
-                            <div class="form-group">
-                                <label class="control-label col-md-3">{{'data.lblSsoCon' | translate}}</label>
-                                <div class="col-md-9">
-                                    <select formControlName="sso" class="form-control">
+          novalidate>
+            
+                <!-- <p-scrollPanel [styleClass]="'scrollStyle'"> -->
+                    <div class="form-row">       
+                      
+                            <div class="form-group col-sm-4">
+                                <label>{{'data.lblSsoCon' | translate}}</label>
+                              
+                                    <select formControlName="sso" class="form-control form-control-sm">
                                         <option value="1">{{'data.optionYes' | translate}}</option>
                                         <option value="0">{{'data.optionNo' | translate}}</option>
                                     </select>
-                                </div>
+                               
                             </div>
-                            <div class="form-group"
-                                [ngClass]="{'has-error': (userForm.get('userGroup.firstName').invalid && formDir.submitted) }">
-                                <label class="control-label col-md-3 ">
-                                    {{(userForm.get('userGroup.sso').value == 0 ? 'data.lblUserName' : 'data.lblSgid') | translate}}
+                            <div class="form-group col-sm-4"
+                                [ngClass]="{'has-error': (userForm.get('firstName').invalid && formDir.submitted) }">
+                                <label >
+                                    {{(userForm.get('sso').value == 0 ? 'data.lblUserName' : 'data.lblSgid') | translate}}
                                 </label>
-                                <div class="col-md-9">
                                     <div class="input-group  col-md-12" style="padding: 0px">
                                         <input pInputText type="text" name="username1" formControlName="username"
-                                            class="form-control" />
+                                            class="form-control form-control-sm" />
                                         <span class="input-group-btn">
-                                            <button [disabled]="userForm.get('userGroup.sso').value == 0?true:false"
+                                            <button [disabled]="userForm.get('sso').value == 0?true:false"
                                                 class="btn btn-default" (click)="LdapSearch()" type="button">
                                                 <i class="fa fa-search"></i>
                                             </button>
                                         </span>
                                     </div>
-                                </div>
+                                
                             </div>
-                            <div class="form-group" *ngIf="userForm.get('userGroup.sso').value == 0"
-                                [ngClass]="{'has-error': formDir.submitted && (userForm.get('userGroup.password').invalid )}">
-                                <label class="control-label col-md-3">
-                                    {{'data.lblPassword' | translate}}
-                                </label>
-                                <div class="col-md-9">
-                                    <input pPassword name="password" type="password" formControlName="password"
-                                        class="form-control"
-                                        [required]="userForm.get('userGroup.sso').value == 0?true:false" />
-                                    <span class="help-block"
-                                        *ngIf="userForm.get('userGroup.password').hasError('minlength')">{{'data.alertPasswordLength'|translate}}</span>
-                                    <span class="help-block"
-                                        *ngIf="userForm.get('userGroup.password').hasError('pattern')">{{'data.alertPasswordRequirement'|translate}}</span>
-                                </div>
-                            </div>
-                            <div class="form-group"
-                                [ngClass]="{'has-error': (userForm.get('userGroup.firstName').invalid && formDir.submitted) }">
-                                <label class="control-label col-md-3">
+                            <div class="form-group col-sm-4"
+                                [ngClass]="{'has-error': (userForm.get('firstName').invalid && formDir.submitted) }">
+                                <label class="control-label">
                                     {{'data.lblFirstName' | translate}}
                                 </label>
-                                <div class="col-md-9">
+                                <div>
                                     <input name="firstname" pInputText type="text" formControlName="firstName"
-                                        class="form-control"
-                                        [readonly]="userForm.get('userGroup.sso').value == 0?false:true" />
+                                        class="form-control form-control-sm"
+                                        [readonly]="userForm.get('sso').value == 0?false:true" />
                                 </div>
                             </div>
-                            <div class="form-group"
-                                [ngClass]="{'has-error': (userForm.get('userGroup.lastName').invalid && formDir.submitted) }">
-                                <label class="control-label col-md-3">
+                            <div class="form-group col-sm-4"
+                                [ngClass]="{'has-error': (userForm.get('lastName').invalid && formDir.submitted) }">
+                                <label class="control-label">
                                     {{'data.lblLastName' | translate}}
                                 </label>
-                                <div class="col-md-9">
+                                <div>
                                     <input name="lastname" pInputText type="text" formControlName="lastName"
-                                        class="form-control"
-                                        [readonly]="userForm.get('userGroup.sso').value == 0?false:true" />
+                                        class="form-control form-control-sm"
+                                        [readonly]="userForm.get('sso').value == 0?false:true" />
                                 </div>
                             </div>
-                            <div class="form-group"
-                                [ngClass]="{'has-error': (userForm.get('userGroup.email').invalid && formDir.submitted) }">
-                                <label class="control-label col-md-3">
+                            <div class="form-group col-sm-4"
+                                [ngClass]="{'has-error': (userForm.get('email').invalid && formDir.submitted) }">
+                                <label class="control-label">
                                     {{'data.lblEmail' | translate}}
                                 </label>
-                                <div class="col-md-9">
+                                <div>
                                     <input name="email" pInputText type="email" formControlName="email"
-                                        class="form-control"
-                                        [readonly]="userForm.get('userGroup.sso').value == 0?false:true" />
+                                        class="form-control form-control-sm"
+                                        [readonly]="userForm.get('sso').value == 0?false:true" />
                                     <span class="help-block"
-                                        *ngIf="userForm.get('userGroup.email').touched  && userForm.get('userGroup.email').hasError('email')">{{loc.invalidEmail}}</span>
+                                        *ngIf="userForm.get('email').touched  && userForm.get('email').hasError('email')">{{loc.invalidEmail}}</span>
                                 </div>
                             </div>
-                            <div class="form-group"
-                                [ngClass]="{'has-error': (userForm.get('userGroup.languageId').invalid && formDir.submitted) }">
-                                <label class="control-label col-md-3">{{'data.lblLanguage' | translate}}</label>
-                                <div class="col-md-9">
-                                    <select name="languageName" formControlName="languageId" class="form-control"
+                            <div class="form-group col-sm-4"
+                                [ngClass]="{'has-error': (userForm.get('languageId').invalid && formDir.submitted) }">
+                                <label class="control-label">{{'data.lblLanguage' | translate}}</label>
+                                <div>
+                                    <select name="languageName" formControlName="languageId" class="form-control form-control-sm"
                                         required>
                                         <option value="">-- {{'data.lblLanguage' | translate}} --</option>
                                         <option *ngFor="let lang of languageList" [ngValue]="lang.id">{{lang.name}}
@@ -97,27 +85,22 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3">{{'data.lblManager' | translate}}</label>
-                                <div class="col-md-9">
-                                    <select name="managerName" formControlName="managerId" class="form-control">
+                            <div class="form-group col-sm-4">
+                                <label class="control-label">{{'data.lblManager' | translate}}</label>
+                                <div>
+                                    <select name="managerName" formControlName="managerId" class="form-control form-control-sm">
                                         <option value="">-- {{'data.lblManager' | translate}} --</option>
                                         <option *ngFor="let manager of managerList" [ngValue]="manager.id">
                                             {{manager.name}}</option>
                                     </select>
 
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3">{{'data.lblDisabled' | translate}}</label>
-                                <div class="col-md-9">
-                                    <input type="checkbox" formControlName="disabled" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3">{{'data.lblRole' | translate}}</label>
-                                <div class="col-md-9">
-                                    <p-pickList [showSourceFilter]="true" [responsive]="true" [source]="roles"
+                            </div>                            
+                            <div class="form-group col-sm-4">
+                                <label class="control-label">{{'data.lblRole' | translate}}</label>
+                                <div>
+                                    <p-multiSelect  [options]="roleList" formControlName="userRights" optionLabel="name"></p-multiSelect>
+                                    <!-- <p-pickList [showSourceFilter]="true" [responsive]="true" [source]="roleList"
                                         [target]="selectedRoleList" filterBy="name" [showSourceControls]="false"
                                         [showTargetControls]="false">
                                         <ng-template let-role pTemplate="item">
@@ -125,86 +108,28 @@
                                                 {{role.name}}
                                             </div>
                                         </ng-template>
-                                    </p-pickList>
+                                    </p-pickList> -->
 
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </p-scrollPanel>
 
-            </p-tabPanel>
-            <p-tabPanel header="UserPrefrences">
-                <p-scrollPanel [styleClass]="'scrollStyle'">
-                    <div formGroupName="userPrefGroup" class="col-md-12">
-                        <div class="col-md-10">
-                            <div class="form-group"
-                                [ngClass]="{'has-error': (userForm.get('userPrefGroup.dataLocal').invalid && formDir.submitted) }">
-                                <label class="control-label col-md-3">{{'data.lblDataLocal'|translate}}</label>
-                                <div class="col-md-9">
-                                    <select formControlName="dataLocal" name="dataLocalName" class="form-control">
-                                        <option [ngValue]="dt.id" *ngFor="let dt of languageList">{{dt.name}}</option>
-                                    </select>
+                            <div class="form-group col-sm-4">
+                                <label class="control-label">{{'data.lblDisabled' | translate}}</label>
+                                <div>
+                                    <p-inputSwitch   binary="true" formControlName="disabled" ></p-inputSwitch>
                                 </div>
                             </div>
-                            <div class="form-group"
-                                [ngClass]="{'has-error': (userForm.get('userPrefGroup.timeZone').invalid && formDir.submitted) }">
-                                <label class="control-label col-md-3">{{'data.lblTimeZone'|translate}}</label>
-                                <div class="col-md-9">
-                                    <select name="timeZoneName" formControlName="timeZone" class="form-control">
-                                        <option [ngValue]="tz.name" *ngFor="let tz of timeZoneList">{{tz.name}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group"
-                                [ngClass]="{'has-error': (userForm.get('userPrefGroup.taxonomy').invalid && formDir.submitted) }">
-                                <label class="control-label col-md-3">{{'data.lblTaxonomy'|translate}}</label>
-                                <div class="col-md-9">
-                                    <select name="taxonomyName" formControlName="taxonomy" class="form-control">
-                                        <option [ngValue]="t.id" *ngFor="let t of taxonomyList">{{t.longName}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group"
-                                [ngClass]="{'has-error': (userForm.get('userPrefGroup.organizationId').invalid && formDir.submitted) }">
-                                <label class="control-label col-md-3">{{'data.lblOrganization'|translate}}</label>
-                                <div class="col-md-9">
-                                    <select name="organizationName" formControlName="organizationId"
-                                        class="form-control">
-                                        <option *ngFor="let org of organizationList" [ngValue]="org.id">{{org.longName}}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group"
-                                [ngClass]="{'has-error': (userForm.get('userPrefGroup.catalogId').invalid && formDir.submitted) }">
-                                <label class="control-label col-md-3">{{'data.lblCatalog'|translate}}</label>
-                                <div class="col-md-9">
-                                    <select name="catalogName" formControlName="catalogId" class="form-control">
-                                        <option *ngFor="let cat of catalogList" [ngValue]="cat.id">{{cat.longName}}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group"
-                                [ngClass]="{'has-error': (userForm.get('userPrefGroup.roleId').invalid && formDir.submitted) }">
-                                <label class="control-label col-md-3">{{'data.lblRole'|translate}}</label>
-                                <div class="col-md-9">
-                                    <select name="roleName" formControlName="roleId" class="form-control">
-                                        <!-- <option value="">-- {{data.lblCatalog}} --</option> -->
-                                        <option *ngFor="let role of roleList" [ngValue]="role.id">{{role.name}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </p-scrollPanel>
-            </p-tabPanel>
-        </p-tabView>
+                       
+                        </div>      
+                <!-- </p-scrollPanel> -->
+        
 
-        <div class="box-footer">
+        <div class="col-sm-12">
             <a (click)="back(null)" class="btn btn-default">{{'data.btnBack' | translate}}</a>
             <button pButton type="submit" label="{{'data.btnSave' | translate}}" class="pull-right"></button>
         </div>
     </form>
 </div>
+</p-panel>
+</div>
+<app-loader *ngIf="!_userService.isLoading || !_pimService.isLoading" ></app-loader>

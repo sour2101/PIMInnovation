@@ -9,6 +9,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { PrimengModule } from '../externalmodule/primeng.module'; 
 import { LookupColumnFormComponent } from './components/lookup-column-form/lookup-column-form.component';
 import { LookupImportComponent } from './components/lookup-import/lookup-import.component'; 
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [LookupTableListComponent, LookupTableFormComponent, LookupColumnFormComponent, LookupImportComponent],
@@ -18,7 +19,8 @@ import { LookupImportComponent } from './components/lookup-import/lookup-import.
     LookupTablesRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    PrimengModule
+    PrimengModule,
+    SharedModule
   ],
   exports:[LookupTableListComponent]
 })

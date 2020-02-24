@@ -99,3 +99,51 @@
 2019-10-18 11:15:45,171 [52] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
 2019-11-14 09:35:28,436 [26] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
 2019-11-14 09:35:28,724 [22] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2019-11-18 16:47:06,700 [9] INFO  MonitoringLogger - The Organization  "Test" has been added
+2019-11-21 14:23:33,051 [73] INFO  MonitoringLogger - The Organization "Test" has been deleted
+2019-12-04 17:07:07,484 [13] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2019-12-04 17:07:07,594 [23] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2019-12-06 15:15:02,131 [69] INFO  MonitoringLogger - The Attribute "FunctionalGroup" has been added
+2019-12-06 15:20:38,736 [38] INFO  MonitoringLogger - The Attribute "FunctionalName" has been added
+2019-12-31 14:07:10,395 [6] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2019-12-31 14:07:10,676 [4] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-01-16 15:00:03,033 [27] INFO  MonitoringLogger - The Attribute "productgroup" has been Updated
+2020-01-16 15:00:10,116 [28] INFO  MonitoringLogger - The Attribute "partnumbers" has been Updated
+2020-01-16 15:00:16,691 [38] INFO  MonitoringLogger - The Attribute "soa" has been Updated
+2020-01-16 15:00:22,747 [28] INFO  MonitoringLogger - The Attribute "brandname" has been Updated
+2020-01-16 15:00:36,156 [32] INFO  MonitoringLogger - The Attribute "functionalname" has been Updated
+2020-01-16 15:00:44,381 [24] INFO  MonitoringLogger - The Attribute "functionalgroup" has been Updated
+2020-01-17 10:10:04,845 [38] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-01-17 10:10:04,919 [6] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-01-17 10:10:14,877 [26] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-01-17 10:10:14,962 [6] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-01-17 22:22:32,764 [20] INFO  MonitoringLogger - 7
+2020-01-18 08:38:14,445 [36] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-01-18 08:38:14,512 [6] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-01-18 15:22:55,763 [11] INFO  MonitoringLogger - The user "K5705695" has been updated
+2020-01-18 15:30:53,490 [12] INFO  MonitoringLogger - The user "K5705695" has been updated
+2020-01-18 15:33:00,496 [12] INFO  MonitoringLogger - The user "A5842724" has been updated
+2020-01-18 15:34:22,605 [34] INFO  MonitoringLogger - The user "A5842724" has been updated
+2020-01-18 17:58:29,432 [40] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-01-18 17:58:29,548 [40] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-01-18 19:26:08,631 [10] INFO  MonitoringLogger - The Attribute "marketingcopy" has been Updated
+2020-01-18 19:26:20,471 [27] INFO  MonitoringLogger - The Attribute "diameter" has been Updated
+2020-01-20 12:28:09,704 [7] INFO  MonitoringLogger - The Attribute "functionalgroup" has been Updated
+2020-01-20 12:28:21,501 [7] INFO  MonitoringLogger - The Attribute "functionalname" has been Updated
+2020-01-20 13:37:27,491 [12] INFO  MonitoringLogger - The Attribute "brandName" has been Updated
+2020-01-20 13:38:23,133 [49] INFO  MonitoringLogger - The Attribute "brandname" has been Updated
+2020-01-23 14:13:52,722 [30] INFO  MonitoringLogger - The Attribute "functionalName" has been Updated
+2020-01-23 14:14:01,089 [4] INFO  MonitoringLogger - The Attribute "functionalGroup" has been Updated
+2020-01-23 14:14:16,978 [27] INFO  MonitoringLogger - The Attribute "brandName" has been Updated
+2020-01-23 14:14:45,553 [11] INFO  MonitoringLogger - The Attribute "functionalGroup" has been Updated
+2020-01-23 14:14:51,494 [30] INFO  MonitoringLogger - The Attribute "functionalName" has been Updated
+2020-01-26 22:08:21,278 [65] INFO  MonitoringLogger - The Attribute "marketingCopy" has been Updated
+2020-01-26 22:08:45,879 [68] INFO  MonitoringLogger - The Attribute "partNumbers" has been Updated
+2020-01-30 19:54:36,149 [10] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-01-30 19:54:36,509 [10] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-01-30 19:54:49,193 [13] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-01-30 19:54:49,288 [14] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-01-30 19:55:21,683 [14] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-01-30 19:55:21,756 [16] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-02-18 14:30:55,299 [29] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-02-18 14:30:55,907 [25] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.

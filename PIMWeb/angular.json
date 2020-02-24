@@ -24,20 +24,7 @@
               "src/web.config"
             ],
             "styles": [
-              "src/styles.css",
-              "src/assets/Content/font-awesome-4.5.0/css/font-awesome.min.css",
-              "src/assets/Content/ionicons-2.0.1/css/ionicons.min.css",
-              "src/assets/Content/toastr/toastr.css",
-              "src/assets/Content/adminlte-2.3.0/plugins/datatables/dataTables.bootstrap.css",
-              "src/assets/Content/adminlte-2.3.0/plugins/iCheck/flat/blue.css",
-              "src/assets/Content/adminlte-2.3.0/plugins/morris/morris.css",
-              "src/assets/Content/adminlte-2.3.0/plugins/jvectormap/jquery-jvectormap-1.2.2.css",
-              "src/assets/Content/adminlte-2.3.0/plugins/datepicker/datepicker3.css",
-              "src/assets/Content/adminlte-2.3.0/plugins/daterangepicker/daterangepicker-bs3.css",
-              "src/assets/Content/adminlte-2.3.0/dist/css/AdminLTE.css",
-              "src/assets/Content/adminlte-2.3.0/dist/css/skins/_all-skins.css",
-              "src/assets/Content/bootstrap-3.3.6/css/bootstrap.css",
-              "src/assets/Content/css/hover.css"
+              "src/styles.css"
             ],
             "scripts": [
               "src/assets/Content/jquery-2.2.2/jquery-1.10.2.js",

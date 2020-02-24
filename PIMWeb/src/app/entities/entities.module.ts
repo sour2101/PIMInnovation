@@ -13,6 +13,7 @@ import { FieldBuilderComponent } from '../dynamic-forms/components/field-builder
 
 import { DynamicFormsModule } from '../dynamic-forms/dynamic-forms.module';
 import { SearchEntityComponent } from './components/search-entity/search-entity.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { SearchEntityComponent } from './components/search-entity/search-entity.
     DynamicFormsPrimeNGUIModule,
     DynamicFormsModule,
     ReactiveFormsModule,
+    SharedModule,
     FormsModule,
     PrimengModule,
     TranslateModule

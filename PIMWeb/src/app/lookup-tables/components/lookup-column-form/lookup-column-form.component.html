@@ -57,6 +57,7 @@
   </div>
   </p-panel>
 </div>
+<app-loader *ngIf="!_lookupTableService.isLoading "></app-loader>
 <p-dialog [showHeader]="false" [(visible)]="displayDialog" [responsive]="true" [style]="{width: '350px', minWidth: '200px'}" showEffect="fade" [modal]="true"  >
     <div class="box-body">
   <form [formGroup]="lookupTableColumnForm" #formDir="ngForm" (ngSubmit)="lookupTableColumnForm.valid && saveRow(lookupTableColumnForm)" class="form-horizontal" novalidate >

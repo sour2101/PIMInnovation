@@ -7,13 +7,15 @@ import { AttrService } from '../../services/attr.service';
 
 import { environment } from 'src/environments/environment';
 import { AppService } from 'src/app/app.service';
-
-import { AttributeFormComponent } from '../attribute-form/attribute-form.component';
+ 
 import { AttributegroupFromComponent } from '../attributegroup-from/attributegroup-from.component';
+import { AttributebrsComponent } from '../attributebrs/attributebrs.component'; 
+import { AttributeService } from '../../services/attributeService';
+
 @Component({
   selector: 'app-attribute-list',
   templateUrl: './attribute-list.component.html',
-  providers:[ConfirmationService]
+  providers:[ConfirmationService,AttributeService]
 })
 export class AttributeListComponent implements OnInit {
 
@@ -29,13 +31,17 @@ export class AttributeListComponent implements OnInit {
   menuItems:MenuItem[];
   selectedNode:TreeNode;
   attrTypeList:TreeNode[];
-   
+  attrGroupList:TreeNode[]; 
+  attrGroupId;
+  attrTypedId;
 
-  constructor( public dialogService: DialogService,
+  constructor( 
+    public dialogService:DialogService,
     private toastr:ToastsManager,
     private translate:TranslateService,
     private _formBuilder:FormBuilder,
     private _confirmationService:ConfirmationService,
+    private _attributeService:AttributeService,
     private _pimService:AppService,
     private _attrService:AttrService ) {
       this.initialize();
@@ -65,7 +71,11 @@ export class AttributeListComponent implements OnInit {
   getAttributeType(){
     this._pimService.get(environment.attributeType_url)
     .subscribe(res=>{
-      this.attrTypeList=res;
+      this.attrGroupList=res;
+      if(this._attributeService.getGroupId()!==null){
+        this.attrGroupId = this._attributeService.getGroupId();
+        this.loadNode(this._attributeService.getGroupId());
+      }
     });
   }
 
@@ -91,42 +101,28 @@ export class AttributeListComponent implements OnInit {
 
  //Tree events
  loadNode(event){
-   if(event.node){
-    this._pimService.getById(environment.attributeGroup_url,event.node.id)
+   if(event){
+    this._pimService.getById(environment.attributeGroup_url,event)
     .subscribe(res=>{
-      event.node.children = res;
+      this._attributeService.setGroupId(event);
+      this.attrTypeList = res;
+      if(this._attributeService.getTypeId()!==null){
+        this.attrTypedId=this._attributeService.getTypeId();
+        this.nodeSelect(this._attributeService.getTypeId());
+      }
     });
    }
  }
  
  nodeSelect(event){
-   if(event.node){
+   if(event){
      this.showList=true;
-    this.filterForm.value.attributeGroupId = event.node.id;
+     this._attributeService.setTypeId(event);
+    this.filterForm.value.attributeGroupId = event;
     this.loadAttributeList(this.pageSize,this.pageNumber,this.sortBy,this.sortOrder,this.filterForm.value);
    }
  }
 
-
-  openDialog(attrId): void {
-    let header;
-    this.translate.get('data.lblAddNewAttribute').subscribe((res)=> 
-    {header = res});
-
-    const ref = this.dialogService.open(AttributeFormComponent, {
-      data: { attrId: attrId,groupId: this.filterForm.value.attributeGroupId},
-      header: header,
-      width:'80%'
-      });   
-      
-      ref.onClose.subscribe(() => {
-        this.loadAttributeList(this.pageSize,this.pageNumber,this.sortBy,this.sortOrder,this.filterForm.value);
-      });
-  }
-
-  addAttribute(){
-    this.openDialog(null);
-  }
 
   addAttributeGroup(node){
     let header;
@@ -144,11 +140,8 @@ export class AttributeListComponent implements OnInit {
         this.getAttributeType();
       });
   }
+ 
 
-
-  editAttribute(selectedAttribute){
-    this.openDialog(selectedAttribute.id);
-  }
 
   deleteAttribute(selectedAttribute){
     
@@ -176,5 +169,7 @@ export class AttributeListComponent implements OnInit {
       this.attributeList = res.entries;
      });
   }
+
+  
 
 }

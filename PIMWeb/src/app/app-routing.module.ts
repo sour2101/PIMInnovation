@@ -29,6 +29,7 @@ const routes: Routes = [
   {
     path: 'userList',
     canActivate:[AuthGuard],
+    data: { preload: true },
     loadChildren: './users/users.module#UsersModule'
   },
   {

@@ -2,8 +2,23 @@
 @import '~primeng/resources/themes/rhea/theme.css';
 @import '~primeng/resources/primeng.css';
 @import '~primeicons/primeicons.css';
+
+@import '../src/assets/Content/font-awesome-4.5.0/css/font-awesome.min.css';
+@import '../src/assets/Content/ionicons-2.0.1/css/ionicons.min.css';
+@import '../src/assets/Content/toastr/toastr.css';
+@import '../src/assets/Content/adminlte-2.3.0/plugins/datatables/dataTables.bootstrap.css';
+@import '../src/assets/Content/adminlte-2.3.0/plugins/iCheck/flat/blue.css';
+@import '../src/assets/Content/adminlte-2.3.0/plugins/morris/morris.css';
+@import '../src/assets/Content/adminlte-2.3.0/plugins/jvectormap/jquery-jvectormap-1.2.2.css';
+@import '../src/assets/Content/adminlte-2.3.0/plugins/datepicker/datepicker3.css';
+@import '../src/assets/Content/adminlte-2.3.0/plugins/daterangepicker/daterangepicker-bs3.css';
+@import '../src/assets/Content/adminlte-2.3.0/dist/css/AdminLTE.css';
+@import '../src/assets/Content/adminlte-2.3.0/dist/css/skins/_all-skins.css';
+@import '../src/assets/Content/bootstrap-3.3.6/css/bootstrap.css';
+@import '../src/assets/Content/css/hover.css';
 @import '../src/assets/Content/css/pim.css';
 @import '../src/assets/Content/css/customizeprimeng.css'; 
+
 body {
   -moz-background-size: cover;
   -webkit-background-size: cover;
@@ -126,7 +141,7 @@ body {
   stroke-dasharray: 0,650,900;
 }
 
-body > .overlay,
+ .overlay,
 .overlay-wrapper > .overlay,
 .box > .loading-img,
 .overlay-wrapper > .loading-img {
@@ -144,11 +159,11 @@ body .overlay,
   border-radius: 3px;
 }
 
-body  .overlay-dark {
+/* body  .overlay-dark {
   z-index: 1050;
   background:#2e2e2e;
   border-radius: 3px;
-}
+} */
 
 .body .overlay > .fa,
 .overlay-wrapper .overlay > .fa {

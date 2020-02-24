@@ -1,22 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../../../app.service';
-import { ToastsManager } from 'ng6-toastr';
-import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/api';
+import { ToastsManager } from 'ng6-toastr'; 
 import { environment } from 'src/environments/environment';
 import { AttrService } from '../../services/attr.service';
 import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
-import { LookupTableService } from 'src/app/lookup-tables/services/lookup-table.service';
-import { attributeDropDowns } from '../../models/attributeDropDown';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Attribute } from '../../models/attribute'; 
+import { AttributeService } from '../../services/attributeService';
 
 @Component({
   selector: 'app-attribute-form',
   templateUrl: './attribute-form.component.html',
-  styleUrls: ['./attribute-form.component.css']
+  styleUrls: ['./attribute-form.component.css'],
+  providers:[AttributeService]
 })
 export class AttributeFormComponent implements OnInit {
 
   attributeForm: FormGroup;
   dataTypeList: any;
+  attributeId:number;
+  
   displayTypeList: any;
   attrGroupList: any;
   lookupTableList: any;
@@ -24,13 +27,16 @@ export class AttributeFormComponent implements OnInit {
   dropdownList: any = [];
   uomTypeList:any;
   uomList:any;
+  attrBRList:[];
 
-  constructor(public _pimService: AppService,
+  constructor(
+    private route: ActivatedRoute,
+    public router:Router,
+    public _pimService: AppService,
     private _attrService: AttrService,
+    private _attributeService :AttributeService,
     public toastr: ToastsManager,
-    private _formBuilder: FormBuilder,
-    public ref: DynamicDialogRef,
-    public config: DynamicDialogConfig) {
+    private _formBuilder: FormBuilder) {
     this.initialize();
   }
 
@@ -38,34 +44,43 @@ export class AttributeFormComponent implements OnInit {
   }
 
   initialize() {
-    this.attributeForm = this._formBuilder.group({
-      shortName: new FormControl("", Validators.required),
-      longName: new FormControl("", Validators.required),
-      attributeGroupId: new FormControl(this.config.data.groupId, Validators.required),
-      dataTypeId: new FormControl("", Validators.required),
-      displayTypeId: new FormControl("", Validators.required),
-      required: new FormControl(false),
-      isActive: new FormControl(true),
-      isLocalizable: new FormControl(false),
-      isCollection: new FormControl(false),
-      showAtCreation: new FormControl(false),
-      lookupTableId: new FormControl(),
-      uomTypeId: new FormControl(),
-      attributeLookups: new FormControl([]),
-      attributeDropdowns: new FormControl([]),
-      dropdownName: new FormControl(),
-      attributeUOMs:new FormControl([])
-    });
-
     this.getAttributeGroup();
     this.getDataType();
     this.getLookupTable();
     this.getUOMType();
-    if (this.config.data.attrId !== null && this.config.data.attrId !== undefined)
-      this.getAttribute(this.config.data.attrId);
+    debugger;
+   this._attributeService;
+    this.route.params.subscribe(params => {
+    this.attributeForm = this.getAttributeForm(new Attribute());
 
+      if(params.id!==null && params.id!==undefined){
+        this.attributeId = params.id;
+        this.getAttribute(this.attributeId);
+      }
+    });
   }
 
+  getAttributeForm(data:Attribute):FormGroup{
+    return this._formBuilder.group({
+      id:new FormControl(data.id),
+      shortName: new FormControl(data.shortName, Validators.required),
+      longName: new FormControl(data.longName, Validators.required),
+      attributeGroupId: new FormControl(data.attributeGroupId, Validators.required),
+      dataTypeId: new FormControl(data.dataTypeId, Validators.required),
+      displayTypeId: new FormControl(data.displayTypeId, Validators.required),
+      required: new FormControl(data.required),
+      isActive: new FormControl(data.isActive),
+      isLocalizable: new FormControl(data.isLocalizable),
+      isCollection: new FormControl(data.isCollection),
+      showAtCreation: new FormControl(data.showAtCreation),
+      lookupTableId: new FormControl(data.lookupTableId),
+      uomTypeId: new FormControl(data.uomTypeId),
+      attributeLookups: new FormControl(data.attributeLookups),
+      attributeDropdowns: new FormControl(data.attributeDropDowns),
+      dropdownName: new FormControl(),
+      // attributeUOMs:new FormControl([]) 
+    });
+  }
 
   //get all masters
   getAttributeGroup() {
@@ -85,8 +100,7 @@ export class AttributeFormComponent implements OnInit {
   getDisplayType() {
     this._pimService.getById(environment.displayType_url, this.attributeForm.value.dataTypeId)
       .subscribe(res => {
-        this.displayTypeList = res;
-        
+        this.displayTypeList = res;        
       });
   }
 
@@ -111,6 +125,8 @@ export class AttributeFormComponent implements OnInit {
     });
   }
 
+  
+
   uomTypeChange(event){
     this.attributeForm.controls["attributeUOMs"].patchValue([]);
     this.getUom(event);
@@ -122,12 +138,21 @@ export class AttributeFormComponent implements OnInit {
 
   addDropDown() {
     let dropdownName = this.attributeForm.value.dropdownName;
+    debugger;
     if (dropdownName !== "" && dropdownName !== null) {
+      if(this.dropdownList.length===0 ){
       this.dropdownList = [...this.dropdownList, { id: 0, name: dropdownName }];
       this.attributeForm.patchValue({
         attributeDropdowns: this.dropdownList,
         dropdownName: ""
       });
+    }else if(this.dropdownList.find(ddl=>ddl['dropdownName']!==dropdownName).name!==dropdownName){
+      this.dropdownList = [...this.dropdownList, { id: 0, name: dropdownName }];
+      this.attributeForm.patchValue({
+        attributeDropdowns: this.dropdownList,
+        dropdownName: ""
+      });
+    }
     }
   }
 
@@ -135,6 +160,8 @@ export class AttributeFormComponent implements OnInit {
     this.attributeForm.controls["attributeLookups"].patchValue([]);
     this.getLookupColumnList(event);
   }
+
+
 
   getLookupColumnList(id){
     this._pimService.getById("lookupTableList", id)
@@ -146,50 +173,29 @@ export class AttributeFormComponent implements OnInit {
 
   //back button click
   back(result = null) {
-    this.ref.close(result);
-    return false;
+    this.router.navigate(["attributeList"]);
   }
 
   getAttribute(id) {
     this._attrService.getAttribute(id)
       .subscribe(res => {
-        this.attributeForm = this._formBuilder.group({
-          id: new FormControl(res.id),
-          shortName: new FormControl(res.shortName, Validators.required),
-          longName: new FormControl(res.longName, Validators.required),
-          attributeGroupId: new FormControl(res.attributeGroupId, Validators.required),
-          dataTypeId: new FormControl(res.dataTypeId, Validators.required),
-          displayTypeId: new FormControl(res.displayTypeId, Validators.required),
-          required: new FormControl(res.required),
-          isActive: new FormControl(res.isActive),
-          isLocalizable: new FormControl(res.isLocalizable),
-          isCollection: new FormControl(res.isCollection),
-          showAtCreation: new FormControl(res.showAtCreation),
-          createdBy: new FormControl(res.createdBy),
-          createdDate: new FormControl(res.createdDate),
-          lookupTableId: new FormControl(res.lookupTableId),
-          uomTypeId:new FormControl(res.uomTypeId),
-          attributeLookups: new FormControl(res.attributeLookups),
-          attributeDropdowns: new FormControl(res.attributeDropDowns),
-          dropdownName: new FormControl(),
-          attributeUOMs:new FormControl(res.attributeUoms)
-        });
+        this.attributeForm = this.getAttributeForm(res);
+        this.dropdownList = res.attributeDropDowns;
 
         this.getDisplayType();
         this.getUOMType();
         this.getLookupColumnList(res.lookupTableId);
-        this.getUom(res.uomTypeId);
-        this.dropdownList = res.attributeDropDowns;
+        //this.getUom(res.uomTypeId);
       });
   }
 
   //save attribute
   submit(attributeDetails) {
     let submitAttr: any;
-    if (this.config.data.attrId !== null && this.config.data.attrId !== undefined)
-      submitAttr = this._attrService.updateAttribute(attributeDetails.value);
-    else
+    if (this.attributeId === undefined)
       submitAttr = this._attrService.saveAttribute(attributeDetails.value);
+    else
+      submitAttr = this._attrService.updateAttribute(attributeDetails.value);
 
     submitAttr.subscribe(res => {
       this.toastr.success(res);

@@ -95,17 +95,17 @@ namespace PIM.API.Controllers
                 .Select(u => new
                 {
                     u.Id,
-                    Sso = u.Sso ?"1":"0",
+                    Sso = u.Sso ?1:0,
                     u.Firstname,
                     u.Lastname,
                     u.Email,
                     u.Disabled,
-                    u.Password,
-                    u.Username,                    
+                    u.Username,
+                    u.Password,                    
                     u.LanguageId,
                     u.ManagerId,
                     u.Active,
-                    UserRights =u.UserRights.Select(p=> new { p.RoleId }).ToList()
+                    UserRights =u.UserRights.Select(p=> new { id  = p.RoleId,p.Roles.Name }).ToList()
                 }).SingleOrDefault();
             if (user == null)
             {
@@ -126,15 +126,15 @@ namespace PIM.API.Controllers
             {
                 var warningMessage = "The username \"" + user.Username + "\" already exists";
                // Log.MonitoringLogger.Warn(warningMessage);
-                ModelState.AddModelError("user.login", warningMessage);
+                ModelState.AddModelError("alreadyExists", warningMessage);
                 return BadRequest(ModelState);
             }
 
             user.Active = true;
-            user.Password = PasswordManagerProvider.Hash(user.Password);
+            user.Password = PasswordManagerProvider.Hash("UserPIM@123");
             Repository.Add(user);
             Repository.Save();
-            var message =  user.Id ;
+            var message = "The username \"" + user.Username + "\" inserted successfully";
             Log.MonitoringLogger.Info(message);
             return Ok(message);
         }
@@ -150,7 +150,7 @@ namespace PIM.API.Controllers
             {
                 var warningMessage = "The username \"" + user.Username + "\" already exists";
                 //Log.MonitoringLogger.Warn(warningMessage);
-                ModelState.AddModelError("user.login", warningMessage);
+                ModelState.AddModelError("alreadyExists", warningMessage);
                 return BadRequest(ModelState);
             }
 
@@ -165,7 +165,9 @@ namespace PIM.API.Controllers
                 Repository.Add(ur);
             }
 
-            user.Password = PasswordManagerProvider.Hash(user.Password);
+            if(!string.IsNullOrEmpty(user.Password))
+                user.Password = PasswordManagerProvider.Hash(user.Password);
+
             Repository.Update(user);
             Repository.Save();
             var message = "The user \"" + user.Username + "\" has been updated";

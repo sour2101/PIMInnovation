@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, finalize } from 'rxjs/operators';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
@@ -15,7 +15,7 @@ import { environment } from 'src/environments/environment';
 export class AppService {
 
     private readonly baseUrl = `${environment.api.endPoint}`;
-  
+  isLoading=false;
   constructor(private _httpClient: HttpClient,public _authService:AuthService) { }
    
   getList(apiEndpoint, pageSize:any=null,pageNumber:any=null,sortBy:any=null,sortOrder:any='false',filterBy:any[]=null):Observable<any>{
@@ -33,20 +33,26 @@ export class AppService {
   }
 
     return this._httpClient.get(url,{params:param})
-          .pipe(map(data => data));
+          .pipe(finalize(() => {
+              this.isLoading = true;
+            }));
   }
 
   getById(apiEndpoint,id): Observable<any>{
      
     let url=`${this.baseUrl}/`+apiEndpoint+`?id=`+id;
     return this._httpClient.get<any>(url)
-    .pipe(map(data => data));
+    .pipe(finalize(() => {
+              this.isLoading = true;
+            }));
   }
 
   get(apiEndpoint){
     let url=`${this.baseUrl}/`+apiEndpoint;
     return this._httpClient.get<any>(url)
-    .pipe(map(data => data));
+    .pipe(finalize(() => {
+              this.isLoading = true;
+            }));
   }
  
 

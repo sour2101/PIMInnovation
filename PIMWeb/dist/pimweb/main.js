@@ -500,6 +500,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_attribute_form_attribute_form_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/attribute-form/attribute-form.component */ "./src/app/attributes/components/attribute-form/attribute-form.component.ts");
 /* harmony import */ var _components_attributegroup_from_attributegroup_from_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/attributegroup-from/attributegroup-from.component */ "./src/app/attributes/components/attributegroup-from/attributegroup-from.component.ts");
 /* harmony import */ var _core_components_forbidden_forbidden_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../core/components/forbidden/forbidden.component */ "./src/app/core/components/forbidden/forbidden.component.ts");
+/* harmony import */ var _components_attributebrs_attributebrs_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/attributebrs/attributebrs.component */ "./src/app/attributes/components/attributebrs/attributebrs.component.ts");
+
 
 
 
@@ -521,6 +523,7 @@ var routes = [
             },
             { path: 'createAttribute', component: _components_attribute_form_attribute_form_component__WEBPACK_IMPORTED_MODULE_6__["AttributeFormComponent"] },
             { path: 'createAttributeGroup', component: _components_attributegroup_from_attributegroup_from_component__WEBPACK_IMPORTED_MODULE_7__["AttributegroupFromComponent"] },
+            { path: 'createAttributeBR', component: _components_attributebrs_attributebrs_component__WEBPACK_IMPORTED_MODULE_9__["AttributebrsComponent"] },
             {
                 path: 'forbidden',
                 component: _core_components_forbidden_forbidden_component__WEBPACK_IMPORTED_MODULE_8__["ForbiddenComponent"]
@@ -564,6 +567,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ngx-translate/core */ "./node_modules/@ngx-translate/core/fesm5/ngx-translate-core.js");
 /* harmony import */ var _components_attributegroup_from_attributegroup_from_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/attributegroup-from/attributegroup-from.component */ "./src/app/attributes/components/attributegroup-from/attributegroup-from.component.ts");
+/* harmony import */ var _components_attributebrs_attributebrs_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/attributebrs/attributebrs.component */ "./src/app/attributes/components/attributebrs/attributebrs.component.ts");
+/* harmony import */ var angular_ng_autocomplete__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! angular-ng-autocomplete */ "./node_modules/angular-ng-autocomplete/fesm5/angular-ng-autocomplete.js");
+
+
 
 
 
@@ -579,12 +586,13 @@ var AttributesModule = /** @class */ (function () {
     }
     AttributesModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-            declarations: [_components_attribute_list_attribute_list_component__WEBPACK_IMPORTED_MODULE_4__["AttributeListComponent"], _components_attribute_form_attribute_form_component__WEBPACK_IMPORTED_MODULE_6__["AttributeFormComponent"], _components_attributegroup_from_attributegroup_from_component__WEBPACK_IMPORTED_MODULE_9__["AttributegroupFromComponent"]],
+            declarations: [_components_attribute_list_attribute_list_component__WEBPACK_IMPORTED_MODULE_4__["AttributeListComponent"], _components_attribute_form_attribute_form_component__WEBPACK_IMPORTED_MODULE_6__["AttributeFormComponent"], _components_attributegroup_from_attributegroup_from_component__WEBPACK_IMPORTED_MODULE_9__["AttributegroupFromComponent"], _components_attributebrs_attributebrs_component__WEBPACK_IMPORTED_MODULE_10__["AttributebrsComponent"]],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
                 _attributes_routing_module__WEBPACK_IMPORTED_MODULE_3__["AttributesRoutingModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_7__["ReactiveFormsModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormsModule"],
+                angular_ng_autocomplete__WEBPACK_IMPORTED_MODULE_11__["AutocompleteLibModule"],
                 _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__["TranslateModule"],
                 _externalmodule_primeng_module__WEBPACK_IMPORTED_MODULE_5__["PrimengModule"]
             ],
@@ -838,7 +846,7 @@ var AttributeFormComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-md-12\" style=\"padding:0px;\">\r\n  <p-panel [styleClass]=\"'panelStyle'\"  [toggleable]=\"false\" >\r\n     <p-header>\r\n                <div class=\"ui-helper-clearfix\">\r\n                    <span class=\"ui-panel-title\" >{{'data.lblAttributeMaster' | translate}}</span>\r\n                </div>\r\n     </p-header>\r\n     <div class=\"ui-g\">\r\n     <div class=\"ui-md-3 col-md-3\">\r\n        <p-panel header=\"{{'data.lblAttributeType' | translate}}\">\r\n            <p-scrollPanel [style]=\"{width: '100%', height: '354px'}\">                             \r\n                <p-tree [contextMenu]=\"cm\" [style]=\"{border:'0px'}\" [value]=\"attrTypeList\" (onNodeSelect)=\"nodeSelect($event)\" (onNodeExpand)=\"loadNode($event)\" [(selection)]=\"selectedNode\" selectionMode=\"single\" ></p-tree>\r\n                <p-contextMenu  appendTo=\"body\"  #cm [model]=\"menuItems\"></p-contextMenu>\r\n            </p-scrollPanel>\r\n        </p-panel>\r\n    </div>\r\n    <div class=\"ui-md-9 col-md-9\">\r\n     <p-panel [formGroup]=\"filterForm\" [ngStyle]=\"{'display': showList?'block':'none'}\">\r\n        <p-header>\r\n            <div class=\"ui-helper-clearfix\">\r\n                                        <span class=\"ui-panel-title\" >{{'data.lblAttribute' | translate}}</span>\r\n                                        <button style=\"float:right\" type=\"button\" pButton icon=\"pi pi-plus\" label=\"{{'data.lblAddAttribute' | translate}}\" (click)=\"addAttribute()\"></button>\r\n            </div>\r\n        </p-header>\r\n        <p-table    [value]=\"attributeList\"  (onLazyLoad)=\"sorting($event)\" [responsive]=\"true\" [scrollable]=\"true\" scrollHeight=\"50vh\"\r\n                                         [lazy]=\"true\" [customSort]=\"true\" [rows]=\"pageSize\">\r\n                                            <ng-template pTemplate=\"header\">\r\n                                                <tr>\r\n                                                    <th [pSortableColumn]=\"'shortName'\">{{'data.lblShortName' | translate}}<p-sortIcon [field]=\"'shortName'\" ></p-sortIcon></th>\r\n                                                    <th>{{'data.lblLongName' | translate}}</th>\r\n                                                    <th>{{'data.lblDataType' | translate}}</th>\r\n                                                    <th></th>\r\n                                                </tr>\r\n                                                <tr>\r\n                                                    <th> <input   pInputText type=\"text\" formControlName=\"shortName\"></th>\r\n                                                    <th></th>\r\n                                                    <th></th>\r\n                                                    <th><button pButton type=\"button\" icon=\"fa fa-search\" pTooltip=\"{{'data.btnSearch' | translate}}\"  (click)=\"filtering()\"  ></button></th>\r\n                                                </tr>\r\n                                            </ng-template>\r\n                                            <ng-template pTemplate=\"body\" let-attribute  >\r\n                                                <tr>\r\n                                                    <td><span class=\"ui-column-title\">{{'data.lblShortName' | translate}}</span> {{attribute.shortName}}</td>\r\n                                                    <td><span class=\"ui-column-title\">{{'data.lblLongName' | translate}}</span> {{attribute.longName}}</td>\r\n                                                    <td><span class=\"ui-column-title\">{{'data.lblDataType' | translate}}</span> {{attribute.dataType}}</td>\r\n                                                    <td>\r\n                                                        <button type=\"button\" pButton icon=\"pi pi-pencil\" tooltipPosition=\"top\" pTooltip=\"{{'data.btnEdit' | translate}}\"  (click)=\"editAttribute(attribute)\"></button>\r\n                                                        <button type=\"button\" pButton icon=\"pi pi-trash\" tooltipPosition=\"top\" pTooltip=\"{{'data.btnDelete' | translate}}\"  (click)=\"deleteAttribute(attribute)\"></button>\r\n                                                    </td>\r\n                                                </tr>\r\n                                            </ng-template>\r\n                                            \r\n        </p-table>\r\n        <p-paginator  [rows]=\"pageSize\" [rowsPerPageOptions]=\"[10,20,50,100]\" [totalRecords]=\"totalRecords\" (onPageChange)=\"pageChange($event)\"></p-paginator>\r\n     </p-panel>\r\n    </div>\r\n</div>\r\n  </p-panel>\r\n</div>\r\n"
+module.exports = "<div class=\"col-md-12\" style=\"padding:0px;\">\r\n  <p-panel [styleClass]=\"'panelStyle'\"  [toggleable]=\"false\" >\r\n     <p-header>\r\n                <div class=\"ui-helper-clearfix\">\r\n                    <span class=\"ui-panel-title\" >{{'data.lblAttributeMaster' | translate}}</span>\r\n                </div>\r\n     </p-header>\r\n     <div class=\"ui-g\">\r\n     <div class=\"ui-md-3 col-md-3\">\r\n        <p-panel header=\"{{'data.lblAttributeType' | translate}}\">\r\n            <p-scrollPanel [style]=\"{width: '100%', height: '354px'}\">                             \r\n                <p-tree [contextMenu]=\"cm\" [style]=\"{border:'0px'}\" [value]=\"attrTypeList\" (onNodeSelect)=\"nodeSelect($event)\" (onNodeExpand)=\"loadNode($event)\" [(selection)]=\"selectedNode\" selectionMode=\"single\" ></p-tree>\r\n                <p-contextMenu  appendTo=\"body\"  #cm [model]=\"menuItems\"></p-contextMenu>\r\n            </p-scrollPanel>\r\n        </p-panel>\r\n    </div>\r\n    <div class=\"ui-md-9 col-md-9\">\r\n     <p-panel [formGroup]=\"filterForm\" [ngStyle]=\"{'display': showList?'block':'none'}\">\r\n        <p-header>\r\n            <div class=\"ui-helper-clearfix\">\r\n                                        <span class=\"ui-panel-title\" >{{'data.lblAttribute' | translate}}</span>\r\n                                        <button style=\"float:right\" type=\"button\" pButton icon=\"pi pi-plus\" label=\"{{'data.lblAddAttribute' | translate}}\" (click)=\"addAttribute()\"></button>\r\n            </div>\r\n        </p-header>\r\n        <p-table    [value]=\"attributeList\"  (onLazyLoad)=\"sorting($event)\" [responsive]=\"true\" [scrollable]=\"true\" scrollHeight=\"50vh\"\r\n                                         [lazy]=\"true\" [customSort]=\"true\" [rows]=\"pageSize\">\r\n                                            <ng-template pTemplate=\"header\">\r\n                                                <tr>\r\n                                                    <th [pSortableColumn]=\"'shortName'\">{{'data.lblShortName' | translate}}<p-sortIcon [field]=\"'shortName'\" ></p-sortIcon></th>\r\n                                                    <th>{{'data.lblLongName' | translate}}</th>\r\n                                                    <th>{{'data.lblDataType' | translate}}</th>\r\n                                                    <th></th>\r\n                                                </tr>\r\n                                                <tr>\r\n                                                    <th> <input   pInputText type=\"text\" formControlName=\"shortName\"></th>\r\n                                                    <th></th>\r\n                                                    <th></th>\r\n                                                    <th><button pButton type=\"button\" icon=\"fa fa-search\" pTooltip=\"{{'data.btnSearch' | translate}}\"  (click)=\"filtering()\"  ></button></th>\r\n                                                </tr>\r\n                                            </ng-template>\r\n                                            <ng-template pTemplate=\"body\" let-attribute  >\r\n                                                <tr>\r\n                                                    <td><span class=\"ui-column-title\">{{'data.lblShortName' | translate}}</span> {{attribute.shortName}}</td>\r\n                                                    <td><span class=\"ui-column-title\">{{'data.lblLongName' | translate}}</span> {{attribute.longName}}</td>\r\n                                                    <td><span class=\"ui-column-title\">{{'data.lblDataType' | translate}}</span> {{attribute.dataType}}</td>\r\n                                                    <td>\r\n                                                        <button type=\"button\" pButton icon=\"pi pi-pencil\" tooltipPosition=\"top\" pTooltip=\"{{'data.btnEdit' | translate}}\"  (click)=\"editAttribute(attribute)\"></button>\r\n                                                        <button type=\"button\" pButton icon=\"pi pi-trash\" tooltipPosition=\"top\" pTooltip=\"{{'data.btnDelete' | translate}}\"  (click)=\"deleteAttribute(attribute)\"></button>\r\n                                                        <button type=\"button\" pButton icon=\"pi pi-plus\" tooltipPosition=\"top\" pTooltip=\"{{'data.addBr' | translate}}\"  (click)=\"addAttributeBr(attribute)\"></button>\r\n                                                    </td>\r\n                                                </tr>\r\n                                            </ng-template>\r\n                                            \r\n        </p-table>\r\n        <p-paginator  [rows]=\"pageSize\" [rowsPerPageOptions]=\"[10,20,50,100]\" [totalRecords]=\"totalRecords\" (onPageChange)=\"pageChange($event)\"></p-paginator>\r\n     </p-panel>\r\n    </div>\r\n</div>\r\n  </p-panel>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -865,6 +873,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_app_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/app.service */ "./src/app/app.service.ts");
 /* harmony import */ var _attribute_form_attribute_form_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../attribute-form/attribute-form.component */ "./src/app/attributes/components/attribute-form/attribute-form.component.ts");
 /* harmony import */ var _attributegroup_from_attributegroup_from_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../attributegroup-from/attributegroup-from.component */ "./src/app/attributes/components/attributegroup-from/attributegroup-from.component.ts");
+/* harmony import */ var _attributebrs_attributebrs_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../attributebrs/attributebrs.component */ "./src/app/attributes/components/attributebrs/attributebrs.component.ts");
+
 
 
 
@@ -972,6 +982,19 @@ var AttributeListComponent = /** @class */ (function () {
             _this.getAttributeType();
         });
     };
+    AttributeListComponent.prototype.addAttributeBr = function (selectedAttribute) {
+        var _this = this;
+        var header;
+        this.translate.get('data.lblAddAttributeBr').subscribe(function (res) { header = res; });
+        var ref = this.dialogService.open(_attributebrs_attributebrs_component__WEBPACK_IMPORTED_MODULE_11__["AttributebrsComponent"], {
+            data: { attrId: selectedAttribute.id },
+            header: header,
+            width: '80%'
+        });
+        ref.onClose.subscribe(function () {
+            _this.getAttributeType();
+        });
+    };
     AttributeListComponent.prototype.editAttribute = function (selectedAttribute) {
         this.openDialog(selectedAttribute.id);
     };
@@ -1016,6 +1039,165 @@ var AttributeListComponent = /** @class */ (function () {
             _services_attr_service__WEBPACK_IMPORTED_MODULE_6__["AttrService"]])
     ], AttributeListComponent);
     return AttributeListComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/attributes/components/attributebrs/attributebrs.component.html":
+/*!********************************************************************************!*\
+  !*** ./src/app/attributes/components/attributebrs/attributebrs.component.html ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<section class=\"content\">\n  <div class=\"box-body\">\n<p-scrollPanel [style]=\"{width:'100%', height: '300px'}\">\n    <p-table [value]=\"attrBRList\">\n          <ng-template pTemplate=\"header\" >\n            <tr>\n              <th>Attribute Name</th>\n              <th>Description</th>\n              <th>SortOrder</th>\n              <th></th>\n            </tr>\n            <tr>\n          </tr>\n          </ng-template>\n          <ng-template pTemplate=\"body\" let-rowData let-ri=\"rowIndex\" >\n            <tr>\n               <td>{{rowData.name}}</td>\n               <td>{{rowData.description}}</td>\n               <td>{{rowData.sortOrder}}</td>\n               <td>\n                <button  type=\"button\" pButton   icon=\"pi pi-pencil\" tooltipPosition=\"top\" pTooltip=\"{{'data.btnEdit' | translate}}\"  (click)=\"editRow(rowData.id)\"></button>\n                <button  type=\"button\" pButton icon=\"pi pi-trash\" tooltipPosition=\"top\" pTooltip=\"{{'data.btnDelete' | translate}}\"  (click)=\"deleteRow(rowData.id)\"></button>\n               </td>\n            </tr>\n          </ng-template>\n          <ng-template pTemplate=\"summary\" let-rowData>\n            <div style=\"text-align:left\">\n                <button type=\"button\" pButton icon=\"fa fa-plus\" (click)=\"addAttrBr()\"></button>\n            </div>\n        </ng-template>\n        </p-table>\n</p-scrollPanel>\n      \n  </div>\n</section>\n\n<p-dialog [showHeader]=\"false\" [(visible)]=\"displayDialog\" [responsive]=\"true\" [style]=\"{width: '450px', minWidth: '200px'}\" showEffect=\"fade\"   >\n   <div class=\"box-body\">\n <form [formGroup]=\"attributeForm\" #formDir=\"ngForm\" (ngSubmit)=\"attributeForm.valid && submit(attributeForm)\" class=\"form-horizontal\" novalidate >\n <div class=\"form-group\" [ngClass]=\"{'has-error': (attributeForm.get('name').invalid && formDir.submitted) }\">\n   <label class=\"control-label col-md-3\">\n       {{'data.lblAttribute' | translate}}\n   </label>\n   <div class=\"col-md-9\">\n       <p-autoComplete [inputStyleClass]=\"form-control\" [styleClass]=\"form-control\" formControlName=\"name\" [suggestions]=\"filteredAttributeList\" field=\"name\" (completeMethod)=\"filterAttributes($event)\" required></p-autoComplete>                                \n \n   </div>\n </div>\n <div class=\"form-group\" [ngClass]=\"{'has-error': (attributeForm.get('description').invalid && formDir.submitted) }\">\n     <label class=\"control-label col-md-3\">\n         {{'data.lblDescription' | translate}}\n     </label>\n     <div class=\"col-md-9\">\n      <select name=\"description\" formControlName=\"description\" class=\"form-control\" >\n         <option *ngFor=\"let dt of descriptionList\" [ngValue]=\"dt.name\" >{{dt.name}}</option>\n         </select>\n     </div>\n </div>\n <div class=\"form-group\" [ngClass]=\"{'has-error': (attributeForm.get('sortOrder').invalid && formDir.submitted) }\">\n       <label class=\"control-label col-md-3\">\n           {{'data.lblSortOrder' | translate}}\n       </label>\n       <div class=\"col-md-9\">\n           <input   pInputText type=\"text\" class=\"form-control\" formControlName=\"sortOrder\" required>\n       </div>\n </div>   \n  \n   <div class=\"box-footer\">\n       <a (click)=\"cancel()\" class=\"btn btn-default\">{{'data.btnBack' | translate}}</a>\n       <button pButton type=\"submit\" label=\"{{'data.btnSave' | translate}}\"  class=\"pull-right\"></button>\n   </div>\n </form>\n\n <ng-template #itemTemplate let-item>\n  <a [innerHTML]=\"item.name\"></a>\n</ng-template>\n</div>\n</p-dialog>"
+
+/***/ }),
+
+/***/ "./src/app/attributes/components/attributebrs/attributebrs.component.ts":
+/*!******************************************************************************!*\
+  !*** ./src/app/attributes/components/attributebrs/attributebrs.component.ts ***!
+  \******************************************************************************/
+/*! exports provided: AttributebrsComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AttributebrsComponent", function() { return AttributebrsComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var src_app_app_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/app.service */ "./src/app/app.service.ts");
+/* harmony import */ var primeng_api__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! primeng/api */ "./node_modules/primeng/api.js");
+/* harmony import */ var primeng_api__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(primeng_api__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _services_attr_brservice_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/attr-brservice.service */ "./src/app/attributes/services/attr-brservice.service.ts");
+/* harmony import */ var ng6_toastr__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ng6-toastr */ "./node_modules/ng6-toastr/ng2-toastr.js");
+/* harmony import */ var ng6_toastr__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(ng6_toastr__WEBPACK_IMPORTED_MODULE_6__);
+
+
+
+
+
+
+
+var AttributebrsComponent = /** @class */ (function () {
+    function AttributebrsComponent(_pimService, _attrBrService, _formBuilder, toastr, ref, config) {
+        this._pimService = _pimService;
+        this._attrBrService = _attrBrService;
+        this._formBuilder = _formBuilder;
+        this.toastr = toastr;
+        this.ref = ref;
+        this.config = config;
+        this.filteredAttributeList = [];
+        this.displayDialog = false;
+        this.attrBRList = [];
+        this.descriptionList = [];
+        this.initialize();
+    }
+    AttributebrsComponent.prototype.ngOnInit = function () {
+    };
+    AttributebrsComponent.prototype.initialize = function () {
+        this.getAttributeList();
+        this.descriptionList = [{ id: "shortName", name: "ShortName" }, { id: "longName", name: "LongName" }];
+        if (this.config.data.attrId !== null && this.config.data.attrId !== undefined)
+            this.attributeId = this.config.data.attrId;
+        this.attributeForm = this.getAttrBrForm(null);
+        this.getAttributeBrList();
+    };
+    AttributebrsComponent.prototype.getAttrBrForm = function (attrBr) {
+        if (attrBr == null)
+            return this._formBuilder.group({
+                id: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](0),
+                name: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+                description: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("ShortName", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+                attributeId: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](this.attributeId),
+                sortOrder: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](0)
+            });
+        else
+            return this._formBuilder.group({
+                id: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](attrBr.id),
+                name: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("{name:" + attrBr.name + "}", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+                description: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](attrBr.description, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+                attributeId: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](attrBr.attributeId),
+                sortOrder: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](attrBr.sortOrder)
+            });
+    };
+    AttributebrsComponent.prototype.getAttributeBrList = function () {
+        var _this = this;
+        this._attrBrService.getAttributeBRList(this.attributeId)
+            .subscribe(function (res) {
+            _this.attrBRList = res;
+        });
+    };
+    AttributebrsComponent.prototype.getAttributeList = function () {
+        var _this = this;
+        this._pimService.get("attribute")
+            .subscribe(function (res) {
+            _this.attributeList = res;
+            _this.filteredAttributeList = _this.attributeList;
+        });
+    };
+    AttributebrsComponent.prototype.filterAttributes = function (e) {
+        this.filteredAttributeList = this.attributeList.filter(function (f) { return f["name"].toString().toLocaleLowerCase().includes(e.query.toLocaleLowerCase()); });
+    };
+    //back button click
+    AttributebrsComponent.prototype.back = function (result) {
+        if (result === void 0) { result = null; }
+        this.ref.close(result);
+        return false;
+    };
+    AttributebrsComponent.prototype.addAttrBr = function () {
+        this.displayDialog = true;
+        this.attributeForm = this.getAttrBrForm(null);
+    };
+    AttributebrsComponent.prototype.editRow = function (id) {
+        var _this = this;
+        this._attrBrService.getAttributeBR(id)
+            .subscribe(function (res) {
+            _this.getAttrBrForm(res);
+            _this.displayDialog = true;
+        });
+    };
+    AttributebrsComponent.prototype.deleteRow = function (id) {
+        var _this = this;
+        this._attrBrService.deleteAttributeBr(id)
+            .subscribe(function (res) {
+            _this.toastr.success(res);
+        });
+    };
+    AttributebrsComponent.prototype.cancel = function () {
+        this.displayDialog = false;
+    };
+    //save attribute
+    AttributebrsComponent.prototype.submit = function (attributeDetails) {
+        var _this = this;
+        var submitAttr;
+        attributeDetails.value.name = attributeDetails.value.name.name;
+        if (this.config.data.attrId !== null && this.config.data.attrId !== undefined)
+            submitAttr = this._attrBrService.updateAttributeBR(attributeDetails.value);
+        else
+            submitAttr = this._attrBrService.saveAttributeBR(attributeDetails.value);
+        submitAttr.subscribe(function (res) {
+            _this.toastr.success(res);
+            _this.displayDialog = false;
+            _this.getAttributeBrList();
+        });
+    };
+    AttributebrsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-attributebrs',
+            template: __webpack_require__(/*! ./attributebrs.component.html */ "./src/app/attributes/components/attributebrs/attributebrs.component.html")
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_app_service__WEBPACK_IMPORTED_MODULE_3__["AppService"],
+            _services_attr_brservice_service__WEBPACK_IMPORTED_MODULE_5__["AttrBRServiceService"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
+            ng6_toastr__WEBPACK_IMPORTED_MODULE_6__["ToastsManager"],
+            primeng_api__WEBPACK_IMPORTED_MODULE_4__["DynamicDialogRef"],
+            primeng_api__WEBPACK_IMPORTED_MODULE_4__["DynamicDialogConfig"]])
+    ], AttributebrsComponent);
+    return AttributebrsComponent;
 }());
 
 
@@ -1120,6 +1302,67 @@ var AttributegroupFromComponent = /** @class */ (function () {
             _services_attrgroup_service__WEBPACK_IMPORTED_MODULE_4__["AttrgroupService"]])
     ], AttributegroupFromComponent);
     return AttributegroupFromComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/attributes/services/attr-brservice.service.ts":
+/*!***************************************************************!*\
+  !*** ./src/app/attributes/services/attr-brservice.service.ts ***!
+  \***************************************************************/
+/*! exports provided: AttrBRServiceService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AttrBRServiceService", function() { return AttrBRServiceService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+
+
+
+
+
+var AttrBRServiceService = /** @class */ (function () {
+    function AttrBRServiceService(_httpClient) {
+        this._httpClient = _httpClient;
+        this.baseUrl = src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].api.endPoint + "/attributeBr";
+    }
+    AttrBRServiceService.prototype.getAttributeBRList = function (atributeId) {
+        var url = this.baseUrl + "?atributeId=" + atributeId;
+        return this._httpClient.get(url)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (data) { return data; }));
+    };
+    AttrBRServiceService.prototype.getAttributeBR = function (id) {
+        var url = this.baseUrl + "?id=" + id;
+        return this._httpClient.get(url)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (data) { return data; }));
+    };
+    AttrBRServiceService.prototype.saveAttributeBR = function (model) {
+        return this._httpClient.post(this.baseUrl, model)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (data) { return data; }));
+    };
+    AttrBRServiceService.prototype.updateAttributeBR = function (model) {
+        return this._httpClient.put(this.baseUrl, model)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (data) { return data; }));
+    };
+    AttrBRServiceService.prototype.deleteAttributeBr = function (id) {
+        var url = this.baseUrl + "?id=" + id;
+        return this._httpClient.delete(url)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (data) { return data; }));
+    };
+    AttrBRServiceService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+    ], AttrBRServiceService);
+    return AttrBRServiceService;
 }());
 
 
@@ -2379,13 +2622,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var src_app_lookup_tables_services_lookup_table_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/lookup-tables/services/lookup-table.service */ "./src/app/lookup-tables/services/lookup-table.service.ts");
+/* harmony import */ var _dynamic_functions_dynamicLookupFunction__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../dynamic-functions/dynamicLookupFunction */ "./src/app/dynamic-forms/dynamic-functions/dynamicLookupFunction.ts");
+/* harmony import */ var src_app_app_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/app.service */ "./src/app/app.service.ts");
+
+
 
 
 
 
 var LookupComponent = /** @class */ (function () {
-    function LookupComponent(_lookupTableService) {
+    function LookupComponent(_lookupTableService, _pimService) {
         this._lookupTableService = _lookupTableService;
+        this._pimService = _pimService;
         this.field = {};
         this.lookupColumnList = [];
         this.show = false;
@@ -2394,7 +2642,7 @@ var LookupComponent = /** @class */ (function () {
         var _this = this;
         this.formArray = this.form.controls[this.field.shortName];
         this.getLookUptable();
-        this.form.get(this.field.shortName).valueChanges.subscribe(function (val) { return _this.getLookUptable(); });
+        this.form.get(this.field.shortName + "Value").valueChanges.subscribe(function (val) { return _this.onValueChange(); });
     };
     LookupComponent.prototype.camalCase = function (text) {
         return text[0].toLocaleLowerCase() + text.substring(1, text.length);
@@ -2410,28 +2658,32 @@ var LookupComponent = /** @class */ (function () {
         for (var i = 0; i < this.lookupColumnList.length; i++) {
             values.push(this.lookupColumnList[i].columnName);
         }
-        this.getLookUpTableData(this.pageSize, this.pageNumber, this.sortBy, this.sortOrder, { tableId: this.field.lookupTableId, local: null, columnDetails: values });
+        this.getLookUpTableData(this.pageSize, this.pageNumber, this.sortBy, this.sortOrder, { tableId: this.field.lookupTableId, local: null });
     };
     LookupComponent.prototype.getLookUpTableData = function (pageSize, pageNumber, sortBy, sortOrder, filterBy) {
         var _this = this;
         this._lookupTableService.getLookUpTableList(pageSize, pageNumber, sortBy, sortOrder, filterBy)
             .subscribe(function (res) {
+            _this.formArrayValue = _this.form.controls[_this.field.shortName + "Value"];
+            var formGroupValue = _this.formArrayValue.controls[0];
+            formGroupValue.controls['lookupData'].patchValue(res);
+            formGroupValue.controls['filterData'].patchValue(res);
             _this.tableData = res;
-            _this.filterData = _this.tableData;
         });
     };
     LookupComponent.prototype.toggle = function (e, arrayName) {
-        this.filterData = this.tableData;
+        // this.filterData = this.tableData;
         this.show = !this.show;
     };
     LookupComponent.prototype.onRowSelect = function (e) {
+        this._dynamicFunction = new _dynamic_functions_dynamicLookupFunction__WEBPACK_IMPORTED_MODULE_4__["DynamicLookupFunction"]();
         this.formArray = this.form.get(this.field.shortName);
         var formGroup = this.formArray.controls[0];
         var columnName = this.lookupColumnList.length > 1 ? this.field.shortName : this.lookupColumnList[0].columnName;
         formGroup.controls['name'].patchValue(e.data[this.camalCase(columnName)]);
         formGroup.controls['attributeValue'].patchValue(e.data['id']);
-        this._dynamicFunction.form = this.form;
-        this._dynamicFunction.lookupFunctions(this.field.shortName);
+        this._dynamicFunction._form = this.form;
+        this._dynamicFunction.lookupFunctions(this.field.shortName, e.data[this.camalCase(columnName)]);
         this.show = !this.show;
     };
     LookupComponent.prototype.onSearch = function (e) {
@@ -2441,7 +2693,15 @@ var LookupComponent = /** @class */ (function () {
     LookupComponent.prototype.getFilterData = function (value) {
         var _this = this;
         var columnName = this.lookupColumnList.length > 1 ? this.field.shortName : this.lookupColumnList[0].columnName;
-        this.filterData = this.tableData.filter(function (f) { return f[_this.camalCase(columnName)].toString().toLocaleLowerCase().includes(value.toLocaleLowerCase()); });
+        //this.filterData = this.tableData.filter(f => f[this.camalCase(columnName)].toString().toLocaleLowerCase().includes(value.toLocaleLowerCase()));
+        this.formArrayValue = this.form.controls[this.field.shortName + "Value"];
+        var formGroupValue = this.formArrayValue.controls[0];
+        formGroupValue.controls['filterData'].patchValue(this.tableData.filter(function (f) { return f[_this.camalCase(columnName)].toString().toLocaleLowerCase().includes(value.toLocaleLowerCase()); }));
+    };
+    LookupComponent.prototype.onValueChange = function () {
+        this.formArrayValue = this.form.controls[this.field.shortName + "Value"];
+        var formGroupValue = this.formArrayValue.controls[0];
+        this.filterData = formGroupValue.controls['filterData'].value;
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
@@ -2457,7 +2717,8 @@ var LookupComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./lookup.component.html */ "./src/app/dynamic-forms/components/lookup/lookup.component.html"),
             styles: [__webpack_require__(/*! ../field-builder/field-builder.component.css */ "./src/app/dynamic-forms/components/field-builder/field-builder.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_lookup_tables_services_lookup_table_service__WEBPACK_IMPORTED_MODULE_3__["LookupTableService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_lookup_tables_services_lookup_table_service__WEBPACK_IMPORTED_MODULE_3__["LookupTableService"],
+            src_app_app_service__WEBPACK_IMPORTED_MODULE_5__["AppService"]])
     ], LookupComponent);
     return LookupComponent;
 }());
@@ -2709,6 +2970,20 @@ var TextboxComponent = /** @class */ (function () {
         this.formArray = this.form.controls[this.field.shortName];
         if (this.field.isCollection)
             this.tableData = this.form.controls[this.field.shortName].value;
+        debugger;
+        if (this.field.attributeBRs != null)
+            this.businessRule(this.field.attributeBRs);
+    };
+    TextboxComponent.prototype.businessRule = function (attrBrList) {
+        var brValue = null;
+        for (var i = 0; i < attrBrList.length; i++) {
+            this.formArray = this.form.controls[attrBrList[i].name];
+            var formGroup_1 = this.formArray.controls[0];
+            brValue = brValue === null ? formGroup_1.controls['attributeValue'].value : brValue + " " + formGroup_1.controls['attributeValue'].value;
+        }
+        this.formArray = this.form.controls[this.field.shortName];
+        var formGroup = this.formArray.controls[0];
+        formGroup.controls['attributeValue'].patchValue(brValue);
     };
     TextboxComponent.prototype.addRow = function () {
         var catalogId;
@@ -2829,6 +3104,42 @@ var DynamicFormsModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/dynamic-forms/dynamic-functions/dynamicLookupFunction.ts":
+/*!**************************************************************************!*\
+  !*** ./src/app/dynamic-forms/dynamic-functions/dynamicLookupFunction.ts ***!
+  \**************************************************************************/
+/*! exports provided: DynamicLookupFunction */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DynamicLookupFunction", function() { return DynamicLookupFunction; });
+var DynamicLookupFunction = /** @class */ (function () {
+    function DynamicLookupFunction() {
+    }
+    DynamicLookupFunction.prototype.camalCase = function (text) {
+        return text[0].toLocaleLowerCase() + text.substring(1, text.length);
+    };
+    DynamicLookupFunction.prototype.lookupFunctions = function (functionName, colValue) {
+        return this[functionName + "Change"](colValue);
+    };
+    DynamicLookupFunction.prototype.BrandNameChange = function (colValue) {
+    };
+    DynamicLookupFunction.prototype.FunctionalGroupChange = function (colValue) {
+        this.formArray = this._form.get("FunctionalNameValue");
+        var formGroup = this.formArray.controls[0];
+        var tableData = formGroup.controls['lookupData'].value;
+        formGroup.controls['filterData'].patchValue(tableData.filter(function (f) { return f["functionalGroup"].toString().toLocaleLowerCase().includes(colValue.toLocaleLowerCase()); }));
+    };
+    DynamicLookupFunction.prototype.FunctionalNameChange = function (colValue) {
+    };
+    return DynamicLookupFunction;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/entities/components/create-entity/create-entity.component.html":
 /*!********************************************************************************!*\
   !*** ./src/app/entities/components/create-entity/create-entity.component.html ***!
@@ -2890,9 +3201,18 @@ var CreateEntityComponent = /** @class */ (function () {
             for (var _i = 0, _a = _this.fields; _i < _a.length; _i++) {
                 var f = _a[_i];
                 fieldsCtrls[f.shortName] = _this._fb.array([_this.createFormGroup(f)]);
+                fieldsCtrls[f.shortName + "Value"] = _this._fb.array([_this.createFormGroupValue(f)]);
             }
             _this.form = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"](fieldsCtrls);
         });
+    };
+    CreateEntityComponent.prototype.createFormGroupValue = function (data) {
+        if (data.required)
+            if (data.displayType == "LookupTable")
+                return this._fb.group({
+                    filterData: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]([]),
+                    lookupData: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]([])
+                });
     };
     CreateEntityComponent.prototype.createFormGroup = function (data) {
         if (data.required)

@@ -7,8 +7,8 @@ import { ChangePasswordComponent } from './components/changePassword/changePassw
 import { PasswordRecoveryComponent } from './components/passwordRecovery/passwordRecovery.component';
 
 const routes: Routes = [
-{ path: '', redirectTo: 'login', pathMatch: 'full' },
-{ path: 'login', component: LoginComponent },
+
+{ path: '', component: LoginComponent },
 { path: 'sso', component:SsoComponent   },
 { path: 'sso/:token', component:SsoComponent   },
 { path: 'passwordRecovery', component:PasswordRecoveryComponent   },

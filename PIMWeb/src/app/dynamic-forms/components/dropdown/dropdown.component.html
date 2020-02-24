@@ -3,7 +3,7 @@
         optionLabel="name" [showClear]="true"></p-dropdown> -->
   <div [formArrayName]="field.shortName" *ngFor="let cd of formArray.controls ;let i=index;">
     <div [formGroupName]="i">
-      <select class="form-control" formControlName="attributeValue">
+      <select class="form-control form-control-sm" formControlName="attributeValue">
         <option value="">--Select--</option>
         <option *ngFor="let opt of field.options" [ngValue]="opt.id">{{opt.name}}</option>
       </select>

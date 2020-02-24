@@ -1,0 +1,76 @@
+<div class="col-md-12" style="padding:0px;">
+  <p-panel [styleClass]="'panelStyle'"  [toggleable]="false" >
+  <p-header>
+          <div class="ui-helper-clearfix">
+              <span class="ui-panel-title" >User Preference</span>
+          </div>
+  </p-header>
+  <div class="box-body">
+    <form [formGroup]="userPreferenceForm" #formDir="ngForm" (ngSubmit)="userPreferenceForm.valid && submit(userPreferenceForm)"
+        class="form-horizontal" novalidate>
+        <div formGroupName="userPrefGroup" class="col-md-12">
+          <div class="col-md-10">
+              <div class="form-group"
+                  [ngClass]="{'has-error': (userPreferenceForm.get('dataLocal').invalid && formDir.submitted) }">
+                  <label class="control-label col-md-3">{{'data.lblDataLocal'|translate}}</label>
+                  <div class="col-md-9">
+                      <select formControlName="dataLocal" name="dataLocalName" class="form-control">
+                          <option [ngValue]="dt.id" *ngFor="let dt of languageList">{{dt.name}}</option>
+                      </select>
+                  </div>
+              </div>
+              <div class="form-group"
+                  [ngClass]="{'has-error': (userPreferenceForm.get('timeZone').invalid && formDir.submitted) }">
+                  <label class="control-label col-md-3">{{'data.lblTimeZone'|translate}}</label>
+                  <div class="col-md-9">
+                      <select name="timeZoneName" formControlName="timeZone" class="form-control">
+                          <option [ngValue]="tz.name" *ngFor="let tz of timeZoneList">{{tz.name}}</option>
+                      </select>
+                  </div>
+              </div>
+              <div class="form-group"
+                  [ngClass]="{'has-error': (userPreferenceForm.get('taxonomy').invalid && formDir.submitted) }">
+                  <label class="control-label col-md-3">{{'data.lblTaxonomy'|translate}}</label>
+                  <div class="col-md-9">
+                      <select name="taxonomyName" formControlName="taxonomy" class="form-control">
+                          <option [ngValue]="t.id" *ngFor="let t of taxonomyList">{{t.longName}}</option>
+                      </select>
+                  </div>
+              </div>
+              <div class="form-group"
+                  [ngClass]="{'has-error': (userPreferenceForm.get('organizationId').invalid && formDir.submitted) }">
+                  <label class="control-label col-md-3">{{'data.lblOrganization'|translate}}</label>
+                  <div class="col-md-9">
+                      <select name="organizationName" formControlName="organizationId"
+                          class="form-control">
+                          <option *ngFor="let org of organizationList" [ngValue]="org.id">{{org.longName}}
+                          </option>
+                      </select>
+                  </div>
+              </div>
+              <div class="form-group"
+                  [ngClass]="{'has-error': (userPreferenceForm.get('catalogId').invalid && formDir.submitted) }">
+                  <label class="control-label col-md-3">{{'data.lblCatalog'|translate}}</label>
+                  <div class="col-md-9">
+                      <select name="catalogName" formControlName="catalogId" class="form-control">
+                          <option *ngFor="let cat of catalogList" [ngValue]="cat.id">{{cat.longName}}
+                          </option>
+                      </select>
+                  </div>
+              </div>
+              <div class="form-group"
+                  [ngClass]="{'has-error': (userPreferenceForm.get('roleId').invalid && formDir.submitted) }">
+                  <label class="control-label col-md-3">{{'data.lblRole'|translate}}</label>
+                  <div class="col-md-9">
+                      <select name="roleName" formControlName="roleId" class="form-control">
+                            <option value="">-- {{data.lblCatalog}} --</option> 
+                          <option *ngFor="let role of roleList" [ngValue]="role.id">{{role.name}}</option>
+                      </select>
+                  </div>
+              </div>
+          </div>
+      </div>
+        </form>
+    </div>
+    </p-panel>
+    </div>

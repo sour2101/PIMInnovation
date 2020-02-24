@@ -19,7 +19,7 @@ export class LookupTableFormComponent implements OnInit {
 
   constructor(
     private toastr:ToastsManager,
-    private _lookupColumnService:LookupColumnService,
+    public _lookupColumnService:LookupColumnService,
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig
     )

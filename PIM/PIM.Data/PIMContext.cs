@@ -66,6 +66,8 @@
 
         public virtual DbSet<AttributeCatalog> AttributeCatalogs { get; set; }
 
+        public virtual DbSet<AttributeBRs> AttribureBRs { get; set; }
+
         public virtual DbSet<Actions> Actions { get; set; }
 
         public virtual DbSet<Workflow> Workflows { get; set; }

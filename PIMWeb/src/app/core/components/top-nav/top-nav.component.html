@@ -1,17 +1,17 @@
 <ul class="nav navbar-nav">
     <li class="nav-item">
-        <a routerLink="/home" #home="routerLinkActive" routerLinkActive="active"
+        <a routerLink="/home" #home="routerLinkActive" (click)="$event.preventDefault()" routerLinkActive="active"
             class="nav-link">{{'data.menuHome' | translate}}</a>
     </li>
     <li class="nav-item">
         <a class="dropdown-toggle" data-toggle="dropdown">{{'data.menuEntity' | translate}}</a>
         <ul class="dropdown-menu" role="menu">
             <li class="nav-item">
-                <a [routerLink]="['/createEntity']" routerLinkActive="active"
+                <a [routerLink]="['/createEntity']" (click)="$event.preventDefault()" routerLinkActive="active"
                     class="nav-link">{{'data.lblCreateEntity' | translate}}</a>
             </li>
             <li class="nav-item">
-                <a [routerLink]="['/searchEntity']" routerLinkActive="active"
+                <a [routerLink]="['/searchEntity']" (click)="$event.preventDefault()" routerLinkActive="active"
                     class="nav-link">{{'data.lblSearchEntity' | translate}}</a>
             </li>
         </ul>
@@ -20,19 +20,19 @@
         <a class="dropdown-toggle" data-toggle="dropdown">{{'data.menuIntegration' | translate}}</a>
         <ul class="dropdown-menu" role="menu">
             <li class="nav-item">
-                <a class="nav-link" routerLink="/importdatamodel" #importdatamodel="routerLinkActive"
+                <a class="nav-link" (click)="$event.preventDefault()" routerLink="/importdatamodel" #importdatamodel="routerLinkActive"
                     routerLinkActive="active">{{'data.menuImportDataModel' | translate}}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/exportdatamodel" #exportdatamodel="routerLinkActive"
+                <a class="nav-link" (click)="$event.preventDefault()" routerLink="/exportdatamodel" #exportdatamodel="routerLinkActive"
                     routerLinkActive="active">{{'data.menuExportDataModel' |translate}}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/integrationjobs" #integrationjobs="routerLinkActive"
+                <a class="nav-link" (click)="$event.preventDefault()" routerLink="/integrationjobs" #integrationjobs="routerLinkActive"
                     routerLinkActive="active">{{'data.menuInterationJobs'|translate}}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/importProfileList" #integrationjobs="routerLinkActive"
+                <a class="nav-link" (click)="$event.preventDefault()" routerLink="/importProfileList" #integrationjobs="routerLinkActive"
                     routerLinkActive="active">{{'data.menuImportProfile'|translate}}</a>
             </li>
         </ul>
@@ -41,7 +41,7 @@
         <a class="dropdown-toggle" data-toggle="dropdown">{{'data.menuModel'|translate}}</a>
         <ul class="dropdown-menu" role="menu">
             <li class="nav-item">
-                <a class="nav-link" routerLink="/orgChart" #orgChart="routerLinkActive"
+                <a class="nav-link" (click)="$event.preventDefault()" routerLink="/orgChart" #orgChart="routerLinkActive"
                     routerLinkActive="active">{{'data.menuOrgChart'| translate}}</a>
             </li>
         </ul>
@@ -50,23 +50,23 @@
         <a class="dropdown-toggle" data-toggle="dropdown">{{'data.menuSysAdmin'|translate}}</a>
         <ul class="dropdown-menu" role="menu">
             <li class="nav-item">
-                <a class="nav-link" routerLink="/roleList" #roleList="routerLinkActive"
+                <a class="nav-link" (click)="$event.preventDefault()" routerLink="/roleList" #roleList="routerLinkActive"
                     routerLinkActive="active">{{'data.menuRole' | translate}} </a>
             </li>
             <li class="nav-item">
-                <a routerLink="/userList" #userList="routerLinkActive" routerLinkActive="active"
+                <a routerLink="/userList" (click)="$event.preventDefault()" #userList="routerLinkActive" routerLinkActive="active"
                     class="nav-link">{{'data.menuUser' | translate}}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" #attributeList="routerLinkActive" routerLinkActive="active"
+                <a class="nav-link" (click)="$event.preventDefault()" #attributeList="routerLinkActive" routerLinkActive="active"
                     routerLink="/attributeList">{{'data.menuAttribute' |translate}} </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" #attributeList="routerLinkActive" routerLinkActive="active"
+                <a class="nav-link" (click)="$event.preventDefault()" #attributeList="routerLinkActive" routerLinkActive="active"
                     routerLink="/lookuptableList">{{'data.menuLookupTable' |translate}} </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" #attributeList="routerLinkActive" routerLinkActive="active"
+                <a class="nav-link" (click)="$event.preventDefault()" #attributeList="routerLinkActive" routerLinkActive="active"
                     routerLink="/workflowList">{{'data.menuWorkflow' |translate}} </a>
             </li>
         </ul>

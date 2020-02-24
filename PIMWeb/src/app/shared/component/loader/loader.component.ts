@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { LoaderService } from '../../services/loader.service';
 import { LoaderState } from '../../models/loader';
@@ -9,19 +9,16 @@ import { LoaderState } from '../../models/loader';
   styleUrls: ['./loader.component.css']
 })
 export class LoaderComponent implements OnInit, OnDestroy {
-  show = false;
-  private subscription: Subscription;
+  @Input() isLoading = false;
+   
 
-  constructor(private loaderService: LoaderService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.subscription = this.loaderService.loaderState
-    .subscribe((state: LoaderState) => {
-      this.show = state.show;
-    });
+    
   }
   
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+     
   }
 }

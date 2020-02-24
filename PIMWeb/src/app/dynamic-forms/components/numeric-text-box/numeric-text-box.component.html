@@ -2,7 +2,7 @@
   <div *ngIf="!field.isCollection">
     <div [formArrayName]="field.shortName" *ngFor="let cd of formArray.controls ;let i=index;">
       <div [formGroupName]="i">
-        <input pInputText pKeyFilter="num" type="text" class="form-control" formControlName="attributeValue">
+        <input pInputText pKeyFilter="num" type="text" class="form-control  form-control-sm" formControlName="attributeValue">
       </div>
     </div>
   </div>
@@ -13,7 +13,7 @@
       <ng-template pTemplate="body" let-rowData let-ri="rowIndex">
         <tr [formGroupName]="ri">
           <td>
-            <input pInputText pKeyFilter="num" type="text" class="form-control" [class.is-invalid]="isDirty && !isValid"
+            <input pInputText pKeyFilter="num" type="text" class="form-control form-control-sm" [class.is-invalid]="isDirty && !isValid"
               formControlName="attributeValue">
           </td>
           <td style="width:8%">

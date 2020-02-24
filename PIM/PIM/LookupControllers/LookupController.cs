@@ -14,20 +14,14 @@
     public class LookupController : AbstractController
     {
         [HttpGet]
-        public IHttpActionResult Get(int tableId, [FromUri]ICollection<string> where = null,[FromUri]ICollection<string> columnDetails = null)
+        public IHttpActionResult Get(int tableId,string local=null, string where = null)
         {
             var tableDetails = Repository.GetById<LookupTables>(tableId);
            
-            string column = "*";
-            string query = "SELECT ";
-            if (columnDetails.Any())
-            {
-                column = "Id ";
-                foreach (string col in columnDetails)
-                    column = column + "," + col;
-            }
+            string query = "SELECT * FROM lk_" + tableDetails.TableName;
 
-            query = query + column + " FROM lk_" + tableDetails.TableName;
+            if (!string.IsNullOrEmpty(where))
+                query = query +" WHERE "+ where.Replace('@','=');
 
             
 

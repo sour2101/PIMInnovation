@@ -1,9 +1,9 @@
-<div class="form-group" [ngClass]="{'has-error':(field.required && form.get(field.shortName).invalid )}"  #formDir="ngForm" [formGroup]="form">
-    <label class="col-md-3 form-control-label" [attr.for]="field.longName">
+<div class="form-group col-sm-6" [ngClass]="{'has-error':(field.required && form.get(field.shortName).invalid )}"  #formDir="ngForm" [formGroup]="form">
+    <label [attr.for]="field.longName">
       {{field.longName}}
      
     </label>
-    <div class="col-md-9" [ngSwitch]="field.displayType" >
+    <div  [ngSwitch]="field.displayType" >
       <textbox *ngSwitchCase="'TextBox'" [field]="field" [form]="form"></textbox>
       <text-area *ngSwitchCase="'TextArea'" [field]="field" [form]="form" ></text-area>
       <dropdown *ngSwitchCase="'DropDown'" [field]="field" [form]="form"></dropdown>

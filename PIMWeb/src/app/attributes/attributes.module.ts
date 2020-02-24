@@ -8,14 +8,17 @@ import { AttributeFormComponent } from './components/attribute-form/attribute-fo
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { AttributegroupFromComponent } from './components/attributegroup-from/attributegroup-from.component';
+import { AttributebrsComponent } from './components/attributebrs/attributebrs.component';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
 @NgModule({
-  declarations: [AttributeListComponent, AttributeFormComponent, AttributegroupFromComponent],
+  declarations: [AttributeListComponent, AttributeFormComponent, AttributegroupFromComponent, AttributebrsComponent],
   imports: [
     CommonModule,
     AttributesRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    AutocompleteLibModule,
     TranslateModule,
     PrimengModule
   ],

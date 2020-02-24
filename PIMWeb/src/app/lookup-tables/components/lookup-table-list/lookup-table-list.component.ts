@@ -38,16 +38,16 @@ export class LookupTableListComponent implements OnInit {
   selectedSheets:any;
   totalRecords;
   pageSizeOptions:any[];
-
+loading=false;
   constructor(
     private router:Router,
     private translate:TranslateService,
     public dialogService: DialogService,
-    private _pimService:AppService,
+    public _pimService:AppService,
     private toastr:ToastsManager,
     private _confirmationService:ConfirmationService,
-    private _lookupTableService:LookupTableService,
-    private _lookupColumnService:LookupColumnService,
+    public _lookupTableService:LookupTableService,
+    public _lookupColumnService:LookupColumnService,
     private _fileService:FileService,
     private _formBuilder:FormBuilder
   ) 

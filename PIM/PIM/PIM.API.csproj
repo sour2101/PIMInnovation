@@ -291,6 +291,7 @@
     <Compile Include="App_Start\HttpFilters\RoleAuthorizeAttribute.cs" />
     <Compile Include="App_Start\HttpFilters\ValidationActionFilterAttribute.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="AttributeController\AttributeBrController.cs" />
     <Compile Include="AttributeController\AttributeValueController.cs" />
     <Compile Include="Controllers\AbstractController.cs" />
     <Compile Include="AttributeController\AttributeController.cs" />

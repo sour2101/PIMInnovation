@@ -1,0 +1,84 @@
+<div class="col-md-12" style="padding:0px;">
+    <p-panel [styleClass]="'panelStyle'"  [toggleable]="false" >
+        <p-header>
+                <div class="ui-helper-clearfix">
+                    <span class="ui-panel-title" >{{'data.lblMenu' | translate}}</span>
+                </div>
+        </p-header>
+        
+            <div class="example-container">
+                <p-table [formGroup]="filterForm"  [value]="menuList"  (onLazyLoad)="sorting($event)" [responsive]="true" [scrollable]="true" scrollHeight="50vh"
+                 [lazy]="true" [customSort]="true" [rows]="pageSize">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th [pSortableColumn]="'name'">{{'data.lblMenuName' | translate}}<p-sortIcon [field]="'name'" ></p-sortIcon></th>
+                            <th>{{'data.lblLink' | translate}}</th>
+                            <th>{{'data.lblLanguage'|translate}}</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th> <input   pInputText type="text" formControlName="name"></th>
+                            <th></th>
+                            <th> <input pInputText type="text" formControlName="localeName"> </th>
+                            <th><button pButton type="button" icon="fa fa-search" pTooltip="{{'data.btnSearch' | translate}}"  (click)="filtering()"  ></button></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-menu>
+                        <tr>
+                            <td> <span class="ui-column-title">{{'data.lblMenuName' | translate}}</span>{{menu.name}}</td>
+                            <td><span class="ui-column-title">{{'data.lblLink' | translate}}</span>{{menu.link}}</td>
+                            <td><span class="ui-column-title">{{'data.lblLink' | translate}}</span>{{menu.localeName}}</td>
+                            <td>
+                                <button type="button" pButton icon="pi pi-pencil" tooltipPosition="top" pTooltip="{{'data.btnEdit' | translate}}"  (click)="editMenu(menu.id)"></button>
+                                <button type="button" pButton icon="fa fa-sitemap" tooltipPosition="top" pTooltip="{{'data.lblAddSubMenu' | translate}}"  (click)="addSubMenu(menu.id)"></button>
+                                <button type="button" pButton icon="pi pi-trash" tooltipPosition="top" pTooltip="{{'data.btnDelete' | translate}}"  (click)="deleteMenu(menu)"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary" let-rowData>
+                        <div style="text-align:left">
+                            <button type="button" pButton icon="pi pi-plus" (click)="addMenu()" label="Add"></button>
+                        </div>
+                    </ng-template>  
+                </p-table>
+                <p-paginator [rows]="pageSize" [rowsPerPageOptions]="[10,20,50,100]" [totalRecords]="totalRecords" (onPageChange)="pageChange($event)"></p-paginator>
+            </div>
+       <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+      </p-panel>
+ 
+</div>
+<app-loader *ngIf="!_menuService.isLoading" ></app-loader>
+<p-dialog [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true"  >
+    <div class="box-body">
+        <form [formGroup]="menuForm"   #formDir="ngForm" (ngSubmit)="menuForm.valid && submit(menuForm)"
+        novalidate>
+        <div class="form-row">       
+          <div class="form-group col-sm-12" [ngClass]="{'has-error': (menuForm.get('name').invalid && formDir.submitted) }">
+              <label>
+                  {{'data.lblMenuName' | translate}}
+              </label>
+              <input name="menuName" pInputText type="text" formControlName="name"
+                  class="form-control form-control-sm" />
+               
+          </div>
+          <div class="form-group col-sm-12" [ngClass]="{'has-error': (menuForm.get('link').invalid && formDir.submitted) }">
+              <label>
+                  {{'data.lblLink' | translate}}
+              </label>
+              
+              <input name="link" pInputText type="text" formControlName="link"
+                  class="form-control form-control-sm" />
+                
+          </div>
+          <div class="form-group col-sm-12" [ngClass]="{'has-error': (menuForm.get('languageId').invalid && formDir.submitted) }">
+            <app-localization [form]="menuForm"  [multiselect]="false"></app-localization> 
+          </div>
+        </div>
+          <div  class="col-sm-12">
+            <a (click)="back()" class="btn btn-default">{{'data.btnBack' | translate}}</a>
+            <button pButton type="submit" label="{{'data.btnSave' | translate}}"  class="pull-right"></button>
+        </div>
+        
+          </form>
+    </div>
+</p-dialog>

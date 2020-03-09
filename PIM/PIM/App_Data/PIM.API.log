@@ -147,3 +147,53 @@
 2020-01-30 19:55:21,756 [16] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
 2020-02-18 14:30:55,299 [29] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
 2020-02-18 14:30:55,907 [25] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-02-29 23:49:50,511 [9] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-02-29 23:49:50,771 [39] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-03-01 10:24:47,009 [82] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-03-01 10:24:47,245 [50] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-03-01 16:23:32,354 [5] INFO  MonitoringLogger - The Menu "Entity" inserted successfully
+2020-03-01 16:50:56,883 [30] WARN  MonitoringLogger - The SubMenuId "2" is not found
+2020-03-01 16:50:56,970 [46] WARN  MonitoringLogger - The SubMenuId "2" is not found
+2020-03-01 17:15:43,645 [60] INFO  MonitoringLogger - The Menu "User" inserted successfully
+2020-03-01 17:16:42,297 [50] INFO  MonitoringLogger - The Menu "Role" inserted successfully
+2020-03-01 17:24:19,939 [51] INFO  MonitoringLogger - The Menu "Search Entity" inserted successfully
+2020-03-01 17:24:35,806 [13] INFO  MonitoringLogger - The Menu "Create Entity" inserted successfully
+2020-03-01 17:29:23,557 [41] INFO  MonitoringLogger - The Menu "Integration" inserted successfully
+2020-03-01 17:30:43,392 [30] INFO  MonitoringLogger - The Menu "Import DataModel" inserted successfully
+2020-03-01 17:31:00,750 [23] INFO  MonitoringLogger - The Menu "Export DataModel" inserted successfully
+2020-03-01 17:31:49,668 [23] INFO  MonitoringLogger - The Menu "Integration Jobs" inserted successfully
+2020-03-01 17:34:54,665 [53] INFO  MonitoringLogger - The Menu "Import Profile" inserted successfully
+2020-03-01 17:37:06,426 [38] INFO  MonitoringLogger - The Menu "Attribute" inserted successfully
+2020-03-01 17:41:24,219 [46] INFO  MonitoringLogger - The Menu "Lookup" inserted successfully
+2020-03-01 17:41:49,129 [46] INFO  MonitoringLogger - The Menu "WorkFlow" inserted successfully
+2020-03-01 18:04:47,836 [30] INFO  MonitoringLogger - The Menu "Organization" inserted successfully
+2020-03-01 18:08:50,785 [40] INFO  MonitoringLogger - The Menu "DataModel" has been updated
+2020-03-01 18:10:08,155 [69] INFO  MonitoringLogger - The Menu "Organization Chart" inserted successfully
+2020-03-01 18:11:56,627 [37] INFO  MonitoringLogger - The Menu "MasterData" has been updated
+2020-03-02 14:46:01,122 [59] INFO  MonitoringLogger - The Menu "User" inserted successfully
+2020-03-02 14:46:11,560 [30] INFO  MonitoringLogger - The Menu "Role" inserted successfully
+2020-03-02 14:50:54,666 [60] INFO  MonitoringLogger - The Menu "Lookup" inserted successfully
+2020-03-02 14:53:37,712 [40] INFO  MonitoringLogger - The Menu "Attribute" inserted successfully
+2020-03-02 14:53:52,821 [38] INFO  MonitoringLogger - The Menu "Workflow" inserted successfully
+2020-03-02 14:56:04,146 [5] INFO  MonitoringLogger - The Menu "Entity" inserted successfully
+2020-03-02 14:56:23,336 [21] INFO  MonitoringLogger - The Menu "Search Entity" inserted successfully
+2020-03-02 14:56:36,012 [39] INFO  MonitoringLogger - The Menu "Create Entity" inserted successfully
+2020-03-02 15:02:16,177 [40] INFO  MonitoringLogger - The Menu "Integration" inserted successfully
+2020-03-02 15:07:49,917 [38] INFO  MonitoringLogger - The Menu "DataModel" inserted successfully
+2020-03-02 15:11:35,782 [40] INFO  MonitoringLogger - The Menu "Organization Chart" inserted successfully
+2020-03-02 15:19:15,016 [11] INFO  MonitoringLogger - The Menu "Import DataModel" inserted successfully
+2020-03-02 15:19:53,426 [39] INFO  MonitoringLogger - The Menu "Export DataModel" inserted successfully
+2020-03-02 15:20:12,634 [4] INFO  MonitoringLogger - The Menu "Integration Jobs" inserted successfully
+2020-03-02 15:20:48,035 [42] INFO  MonitoringLogger - The Menu "Import Profiles" inserted successfully
+2020-03-04 14:40:21,973 [50] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-03-04 14:40:22,091 [55] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-03-05 12:13:58,451 [30] INFO  MonitoringLogger - The Menu "MasterData" has been updated
+2020-03-05 15:58:10,765 [12] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-03-05 15:58:10,918 [16] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-03-05 16:14:59,518 [5] INFO  MonitoringLogger - The Menu "MasterData Management" has been deleted
+2020-03-06 16:49:04,629 [71] INFO  MonitoringLogger - The username "R3483432" inserted successfully
+2020-03-07 11:06:13,267 [3] INFO  MonitoringLogger - The Menu "L'intégration" inserted successfully
+2020-03-08 10:18:15,581 [87] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-03-08 10:18:15,737 [3] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-03-08 10:19:02,052 [93] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-03-08 10:19:02,089 [84] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.

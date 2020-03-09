@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+
 import { RoleService } from '../../services/role.service';
 import { ToastsManager } from 'ng6-toastr';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/api';
 import { UserService } from 'src/app/users/services/user.service';
+import { role } from '../../models/role';
 
 @Component({
   selector: 'app-role-form',
@@ -13,15 +15,17 @@ export class RoleFormComponent implements OnInit {
 
   users:any;
   selectedUserList:any=[];
+  role:role;
   roleForm:FormGroup;
   roles:any;
+  roleId:number;
   constructor(
     private _roleService:RoleService,
     private _userService:UserService,
     private toastr: ToastsManager,
     private _formBuilder:FormBuilder,
-    private ref: DynamicDialogRef,
-    private config: DynamicDialogConfig
+    public router:Router,
+    private route: ActivatedRoute 
   ) { }
 
   ngOnInit() {
@@ -30,15 +34,25 @@ export class RoleFormComponent implements OnInit {
 
   initialize(){
     this.loadUsers();
-    this.roleForm = this._formBuilder.group({
-      id:new FormControl(0),
-      name:new FormControl("",Validators.required),
-      userRights:new FormControl(this.selectedUserList)
+    this.role =new role();
+    this.roleForm = this.getRoleForm(this.role);
+    this.route.params.subscribe(params => {
+      this.roleId = params.id;
+      this.getRole(this.roleId);  
+    });
+  }
+
+
+  getRoleForm(data:role):FormGroup{
+    return this._formBuilder.group({
+      id:new FormControl(data.id,Validators.required),
+      name:new FormControl(data.name,Validators.required),
+      userRights:new FormControl(data.userRights),
+      createdBy:new FormControl(data.createdBy),
+      createdDate:new FormControl(data.createdDate)
     });
 
-    if(this.config.data.roleId!==null && this.config.data.roleId!==undefined){
-      this.getRole(this.config.data.roleId);  
-    }
+
   }
 
   loadUsers(){
@@ -47,6 +61,7 @@ export class RoleFormComponent implements OnInit {
       this.users=res;
     });
   }
+
 
   getRole(id){
     this._roleService.getRole(id)
@@ -73,8 +88,7 @@ export class RoleFormComponent implements OnInit {
   }
 
   back(){
-    this.ref.close();
-    return false;
+    this.router.navigate(["roleList"]);
   }
 
   submit(roleDetails){

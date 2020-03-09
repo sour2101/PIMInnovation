@@ -11,8 +11,7 @@ import { HttpModule } from '@angular/http';
 import { TranslateModule,TranslateLoader } from '@ngx-translate/core'; 
 import { ToastModule } from 'ng6-toastr';
 import { ContextMenuModule } from 'ngx-contextmenu'; 
-import { KnobModule  } from 'angular4-knob';
-import { AdminLteModule } from './externalmodule/adminlte.module';
+import { KnobModule  } from 'angular4-knob'; 
 import { PrimengModule } from './externalmodule/primeng.module';
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { SharedModule } from "./shared/shared.module";
@@ -28,8 +27,7 @@ import { HttpErrorInterceptor } from "./core/interceptors/error-interceptor";
 import { ApiInterceptor } from './core/interceptors/api.interceptor'; 
 import { LoaderInterceptorService } from './core/interceptors/loader.interceptor';
 
-import { AppComponent } from './app.component';
-
+import { AppComponent } from './app.component'; 
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, "assets/i18n/", ".json");
@@ -50,7 +48,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ToastModule.forRoot(),
     ContextMenuModule.forRoot(),
     KnobModule,
-    AdminLteModule,
     PrimengModule,
     SharedModule,
     TranslateModule.forRoot({

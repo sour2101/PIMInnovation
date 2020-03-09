@@ -11,7 +11,7 @@
                 </div>
                 <div class="collapse navbar-collapse pull-left" id="navbar-toggle">
                   
-                  <app-top-nav admin="principal.admin"></app-top-nav>
+                  <app-top-nav [navItems]="navItems" admin="principal.admin"></app-top-nav>
                 </div>
                 
                 <div class="navbar-custom-menu pull-right">
@@ -27,16 +27,17 @@
                                              {{dataLocal.name}}
                                         </option> 
                                      </select>
+                                     
                         </li>
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                              <img src="../../../../assets/images/User_Avatar.png" class="user-image" >
+                              <img src="assets/images/User_Avatar.png" class="user-image" >
                               <span class="hidden-xs">{{principal.firstname}} {{principal.lastname}}</span>
                             </a>
                             <ul class="dropdown-menu">
                               <!-- User image -->
                               <li class="user-header">
-                                <img src="../../assets/images/User_Avatar.png" class="img-circle" alt="User Image">
+                                <img src="assets/images/User_Avatar.png" class="img-circle" alt="User Image">
                 
                                 <p>
                                     {{principal.firstname}} {{principal.lastname}}
@@ -90,7 +91,7 @@
         <div class="pull-right hidden-xs">
             <b>Version</b> 
         </div>
-        <strong>2019 &copy; Saint-Gobain</strong>
+        <strong>2020 &copy; Saint-Gobain</strong>
     </footer>
   </div>
 

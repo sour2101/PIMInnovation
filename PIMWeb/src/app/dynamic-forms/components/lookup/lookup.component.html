@@ -15,7 +15,7 @@
 
 <p-dialog [(visible)]="show" [style]="{width: '500px', height: '300px'}" 
 [minY]="70" [contentStyle]="{'overflow':'visible'}" [modal]="true" [responsive]="true">
-    <p-table #lookupTable [tableStyleClass]="customTable" [scrollable]="true" scrollHeight="300px" 
+    <p-table #lookupTable  [scrollable]="true" scrollHeight="300px" 
     selectionMode="single" (onRowSelect)="onRowSelect($event)"
     [columns]="lookupColumnList" [value]="filterData">
     <ng-template pTemplate="header" let-columns>

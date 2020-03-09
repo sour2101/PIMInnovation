@@ -6,27 +6,21 @@
                   </div>
        </p-header>
     <div class="row">
-       <div class="form-group col-md-12">
-        <button type="button" pButton icon="pi pi-plus" label="{{'data.btnCreate' | translate}}" (click)="addLookUpTable()"></button>
-        <button type="button" pButton icon="pi pi-pencil" label="{{'data.btnEdit' | translate}}" (click)="editLookUpTable()"></button>
-        <button pButton type="button" label="{{'data.btnExport' | translate}}" icon="fa fa-file-excel-o" (click)="dialogLookupExport()" ></button>
-        <button pButton type="button" label="{{'data.btnImport' | translate}}" icon="fa fa-file-excel-o" (click)="dialogLookupImport()" ></button>
-      </div>
+       
     </div>
   <div class="row" style="margin: 0%">
-  <div class="box box-primary box-body">
       <div class="example-container">
-        <div class="form-group col-md-6">
-            <label class="control-label col-md-3">
+        <div class="form-group col-md-4">
+            <label class="control-label col-md-4">
                 {{'data.lblTableName' | translate}}:
             </label>
-            <div class="col-md-9">
+            <div class="col-md-8">
                 <select name="TableName" [(ngModel)]="tableId" (ngModelChange)="loadLookup($event)"  class="form-control" >
                     <option *ngFor="let dt of tableNameList" [ngValue]="dt.id" >{{dt.tableName}}</option>
                 </select>
             </div>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-3">
           <label class="control-label col-md-3">
               {{'data.lblDataLocal' | translate}}:
           </label>
@@ -37,6 +31,12 @@
               </option> 
            </select>
           </div>
+      </div>
+      <div class="form-group col-md-3 pull-right">
+        <button type="button" pButton icon="pi pi-plus" tooltipPosition="bottom"  pTooltip="{{'data.btnCreate' | translate}}" (click)="addLookUpTable()"></button>
+        <button type="button" pButton icon="pi pi-pencil"  tooltipPosition="bottom"  pTooltip="{{'data.btnEdit' | translate}}" (click)="editLookUpTable()"></button>
+        <button pButton type="button" pTooltip="{{'data.btnExport' | translate}}"  tooltipPosition="bottom"  icon="fa fa-file-excel-o" (click)="dialogLookupExport()" ></button>
+        <button pButton type="button" pTooltip="{{'data.btnImport' | translate}}" tooltipPosition="bottom"  icon="pi pi-upload" (click)="dialogLookupImport()" ></button>
       </div>
         <div class="form-group col-md-12">
           <p-table #lookupTable [columns]="columnList" [value]="tableData" [paginator]="true" [rows]="pageSize"   [responsive]="true" [scrollable]="true" scrollHeight="50vh">
@@ -85,7 +85,7 @@
         </div>
       </div>
       <app-loader *ngIf="!_lookupTableService.isLoading || !_pimService.isLoading || !_lookupColumnService.isLoading "></app-loader>
-    </div>
+    
   </div>
   </p-panel>
 

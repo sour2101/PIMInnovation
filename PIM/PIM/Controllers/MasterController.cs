@@ -29,10 +29,10 @@ namespace PIM.API.Controllers
         [Route("api/languages")]
         public IHttpActionResult GetLanguage()
         {
-            var languageList = Repository.GetAll<Language>()
+            var languageList = Repository.GetAll<Locale>()
                 .Select(m => new {
                     m.Id,
-                    m.Name
+                    m.Code
                 }).ToList();
 
             return Ok(languageList);

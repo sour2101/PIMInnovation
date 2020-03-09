@@ -1,0 +1,33 @@
+<section>
+    <div class="box-body">
+        <form [formGroup]="menuRightsForm" #formDir="ngForm" (ngSubmit)="menuRightsForm.valid && submit(menuRightsForm)"
+            novalidate>
+            <div class="form-row">
+                <div class="form-group" [ngClass]="{'has-error': (menuRightsForm.get('menuId').invalid && formDir.submitted) }" >
+                    <div class="col-sm-6">
+                        <p-listbox [options]="menus" formControlName="menuId"  [listStyle]="{'max-height':'250px'}" (onChange)="getSubmenus($event)" multiple="multiple" checkbox="checkbox" filter="filter" optionLabel="name">
+                            <p-header>
+                                {{'data.lblMenu' | translate}}
+                            </p-header>
+                          </p-listbox>
+                    </div>
+                </div>
+                <div class="form-group" [ngClass]="{'has-error': (menuRightsForm.get('subMenuId').invalid && formDir.submitted) }" >
+                    <div class="col-sm-6">
+                        <p-listbox [options]="submenus"  [listStyle]="{'max-height':'250px'}" formControlName="subMenuId" multiple="multiple" checkbox="checkbox" filter="filter" optionLabel="name">
+                            <p-header>
+                                {{'data.lblSubMenu' | translate}}
+                            </p-header>
+                          </p-listbox>
+                    </div>
+                </div>
+                
+            </div>
+            <div  class="col-sm-12">
+                <a (click)="back()" class="btn btn-default">{{'data.btnBack' | translate}}</a>
+                <button pButton type="submit" label="{{'data.btnSave' | translate}}"  class="pull-right"></button>
+            </div>
+        </form>
+    </div> 
+ </section>
+    

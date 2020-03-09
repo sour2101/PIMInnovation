@@ -81,4 +81,8 @@ export class UserPreferenceComponent implements OnInit {
     })
   }
 
+  submit(userPref){
+    
+  }
+
 }

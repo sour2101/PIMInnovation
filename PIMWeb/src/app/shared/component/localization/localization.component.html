@@ -1,0 +1,15 @@
+<div [formGroup]="form">
+    <label class="control-label">{{'data.lblLanguage' | translate}}</label>
+    <div>
+<select *ngIf="!multiselect" name="languageName" formControlName="languageId" class="form-control form-control-sm" required>
+    <option value="">-- {{'data.lblLanguage' | translate}} --</option>
+    <option *ngFor="let lang of languageList" [ngValue]="lang.id">{{lang.name}} </option>
+</select>
+</div>
+</div>
+
+
+ 
+    
+   
+ 

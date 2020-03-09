@@ -74,8 +74,11 @@
     <Compile Include="MasterData\DataType.cs" />
     <Compile Include="MasterData\DisplayType.cs" />
     <Compile Include="MasterData\JobType.cs" />
+    <Compile Include="MasterData\Locale.cs" />
     <Compile Include="MasterData\LookUpColumns.cs" />
     <Compile Include="MasterData\LookupTables.cs" />
+    <Compile Include="MasterData\Menu.cs" />
+    <Compile Include="MasterData\MenuChildrens.cs" />
     <Compile Include="MasterData\MessageType.cs" />
     <Compile Include="MasterData\Organization.cs" />
     <Compile Include="MasterData\Plant.cs" />
@@ -83,6 +86,7 @@
     <Compile Include="MasterData\UOMType.cs" />
     <Compile Include="MasterData\Workflow.cs" />
     <Compile Include="MasterData\WorkflowSteps.cs" />
+    <Compile Include="Users\MenuRights.cs" />
     <Compile Include="Users\UserPreferences.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PIMContext.cs" />

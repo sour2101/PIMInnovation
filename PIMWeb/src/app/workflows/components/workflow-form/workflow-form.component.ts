@@ -92,7 +92,7 @@ export class WorkflowFormComponent implements OnInit {
     })
   }
 
-  cancelEditRow(col: workflowsteps,ri){
+  cancelEditRow(){
     this.displayDialog=false;
   }
 

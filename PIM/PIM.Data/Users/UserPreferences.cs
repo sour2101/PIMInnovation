@@ -30,7 +30,7 @@ namespace PIM.Data.Users
         public virtual Organization Catalogs { get; set; }
 
         [ForeignKey("DataLocal")]
-        public virtual Language DataLocals { get; set; }
+        public virtual Locale DataLocals { get; set; }
 
 
         [Key, ForeignKey("UserId")]

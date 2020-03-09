@@ -153,7 +153,16 @@
     "lblValidUOM":"Valid UOMs",
     "addBr":"Add BusinessRule",
     "lblAddAttributeBr":"Attribute BR",
-    "lblSortOrder":"Sort Order"
+    "lblSortOrder":"Sort Order",
+    "lblMenu":"Menu",
+    "lblAddMenu":"AddMenu",
+    "lblAddSubMenu":"AddSubMenu",
+    "lblMenuName":"MenuName",
+    "lblSubMenuName":"SubMenuName",
+    "lblSubMenu":"SubMenu",
+    "lblParentName":"ParentName",
+    "lblLink":"Link",
+    "lblMenuRights":"Menu Rights"
     }
 }
     

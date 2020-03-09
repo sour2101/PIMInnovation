@@ -39,6 +39,10 @@ export class CreateEntityComponent implements OnInit {
     this.getFields(e.target.value);
   }
 
+  back(){
+    
+  }
+
   getFields(catalogId) {
     let fieldsCtrls = {};
     this._entityService.getShowAtCreation(this.catalogId)

@@ -220,3 +220,4 @@ C:\Sourabh\Examples\PIMInnovation\PIM\PIM\bin\System.Web.Http.Cors.xml
 C:\Sourabh\Examples\PIMInnovation\PIM\PIM\bin\System.Web.Http.Owin.xml
 C:\Sourabh\Examples\PIMInnovation\PIM\PIM\obj\Debug\PIM.API.dll
 C:\Sourabh\Examples\PIMInnovation\PIM\PIM\obj\Debug\PIM.API.pdb
+C:\Sourabh\Examples\PIMInnovation\PIM\PIM\bin\Newtonsoft.Json.dll

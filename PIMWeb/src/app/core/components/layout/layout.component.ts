@@ -8,6 +8,7 @@ import { UserPreferencesComponent } from '../../../home/components/userPrefrence
 import { DialogService } from 'primeng/api';
 import { environment } from 'src/environments/environment';
 import { GlobalVariable } from '../../../shared/pimConstant';
+import { MenuRightsService } from 'src/app/roles/services/menu-rights.service';
 
 
 @Component({
@@ -21,6 +22,7 @@ import { GlobalVariable } from '../../../shared/pimConstant';
     public uiLocalList:any;
     public dataLocalList:any;
     public categoryList:any;
+    navItems;
       msg:string;
       loc:any;
       dataLocalId:string;
@@ -33,12 +35,14 @@ import { GlobalVariable } from '../../../shared/pimConstant';
         vRef: ViewContainerRef,
         private _http:Http,
         public dialogService: DialogService,
-        private translate:TranslateService
+        private translate:TranslateService,
+        public _menuService:MenuRightsService 
         )
       {
         this.principal =GlobalVariable.currentUser;
         this.toastr.setRootViewContainerRef(vRef);
         this.getUserPref();
+       
       }
     
       ngOnInit(){
@@ -47,15 +51,27 @@ import { GlobalVariable } from '../../../shared/pimConstant';
         .subscribe((res) => { 
             this.dataLocalList = res;
             this.dataLocalId = GlobalVariable.dataLocal;
+            this.getMenu();
             
            },
         error => this.msg = <any>error);
     
        
       }
+
+      
+  getMenu(){
+    this._menuService.getAllMenu(GlobalVariable.currentUser.roleId,this.dataLocalId)
+    .subscribe(res=>{
+      this.navItems=res;
+    });
+
+  }
+
     
       changeDataLocal(value){
         GlobalVariable.dataLocal = value;
+        this.getMenu();
         let lang = value==1?"en": value==2? "fr":"pt";
         this.translate.use(lang);
         this.childComponent.initialize();

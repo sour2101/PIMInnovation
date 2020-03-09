@@ -63,7 +63,7 @@
                   <label class="control-label col-md-3">{{'data.lblRole'|translate}}</label>
                   <div class="col-md-9">
                       <select name="roleName" formControlName="roleId" class="form-control">
-                            <option value="">-- {{data.lblCatalog}} --</option> 
+                            <option value="">-- {{'data.lblCatalog' | translate}}--</option> 
                           <option *ngFor="let role of roleList" [ngValue]="role.id">{{role.name}}</option>
                       </select>
                   </div>

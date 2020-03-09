@@ -62,5 +62,12 @@ export class JobDetailsComponent implements OnInit {
      });
   }
 
+  sorting(e){
+  }
+
+  pageChange(e){
+
+  }
+
 
 }

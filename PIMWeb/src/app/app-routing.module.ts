@@ -10,6 +10,7 @@ import { OrganizationModule } from './organization/organization.module';
 import { IntegrationsModule } from "./integrations/integrations.module";
 import { DynamicFormsModule } from "./dynamic-forms/dynamic-forms.module";
 import { EntitiesModule } from './entities/entities.module';
+import { MenuModule } from './menu/menu.module'
 
 import { AuthGuard } from "./core/guards/auth.guard";
 import { AttributesModule } from './attributes/attributes.module';
@@ -25,6 +26,12 @@ const routes: Routes = [
     path: 'home',
     canActivate:[AuthGuard],
     loadChildren: './home/home.module#HomeModule'
+  },
+  {
+    path: 'menuList',
+    canActivate:[AuthGuard],
+    data: { preload: true },
+    loadChildren: './menu/menu.module#MenuModule'
   },
   {
     path: 'userList',
@@ -86,6 +93,7 @@ const routes: Routes = [
     EntitiesModule,
     AttributesModule,
     LookupTablesModule,
+    MenuModule,
     WorkflowsModule,
     RouterModule.forRoot(routes)
   ],

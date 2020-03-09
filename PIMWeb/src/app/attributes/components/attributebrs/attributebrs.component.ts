@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'; 
-import { FormArray, FormControl, Form, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {  FormControl,  FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AppService } from 'src/app/app.service'; 
 
 import { attributeBRs } from '../../models/attributeBRs';

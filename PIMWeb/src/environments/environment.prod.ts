@@ -27,5 +27,7 @@ export const environment = {
   dataType_url:'dataType',
   displayType_url:'displayType',
   attributeType_url:'attributeTypes',
-  attributeGroup_url:'attributeGroup'
+  attributeGroup_url:'attributeGroup',
+  attribute_UomType:"uomType",
+  attribute_Uom:"uom"
 };

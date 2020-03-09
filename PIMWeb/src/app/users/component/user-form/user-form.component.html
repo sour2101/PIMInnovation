@@ -75,15 +75,8 @@
                             </div>
                             <div class="form-group col-sm-4"
                                 [ngClass]="{'has-error': (userForm.get('languageId').invalid && formDir.submitted) }">
-                                <label class="control-label">{{'data.lblLanguage' | translate}}</label>
-                                <div>
-                                    <select name="languageName" formControlName="languageId" class="form-control form-control-sm"
-                                        required>
-                                        <option value="">-- {{'data.lblLanguage' | translate}} --</option>
-                                        <option *ngFor="let lang of languageList" [ngValue]="lang.id">{{lang.name}}
-                                        </option>
-                                    </select>
-                                </div>
+                                 <app-localization [form]="userForm"  [multiselect]="false"></app-localization>  
+                                 
                             </div>
                             <div class="form-group col-sm-4">
                                 <label class="control-label">{{'data.lblManager' | translate}}</label>
@@ -125,7 +118,7 @@
         
 
         <div class="col-sm-12">
-            <a (click)="back(null)" class="btn btn-default">{{'data.btnBack' | translate}}</a>
+            <a (click)="back()" class="btn btn-default">{{'data.btnBack' | translate}}</a>
             <button pButton type="submit" label="{{'data.btnSave' | translate}}" class="pull-right"></button>
         </div>
     </form>

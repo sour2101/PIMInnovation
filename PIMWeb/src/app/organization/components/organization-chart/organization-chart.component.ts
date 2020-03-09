@@ -17,7 +17,7 @@ import { ToastsManager } from 'ng6-toastr';
   providers:[DialogService]
 })
 export class OrganizationChartComponent implements OnInit {
-  @ViewChild(ContextMenuComponent) public basicMenu: ContextMenuComponent;
+  @ViewChild(ContextMenuComponent,{ read: true, static: false }) public basicMenu: ContextMenuComponent;
    
   msg;
   loc;

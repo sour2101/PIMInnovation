@@ -301,16 +301,19 @@
     <Compile Include="Controllers\ChangeLogController.cs" />
     <Compile Include="Controllers\EntityController.cs" />
     <Compile Include="Controllers\FileController.cs" />
-    <Compile Include="Controllers\LdapController.cs" />
+    <Compile Include="Controllers\MenuRightsController.cs" />
+    <Compile Include="Controllers\SubMenuController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="UserRole\LdapController.cs" />
     <Compile Include="LookupControllers\LookupColumnController.cs" />
     <Compile Include="LookupControllers\LookupController.cs" />
     <Compile Include="LookupControllers\LookupTableController.cs" />
     <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\OrganizationController.cs" />
     <Compile Include="Controllers\ResourcesController.cs" />
-    <Compile Include="Controllers\RolesController.cs" />
-    <Compile Include="Controllers\UserPrefrencesController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="UserRole\RolesController.cs" />
+    <Compile Include="UserRole\UserPrefrencesController.cs" />
+    <Compile Include="UserRole\UsersController.cs" />
     <Compile Include="Controllers\VersionController.cs" />
     <Compile Include="Controllers\WorkflowController.cs" />
     <Compile Include="ExcelExportControllers\AttributeMappingSheet.cs" />
@@ -357,7 +360,7 @@
     <Compile Include="Providers\IPasswordManagerProvider.cs" />
     <Compile Include="Providers\PasswordManagerProvider.cs" />
     <Compile Include="ExcelExportControllers\MetaDataSheet.cs" />
-    <Compile Include="Startup.cs" />
+    <Compile Include="UserRole\Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ApplicationInsights.config">

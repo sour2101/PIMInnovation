@@ -22,6 +22,12 @@
             base.OnModelCreating(modelBuilder);
         }
 
+        public virtual DbSet<Menu> Menus { get; set; }
+
+        public virtual DbSet<Locale> Locales { get; set; }
+
+        public virtual DbSet<MenuChildrens> MenuChildrens { get; set; }
+
         public virtual DbSet<User> Users { get; set; }
 
         public virtual DbSet<UserRights> UserRights { get; set; }
@@ -29,6 +35,8 @@
         public virtual DbSet<UserPreferences> UserPreferences { get; set; }
 
         public virtual DbSet<Role> Roles { get; set; }
+
+        public virtual DbSet<MenuRights> MenuRights { get; set; }
 
         public virtual DbSet<Country> Countries { get; set; }
 

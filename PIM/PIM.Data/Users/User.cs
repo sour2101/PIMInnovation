@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using PIM.Data.MasterData;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Principal;
@@ -41,7 +42,7 @@ namespace PIM.Data.Users
         public virtual Token Token { get; set; }
 
         [ForeignKey("LanguageId")]
-        public virtual Language Languages { get; set; }
+        public virtual Locale Languages { get; set; }
 
         public bool Disabled { get; set; }
 

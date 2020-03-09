@@ -31,6 +31,7 @@ export class LookupComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    debugger;
     this.formArray = <FormArray>this.form.controls[this.field.shortName];
   }
 

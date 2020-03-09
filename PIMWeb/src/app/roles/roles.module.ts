@@ -8,9 +8,10 @@ import { RoleListComponent } from './components/role-list/role-list.component';
 import { RoleFormComponent } from './components/role-form/role-form.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { PrimengModule } from '../externalmodule/primeng.module';
+import { MenurightsComponent } from './components/menurights/menurights.component';
 
 @NgModule({
-  declarations: [RoleListComponent, RoleFormComponent],
+  declarations: [RoleListComponent, RoleFormComponent, MenurightsComponent],
   imports: [
     CommonModule,
     RolesRoutingModule,

@@ -20,5 +20,7 @@ namespace PIM.Data.Users
         public bool Active { get; set; }
 
         public virtual ICollection<UserRights> UserRights { get; set; }
+
+        public virtual ICollection<MenuRights> MenuRights { get; set; }
     }
 }

@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { RoleFormComponent } from '../role-form/role-form.component';
+import { Component, OnInit } from '@angular/core'; 
 import { TranslateService } from '@ngx-translate/core';
 import { RoleService } from '../../services/role.service';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { role } from '../../models/role';
 import { DialogService, ConfirmationService } from 'primeng/api';
 import { ToastsManager } from 'ng6-toastr';
+import { Router } from '@angular/router';
+import { MenurightsComponent } from '../menurights/menurights.component';
 
 @Component({
   selector: 'app-role-list',
@@ -30,7 +31,9 @@ export class RoleListComponent implements OnInit {
     private toastr:ToastsManager,
     private _formBuilder:FormBuilder,
     private _roleService:RoleService,
-    private dialogService:DialogService){ }
+    private dialogService:DialogService,
+    public router:Router
+    ){ }
 
   ngOnInit() {
     this.initialize();
@@ -71,19 +74,11 @@ export class RoleListComponent implements OnInit {
   }
 
   editRole(selectedrole){
-    this.translate.get('data.lblEditRole').subscribe((res)=> 
-    {
-      this.dialogHeader=res;
-    });
-    this.openDialog(selectedrole.id);
+    this.router.navigate(["role/"+selectedrole.id]);
   }
 
   addRole(){
-    this.translate.get('data.lblAddRole').subscribe((res)=> 
-    {
-      this.dialogHeader=res;
-    });
-    this.openDialog(null);
+    this.router.navigate(["role"]);
   }
 
   deleteRole(selectedRole){
@@ -105,15 +100,24 @@ export class RoleListComponent implements OnInit {
   }
 
   openDialog(roleId): void {
-    const ref = this.dialogService.open(RoleFormComponent, {
+    const ref = this.dialogService.open(MenurightsComponent, {
       data: { roleId: roleId},
       header:this.dialogHeader,
       width:'60%'
       });   
       
       ref.onClose.subscribe(() => {
-        this.loadRoleList(this.pageSize,this.pageNumber,this.sortBy,this.sortOrder,null);
+      
       });
+  }
+
+  menuRights(roleId){
+    this.translate.get('data.lblMenuRights').subscribe((res)=> 
+    {
+      this.dialogHeader=res;
+    });
+    
+    this.openDialog(roleId);
   }
 
 }

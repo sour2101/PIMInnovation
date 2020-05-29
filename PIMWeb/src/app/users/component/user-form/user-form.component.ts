@@ -76,6 +76,7 @@ export class UserFormComponent implements OnInit {
   }
 
   getRole(){
+    debugger;
     this._pimService.get(environment.role_url)
     .subscribe(res=>{
       this.roleList=res;

@@ -27,7 +27,7 @@
           <div class="col-md-9">
             <select name="dataLocalName" [(ngModel)]="dataLocalId" class="form-control" (change)="changelocal(dataLocalId)" >
               <option [ngValue]="dataLocal.id" *ngFor="let dataLocal of dataLocalList">
-                   {{dataLocal.name}}
+                   {{dataLocal.code}}
               </option> 
            </select>
           </div>

@@ -11,10 +11,11 @@ import { UserListComponent } from './component/user-list/user-list.component';
 import { UserFormComponent } from './component/user-form/user-form.component';
 import { UserPreferenceComponent } from './component/user-preference/user-preference.component';
 import { SharedModule } from '../shared/shared.module';
+import { UserRoleRightsComponent } from './component/user-role-rights/user-role-rights.component';
 
 
 @NgModule({
-  declarations: [UserListComponent, UserFormComponent, UserPreferenceComponent],
+  declarations: [UserListComponent, UserFormComponent, UserPreferenceComponent, UserRoleRightsComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,

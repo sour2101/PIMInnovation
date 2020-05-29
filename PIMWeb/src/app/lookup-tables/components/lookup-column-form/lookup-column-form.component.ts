@@ -27,6 +27,7 @@ export class LookupColumnFormComponent implements OnInit {
     private _activateRoute:ActivatedRoute,
     public _lookupTableService:LookupTableService) {
 
+      this._lookupTableService.isLoading=false;
     this.dataTypeList=[
       {name:'varchar'},
       {name:'int'},

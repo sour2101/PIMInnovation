@@ -3,7 +3,7 @@
     <div>
 <select *ngIf="!multiselect" name="languageName" formControlName="languageId" class="form-control form-control-sm" required>
     <option value="">-- {{'data.lblLanguage' | translate}} --</option>
-    <option *ngFor="let lang of languageList" [ngValue]="lang.id">{{lang.name}} </option>
+    <option *ngFor="let lang of languageList" [ngValue]="lang.id">{{lang.code}} </option>
 </select>
 </div>
 </div>

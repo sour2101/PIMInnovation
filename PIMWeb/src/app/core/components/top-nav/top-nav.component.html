@@ -1,9 +1,9 @@
-<!-- <ul class="nav navbar-nav">
+<ul class="nav navbar-nav">
     <li class="nav-item">
         <a routerLink="/home" #home="routerLinkActive" (click)="$event.preventDefault()" routerLinkActive="active"
             class="nav-link">{{'data.menuHome' | translate}}</a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" *ngIf="admin">
         <a class="dropdown-toggle" data-toggle="dropdown">{{'data.menuEntity' | translate}}</a>
         <ul class="dropdown-menu" role="menu">
             <li class="nav-item">
@@ -16,7 +16,7 @@
             </li>
         </ul>
     </li>
-    <li class="nav-item" *ngIf="admin">
+    <li class="nav-item" *ngIf="admin" >
         <a class="dropdown-toggle" data-toggle="dropdown">{{'data.menuIntegration' | translate}}</a>
         <ul class="dropdown-menu" role="menu">
             <li class="nav-item">
@@ -37,7 +37,7 @@
             </li>
         </ul>
     </li>
-    <li class="nav-item" *ngIf="admin">
+    <li class="nav-item" *ngIf="admin" >
         <a class="dropdown-toggle" data-toggle="dropdown">{{'data.menuModel'|translate}}</a>
         <ul class="dropdown-menu" role="menu">
             <li class="nav-item">
@@ -46,7 +46,7 @@
             </li>
         </ul>
     </li>
-    <li class="nav-item" *ngIf="admin">
+    <li class="nav-item" >
         <a class="dropdown-toggle" data-toggle="dropdown">{{'data.menuSysAdmin'|translate}}</a>
         <ul class="dropdown-menu" role="menu">
             <li class="nav-item">
@@ -57,22 +57,22 @@
                 <a routerLink="/userList" (click)="$event.preventDefault()" #userList="routerLinkActive" routerLinkActive="active"
                     class="nav-link">{{'data.menuUser' | translate}}</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="admin">
                 <a class="nav-link" (click)="$event.preventDefault()" #attributeList="routerLinkActive" routerLinkActive="active"
                     routerLink="/attributeList">{{'data.menuAttribute' |translate}} </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="admin">
                 <a class="nav-link" (click)="$event.preventDefault()" #attributeList="routerLinkActive" routerLinkActive="active"
                     routerLink="/lookuptableList">{{'data.menuLookupTable' |translate}} </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="admin">
                 <a class="nav-link" (click)="$event.preventDefault()" #attributeList="routerLinkActive" routerLinkActive="active"
                     routerLink="/workflowList">{{'data.menuWorkflow' |translate}} </a>
             </li>
         </ul>
     </li>
-</ul> -->
-<ul  class="nav navbar-nav">
+</ul>
+<!-- <ul  class="nav navbar-nav">
   <li class="nav-item" *ngFor="let item of navItems;let i=index">
       <a *ngIf="item.childrens.length===0" routerLink="{{item.link}}"  routerLinkActive="active" class="nav-link" >{{item.name}}</a>
       <ng-container *ngIf="item.childrens.length!==0" [ngTemplateOutlet]="childrens"[ngTemplateOutletContext]="{$implicit:item}">
@@ -85,8 +85,8 @@
    <ul class="dropdown-menu" role="menu">
         <li class="nav-item" *ngFor="let item of navItems.childrens;let i=index">
             <a  routerLink="{{item.link}}"  routerLinkActive="active" class="nav-link" >{{item.name}}</a>
-            <!-- <ng-container *ngIf="item.childrens?.length!==0" [ngTemplateOutlet]="childrens"[ngTemplateOutletContext]="{$implicit:item}">
-            </ng-container> -->
+            <ng-container *ngIf="item.childrens?.length!==0" [ngTemplateOutlet]="childrens"[ngTemplateOutletContext]="{$implicit:item}">
+            </ng-container>
         </li>
     </ul>
-</ng-template>
+</ng-template> -->

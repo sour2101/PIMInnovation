@@ -38,6 +38,7 @@
                             <td><span class="ui-column-title">{{'data.lblDisabled' | translate}}</span>{{user.active}}</td>
                             <td>
                                 <button type="button" pButton icon="pi pi-pencil" tooltipPosition="top" pTooltip="{{'data.btnEdit' | translate}}"  (click)="editUser(user)"></button>
+                                <button type="button" pButton icon="pi pi-cog" tooltipPosition="top" pTooltip="{{'data.lblMenuRights' | translate}}"  (click)="userRoleRights(user.id)"></button>
                                 <button type="button" pButton icon="pi pi-trash" tooltipPosition="top" pTooltip="{{'data.btnDelete' | translate}}"  (click)="deleteUser(user)"></button>
                             </td>
                         </tr>

@@ -10,9 +10,12 @@ import { ContextMenuModule } from 'ngx-contextmenu';
 
 import { OrganizationChartComponent } from './components/organization-chart/organization-chart.component';
 import { OrganizationFormComponent } from './components/organization-form/organization-form.component';
+import { MappingComponent } from './components/mapping/mapping.component';
+import { SharedModule } from '../shared/shared.module';
+
 
 @NgModule({
-  declarations: [OrganizationChartComponent, OrganizationFormComponent],
+  declarations: [OrganizationChartComponent, OrganizationFormComponent, MappingComponent],
   imports: [
     CommonModule,
     OrganizationRoutingModule,
@@ -20,7 +23,8 @@ import { OrganizationFormComponent } from './components/organization-form/organi
     FormsModule,
     PrimengModule,
     ContextMenuModule,
-    TranslateModule
+    TranslateModule,
+    SharedModule
   ],
   exports:[
     OrganizationChartComponent

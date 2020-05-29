@@ -1,12 +1,15 @@
-﻿using System;
-using System.Data.Entity.Migrations;
-using PIM.Data.Users;
-using PIM.Data.MasterData;
-using PIM.Data.Integrations;
-using PIM.Data.Enums;
+﻿
 
 namespace PIM.Data.Migrations
 {
+    using System;
+    using System.Data.Entity.Migrations;
+    using Users;
+    using MasterData;
+    using Integrations;
+    using Enums;
+    using Attributes;
+
     internal sealed class Configuration : DbMigrationsConfiguration<PIMContext>
     {
         public Configuration()
@@ -17,7 +20,7 @@ namespace PIM.Data.Migrations
 
         protected override void Seed(PIMContext context)
         {
-            /* var locale = new[] {
+          /*  var locale = new[] {
                 new Locale {Code="EN",Name="English" },
                 new Locale {Code="FR",Name="France" },
                 new Locale {Code="PT",Name="Portuguese" }
@@ -26,80 +29,80 @@ namespace PIM.Data.Migrations
 
             context.Locales.AddOrUpdate(l => new { l.Code, l.Name }, locale);
 
-             var menu = new[] {
-              new Menu {Id=1,Name="Home",Link="/home" },
-              new Menu {Id=2,Name="MasterData Management",Link="" }
-          };
+          //   var menu = new[] {
+          //    new Menu {Id=1,Name="Home",Link="/home" },
+          //    new Menu {Id=2,Name="MasterData Management",Link="" }
+          //};
 
-          context.Menus.AddOrUpdate(m => new { m.Name,m.Link }, menu);
+          //context.Menus.AddOrUpdate(m => new { m.Name,m.Link }, menu);
 
-           var menuChildrens = new[] {
-               new MenuChildrens {Id=1,Name="Menu",Link="/menu",ParentId=2 }
-           };
+          // var menuChildrens = new[] {
+          //     new MenuChildrens {Id=1,Name="Menu",Link="/menu",ParentId=2 }
+          // };
 
-           context.MenuChildrens.AddOrUpdate(m => new { m.Name, m.Link,m.ParentId }, menuChildrens);
+          // context.MenuChildrens.AddOrUpdate(m => new { m.Name, m.Link,m.ParentId }, menuChildrens);
 
             var role = new[]{
-            new Role{Id=1,Name="Administrator",CreatedBy=1,CreatedDate=DateTime.Now},
-            new Role{Id=2,Name="Aggregation Admin",CreatedBy=1,CreatedDate=DateTime.Now},
-            new Role{Id=3,Name="ANZ - Marketing Steward",CreatedBy=1,CreatedDate=DateTime.Now},
-            new Role{Id=4,Name="ANZ - Part Create",CreatedBy=1,CreatedDate=DateTime.Now},
-            new Role{Id=5,Name="ANZ - Pricing",CreatedBy=1,CreatedDate=DateTime.Now},
-            new Role{Id=6,Name="ANZ - Product Manager",CreatedBy=1,CreatedDate=DateTime.Now},
-            new Role{Id=7,Name="ANZ - Supply Chain/FG",CreatedBy=1,CreatedDate=DateTime.Now},
-            new Role{Id=8,Name="ANZ - VMS",CreatedBy=1,CreatedDate=DateTime.Now},
-            new Role{Id=9,Name="Controller - BZL",CreatedBy=1,CreatedDate=DateTime.Now},
-            new Role{Id=10,Name="Customer Service - BZL",CreatedBy=1,CreatedDate=DateTime.Now},
-            new Role{Id=11,Name="Digital Marketing - BZL",CreatedBy=1,CreatedDate=DateTime.Now},
-            new Role{Id=12,Name="GS1 Admin",CreatedBy=1,CreatedDate=DateTime.Now},
-            new Role{Id=13,Name="Industrial Process - BZL",CreatedBy=1,CreatedDate=DateTime.Now},
-            new Role{Id=14,Name="ItemUpdateEnable",CreatedBy=1,CreatedDate=DateTime.Now},
-            new Role{Id=15,Name="Logistic - BZL",CreatedBy=1,CreatedDate=DateTime.Now},
-            new Role{Id=16,Name="Marketing Channel - BZL",CreatedBy=1,CreatedDate=DateTime.Now},
-            new Role{Id=17,Name="Marketing Manager - BZL",CreatedBy=1,CreatedDate=DateTime.Now},
-            new Role{Id=18,Name="Marketing Price - BZL",CreatedBy=1,CreatedDate=DateTime.Now},
-            new Role{Id=19,Name="Marketing Steward",CreatedBy=1,CreatedDate=DateTime.Now},
-            new Role{Id=20,Name="MIS",CreatedBy=1,CreatedDate=DateTime.Now},
-            new Role{Id=21,Name="PIM Admin - BZL",CreatedBy=1,CreatedDate=DateTime.Now},
-            new Role{Id=22,Name="Planning - BZL",CreatedBy=1,CreatedDate=DateTime.Now},
-            new Role{Id=23,Name="Product Manager",CreatedBy=1,CreatedDate=DateTime.Now},
-            new Role{Id=24,Name="ReadOnly",CreatedBy=1,CreatedDate=DateTime.Now},
-            new Role{Id=25,Name="SAP Master Data - BZL",CreatedBy=1,CreatedDate=DateTime.Now},
-            new Role{Id=26,Name="Supply Chain/FG",CreatedBy=1,CreatedDate=DateTime.Now},
-            new Role{Id=27,Name="Syndication Admin",CreatedBy=1,CreatedDate=DateTime.Now},
-            new Role{Id=28,Name="SystemAdmin",CreatedBy=1,CreatedDate=DateTime.Now},
-            new Role{Id=29,Name="Translation Admin",CreatedBy=1,CreatedDate=DateTime.Now},
-            new Role{Id=30,Name="VMS",CreatedBy=1,CreatedDate=DateTime.Now},
-            new Role{Id=31,Name="Workflow Marshal",CreatedBy=1,CreatedDate=DateTime.Now},
+            new Role{Id=1,Name="Administrator",Active=true,CreatedBy="S3135114",CreatedDate=DateTime.Now},
+            //new Role{Id=2,Name="Aggregation Admin",CreatedBy=1,CreatedDate=DateTime.Now},
+            //new Role{Id=3,Name="ANZ - Marketing Steward",CreatedBy=1,CreatedDate=DateTime.Now},
+            //new Role{Id=4,Name="ANZ - Part Create",CreatedBy=1,CreatedDate=DateTime.Now},
+            //new Role{Id=5,Name="ANZ - Pricing",CreatedBy=1,CreatedDate=DateTime.Now},
+            //new Role{Id=6,Name="ANZ - Product Manager",CreatedBy=1,CreatedDate=DateTime.Now},
+            //new Role{Id=7,Name="ANZ - Supply Chain/FG",CreatedBy=1,CreatedDate=DateTime.Now},
+            //new Role{Id=8,Name="ANZ - VMS",CreatedBy=1,CreatedDate=DateTime.Now},
+            //new Role{Id=9,Name="Controller - BZL",CreatedBy=1,CreatedDate=DateTime.Now},
+            //new Role{Id=10,Name="Customer Service - BZL",CreatedBy=1,CreatedDate=DateTime.Now},
+            //new Role{Id=11,Name="Digital Marketing - BZL",CreatedBy=1,CreatedDate=DateTime.Now},
+            //new Role{Id=12,Name="GS1 Admin",CreatedBy=1,CreatedDate=DateTime.Now},
+            //new Role{Id=13,Name="Industrial Process - BZL",CreatedBy=1,CreatedDate=DateTime.Now},
+            //new Role{Id=14,Name="ItemUpdateEnable",CreatedBy=1,CreatedDate=DateTime.Now},
+            //new Role{Id=15,Name="Logistic - BZL",CreatedBy=1,CreatedDate=DateTime.Now},
+            //new Role{Id=16,Name="Marketing Channel - BZL",CreatedBy=1,CreatedDate=DateTime.Now},
+            //new Role{Id=17,Name="Marketing Manager - BZL",CreatedBy=1,CreatedDate=DateTime.Now},
+            //new Role{Id=18,Name="Marketing Price - BZL",CreatedBy=1,CreatedDate=DateTime.Now},
+            //new Role{Id=19,Name="Marketing Steward",CreatedBy=1,CreatedDate=DateTime.Now},
+            //new Role{Id=20,Name="MIS",CreatedBy=1,CreatedDate=DateTime.Now},
+            //new Role{Id=21,Name="PIM Admin - BZL",CreatedBy=1,CreatedDate=DateTime.Now},
+            //new Role{Id=22,Name="Planning - BZL",CreatedBy=1,CreatedDate=DateTime.Now},
+            //new Role{Id=23,Name="Product Manager",CreatedBy=1,CreatedDate=DateTime.Now},
+            //new Role{Id=24,Name="ReadOnly",CreatedBy=1,CreatedDate=DateTime.Now},
+            //new Role{Id=25,Name="SAP Master Data - BZL",CreatedBy=1,CreatedDate=DateTime.Now},
+            //new Role{Id=26,Name="Supply Chain/FG",CreatedBy=1,CreatedDate=DateTime.Now},
+            //new Role{Id=27,Name="Syndication Admin",CreatedBy=1,CreatedDate=DateTime.Now},
+            //new Role{Id=28,Name="SystemAdmin",CreatedBy=1,CreatedDate=DateTime.Now},
+            //new Role{Id=29,Name="Translation Admin",CreatedBy=1,CreatedDate=DateTime.Now},
+            //new Role{Id=30,Name="VMS",CreatedBy=1,CreatedDate=DateTime.Now},
+            //new Role{Id=31,Name="Workflow Marshal",CreatedBy=1,CreatedDate=DateTime.Now},
 
             };
 
-            context.Roles.AddOrUpdate(c => new { c.Name,c.CreatedBy,c.CreatedDate }, role);
+            context.Roles.AddOrUpdate(c => new { c.Name,c.Active,c.CreatedBy,c.CreatedDate }, role);
 
        
 
-           var user = new[]
-           {
-               new User {Id = 1, Username = "S3135114", Firstname = "sourabh", Lastname = "Padwad",Email = "sourabh.padwad@saint-gobain.com",Disabled =false,Active = true,LanguageId=1,Password="b6bc7b58510319a151d168ba3d5aecb3ac0a9708d06dd930f37fbc89b6cdc697"}
-           };
+               var user = new[]
+               {
+                   new User {Id = 1, Username = "S3135114", Firstname = "sourabh", Lastname = "Padwad",Email = "sourabh.padwad@saint-gobain.com",Disabled =false,Active = true,LanguageId=1,Password="b6bc7b58510319a151d168ba3d5aecb3ac0a9708d06dd930f37fbc89b6cdc697"}
+               };
 
-           context.Users.AddOrUpdate(c => new {  c.Username, c.Firstname, c.Lastname, c.Email, c.Active,c.Disabled }, user);
+               context.Users.AddOrUpdate(c => new {  c.Username, c.Firstname, c.Lastname, c.Email, c.Active,c.Disabled }, user);
 
 
 
-            var userRights = new[]
-            {
-               new UserRights {RoleId=1,UserId=1,CreatedBy=1,CreatedDate=DateTime.Now }
+                var userRights = new[]
+                {
+                   new UserRights {RoleId=1,UserId=1 }
 
-           };
+               };
 
-           context.UserRights.AddOrUpdate(c => new { c.RoleId, c.UserId, c.CreatedBy, c.CreatedDate }, userRights);
+               context.UserRights.AddOrUpdate(c => new { c.RoleId, c.UserId }, userRights);
 
 
 
 
              var orgs = new[] {
-                new Organization { Id = 1, ShortName = "Saint-Gobain", LongName = "Saint-Gobain",ParentId=0,CreatedBy=1,CreatedDate=DateTime.Now }
+                new Organization { Id = 1, ShortName = "Saint-Gobain", LongName = "Saint-Gobain",ParentId=0,CreatedBy="S3135114",CreatedDate=DateTime.Now }
             };
 
             context.Organizations.AddOrUpdate(c => new { c.Id, c.ShortName, c.LongName,c.ParentId,c.CreatedBy,c.CreatedDate }, orgs);
@@ -107,7 +110,7 @@ namespace PIM.Data.Migrations
 
 
             var userpref = new[] {
-            new UserPreferences {DataLocal=1,TimeZone="",CatalogId=null, RoleId=1,Taxonomy=null,UserId=1,OrganizationId=1,CreatedBy=1,CreatedDate=DateTime.Now},
+            new UserPreferences {DataLocal=1,TimeZone="",CatalogId=null, RoleId=1,Taxonomy=null,UserId=1,OrganizationId=1,CreatedBy="S3135114",CreatedDate=DateTime.Now},
 
             };
 
@@ -159,8 +162,8 @@ namespace PIM.Data.Migrations
 
 
              var attrtype = new[] {
-                new AttributeType { Id=1,ShortName="Common",LongName="Common",CreatedBy=1,CreatedDate=DateTime.Now},
-                new AttributeType { Id=2,ShortName="Technical",LongName="Technical",CreatedBy=1,CreatedDate=DateTime.Now},
+                new AttributeType { Id=1,ShortName="Common",LongName="Common",CreatedBy="S3135114",CreatedDate=DateTime.Now},
+                new AttributeType { Id=2,ShortName="Technical",LongName="Technical",CreatedBy="S3135114",CreatedDate=DateTime.Now},
              };
 
              context.AttributeTypes.AddOrUpdate(ag => new { ag.Id, ag.ShortName, ag.LongName,ag.CreatedBy,ag.CreatedDate }, attrtype);
@@ -505,5 +508,5 @@ namespace PIM.Data.Migrations
              context.UOM.AddOrUpdate(a => new { a.Id, a.Name,a.Code,a.UomTypeId }, uom);
               */
         }
-    }
+        }
 }

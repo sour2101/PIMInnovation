@@ -6,6 +6,7 @@ import { AuthGuard } from "../core/guards/auth.guard";
 import { LayoutComponent } from '../core/components/layout/layout.component';
 import { CreateEntityComponent } from './components/create-entity/create-entity.component';
 import { SearchEntityComponent } from './components/search-entity/search-entity.component';
+import { EntityDetailsComponent } from './components/entity-details/entity-details.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
       {
         path: 'searchEntity',
         component: SearchEntityComponent
+      },
+      {
+        path: 'entityDetails',
+        component: EntityDetailsComponent
       }
     ]
   }

@@ -11,6 +11,7 @@
                                       <input pInputText name="shortName" type="text" formControlName="shortName" class="form-control" [required]="true" />
                                   </div>
                               </div>
+                              
                               <div class="form-group" [ngClass]="{'has-error': formDir.submitted && (orgForm.controls.longName.invalid )}">
                                   <label class="control-label col-md-3">
                                                               {{'data.lblLongName' | translate}}
@@ -19,6 +20,14 @@
                                       <input pInputText name="longName" type="text" formControlName="longName" class="form-control" [required]="true" />
                                   </div>
                               </div>
+                              <div class="form-group" >
+                                <label class="control-label col-md-3">
+                                                {{'data.lblLogo' | translate}}
+                                </label>
+                                <div class="col-md-9">
+                                    <input pInputText type="text" class="form-control" formControlName="logo">
+                                </div>
+                            </div>
                               <div class="form-group" >
                                 <label class="control-label col-md-3">{{'data.lblIsEnvironment' | translate}}</label>
                                 <div class="col-md-9">

@@ -80,4 +80,6 @@ export class MenurightsComponent implements OnInit {
     });
   }
 
+  back(){}
+
 }

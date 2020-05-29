@@ -1,0 +1,31 @@
+<div class="col-md-12" style="padding:0px;">
+    <p-panel [styleClass]="'panelStyle'" [toggleable]="false">
+        <p-header>
+            <div class="ui-helper-clearfix">
+                <span class="ui-panel-title">{{'data.lblEntityDetails' | translate}}</span>
+            </div>
+        </p-header>
+        <div class="box-body">
+            <div class="col-sm-12">
+                <div>
+                    <form (ngSubmit)="form.valid && onSubmit(this.form)" #formDir="ngForm" [formGroup]="form"
+                         novalidate>
+                        <div class="form-row">
+                        <div *ngFor="let field of fields">
+                            <field-builder [field]="field" [form]="form"></field-builder>
+                        </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <a (click)="back()" class="btn btn-default">{{'data.btnBack' | translate}}</a>
+                            <button pButton type="submit" label="{{'data.btnSave' | translate}}"
+                                class="pull-right"></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- <app-loader *ngIf="!_entityService.isLoading" ></app-loader> -->
+    </p-panel>
+   
+</div>
+

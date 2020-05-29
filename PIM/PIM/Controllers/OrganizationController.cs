@@ -18,14 +18,39 @@ namespace PIM.API.Controllers
         [HttpGet]
         public IHttpActionResult Get()
         {
-            var org = Repository.GetAll<Organization>();
+            var org = Repository.GetAll<Organization>()
+                .Select(o=>new {
+                    o.Id,
+                    o.ShortName,
+                    o.LongName,
+                    Logo = o.Logo==null? "assets/images/Saint-gobain_small.png":o.Logo,
+                    o.IsCatalog,
+                    o.IsContainor,
+                    o.IsEnvironment,
+                    o.CreatedBy,
+                    o.CreatedDate,
+                    o.ParentId
+                    
+                });
             return Ok(org);
         }
 
         [HttpGet]
         public IHttpActionResult Get(int id)
         {
-            var org = Repository.FindBy<Organization>(u => u.Id==id).SingleOrDefault();
+            var org = Repository.FindBy<Organization>(u => u.Id==id)
+                .Select(o=>new {
+                    o.Id,
+                    o.ShortName,
+                    o.LongName,
+                    o.Logo,
+                    o.IsCatalog,
+                    o.IsContainor,
+                    o.IsEnvironment,
+                    o.CreatedBy,
+                    o.CreatedDate,
+                    o.ParentId
+                }).SingleOrDefault();
             return Ok(org);
         }
 
@@ -67,7 +92,7 @@ namespace PIM.API.Controllers
                 return BadRequest(ModelState);
             }
              
-            org.ModifiedBy = principal.Id;
+            org.ModifiedBy = principal.Username;
             org.ModifiedDate = System.DateTime.Now;
             Repository.Update(org);
             Repository.Save();

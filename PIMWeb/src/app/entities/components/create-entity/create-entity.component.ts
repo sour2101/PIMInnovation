@@ -1,7 +1,8 @@
 import { Component, OnInit ,HostListener } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { EntityService } from '../../services/entity.service';
-import { entity } from '../../models/entity';
+import { DisplayAttribute } from '../../models/displayAttribute';
+import { Entity } from '../../models/entity'
 
 @Component({
   selector: 'app-create-entity',
@@ -10,7 +11,7 @@ import { entity } from '../../models/entity';
 export class CreateEntityComponent implements OnInit {
 
   public form: FormGroup=new FormGroup({});
-  fields: entity[];
+  fields: DisplayAttribute[];
   catalogId: number;
 
   constructor(
@@ -28,7 +29,15 @@ export class CreateEntityComponent implements OnInit {
 
   onSubmit(form) {
     debugger;
-    this._entityService.saveEntityData(form.value)
+    let entity:Entity[]=[];
+ 
+     this.fields.forEach(attrName => {
+       form.value[attrName.shortName].forEach(attrVal => {
+        entity.push({id:0,attributeId:attrVal.attributeId,attributeValue:attrVal.attributeValue,catalogId:attrVal.catalogId});
+       });
+       
+     });
+    this._entityService.saveEntityData(entity)
       .subscribe((res) => {
         console.log(res);
       });

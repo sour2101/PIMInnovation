@@ -1,0 +1,25 @@
+
+/* .login-box{
+  margin: auto;
+  float: left;
+  width: 50%;
+} */
+
+.login-box-body, .register-box-body{
+  border-radius: 2%;
+}
+
+.login-logo b {
+  color: #8964ce;/*7B95A3*/
+   text-align: center;
+ }
+
+ .profile-user-img{
+width: auto;
+ }
+
+ #loginLogo
+{
+  margin-bottom: -10%;
+  margin-top: 0%;
+}

@@ -7,7 +7,7 @@ namespace PIM.Data.Entity
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class Entity
+    public class EntityDetails
     {
         [Key]
         public int Id { get; set; }

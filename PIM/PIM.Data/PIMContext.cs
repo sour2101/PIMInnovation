@@ -7,6 +7,7 @@
     using MasterData;
     using Integrations;
     using Attributes;
+    using Entity;
 
     public class PIMContext:DbContext
     {
@@ -45,6 +46,8 @@
         public virtual DbSet<Category> categories { get; set; }
 
         public virtual DbSet<Organization> Organizations { get; set; }
+
+        public virtual DbSet<OrganizationMappings> OrganizationMappings { get; set; }
 
         public virtual DbSet<DataType> DataTypes { get; set; }
 
@@ -96,6 +99,7 @@
 
         public virtual DbSet<JobDetails> JobDetails { get; set; }
 
+        public virtual DbSet<EntityDetails> EntityDetails { get; set; }
        
 
     }

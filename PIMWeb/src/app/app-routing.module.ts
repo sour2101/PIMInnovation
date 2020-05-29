@@ -67,14 +67,12 @@ const routes: Routes = [
   {
     path: 'lookuptableList',
     canActivate:[AuthGuard],
-    loadChildren: './lookup-tables/lookup-tables.module#LookupTablesModule',
-    data: { preload: true }
+    loadChildren: './lookup-tables/lookup-tables.module#LookupTablesModule'
   },
   {
     path: 'workflowList',
     canActivate:[AuthGuard],
-    loadChildren: './workflows/workflows.module#WorkflowsModule',
-    data: { preload: true }
+    loadChildren: './workflows/workflows.module#WorkflowsModule'
   },
   { path: '**', redirectTo: 'login', pathMatch: 'full' }
   

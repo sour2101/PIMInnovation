@@ -24,7 +24,7 @@
                         <li class="dropdown" style="padding-top: 12px;">
                                 <select name="dataLocalName" [(ngModel)]="dataLocalId" class="form-control" (change)="changeDataLocal(dataLocalId)"  required>
                                         <option [ngValue]="dataLocal.id" *ngFor="let dataLocal of dataLocalList">
-                                             {{dataLocal.name}}
+                                             {{dataLocal.code}}
                                         </option> 
                                      </select>
                                      

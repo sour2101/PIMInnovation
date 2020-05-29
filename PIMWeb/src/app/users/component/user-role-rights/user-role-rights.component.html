@@ -1,0 +1,32 @@
+<section>
+    <div class="box-body">
+        <form [formGroup]="userRoleRightsForm" #formDir="ngForm" (ngSubmit)="userRoleRightsForm.valid && submit(userRoleRightsForm)"
+            novalidate>
+            <div class="form-row">
+                <div class="form-group" [ngClass]="{'has-error': (userRoleRightsForm.get('orgId').invalid && formDir.submitted) }" >
+                    <div class="col-sm-6">
+                        <p-listbox [options]="organization" formControlName="orgId"  [listStyle]="{'max-height':'250px'}" (onChange)="getRoles($event)"  checkbox="checkbox" filter="filter" optionLabel="name">
+                            <p-header>
+                                {{'data.lblOrganization' | translate}}
+                            </p-header>
+                          </p-listbox>
+                    </div>
+                </div>
+                <div class="form-group" [ngClass]="{'has-error': (userRoleRightsForm.get('roleId').invalid && formDir.submitted) }" >
+                    <div class="col-sm-6">
+                        <p-listbox [options]="roles"  [listStyle]="{'max-height':'250px'}" formControlName="roleId" multiple="multiple" checkbox="checkbox" filter="filter" optionLabel="name">
+                            <p-header>
+                                {{'data.lblRole' | translate}}
+                            </p-header>
+                          </p-listbox>
+                    </div>
+                </div>
+                
+            </div>
+            <div  class="col-sm-12">
+                <a (click)="back(null)" class="btn btn-default">{{'data.btnBack' | translate}}</a>
+                <button pButton type="submit" label="{{'data.btnSave' | translate}}"  class="pull-right"></button>
+            </div>
+        </form>
+    </div> 
+ </section>

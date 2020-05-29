@@ -81,6 +81,7 @@
     <Compile Include="MasterData\MenuChildrens.cs" />
     <Compile Include="MasterData\MessageType.cs" />
     <Compile Include="MasterData\Organization.cs" />
+    <Compile Include="MasterData\OrganizationMappings.cs" />
     <Compile Include="MasterData\Plant.cs" />
     <Compile Include="MasterData\UOM.cs" />
     <Compile Include="MasterData\UOMType.cs" />

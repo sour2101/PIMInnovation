@@ -102,6 +102,7 @@
                 return BadRequest(ModelState);
             }
 
+            role.Active = true;
             role.CreatedBy = principal.Username;
             role.CreatedDate = DateTime.Now;
             Repository.Add(role);
@@ -137,7 +138,7 @@
                 Repository.Add(ur);
             }
 
-            role.ModifiedBy = principal.Id;
+            role.ModifiedBy = principal.Username;
             role.ModifiedDate = DateTime.Now;
             Repository.Update(role);
             Repository.Save();

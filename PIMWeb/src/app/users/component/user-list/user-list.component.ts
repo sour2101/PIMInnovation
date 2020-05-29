@@ -8,6 +8,7 @@ import { DialogService, ConfirmationService } from 'primeng/api';
 import { TranslateService } from "@ngx-translate/core";
 import { UserService } from '../../services/user.service';
 import { FormBuilder, FormControl } from '@angular/forms';
+import { UserRoleRightsComponent } from '../user-role-rights/user-role-rights.component';
 
 @Component({
   selector: 'app-user-list',
@@ -81,7 +82,7 @@ export class UserListComponent implements OnInit {
   }
   
   openDialog(userId): void {
-    const ref = this.dialogService.open(UserFormComponent, {
+    const ref = this.dialogService.open(UserRoleRightsComponent, {
       data: { userId: userId},
       header: this.dialogheader,
       width:'80%'
@@ -94,20 +95,10 @@ export class UserListComponent implements OnInit {
   }
 
   editUser(selectedUser){
-    // this.translate.get('data.lblEditUser').subscribe((res)=> 
-    // {
-    //   this.dialogheader = res
-    // });
-    // this.openDialog(selectedUser.id);
     this.router.navigate(["user/"+selectedUser.id]);
   }
 
   addUser(){ 
-    // this.translate.get('data.lblAddUser').subscribe((res)=> 
-    // {
-    //   this.dialogheader = res
-    // });
-    // this.openDialog(null);
     this.router.navigate(["user"]);
   }
 
@@ -129,6 +120,10 @@ export class UserListComponent implements OnInit {
       }
   });
    
+  }
+
+  userRoleRights(id){
+    this.openDialog(id);
   }
 
 

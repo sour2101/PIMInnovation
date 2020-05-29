@@ -51,7 +51,7 @@
         {
             var principal = (User)User.Identity;
 
-            user.ModifiedBy = principal.Id;
+            user.ModifiedBy = principal.Username;
             user.ModifiedDate = DateTime.Now;
             Repository.Update(user);
             Repository.Save();

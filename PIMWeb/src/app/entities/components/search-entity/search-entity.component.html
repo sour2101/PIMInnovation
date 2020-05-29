@@ -20,24 +20,24 @@
         </div>
       </div>
       <div class="col-md-9">
-        <form class="form-horizontal">
+        <form class="form-horizontal" [formGroup]="filterForm" #formDir="ngForm" (ngSubmit)="submit()">
           
             <div class="form-group">
               <label class="control-label col-md-3">{{'data.lblscentity'|translate}}</label>
               <div class="col-md-9">
-                <p-chips id="entity" name="entities" [inputStyle]="{'width':'100%'}" [(ngModel)]="entities"></p-chips>
+                <p-chips id="entity" name="entities" [inputStyle]="{'width':'100%'}" formControlName="entities"></p-chips>
               </div>
             </div>
             <div class="form-group">
               <label class="control-label col-md-3">{{'data.lblPartNumber'|translate}}</label>
               <div class="col-md-9">
-                <input pInputText type="text" class="form-control">
+                <input pInputText type="text" class="form-control" formControlName="partNumbers">
               </div>
             </div>
             <div class="form-group">
               <label class="control-label col-md-3">{{'data.lblSoa'|translate}}</label>
               <div class="col-md-9">
-                <input pInputText type="text" class="form-control">
+                <input pInputText type="text" class="form-control" formControlName="soa">
               </div>
             </div>
           
@@ -48,5 +48,31 @@
         </form>
       </div>
     </div>
+  </p-panel>
+  <p-panel  header="Entities" [styleClass]="'panelStyle'">
+    <div class="row box-body">
+      <p-table #entityTable [columns]="columnList" [value]="entityList" [scrollable]="true" scrollHeight="50vh" [rows]="pageSize">
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns">
+              {{col}}
+            </th>
+          </tr>
+          <tr>
+            <th *ngFor="let col of columns"  >
+                <input pInputText type="text" >
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr [pSelectableRow]="rowData">
+            <td *ngFor="let col of columns">
+              {{rowData[col]}}
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
   </p-panel>
 </div>

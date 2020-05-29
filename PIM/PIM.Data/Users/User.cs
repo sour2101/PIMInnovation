@@ -41,7 +41,7 @@ namespace PIM.Data.Users
         // Navigation properties
         public virtual Token Token { get; set; }
 
-        [ForeignKey("LanguageId")]
+        
         public virtual Locale Languages { get; set; }
 
         public bool Disabled { get; set; }

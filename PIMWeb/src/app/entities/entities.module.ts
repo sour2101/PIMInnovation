@@ -14,10 +14,11 @@ import { FieldBuilderComponent } from '../dynamic-forms/components/field-builder
 import { DynamicFormsModule } from '../dynamic-forms/dynamic-forms.module';
 import { SearchEntityComponent } from './components/search-entity/search-entity.component';
 import { SharedModule } from '../shared/shared.module';
+import { EntityDetailsComponent } from './components/entity-details/entity-details.component';
 
 
 @NgModule({
-  declarations: [CreateEntityComponent,FieldBuilderComponent, SearchEntityComponent],
+  declarations: [CreateEntityComponent,FieldBuilderComponent, SearchEntityComponent, EntityDetailsComponent],
   imports: [
     CommonModule,
     EntitiesRoutingModule,

@@ -302,6 +302,7 @@
     <Compile Include="Controllers\EntityController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\MenuRightsController.cs" />
+    <Compile Include="Controllers\OrganizationMappingController.cs" />
     <Compile Include="Controllers\SubMenuController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="UserRole\LdapController.cs" />
@@ -360,7 +361,7 @@
     <Compile Include="Providers\IPasswordManagerProvider.cs" />
     <Compile Include="Providers\PasswordManagerProvider.cs" />
     <Compile Include="ExcelExportControllers\MetaDataSheet.cs" />
-    <Compile Include="UserRole\Startup.cs" />
+    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ApplicationInsights.config">

@@ -18,7 +18,8 @@ export class ApiInterceptor implements HttpInterceptor {
             headers: new HttpHeaders({
              'Content-Type': 'application/json',
              'Authorization':'Bearer '+ this._authService.getToken(),
-             'Access-Control-Expose-Headers':"*"
+             'Access-Control-Expose-Headers':"*",
+             'Access-Control-Allow-Origin':'*'
             })
         });
         return next.handle(authReq);

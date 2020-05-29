@@ -35,15 +35,10 @@ body {
 }
 
 
-.login-box {
+/* .login-box {
     margin: 10% auto;
-}
+} */
 
-#loginLogo
-{
-  margin-bottom: -25%;
-  margin-top: -5%;
-}
 
  
 .has-error{

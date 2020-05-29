@@ -110,3 +110,29 @@ body .ui-tree{
 body .ui-dropdown .ui-dropdown-trigger {
 background-color: #ffffff;
 }
+
+/********Org Chart Custmaization*********/
+
+.company.ui-organizationchart .ui-organizationchart-node-content {
+	padding: 0;
+	border: 0 none;
+}
+
+
+.node-header,.node-content {
+	padding: .5em .7em;
+}
+
+.node-header {
+	background-color: #6f42c1;
+	color: #ffffff;
+}
+
+.node-content {
+	text-align: center;
+	border: 1px solid #6f42c1;
+}
+
+.node-content img {
+	/* border-radius: 50%; */
+}

@@ -6,42 +6,19 @@
                   </div>
        </p-header>
 
- 
-          <div class="box-body">
-              <!-- <p-organizationChart (contextmenu)="openCm($event, contextMenu)"   [value]="treeData" selectionMode="single" [(selection)]="selectedNode" 
+       <p-organizationChart  [value]="treeData" selectionMode="single" 
               styleClass="company">
-              <ng-template  let-node>
-                  <div class="node-header ui-corner-top">
-                    {{node.label}}</div>
-                
+              <ng-template  let-node pTemplate="default">
+                <div class="node-header ui-corner-top">{{node.label}}</div>
+                <div  [contextMenu]="basicMenu" [contextMenuSubject]="node" class="node-content">
+                   <img src="{{node.logo}}" width="100" height="32"  >
+                </div>
               </ng-template>
-          </p-organizationChart>
-          <button class="btn btn-default" (click)="contextMenu.show($event);$event.stopPropagation()">Test</button>
-          <p-contextMenu #contextMenu [global]="false" [model]="menuItem" appendTo="body"></p-contextMenu> -->
-            <div class="tree"> 
-                <ul>
-                        <ng-template #recursiveList let-list>
-                                <li *ngFor="let item of list;let i =index" >
-                                 <div  class="hand" [contextMenu]="basicMenu" [contextMenuSubject]="item" id="Organization" >
-                                       <span> {{item.longName}}</span> 
-                                       <!-- <a  class="downArrow" ><i class="fa fa-chevron-down"></i></a> -->
-                                       <!-- <a class="upArrow" ><i class="fa fa-chevron-up"></i></a>
-                                       <a class="rightArrow"><i class="fa fa-chevron-right"></i></a>
-                                       <a class="leftArrow"><i class="fa fa-chevron-left"></i></a> -->
-                                 </div>
-                                
-                                  <ul *ngIf="item.children.length > 0">
-                                    <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.children }"></ng-container>
-                                  </ul>
-                                </li>
-                              </ng-template>
-                              <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: orglist }"></ng-container>     
-                            </ul>
-                          </div>
-          </div> 
+        </p-organizationChart>
+          
       </p-panel>
-</div>
-   <context-menu class="contextMenu">
+</div> 
+   <context-menu #basicMenu class="contextMenu" >
       <ng-template contextMenuItem let-item (execute)="addSubSection($event.item.id)">                                            
         {{'data.lblAddsubsection' | translate}} <i class="fa fa-plus pull-right"></i>                                
       </ng-template>
@@ -51,6 +28,53 @@
       <ng-template contextMenuItem let-item (execute)="deleteOrg($event.item.id)">                                            
         {{'data.lblDeleteOrg' | translate}} <i class="fa fa-trash pull-right"></i>                                
     </ng-template>
+    <ng-template contextMenuItem let-item [subMenu]="mapping">                                            
+      {{'data.lblMapping' | translate}}                                 
+  </ng-template>
+  <context-menu #mapping>
+    <ng-template contextMenuItem let-item (execute)="mapRoles($event.item.id)">                                            
+      {{'data.lblRole' | translate}}                                 
+    </ng-template>
+    <ng-template contextMenuItem let-item (execute)="mapAttributes($event.item.id)">                                            
+        {{'data.lblAttribute' | translate}}                               
+    </ng-template>
+    <ng-template contextMenuItem let-item (execute)="mapTaxonomy($event.item.id)">                                            
+      {{'data.lblTaxonomy' | translate}}                                 
+  </ng-template>
+  </context-menu>
   </context-menu>   
+
+  <p-dialog [(visible)]="displayDialog" [contentStyle]="{'overflow':'visible'}" [modal]="true" 
+  [responsive]="true" (onHide)="back()">
+    <p-header>
+      {{mappingHeader}}
+  </p-header>
+  <p-scrollPanel [styleClass]="'scrollStyle'">
+    <form  [formGroup]="_mappingForm" #formDir="ngForm" (ngSubmit)="_mappingForm.valid && submit(_mappingForm)">
+     
+      <div class="col-md-12">
+        <div class="form-group">
+          <p-listbox [dataKey]="id" *ngIf="role" [options]="roleList" formControlName="selectedValues"  [listStyle]="{'max-height':'250px'}" 
+          multiple="multiple" checkbox="checkbox" filter="filter" optionLabel="name">
+          </p-listbox>
+          <p-listbox *ngIf="attr" [options]="attributeList" formControlName="selectedValues"  [listStyle]="{'max-height':'250px'}" 
+          multiple="multiple" checkbox="checkbox" filter="filter" optionLabel="name">
+          </p-listbox>
+          <p-listbox *ngIf="tax" [options]="taxonomyList" formControlName="selectedValues"  [listStyle]="{'max-height':'250px'}" 
+          multiple="multiple" checkbox="checkbox" filter="filter" optionLabel="name">
+          </p-listbox>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <a (click)="displayDialog=false" class="btn btn-default">{{'data.btnBack' | translate}}</a>
+        <button pButton type="submit" label="{{'data.btnSave' | translate}}" class="pull-right"></button>
+      </div>
+    </form>
+  </p-scrollPanel>
+  </p-dialog>
+
+
+  <app-loader *ngIf="!_roleService.isLoading || !_orgMapService.isLoading" ></app-loader>
+
  
    

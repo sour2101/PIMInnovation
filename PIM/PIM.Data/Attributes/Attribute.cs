@@ -1,6 +1,7 @@
 ﻿namespace PIM.Data.Attributes
 {
     using Common;
+    using Entity;
     using MasterData;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -59,5 +60,7 @@
         public virtual List<AttributeUOM> AttributeUOMs { get; set; }
 
         public virtual List<AttributeBRs> AttributeBRs { get; set; }
+
+        public virtual List<EntityDetails> EntityDetails { get; set; }
     }
 }

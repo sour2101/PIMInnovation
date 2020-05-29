@@ -17,6 +17,20 @@
     public class AttributeController : AbstractController
     {
         [HttpGet]
+        [Route("api/attributeList")]
+        public IHttpActionResult AttributeList()
+        {
+            var attribute = Repository.GetAll<data.Attribute>()
+                .Select(a => new
+                {
+                    a.Id,
+                    Name = a.ShortName
+                }).ToList();
+
+            return Ok(attribute);
+        }
+
+        [HttpGet]
         [Route("api/attribute")]
         public IHttpActionResult Get()
         {
@@ -172,7 +186,7 @@
         public IHttpActionResult Put([FromBody]data.Attribute attr)
         {
             var principal = (User)User.Identity;
-            attr.ModifiedBy = principal.Id;
+            attr.ModifiedBy = principal.Username;
             attr.ModifiedDate = DateTime.Now;
             var attrLookup = Repository.GetAll<data.AttributeLookup>().Where(al => al.AttributeId == attr.Id).ToList();
            // var attrUOM = Repository.GetAll<data.AttributeUOM>().Where(al => al.AttributeId == attr.Id).ToList();

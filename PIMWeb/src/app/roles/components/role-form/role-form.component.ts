@@ -37,8 +37,10 @@ export class RoleFormComponent implements OnInit {
     this.role =new role();
     this.roleForm = this.getRoleForm(this.role);
     this.route.params.subscribe(params => {
+      if(params.id!==null && params.id!==undefined){
       this.roleId = params.id;
       this.getRole(this.roleId);  
+      }
     });
   }
 
@@ -93,10 +95,11 @@ export class RoleFormComponent implements OnInit {
 
   submit(roleDetails){
     let submitRole;
-    if(roleDetails.id===0)
-    submitRole=this._roleService.saveRole(roleDetails);
+    debugger;
+    if(roleDetails.value.id===0)
+    submitRole=this._roleService.saveRole(roleDetails.value);
     else
-      submitRole=this._roleService.updateRole(roleDetails);
+      submitRole=this._roleService.updateRole(roleDetails.value);
     
     submitRole.subscribe(res=>{
       this.toastr.success(res);

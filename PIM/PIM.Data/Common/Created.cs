@@ -8,7 +8,7 @@ namespace PIM.Data.Common
 
         public DateTime? CreatedDate { get; set; }
 
-        public int? ModifiedBy { get; set; }
+        public string ModifiedBy { get; set; }
 
         public DateTime? ModifiedDate { get; set; }
 

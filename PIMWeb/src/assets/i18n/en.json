@@ -162,7 +162,12 @@
     "lblSubMenu":"SubMenu",
     "lblParentName":"ParentName",
     "lblLink":"Link",
-    "lblMenuRights":"Menu Rights"
+    "lblMenuRights":"Menu Rights",
+    "lblEntityDetails":"Entity Details",
+    "lblMapping":"Mapping",
+    "lblRoleMapping":"Role mapping",
+    "lblAttributeMapping":"Attribute Mapping",
+    "lblLogo":"Upload Logo"
     }
 }
     

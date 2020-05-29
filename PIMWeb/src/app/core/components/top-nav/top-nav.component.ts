@@ -15,6 +15,7 @@ export class TopNavComponent implements OnInit {
   ) { 
 
     this.admin =GlobalVariable.currentUser.admin;
+    this.admin=true;
     // this.navItems =[
     //   {id:1,name:"home",link:"/home",parentId:0,childrens:null},
     //   {id:2,name:"MasterData Management",link:"",parentId:0,childrens:[

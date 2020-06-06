@@ -19,7 +19,7 @@ namespace PIM.API.AttributeController
         public IHttpActionResult Get()
         {
             var attrgroup = Repository.GetAll<AttributeGroup>()
-                 .ToList();
+                 .ToList().OrderBy(ag => ag.Name); 
             return Ok(attrgroup);
         }
 
@@ -30,9 +30,9 @@ namespace PIM.API.AttributeController
                 .Select(ag=>new
                 {
                     ag.Id,
-                    label = ag.ShortName
+                    label = ag.Name
                 })
-                .ToList();
+                .ToList().OrderBy(ag=>ag.label);
             return Ok(attrgroup);
         }
 
@@ -41,11 +41,11 @@ namespace PIM.API.AttributeController
         {
            
 
-            if (Repository.FindBy<AttributeGroup>(ag=>ag.ShortName == attrGroup.ShortName).Any())
+            if (Repository.FindBy<AttributeGroup>(ag=>ag.Name == attrGroup.Name).Any())
             {
-                var warningMessage = "The Attribute Group \"" + attrGroup.ShortName + "\" already exists";
+                var warningMessage = "The Attribute Group \"" + attrGroup.Name + "\" already exists";
                 // Log.MonitoringLogger.Warn(warningMessage);
-                ModelState.AddModelError("alreadyexists", warningMessage);
+                ModelState.AddModelError("alreadyExists", warningMessage);
                 return BadRequest(ModelState);
             }
             var principal = (User)User.Identity;
@@ -53,7 +53,7 @@ namespace PIM.API.AttributeController
             attrGroup.CreatedDate = DateTime.Now;
             Repository.Add(attrGroup);
             Repository.Save();
-            var message = "The Attribute Group \"" + attrGroup.ShortName + "\" has been added";
+            var message = "The Attribute Group \"" + attrGroup.Name + "\" has been added";
             Log.MonitoringLogger.Info(message);
             return Ok(message);
         }
@@ -63,7 +63,7 @@ namespace PIM.API.AttributeController
         {
             Repository.Update(attrGroup);
             Repository.Save();
-            var message = "The Attribute \"" + attrGroup.ShortName + "\" has been Updated";
+            var message = "The Attribute \"" + attrGroup.Name + "\" has been Updated";
             Log.MonitoringLogger.Info(message);
             return Ok(message);
         }
@@ -88,7 +88,7 @@ namespace PIM.API.AttributeController
 
             Repository.Delete(attrgroup);
             Repository.Save();
-            var message = "The Attribute Group \"" + attrgroup.ShortName + "\" has been deleted";
+            var message = "The Attribute Group \"" + attrgroup.Name + "\" has been deleted";
             Log.MonitoringLogger.Info(message);
             return Ok(message);
         }

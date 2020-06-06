@@ -1,9 +1,9 @@
-<div class="col-md-12" style="padding:0px;">
+
     <p-panel [styleClass]="'panelStyle'"  [toggleable]="false" >
        <p-header>
-                  <div class="ui-helper-clearfix">
-                      <span class="ui-panel-title" >{{'data.menuOrgChart' | translate}}</span>
-                  </div>
+          <div class="ui-helper-clearfix">
+            <span class="ui-panel-title" >{{'data.menuOrgChart' | translate}}</span>
+          </div>
        </p-header>
 
        <p-organizationChart  [value]="treeData" selectionMode="single" 
@@ -17,7 +17,7 @@
         </p-organizationChart>
           
       </p-panel>
-</div> 
+
    <context-menu #basicMenu class="contextMenu" >
       <ng-template contextMenuItem let-item (execute)="addSubSection($event.item.id)">                                            
         {{'data.lblAddsubsection' | translate}} <i class="fa fa-plus pull-right"></i>                                

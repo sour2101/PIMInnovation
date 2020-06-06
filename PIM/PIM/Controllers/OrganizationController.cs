@@ -8,31 +8,63 @@ using PIM.API.Logging;
 using PIM.Data.Enums;
 using PIM.Data.Users;
 using PIM.Data.MasterData;
+using System.Collections.Generic;
 
 namespace PIM.API.Controllers
 {
     [AllowAnonymous]
     public class OrganizationController : AbstractController
     {
-
         [HttpGet]
-        public IHttpActionResult Get()
+        [Route("api/orgList")]
+        public IHttpActionResult GetList()
         {
-            var org = Repository.GetAll<Organization>()
+            var orgList = Repository.GetAll<Organization>()
                 .Select(o=>new {
                     o.Id,
-                    o.ShortName,
-                    o.LongName,
-                    Logo = o.Logo==null? "assets/images/Saint-gobain_small.png":o.Logo,
-                    o.IsCatalog,
-                    o.IsContainor,
-                    o.IsEnvironment,
-                    o.CreatedBy,
-                    o.CreatedDate,
-                    o.ParentId
-                    
+                    name = o.LongName
+                });
+
+            return Ok(orgList);
+        }
+
+        [HttpGet]
+        public IHttpActionResult Get(int? parentId=null)
+        {
+            var result = Repository.GetAll<Organization>();
+           
+            var organization = result.ToList<Organization>();
+            parentId = parentId == null ? 1 : parentId;
+            var data = Repository.FindBy<Organization>(o => o.Id == parentId).SingleOrDefault();
+
+            var org = organization
+                .Where(o => o.ParentId == data.ParentId && o.Id==data.Id)
+                .Select(o => new Organization
+                {
+                    Id = o.Id,
+                    ShortName = o.ShortName,
+                    LongName = o.LongName,
+                    Logo = o.Logo == null ? "assets/images/Saint-gobain_small.png" : o.Logo,
+                    ParentId = o.ParentId,
+                    Children = GetChildren(organization, o.Id)
+
                 });
             return Ok(org);
+        }
+
+        private List<Organization> GetChildren(List<Organization> children, int parentId)
+        {
+            return children
+                .Where(c => c.ParentId == parentId)
+                .Select(c => new Organization
+                {
+                    Id = c.Id,
+                    ShortName = c.ShortName,
+                    LongName = c.LongName,
+                    Logo = c.Logo == null ? "assets/images/Saint-gobain_small.png" : c.Logo,
+                    ParentId = c.ParentId,
+                    Children = GetChildren(children, c.Id)
+                }).ToList();
         }
 
         [HttpGet]

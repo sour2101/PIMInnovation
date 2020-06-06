@@ -113,8 +113,8 @@ namespace PIM.API.Controllers
                 token.User.Firstname,
                 token.User.Lastname,
                 token.User.LanguageId,
-                roleId=token.User.UserRights.Select(ur=>ur.RoleId).SingleOrDefault(),
-                Admin = token.User.UserRights.Any(r => r.RoleId == (int)Roles.Administrator),
+                locale=token.User.Languages.Code,
+                roleName=token.User.UserRights.Select(ur=>ur.Roles.Name).SingleOrDefault(),
                 Token = new
                 {
                     token.UserId,

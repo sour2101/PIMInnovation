@@ -305,6 +305,7 @@
     <Compile Include="Controllers\OrganizationMappingController.cs" />
     <Compile Include="Controllers\SubMenuController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\TaxonomyController.cs" />
     <Compile Include="UserRole\LdapController.cs" />
     <Compile Include="LookupControllers\LookupColumnController.cs" />
     <Compile Include="LookupControllers\LookupController.cs" />

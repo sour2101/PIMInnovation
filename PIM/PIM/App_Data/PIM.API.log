@@ -197,3 +197,97 @@
 2020-03-08 10:18:15,737 [3] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
 2020-03-08 10:19:02,052 [93] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
 2020-03-08 10:19:02,089 [84] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-03-14 21:03:30,019 [24] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-03-14 21:03:30,253 [28] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-04-23 12:17:59,353 [18] INFO  MonitoringLogger - The username "S3135115" inserted successfully
+2020-05-02 20:31:33,144 [24] WARN  MonitoringLogger - Code already has a value 1SC
+2020-05-02 20:31:33,328 [34] WARN  MonitoringLogger - Code already has a value 1SC
+2020-05-05 15:49:30,963 [9] INFO  MonitoringLogger - The Organization  "Test" has been added
+2020-05-05 19:02:55,607 [25] INFO  MonitoringLogger - The Organization  "Abrasive" has been updated
+2020-05-05 19:03:03,038 [26] INFO  MonitoringLogger - The Organization  "Cp" has been updated
+2020-05-05 19:03:38,726 [4] INFO  MonitoringLogger - The Organization  "Nordic" has been added
+2020-05-05 19:04:31,695 [28] INFO  MonitoringLogger - The Organization  "France" has been added
+2020-05-05 19:04:38,859 [4] INFO  MonitoringLogger - The Organization  "India" has been added
+2020-05-06 18:03:07,236 [54] INFO  MonitoringLogger - The Organization  "Europe" has been added
+2020-05-06 20:04:38,324 [13] INFO  MonitoringLogger - The Organization  "NA" has been updated
+2020-05-07 15:08:31,649 [63] INFO  MonitoringLogger - The Organization  "India" has been updated
+2020-05-07 15:08:43,371 [57] INFO  MonitoringLogger - The Organization  "France" has been updated
+2020-05-07 15:08:49,337 [11] INFO  MonitoringLogger - The Organization  "Nordic" has been updated
+2020-05-08 18:12:35,903 [72] INFO  MonitoringLogger - The Organization  "North America" has been updated
+2020-05-10 19:01:22,724 [24] INFO  MonitoringLogger - The Organization  Mapping  has been done successfully
+2020-05-11 11:24:59,556 [12] INFO  MonitoringLogger - The Organization  Mapping  has been done successfully
+2020-05-11 11:28:05,517 [12] INFO  MonitoringLogger - The Organization  Mapping  has been done successfully
+2020-05-11 11:30:03,727 [24] INFO  MonitoringLogger - The Organization  Mapping  has been done successfully
+2020-05-11 13:39:24,541 [18] INFO  MonitoringLogger - The Organization  Mapping  has been done successfully
+2020-05-11 14:09:28,032 [4] INFO  MonitoringLogger - The Organization  Mapping  has been done successfully
+2020-05-11 19:26:21,419 [24] INFO  MonitoringLogger - The Organization  Mapping  has been done successfully
+2020-05-11 19:54:37,118 [119] INFO  MonitoringLogger - The Organization  Mapping  has been done successfully
+2020-05-11 20:08:15,151 [119] INFO  MonitoringLogger - The Organization  "ConstructionProducts" has been updated
+2020-05-13 15:11:05,544 [145] INFO  MonitoringLogger - The Organization  "Saint-Gobain" has been updated
+2020-05-13 17:29:40,181 [134] INFO  MonitoringLogger - The username "U6779390" inserted successfully
+2020-05-13 17:30:58,528 [121] INFO  MonitoringLogger - The Organization  "ConstructionProducts" has been added
+2020-05-13 17:31:43,066 [146] INFO  MonitoringLogger - The Organization  "Abrasive" has been added
+2020-05-13 17:45:15,509 [149] INFO  MonitoringLogger - The Role "SystemAdmin" has been added
+2020-05-26 13:12:43,473 [12] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-05-29 09:26:42,013 [35] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-05-29 09:26:42,519 [27] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-05-29 09:27:08,563 [35] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-05-29 09:27:08,643 [15] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-05-29 17:00:47,118 [31] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-05-29 17:00:47,413 [35] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-05-29 17:00:54,217 [33] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-05-29 17:00:54,326 [31] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-05-30 12:11:08,635 [35] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-05-30 12:11:08,725 [23] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-05-30 16:09:24,556 [21] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-05-30 16:09:24,657 [32] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-05-30 20:28:50,856 [33] INFO  MonitoringLogger - The Table "Abrasive" has been Created
+2020-06-01 15:13:19,296 [64] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-01 15:13:19,732 [31] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-01 15:13:22,363 [42] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-01 15:13:22,412 [56] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-01 15:13:43,203 [60] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-01 15:13:43,301 [64] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-01 15:15:16,148 [45] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-01 15:15:16,288 [64] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-01 15:16:36,670 [46] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-01 15:16:36,722 [44] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-01 16:09:19,624 [44] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-01 16:09:19,676 [47] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-01 16:29:29,260 [61] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-01 16:29:29,305 [43] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-01 16:34:02,771 [44] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-01 16:34:02,833 [44] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-01 16:34:08,798 [57] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-01 16:34:08,872 [61] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-01 20:06:39,375 [39] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-01 20:06:39,422 [41] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-01 20:10:52,980 [41] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-01 20:10:53,025 [54] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-01 20:11:09,978 [5] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-01 20:11:10,029 [57] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-01 20:19:00,270 [53] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-01 20:19:00,318 [5] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-01 20:26:38,322 [53] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-01 20:26:38,372 [39] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-02 10:06:40,868 [52] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-02 10:06:40,920 [42] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-02 11:27:35,832 [59] INFO  MonitoringLogger - The Attribute Group "Application" has been added
+2020-06-02 11:38:36,214 [49] INFO  MonitoringLogger - The Attribute Group "Branding" has been added
+2020-06-02 11:58:21,470 [41] INFO  MonitoringLogger - The Attribute Group "Digital" has been added
+2020-06-02 11:59:44,632 [38] INFO  MonitoringLogger - The Attribute Group "Packaging" has been added
+2020-06-02 12:57:44,036 [49] INFO  MonitoringLogger - The Attribute Group "Measurements" has been added
+2020-06-02 12:59:35,460 [49] INFO  MonitoringLogger - The Attribute Group "Compliance" has been added
+2020-06-02 13:07:30,988 [38] INFO  MonitoringLogger - The Attribute Group "Product Specification" has been added
+2020-06-04 12:55:55,489 [36] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-04 12:55:55,625 [17] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-04 13:01:48,714 [24] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-04 13:01:48,931 [24] WARN  MonitoringLogger - UserName Or Password is not Valid.Please try again.
+2020-06-04 17:22:13,768 [26] INFO  MonitoringLogger - The Taxonomy "CA" inserted successfully
+2020-06-04 17:26:17,638 [5] INFO  MonitoringLogger - The Taxonomy "Cones & Plugs" inserted successfully
+2020-06-04 23:13:36,326 [11] INFO  MonitoringLogger - The Taxonomy "BA" inserted successfully
+2020-06-04 23:15:33,612 [26] INFO  MonitoringLogger - The Taxonomy "Cones & Plugs" inserted successfully
+2020-06-05 08:46:56,659 [54] INFO  MonitoringLogger - The Taxonomy "CA" inserted successfully
+2020-06-05 09:09:24,097 [33] INFO  MonitoringLogger - The Taxonomy "Cut Sheets" inserted successfully
+2020-06-05 09:36:16,964 [42] INFO  MonitoringLogger - The Taxonomy "TW" inserted successfully
+2020-06-05 09:36:40,794 [47] INFO  MonitoringLogger - The Taxonomy "Angle Grinder" inserted successfully

@@ -103,22 +103,6 @@ namespace PIM.API.Controllers
         }
 
 
-
-        [HttpGet]
-        [Route("api/taxonomy")]
-        public IHttpActionResult GetTaxonomy()
-        {
-            //var taxonomyList = Repository.GetAll<Catalog>();
-
-            //var result = taxonomyList.Where(t=>t.Org==null).Select(m => new {
-            //    m.Id,
-            //    m.LongName,
-            //    m.ShortName
-            //}).ToList();
-
-            return Ok();
-        }
-
         [HttpGet]
         [Route("api/enviroment")]
         public IHttpActionResult GetEnviroment()
@@ -224,7 +208,7 @@ namespace PIM.API.Controllers
 
             var result = attrTypes.Select(at => new {
                 at.Id,
-                label= at.ShortName,
+                label= at.Name,
                 leaf=false
             }).ToList();
 

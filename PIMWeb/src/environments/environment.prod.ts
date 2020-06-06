@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   api:{
-    endPoint:'http://www.pim.saint-gobain.com/pimapi/api'
+    endPoint:'http://localhost/pimapi/api'
   },
   CasLoginUrl :'https://uat.websso.saint-gobain.com/cas/login',
   CasLogoutUrl : 'https://uat.websso.saint-gobain.com/cas/logout',

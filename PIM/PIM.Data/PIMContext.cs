@@ -8,6 +8,7 @@
     using Integrations;
     using Attributes;
     using Entity;
+    using Organiations;
 
     public class PIMContext:DbContext
     {
@@ -41,9 +42,9 @@
 
         public virtual DbSet<Country> Countries { get; set; }
 
-        public virtual DbSet<Language> Languages { get; set; }
-
         public virtual DbSet<Category> categories { get; set; }
+
+        public virtual DbSet<Taxonomy> Taxonomies { get; set; }
 
         public virtual DbSet<Organization> Organizations { get; set; }
 

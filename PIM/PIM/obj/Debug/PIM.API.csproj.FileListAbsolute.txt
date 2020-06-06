@@ -106,7 +106,6 @@ C:\Sourabh\Examples\PIM\PIM\bin\System.Web.Http.Cors.xml
 C:\Sourabh\Examples\PIM\PIM\bin\System.Web.Http.Owin.xml
 C:\Sourabh\Examples\PIM\PIM\obj\Debug\PIM.API.dll
 C:\Sourabh\Examples\PIM\PIM\obj\Debug\PIM.API.pdb
-C:\Sourabh\Examples\PIMInnovation\PIM\PIM\obj\Debug\PIM.API.csprojResolveAssemblyReference.cache
 C:\Sourabh\Examples\PIMInnovation\PIM\PIM\bin\ApplicationInsights.config
 C:\Sourabh\Examples\PIMInnovation\PIM\PIM\bin\roslyn\csc.exe
 C:\Sourabh\Examples\PIMInnovation\PIM\PIM\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -154,6 +153,7 @@ C:\Sourabh\Examples\PIMInnovation\PIM\PIM\bin\Microsoft.CodeDom.Providers.DotNet
 C:\Sourabh\Examples\PIMInnovation\PIM\PIM\bin\Microsoft.Owin.dll
 C:\Sourabh\Examples\PIMInnovation\PIM\PIM\bin\Microsoft.Owin.Host.SystemWeb.dll
 C:\Sourabh\Examples\PIMInnovation\PIM\PIM\bin\Microsoft.Web.Infrastructure.dll
+C:\Sourabh\Examples\PIMInnovation\PIM\PIM\bin\Newtonsoft.Json.dll
 C:\Sourabh\Examples\PIMInnovation\PIM\PIM\bin\NPOI.dll
 C:\Sourabh\Examples\PIMInnovation\PIM\PIM\bin\NPOI.OOXML.dll
 C:\Sourabh\Examples\PIMInnovation\PIM\PIM\bin\NPOI.OpenXml4Net.dll
@@ -218,6 +218,6 @@ C:\Sourabh\Examples\PIMInnovation\PIM\PIM\bin\Microsoft.Owin.xml
 C:\Sourabh\Examples\PIMInnovation\PIM\PIM\bin\Microsoft.Owin.Host.SystemWeb.xml
 C:\Sourabh\Examples\PIMInnovation\PIM\PIM\bin\System.Web.Http.Cors.xml
 C:\Sourabh\Examples\PIMInnovation\PIM\PIM\bin\System.Web.Http.Owin.xml
+C:\Sourabh\Examples\PIMInnovation\PIM\PIM\obj\Debug\PIM.API.csprojResolveAssemblyReference.cache
 C:\Sourabh\Examples\PIMInnovation\PIM\PIM\obj\Debug\PIM.API.dll
 C:\Sourabh\Examples\PIMInnovation\PIM\PIM\obj\Debug\PIM.API.pdb
-C:\Sourabh\Examples\PIMInnovation\PIM\PIM\bin\Newtonsoft.Json.dll

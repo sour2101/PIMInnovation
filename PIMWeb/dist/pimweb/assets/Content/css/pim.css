@@ -5,6 +5,8 @@
     padding:0;
 }
 
+
+
 .main-header{
   z-index: 1000;
 }
@@ -33,7 +35,7 @@ height: 100%;
 }
 
 body{
-  background-color: #2e2e2e !important;  
+  background-color: #bea3e2 !important;  
   height:100%;
   width:100%;
   margin:0;
@@ -41,11 +43,11 @@ body{
  font-family:  "Roboto",Arial,Helvetica,sans-serif !important;
 }
 
-.main-footer{
+/* .main-footer{
 position: fixed;
 width: 100%;
 bottom: 0;
-}
+} */
 
 .hand {
     cursor: pointer;
@@ -96,7 +98,7 @@ a:focus {
 }
 .header_bottom { background: #0071ba }
 .header_area .header_bottom .mainmenu a , .navbar-default .navbar-nav > li > a {
-    color: #fff;
+    color: #888888;
     /*font-size: 16px;*/
     text-transform: capitalize;
     padding: 16px 15px;
@@ -154,10 +156,6 @@ a:focus {
  }
  
 
-.login-logo b {
- color: #8964ce;/*7B95A3*/
-  text-align: center;
-}
 .brand_logo {
   height: 100px;
   width: 250px;

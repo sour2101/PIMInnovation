@@ -10,9 +10,7 @@
         public int Id { get; set; }
 
         [Required]
-        public string ShortName { get; set; }
-        [Required]
-        public string LongName { get; set; }
+        public string Name { get; set; }       
 
         public int AttrTypeId { get; set; }
 

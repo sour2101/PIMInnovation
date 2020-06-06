@@ -103,7 +103,7 @@
             {
                 a.Id,
                 a.ShortName,
-                a.LongName,
+                name =a.LongName,
                 a.LookupTableId,
                 DataType = a.DataTypes.Name
 

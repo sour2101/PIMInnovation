@@ -8,7 +8,7 @@
     using Integrations;
     using Attributes;
     using Entity;
-    using Organiations;
+    using Organizations;
 
     public class PIMContext:DbContext
     {
@@ -48,7 +48,11 @@
 
         public virtual DbSet<Organization> Organizations { get; set; }
 
-        public virtual DbSet<OrganizationMappings> OrganizationMappings { get; set; }
+        public virtual DbSet<AttributeOrgMapping> AttributeOrgMappings { get; set; }
+        public virtual DbSet<RoleOrgMapping> RoleOrgMappings { get; set; }
+        public virtual DbSet<TaxonomyOrgMapping> TaxonomyOrgMappings { get; set; }
+
+        public virtual DbSet<UserOrgMappings> UserOrgMappings { get; set; }
 
         public virtual DbSet<DataType> DataTypes { get; set; }
 
@@ -78,7 +82,6 @@
 
         public virtual DbSet<AttributeCatalog> AttributeCatalogs { get; set; }
 
-        public virtual DbSet<AttributeBRs> AttribureBRs { get; set; }
 
         public virtual DbSet<Actions> Actions { get; set; }
 

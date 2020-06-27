@@ -16,8 +16,8 @@
             foreach (string tableId in sheets)
             {
                 var tableDetails = Repository.GetById<LookupTables>(Convert.ToInt32(tableId));
-                string query = "SELECT * FROM lk_" + tableDetails.TableName;
-                XSSFSheet sheet = (XSSFSheet)workbook.CreateSheet(tableDetails.TableName);
+                string query = "SELECT * FROM lk_" + tableDetails.Name;
+                XSSFSheet sheet = (XSSFSheet)workbook.CreateSheet(tableDetails.Name);
 
                 ade.CreateSheet(DynamicListFromSql(query), sheet, tableDetails.Columns);
             }

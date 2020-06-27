@@ -26,21 +26,19 @@ namespace PIM.API.AttributeController
         [HttpGet]
         public IHttpActionResult Get(int id)
         {
-            var attrgroup = Repository.GetAll<AttributeGroup>().Where(ag=>ag.AttrTypeId==id)
+            var attrgroup = Repository.FindBy<AttributeGroup>(ag=>ag.Id==id)
                 .Select(ag=>new
                 {
                     ag.Id,
-                    label = ag.Name
+                    ag.Name
                 })
-                .ToList().OrderBy(ag=>ag.label);
+                .SingleOrDefault();
             return Ok(attrgroup);
         }
 
         [HttpPost]
         public IHttpActionResult Post([FromBody]AttributeGroup attrGroup)
         {
-           
-
             if (Repository.FindBy<AttributeGroup>(ag=>ag.Name == attrGroup.Name).Any())
             {
                 var warningMessage = "The Attribute Group \"" + attrGroup.Name + "\" already exists";

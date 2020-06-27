@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace PIM.Data.MasterData
+namespace PIM.Data.Organizations
 {
     public class Organization : Created
     {
@@ -30,7 +30,13 @@ namespace PIM.Data.MasterData
 
         public virtual ICollection<Organization> Children { get; set; }
 
-        public virtual List<OrganizationMappings> OrganizationMapping { get; set; }
+        public virtual ICollection<UserOrgMappings> UserOrgMappings { get; set; }
+
+        public virtual ICollection<RoleOrgMapping> RoleOrgMappings { get; set; }
+
+        public virtual ICollection<AttributeOrgMapping> AttributeOrgMappings { get; set; }
+
+        public virtual ICollection<TaxonomyOrgMapping> TaxonomyOrgMappings { get; set; }
 
     }
 }

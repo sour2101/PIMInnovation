@@ -44,12 +44,6 @@
             var roleId = menuRights[0].RoleId;
             var role = Repository.GetAll<Role>().Where(m => m.Id == roleId).SingleOrDefault();
 
-            foreach (MenuRights mr in role.MenuRights)
-            {
-                Repository.Delete(mr);
-                Repository.Save();
-            }
-
             foreach (MenuRights mr in menuRights)
             {
                 Repository.Add(mr);

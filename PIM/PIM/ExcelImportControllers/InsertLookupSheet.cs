@@ -64,9 +64,9 @@
                                 proccessed++;
                                 integration.Processed = proccessed;
                                 //check if lookup present in database or not
-                                if (sheetNames.Any(t => t.TableName.ToLower() == sheetName.ToLower()))
+                                if (sheetNames.Any(t => t.Name.ToLower() == sheetName.ToLower()))
                                 {
-                                    var tableDetails = sheetNames.Where(t => t.TableName.ToLower() == sheetName.ToLower()).FirstOrDefault();
+                                    var tableDetails = sheetNames.Where(t => t.Name.ToLower() == sheetName.ToLower()).FirstOrDefault();
                                     var uniqueCol = tableDetails.Columns.Where(u => u.Unique).Select(u => u.ColumnName).SingleOrDefault();
                                     for (int row = 0; row <= tableSheet.LastRowNum; row++)
                                     {
@@ -109,7 +109,7 @@
                                                 try
                                                 {
                                                     // to insert the lookup data
-                                                    var result = Repository.Context.Database.ExecuteSqlCommand(query, new SqlParameter("@tableName", tableDetails.TableName));
+                                                    var result = Repository.Context.Database.ExecuteSqlCommand(query, new SqlParameter("@tableName", tableDetails.Name));
                                                     integration.StatusId = (int)IntegrationStatusEnum.Running;
                                                     integration.Success = success;
                                                     integration.Description = GetDescription(integration);

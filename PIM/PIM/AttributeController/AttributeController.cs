@@ -12,40 +12,57 @@
     using System;
     using data = Data.Attributes;
     using Controllers;
+    using System.Data.Entity;
+    using Data.Organizations;
 
     [AllowAnonymous]
     public class AttributeController : AbstractController
     {
         [HttpGet]
-        [Route("api/attributeList")]
-        public IHttpActionResult AttributeList()
+        [Route("api/attribute")]
+        public IHttpActionResult GetDropdown()
         {
-            var attribute = Repository.GetAll<data.Attribute>()
-                .Select(a => new
-                {
-                    a.Id,
-                    Name = a.ShortName
-                }).ToList();
+            var result = Repository.GetAll<data.Attribute>()
+                .Select(t => new {
+                    t.Id,
+                    Name =t.LongName
+                });
 
-            return Ok(attribute);
+            return Ok(result);
         }
 
         [HttpGet]
         [Route("api/attribute")]
-        public IHttpActionResult Get()
+        public IHttpActionResult Get(int attributeGroupId)
         {
-            var attribute = Repository.GetAll<data.Attribute>()
+            var principal = (User)User.Identity;
+
+            var orgId = principal.UserOrgMappings.Where(uo=>uo.UserId == principal.Token.UserId).Select(uo => uo.OrgId).ToArray();
+
+            var filteredAttribute = Repository.GetAll<AttributeOrgMapping>()
+                .Where(a => a.Attribute.IsActive && orgId.Contains(a.OrgId));
+
+            
+            if (attributeGroupId != 0)
+                filteredAttribute = filteredAttribute.Where(a => a.Attribute.AttributeGroupId == attributeGroupId);
+
+
+            var pagedUser = filteredAttribute
                 .Select(a => new
                 {
-                    Name = a.ShortName
-                }).ToList();
-
-            return Ok(attribute);
+                    a.Attribute.Id,
+                    a.Attribute.ShortName,
+                    name = a.Attribute.LongName,
+                    a.Attribute.LookupTableId,
+                    DataType = a.Attribute.DataTypes.Name
+                }).Distinct()
+            .ToList();
+            return Ok(pagedUser);
         }
 
         [HttpGet]
         [Route("api/attribute")]
-        public IHttpActionResult Get(int id) {
+        public IHttpActionResult GetById(int id) {
 
             var attribute = Repository.GetAll<data.Attribute>()
                 .Where(a => a.Id == id )
@@ -67,18 +84,15 @@
                     a.CreatedBy,
                     a.CreatedDate,
                     AttributeLookups = a.AttributeLookups.Select(al=>new {
-                        id =al.LookupColumnId,
                         al.LookupTableId,
                         al.LookupColumnId,
                         al.LookupColumns.ColumnName,
-                        al.LookupColumns.Unique,
-                        al.LookupColumns.Nullable
                     }).ToList(),
-                    attributeDropDowns = a.AttributeDropdowns.Select(ad => new {
+                    attributeDropdowns = a.AttributeDropdowns.Select(ad => new {
                         ad.Id,
                         ad.Name
                     }).ToList(),
-                    attributeUoms=a.AttributeUOMs.Select(u=>new {
+                    attributeUOMs = a.AttributeUOMs.Select(u=>new {
                         u.Uoms.Name,
                         u.UomId
                     }) 
@@ -87,29 +101,7 @@
             return Ok(attribute);
         }
 
-        [HttpGet]
-        [Route("api/attributeList")]
-        public IHttpActionResult Get(int pageSize, int pageNumber, int attributeGroupId, string sortBy = null, string sortOrder = "false",
-            string shortname = null)
-        {
-
-            var filteredAttribute = Repository.GetAll<data.Attribute>().Where(a => a.IsActive && a.AttributeGroupId== attributeGroupId);
-
-            if (!string.IsNullOrWhiteSpace(shortname))
-                filteredAttribute = filteredAttribute.Where(u => u.ShortName.StartsWith(shortname));
-
-
-            var pagedUser = filteredAttribute.Select(a => new
-            {
-                a.Id,
-                a.ShortName,
-                name =a.LongName,
-                a.LookupTableId,
-                DataType = a.DataTypes.Name
-
-            }).ToPagedList(pageNumber, pageSize, sortBy, Convert.ToBoolean(sortOrder));
-            return Ok(pagedUser);
-        }
+     
 
         [HttpGet]
         [Route("api/showAtCreation")]
@@ -127,15 +119,8 @@
                     a.LookupTableId,
                     dataType = a.DataTypes.Name,
                     displayType=a.DisplayTypes.Name,
-                    ColumnName = a.AttributeLookups.Select(lk=>new {lk.LookupColumns.ColumnName,lk.LookupTables.TableName }).ToList(),
-                    options = a.AttributeDropdowns.Select(ddl =>new {ddl.Id,ddl.Name }).ToList(),
-                    attributeBRs = a.AttributeBRs.Select(b => new {
-                        b.AttributeId,
-                        b.Name,
-                        b.Id,
-                        b.SortOrder,
-                        b.Description
-                    }).OrderBy(b=>b.SortOrder)
+                    ColumnName = a.AttributeLookups.Select(lk=>new {lk.LookupColumns.ColumnName,lk.LookupTables.Name }).ToList(),
+                    options = a.AttributeDropdowns.Select(ddl =>new {ddl.Id,ddl.Name }).ToList()
 
                 })
                 .OrderBy(a=>a.ShortName)
@@ -152,9 +137,9 @@
             if (Repository.FindBy<data.Attribute>(u => u.ShortName == attr.ShortName).Any())
             {
                 var warningMessage = "The Attribute \"" + attr.ShortName + "\" already exists";
-                // Log.MonitoringLogger.Warn(warningMessage);
+                Log.MonitoringLogger.Warn(warningMessage);
                 ModelState.AddModelError("alreadyexits", warningMessage);
-                return BadRequest(ModelState);
+                return BadRequest(attr.ShortName);
             }
 
             foreach (data.AttributeLookup lk in attr.AttributeLookups)
@@ -170,6 +155,12 @@
                 Repository.Add(uom);
             }
 
+            foreach (data.AttributeDropdowns ddl in attr.AttributeDropdowns)
+            {
+                ddl.AttributeId = attr.Id;
+                Repository.Add(ddl);
+            }
+
              
 
             attr.CreatedBy = principal.Username;
@@ -178,7 +169,7 @@
             Repository.Save();
             var message = "The Attribute \"" + attr.ShortName + "\" has been added";
             Log.MonitoringLogger.Info(message);
-            return Ok(message);
+            return Ok(attr.ShortName);
         }
 
         [HttpPut]
@@ -188,49 +179,50 @@
             var principal = (User)User.Identity;
             attr.ModifiedBy = principal.Username;
             attr.ModifiedDate = DateTime.Now;
-            var attrLookup = Repository.GetAll<data.AttributeLookup>().Where(al => al.AttributeId == attr.Id).ToList();
-           // var attrUOM = Repository.GetAll<data.AttributeUOM>().Where(al => al.AttributeId == attr.Id).ToList();
-            foreach (data.AttributeLookup lk in attrLookup)
-            {
-                Repository.Delete(lk);
-                Repository.Save();
-            }
-
-            //foreach (data.AttributeUOM uom in attrUOM)
-            //{
-            //    Repository.Delete(uom);
-            //    Repository.Save(); ;
-            //}
 
             foreach (data.AttributeLookup lk in attr.AttributeLookups)
             {
                 lk.AttributeId = attr.Id;
                 lk.LookupTableId = attr.LookupTableId;
-                Repository.Add(lk);
+                if (Repository.GetAll<data.AttributeLookup>().Any(al => al.AttributeId == lk.AttributeId && al.LookupTableId == lk.LookupTableId && al.LookupColumnId == lk.LookupColumnId))
+                {
+                    Repository.Update(lk);
+                }
+                else
+                {
+                    Repository.Update(lk);
+                }
             }
 
-            //foreach (data.AttributeDropdowns lk in attr.AttributeDropdowns)
-            //{
-            //    lk.AttributeId = attr.Id;
-            //    if (lk.Id != 0)
-            //        Repository.Update(lk);
-            //    else
-            //       Repository.Add(lk);
-            //}
+            foreach (data.AttributeDropdowns lk in attr.AttributeDropdowns)
+            {
+                lk.AttributeId = attr.Id;
+                if (lk.Id != 0)
+                    Repository.Update(lk);
+                else
+                    Repository.Add(lk);
+            }
 
-            //foreach (data.AttributeUOM uom in attr.AttributeUOMs)
-            //{
-            //    uom.AttributeId = attr.Id;
-            //    Repository.Add(uom);
-            //}
+            foreach (data.AttributeUOM uom in attr.AttributeUOMs)
+            {
+                uom.AttributeId = attr.Id;
+                if (Repository.GetAll<data.AttributeUOM>().Any(au => au.AttributeId == uom.AttributeId && au.UomId == uom.UomId))
+                {
+                    Repository.Update(uom);
+                }
+                else
+                {
+                    Repository.Add(uom);
+                }
+            }
 
-             
+
 
             Repository.Update(attr);
             Repository.Save();
             var message = "The Attribute \"" + attr.ShortName + "\" has been Updated";
             Log.MonitoringLogger.Info(message);
-            return Ok(message);
+            return Ok(attr.ShortName);
         }
 
         [HttpDelete]
@@ -249,7 +241,7 @@
             Repository.Save();
             var message = "The Attribute \"" + attr.ShortName + "\" has been deleted";
             Log.MonitoringLogger.Info(message);
-            return Ok(message);
+            return Ok(attr.ShortName);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace PIM.Data.MasterData
 
         public bool Active { get; set; }
 
-        public virtual List<WorkflowSteps> WorkflowSteps { get; set; }
+        public virtual ICollection<WorkflowSteps> WorkflowSteps { get; set; }
 
     }
 }

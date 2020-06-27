@@ -1,4 +1,5 @@
 ﻿using PIM.Data.MasterData;
+using PIM.Data.Organizations;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -23,8 +24,6 @@ namespace PIM.Data.Users
         [StringLength(200)]
         public string Email { get; set; }
 
-        public bool Active { get; set; }
-
         [Required]
         [StringLength(50)]
         [Index(IsUnique = true)]
@@ -32,9 +31,13 @@ namespace PIM.Data.Users
 
         public string Password { get; set; }
 
-        public int ManagerId { get; set; }
         public int LanguageId { get; set; }
 
+        public int OrganizationId { get; set; }
+
+        public int? RoleId { get; set; }
+
+        public bool Disabled { get; set; }
 
         public bool Sso { get; set; }
 
@@ -44,9 +47,13 @@ namespace PIM.Data.Users
         [ForeignKey("LanguageId")]
         public virtual Locale Languages { get; set; }
 
-        public bool Disabled { get; set; }
+        [ForeignKey("OrganizationId")]
+        public virtual Organization Organization { get; set; }
+      
 
         public virtual ICollection<UserRights> UserRights { get; set; }
+
+        public virtual ICollection<UserOrgMappings> UserOrgMappings { get; set; }
 
         // IIdentity
         public string Name => Username;

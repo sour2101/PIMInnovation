@@ -12,9 +12,5 @@
         [Required]
         public string Name { get; set; }       
 
-        public int AttrTypeId { get; set; }
-
-        [ForeignKey("AttrTypeId")]
-        public virtual AttributeType AttributeTypes { get; set; }
     }
 }

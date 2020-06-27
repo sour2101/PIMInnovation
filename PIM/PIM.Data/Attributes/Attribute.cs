@@ -3,6 +3,7 @@
     using Common;
     using Entity;
     using MasterData;
+    using Organizations;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -59,8 +60,8 @@
 
         public virtual List<AttributeUOM> AttributeUOMs { get; set; }
 
-        public virtual List<AttributeBRs> AttributeBRs { get; set; }
-
         public virtual List<EntityDetails> EntityDetails { get; set; }
+
+        public virtual ICollection<AttributeOrgMapping> AttributeOrgMappings { get; set; }
     }
 }

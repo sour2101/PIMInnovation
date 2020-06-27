@@ -11,6 +11,7 @@ namespace PIM.API.Controllers
     using Data.Enums;
     using Data.Integrations;
     using Data.Attributes;
+    using Data.Organizations;
 
     [AllowAnonymous]
     public class MasterController : AbstractController
@@ -38,38 +39,7 @@ namespace PIM.API.Controllers
             return Ok(languageList);
         }
 
-        [HttpGet]
-        [Route("api/categories")]
-        public IHttpActionResult GetCategories(int id)
-        {
-            var otherLangId = Repository.GetAll<Category>().Where(c => c.Fk_Local == id).Select(c => c.Id).ToList();
-            var result = Repository.GetAll<Category>().Where(c=>c.Fk_Local == id)
-                .Union(Repository.GetAll<Category>().Where(l=>l.Fk_Local==1 && !otherLangId.Contains(l.Id)));
-
-            var categoryList = result.OrderBy(x=>x.Id).Where(m=>m.ParentId == 0)
-                .Select(m => new
-                {
-                    m.Id,
-                    m.ShortName,
-                    label = m.LongName,
-                    children = result.Where(cm => cm.ParentId==m.Id)
-                                    .Select(cm=>new
-                                    {
-                                       cm.Id,
-                                         cm.ShortName,
-                                        label = cm.LongName,
-                                       children = result.Where(c => c.ParentId == cm.Id)
-                                       .Select(c => new
-                                       {
-                                            c.Id,
-                                            c.ShortName,
-                                           label = c.LongName
-                                       }).ToList()
-                                }).ToList()
-                            }).ToList();
-
-            return Ok(categoryList);
-        }
+        
 
         [HttpGet]
         [Route("api/managers")]
@@ -100,22 +70,6 @@ namespace PIM.API.Controllers
             }
 
             return Ok(enumVals);
-        }
-
-
-        [HttpGet]
-        [Route("api/enviroment")]
-        public IHttpActionResult GetEnviroment()
-        {
-            var taxonomyList = Repository.GetAll<Organization>().Where(e=>e.IsEnvironment);
-
-            var result = taxonomyList.Select(m => new {
-                m.Id,
-                m.LongName,
-                m.ShortName
-            }).ToList();
-
-            return Ok(result);
         }
 
         [HttpGet]
@@ -216,27 +170,32 @@ namespace PIM.API.Controllers
         }
 
         [HttpGet]
-        [Route("api/lookupTableList")]
-        public IHttpActionResult Get(int? id=null)
+        [Route("api/attributeLookupColumn")]
+        public IHttpActionResult Get(int tableId)
         {
-            var result = Repository.GetAll<LookupTables>();
-            if (id != null)
-                result = result.Where(lk => lk.Id == id);
+            var result = Repository.GetAll<LookupTables>().Where(lk => lk.Id == tableId).SingleOrDefault();
 
-             var lkList= result.Select(lt => new {
-                lt.Id,
-                lt.TableName,
-                columns = lt.Columns.Select(c=> new {
-                    c.Id,
-                    c.ColumnName,
-                    c.Nullable,
-                    c.Unique,
-                    LookupTableId = c.TableId,
-                    LookupColumnId = c.Id,
-                }).ToList()
+            var lkList = result.Columns.Select(c => new
+            {
+                c.ColumnName,
+                LookupTableId = c.TableId,
+                LookupColumnId = c.Id,
             }).ToList();
-
+       
             return Ok(lkList);
+        }
+
+        [HttpGet]
+        [Route("api/taxonomyList")]
+        public IHttpActionResult GetDropdown()
+        {
+            var result = Repository.GetAll<Taxonomy>()
+                .Select(t => new {
+                    t.Id,
+                    t.Name
+                });
+
+            return Ok(result);
         }
     }
 }

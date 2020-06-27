@@ -9,8 +9,10 @@ using PIM.Data.Enums;
 using PIM.Data.Users;
 using PIM.Data.MasterData;
 using System.Collections.Generic;
+using PIM.Data.Organizations;
+using PIM.API.Controllers;
 
-namespace PIM.API.Controllers
+namespace PIM.API.Organizations
 {
     [AllowAnonymous]
     public class OrganizationController : AbstractController
@@ -31,10 +33,14 @@ namespace PIM.API.Controllers
         [HttpGet]
         public IHttpActionResult Get(int? parentId=null)
         {
+            var principal = (User)User.Identity;
+            if (!principal.UserRights.Any(ur => ur.RoleId == (int)Roles.Administrator))
+                return new StatusCodeResult(HttpStatusCode.Forbidden, Request);
+
             var result = Repository.GetAll<Organization>();
-           
+            FindAllParents c = new FindAllParents();
             var organization = result.ToList<Organization>();
-            parentId = parentId == null ? 1 : parentId;
+            parentId = parentId == null ? principal.OrganizationId : parentId;
             var data = Repository.FindBy<Organization>(o => o.Id == parentId).SingleOrDefault();
 
             var org = organization
@@ -46,26 +52,13 @@ namespace PIM.API.Controllers
                     LongName = o.LongName,
                     Logo = o.Logo == null ? "assets/images/Saint-gobain_small.png" : o.Logo,
                     ParentId = o.ParentId,
-                    Children = GetChildren(organization, o.Id)
+                    Children = c.GetChildren(organization, o.Id)
 
                 });
             return Ok(org);
         }
 
-        private List<Organization> GetChildren(List<Organization> children, int parentId)
-        {
-            return children
-                .Where(c => c.ParentId == parentId)
-                .Select(c => new Organization
-                {
-                    Id = c.Id,
-                    ShortName = c.ShortName,
-                    LongName = c.LongName,
-                    Logo = c.Logo == null ? "assets/images/Saint-gobain_small.png" : c.Logo,
-                    ParentId = c.ParentId,
-                    Children = GetChildren(children, c.Id)
-                }).ToList();
-        }
+        
 
         [HttpGet]
         public IHttpActionResult Get(int id)
@@ -97,7 +90,7 @@ namespace PIM.API.Controllers
             {
                 var warningMessage = "The Organization Name \"" + org.ShortName + "\" already exists";
                 // Log.MonitoringLogger.Warn(warningMessage);
-                ModelState.AddModelError("org.name", warningMessage);
+                ModelState.AddModelError("alreadyExists", org.ShortName);
                 return BadRequest(ModelState);
             }
 
@@ -107,7 +100,7 @@ namespace PIM.API.Controllers
             Repository.Save();
             var message = "The Organization  \"" + org.ShortName+ "\" has been added";
             Log.MonitoringLogger.Info(message);
-            return Ok(message);
+            return Ok(org.ShortName);
         }
 
         [HttpPut]

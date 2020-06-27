@@ -1,4 +1,4 @@
-﻿namespace PIM.Data.Organiations
+﻿namespace PIM.Data.Organizations
 {
     using Common;
     using System.Collections.Generic;

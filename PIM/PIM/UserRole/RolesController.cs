@@ -25,7 +25,7 @@
         }
 
         [HttpGet]
-
+        
         public IHttpActionResult Get() {
 
             var roles = RestrictedActiveRoles.Where(r => r.Active)
@@ -48,17 +48,13 @@
 
             if (!string.IsNullOrWhiteSpace(name))
                 filteredRoles = filteredRoles.Where(r => r.Name.StartsWith(name));
-            if (!string.IsNullOrWhiteSpace(description))
-                filteredRoles = filteredRoles.Where(r => r.Description.StartsWith(description));
-            
                    
 
             var pagedUser = filteredRoles.Select(u => new
             {
                 u.Id,
-                u.Name,
-                u.Description
-            }).ToPagedList(pageNumber, pageSize, sortBy, Convert.ToBoolean(sortOrder));
+                u.Name
+            }).ToList();
             return Ok(pagedUser);
         }
 
@@ -76,7 +72,6 @@
                 {
                     r.Id,
                     r.Name,
-                    r.Description ,
                     UserRights = r.UserRights.Select(p=> new { p.UserId }).ToList()
                 }).SingleOrDefault();
             if (role == null)

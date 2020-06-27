@@ -12,15 +12,15 @@
 
         public string StepName { get; set; }
 
-        public string Actions { get; set; }
-
-        public string BusinessRule {get;set;}
-
+        public int WorkflowId { get; set; }
 
         public int RoleId { get; set; }
 
         [ForeignKey("RoleId")]
         public virtual Role Roles { get; set; }
+
+        [ForeignKey("WorkflowId")]
+        public Workflow Workflow { get; set;}
 
     }
 }

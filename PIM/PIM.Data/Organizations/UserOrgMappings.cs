@@ -1,24 +1,24 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PIM.Data.Users;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-
-namespace PIM.Data.Users
+namespace PIM.Data.Organizations
 {
-    public class UserRights 
+    public class UserOrgMappings
     {
         [Key]
         [Column(Order = 1)]
-        public int RoleId { get; set; }
+        public int OrgId { get; set; }
 
         [Key]
         [Column(Order = 2)]
         public int UserId { get; set; }
 
-        // Navigation properties
-        [ForeignKey("RoleId")]
-        public virtual Role Roles { get; set; }
 
         [ForeignKey("UserId")]
         public virtual User Users { get; set; }
+
+        [ForeignKey("OrgId")]
+        public virtual Organization Organizations { get; set; }
     }
 }

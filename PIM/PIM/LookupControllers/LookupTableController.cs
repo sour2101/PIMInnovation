@@ -5,38 +5,21 @@
     using System.Data.SqlClient;
     using System.Linq;
     using System.Web.Http;
-    using Models;
     using System.Text;
-    using Linq;
-    using System.Collections.Generic;
     using Controllers;
 
     public class LookupTableController : AbstractController
     {
+
         [HttpGet]
-        public IHttpActionResult Get(int tableId, int pageSize, int pageNumber, string sortBy = null, string sortOrder = "false", int? local = null, [FromUri]ICollection<string> columnDetails=null)
-        {
-            var tableDetails = Repository.GetById<LookupTables>(tableId);
-            string sort = sortOrder=="false" ? " ORDER BY "+ sortBy + " DESC" : " ORDER BY " + sortBy + " ASC";
-            string column = "*";
-            string query = "SELECT ";
-            if (columnDetails.Any())
-            {
-                column = "Id ";
-                foreach (string col in columnDetails)
-                    column =   column + "," + col  ;
-            }
+        public IHttpActionResult Get() {
+            var result = Repository.GetAll<LookupTables>()
+                .Select(lt=>new {
+                    lt.Id,
+                    lt.Name
+                });
 
-            query = query + column + " FROM lk_" + tableDetails.TableName;             
-
-            if (!string.IsNullOrEmpty(sortBy))
-                query = query + sort;
-
-            DynamicModel dm = new DynamicModel();
-            //var tableData = QueryExtensions.DynamicSqlQuery(Repository.Context.Database, query, dm.GetObject(tableDetails.Columns));
-            List<dynamic> tableData = QueryExtensions.DynamicListFromSql(Repository.Context.Database, query, new Dictionary<string, object> {  }).ToList();
-            
-            return Ok(tableData);
+            return Ok(result);
         }
 
         [HttpGet]
@@ -46,7 +29,7 @@
                 .Select(lt => new
                 {
                     lt.Id,
-                    lt.TableName,
+                    lt.Name,
                     columns = lt.Columns.Select(c => new
                     {
                         c.Id,
@@ -64,17 +47,17 @@
         [HttpPost]
         public IHttpActionResult Post([FromBody]LookupTables lookupTable)
         {
-            if (Repository.FindBy<LookupTables>(lt => lt.TableName == lookupTable.TableName).Any())
+            if (Repository.FindBy<LookupTables>(lt => lt.Name == lookupTable.Name).Any())
             {
-                var warningMessage = "The Table \"" + lookupTable.TableName + "\" already exists";
-                // Log.MonitoringLogger.Warn(warningMessage);
+                var warningMessage = "The Table \"" + lookupTable.Name + "\" already exists";
+                Log.MonitoringLogger.Warn(warningMessage);
                 ModelState.AddModelError("alreadyExists", warningMessage);
-                return BadRequest(ModelState);
+                return BadRequest(lookupTable.Name);
             }
 
 
             StringBuilder sb = new StringBuilder();
-            sb.Append("CREATE TABLE  [dbo].[lk_" + lookupTable.TableName + "]( Id INT IDENTITY    PRIMARY KEY,");
+            sb.Append("CREATE TABLE  [dbo].[lk_" + lookupTable.Name + "]( Id INT IDENTITY    PRIMARY KEY,");
             foreach (LookUpColumns col in lookupTable.Columns)
             {
                 string datatype = col.DataType.Contains("char") ? col.DataType + "(" + col.length + ")" : col.DataType;
@@ -85,12 +68,12 @@
             sb.Append(")");
 
 
-            var table = Repository.Context.Database.ExecuteSqlCommand(sb.ToString(), new SqlParameter("@tableName", lookupTable.TableName));
+            var table = Repository.Context.Database.ExecuteSqlCommand(sb.ToString(), new SqlParameter("@tableName", lookupTable.Name));
             Repository.Add(lookupTable);
             Repository.Save();
-            var message = "The Table \"" + lookupTable.TableName + "\" has been Created";
+            var message = "The Table \"" + lookupTable.Name + "\" has been Created";
             Log.MonitoringLogger.Info(message);
-            return Ok(message);
+            return Ok(lookupTable.Id);
         }
 
         [HttpPut]
@@ -109,8 +92,8 @@
                     string unique = col.Unique ? "UNIQUE" : "";
                     if (colDetails != null && colDetails.Id == col.Id && colDetails.ColumnName != col.ColumnName)
                     {
-                        sb.Append("sp_RENAME 'lk_" + lookupTable.TableName + "." + colDetails.ColumnName + "' , '" + col.ColumnName + "', 'COLUMN' ");
-                        Repository.Context.Database.ExecuteSqlCommand(sb.ToString(), new SqlParameter("@tableName", lookupTable.TableName));
+                        sb.Append("sp_RENAME 'lk_" + lookupTable.Name + "." + colDetails.ColumnName + "' , '" + col.ColumnName + "', 'COLUMN' ");
+                        Repository.Context.Database.ExecuteSqlCommand(sb.ToString(), new SqlParameter("@tableName", lookupTable.Name));
                     }
                 }
                 else
@@ -120,15 +103,15 @@
                     string datatype = col.DataType.Contains("char") ? col.DataType + "(" + col.length + ")" : col.DataType;
 
                     Repository.Add(col);
-                    sb.Append("ALTER TABLE  [dbo].[lk_" + lookupTable.TableName + "] ");
+                    sb.Append("ALTER TABLE  [dbo].[lk_" + lookupTable.Name + "] ");
                     sb.Append("ADD " + col.ColumnName + " " + datatype);
                     if (col.Unique)
                     {
                         string unique = col.Unique ? "UNIQUE" : "";
-                        sb.Append("ALTER TABLE  [dbo].[lk_" + lookupTable.TableName + "] ");
+                        sb.Append("ALTER TABLE  [dbo].[lk_" + lookupTable.Name + "] ");
                         sb.Append("ADD UNIQUE (" + col.ColumnName + " )");
                     }
-                    Repository.Context.Database.ExecuteSqlCommand(sb.ToString(), new SqlParameter("@tableName", lookupTable.TableName));
+                    Repository.Context.Database.ExecuteSqlCommand(sb.ToString(), new SqlParameter("@tableName", lookupTable.Name));
                 }
             }
 
@@ -137,9 +120,9 @@
             Repository.Update(lookupTable);
             Repository.Save();
 
-            var message = "The Table \"" + lookupTable.TableName + "\" has been Updated";
+            var message = "The Table \"" + lookupTable.Name + "\" has been Updated";
             Log.MonitoringLogger.Info(message);
-            return Ok(message);
+            return Ok(lookupTable.Name);
         }
 
     }

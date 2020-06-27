@@ -23,7 +23,7 @@ namespace PIM.API.HttpFilters
             else
             {
                 var user = (User)actionContext.RequestContext.Principal.Identity;
-                if (!user.Active)
+                if (!user.Disabled)
                     actionContext.Response = new HttpResponseMessage(HttpStatusCode.Forbidden);
             }
         }

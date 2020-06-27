@@ -17,15 +17,13 @@
         {
             var userpreList = Repository.GetAll<UserPreferences>().Where(up => up.UserId == id)
                 .Select(up => new {
-                    up.CatalogId,
                     up.RoleId,
                     up.Taxonomy,
                     up.TimeZone,
-                    up.DataLocal,
+                    up.LocaleId,
                     up.UserId,
                     up.OrganizationId,
                     up.Users.Username,
-                    CatalogName = up.Catalogs.LongName,
                     OrganizationName = up.Organization.LongName
                 }).SingleOrDefault();
 

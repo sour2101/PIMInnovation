@@ -25,7 +25,7 @@
         {
             get
             {
-                var users = Repository.GetAll<User>().Where(u=> u.Active);
+                var users = Repository.GetAll<User>().Where(u=> u.Disabled);
                 //var principal = (User)User.Identity;
                 ////if (principal.Role.Name == Roles.Administrator.ToString())
                 ////    return users;
@@ -40,7 +40,7 @@
 
         [HttpGet]
         public IHttpActionResult Get() {
-            var users = RestrictedActiveUsers.Where(r => r.Active)
+            var users = RestrictedActiveUsers.Where(r => r.Disabled)
                .Select(r => new {
                    r.Id,
                    r.Username
@@ -76,10 +76,8 @@
                 u.Email,
                 u.Disabled,
                 u.Username,
-                LanguageName = u.Languages.Name,                 
-                u.ManagerId,
-                Active = u.Active?false:true
-            }).ToPagedList(pageNumber, pageSize, sortBy, Convert.ToBoolean(sortOrder));
+                LanguageName = u.Languages.Name
+            }).ToList();
             return Ok(pagedUser);
         }
 
@@ -102,9 +100,7 @@
                     u.Disabled,
                     u.Username,
                     u.Password,                    
-                    u.LanguageId,
-                    u.ManagerId,
-                    u.Active,
+                    u.LanguageId, 
                     UserRights =u.UserRights.Select(p=> new { id  = p.RoleId,p.Roles.Name }).ToList()
                 }).SingleOrDefault();
             if (user == null)
@@ -126,17 +122,17 @@
             {
                 var warningMessage = "The username \"" + user.Username + "\" already exists";
                // Log.MonitoringLogger.Warn(warningMessage);
-                ModelState.AddModelError("alreadyExists", warningMessage);
+                ModelState.AddModelError("alreadyExists", user.Username);
                 return BadRequest(ModelState);
             }
 
-            user.Active = true;
+
             user.Password = PasswordManagerProvider.Hash("UserPIM@123");
             Repository.Add(user);
             Repository.Save();
             var message = "The username \"" + user.Username + "\" inserted successfully";
             Log.MonitoringLogger.Info(message);
-            return Ok(message);
+            return Ok(user.Username);
         }
 
         [HttpPut]

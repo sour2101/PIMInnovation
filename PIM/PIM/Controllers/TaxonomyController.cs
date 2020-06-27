@@ -1,6 +1,6 @@
 ﻿using PIM.API.Logging;
 using PIM.Data.Enums;
-using PIM.Data.Organiations;
+using PIM.Data.Organizations;
 using PIM.Data.Users;
 using System;
 using System.Collections.Generic;
@@ -17,14 +17,18 @@ namespace PIM.API.Controllers
     {
 
         [HttpGet]
-        public IHttpActionResult Get(){
-
+        public IHttpActionResult Get(int? parentId = null)
+        {
             var result = Repository.GetAll<Taxonomy>();
 
-           var taxonomy = result.ToList<Taxonomy>();
+            var organization = result.ToList<Taxonomy>();
+            parentId = parentId == null ? 1 : parentId;
+            var data = Repository.FindBy<Taxonomy>(o => o.Id == parentId).SingleOrDefault();
+
+            var taxonomy = result.ToList<Taxonomy>();
 
             var tax = taxonomy
-                .Where(t => t.ParentId == null)
+                .Where(o => o.ParentId == data.ParentId && o.Id == data.Id)
                 .Select(t => new Taxonomy
                 {
                     Id = t.Id,
@@ -73,8 +77,8 @@ namespace PIM.API.Controllers
             if (Repository.FindBy<Taxonomy>(u => u.Name == data.Name).Any())
             {
                 var warningMessage = "The taxonomy \"" + data.Name+ "\" already exists";
-                // Log.MonitoringLogger.Warn(warningMessage);
-                ModelState.AddModelError("alreadyExists", warningMessage);
+                Log.MonitoringLogger.Warn(warningMessage);
+                ModelState.AddModelError("alreadyExists", data.Name);
                 return BadRequest(ModelState);
             }
 
@@ -85,7 +89,7 @@ namespace PIM.API.Controllers
             Repository.Save();
             var message = "The Taxonomy \"" + data.Name + "\" inserted successfully";
             Log.MonitoringLogger.Info(message);
-            return Ok(message);
+            return Ok(data.Name);
         }
 
 
@@ -100,7 +104,7 @@ namespace PIM.API.Controllers
             {
                 var warningMessage = "The taxonomy \"" + data.Name + "\" already exists";
                 // Log.MonitoringLogger.Warn(warningMessage);
-                ModelState.AddModelError("alreadyExists", warningMessage);
+                ModelState.AddModelError("alreadyExists", data.Name);
                 return BadRequest(ModelState);
             }
 
@@ -110,7 +114,7 @@ namespace PIM.API.Controllers
             Repository.Save();
             var message = "The Taxonomy \"" + data.Name + "\" inserted successfully";
             Log.MonitoringLogger.Info(message);
-            return Ok(message);
+            return Ok(data.Name);
         }
 
         [HttpDelete]
@@ -126,7 +130,7 @@ namespace PIM.API.Controllers
             Repository.Save();
             var message = "The Taxonomy \"" + tax.Name+ "\" has been deleted";
             Log.MonitoringLogger.Info(message);
-            return Ok(message);
+            return Ok(tax.Name);
         }
     }
 }

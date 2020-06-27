@@ -17,6 +17,7 @@ namespace PIM.Data.MasterData
         public string ColumnName { get; set; }
 
         public string DataType { get; set; }
+
         public int length { get; set; }
 
         public bool Nullable { get; set; }

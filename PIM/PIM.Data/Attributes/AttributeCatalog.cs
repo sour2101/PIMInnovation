@@ -1,6 +1,7 @@
 ﻿namespace PIM.Data.Attributes
 {
     using MasterData;
+    using Organizations;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 

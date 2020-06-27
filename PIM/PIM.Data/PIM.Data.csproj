@@ -43,7 +43,6 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\AttributeBRs.cs" />
     <Compile Include="Attributes\AttributeCatalog.cs" />
     <Compile Include="Attributes\AttributeValues.cs" />
     <Compile Include="Common\Created.cs" />
@@ -80,14 +79,17 @@
     <Compile Include="MasterData\Menu.cs" />
     <Compile Include="MasterData\MenuChildrens.cs" />
     <Compile Include="MasterData\MessageType.cs" />
-    <Compile Include="Organiations\Organization.cs" />
-    <Compile Include="Organiations\OrganizationMappings.cs" />
+    <Compile Include="Organizations\Organization.cs" />
+    <Compile Include="Organizations\AttributeOrgMapping.cs" />
     <Compile Include="MasterData\Plant.cs" />
     <Compile Include="MasterData\UOM.cs" />
     <Compile Include="MasterData\UOMType.cs" />
     <Compile Include="MasterData\Workflow.cs" />
     <Compile Include="MasterData\WorkflowSteps.cs" />
-    <Compile Include="Organiations\Taxonomy.cs" />
+    <Compile Include="Organizations\RoleOrgMapping.cs" />
+    <Compile Include="Organizations\Taxonomy.cs" />
+    <Compile Include="Organizations\TaxonomyOrgMapping.cs" />
+    <Compile Include="Organizations\UserOrgMappings.cs" />
     <Compile Include="Users\MenuRights.cs" />
     <Compile Include="Users\UserPreferences.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -100,7 +102,9 @@
     <Compile Include="Users\UserRights.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

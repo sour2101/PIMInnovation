@@ -26,7 +26,7 @@ namespace PIM.API.ExcelExport
             var xmlProps = workbook.GetProperties();
             xmlProps.CoreProperties.Creator = "Saint-Gobain - PIM";
 
-            var tableNames = Repository.GetAll<LookupTables>().Where(lt => sheets.Contains(lt.Id.ToString())).Select(lt=>lt.TableName).ToList();
+            var tableNames = Repository.GetAll<LookupTables>().Where(lt => sheets.Contains(lt.Id.ToString())).Select(lt=>lt.Name).ToList();
 
             metadata.CreateMetaData(workbook,tableNames);
             lts.CreateLookupTableSheet(workbook, sheets);

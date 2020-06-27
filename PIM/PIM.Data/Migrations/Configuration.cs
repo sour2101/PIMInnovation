@@ -9,7 +9,7 @@ namespace PIM.Data.Migrations
     using Integrations;
     using Enums;
     using Attributes;
-    using Organiations;
+    using Organizations;
 
     internal sealed class Configuration : DbMigrationsConfiguration<PIMContext>
     {
@@ -21,66 +21,78 @@ namespace PIM.Data.Migrations
 
         protected override void Seed(PIMContext context)
         {
-            /*  var tax = new[] {
-                new Taxonomy { Id = 1, Name = "Hierarchy", ParentId = 0 }
+          /*  var tax = new[] {
+                new Taxonomy { Id = 1, Name = "Hierarchy", ParentId = null }
             };
 
             context.Taxonomies.AddOrUpdate(t => new { t.Id, t.Name, t.ParentId }, tax);
             var locale = new[] {
-                  new Locale {Code="en",Name="English" },
-                  new Locale {Code="fr",Name="France" },
-                  new Locale {Code="pt",Name="Portuguese" }
+                  new Locale {Id=1,Code="en",Name="English" },
+                  new Locale {Id=2,Code="fr",Name="France" },
+                  new Locale {Id=3,Code="pt",Name="Portuguese" }
               };
 
 
-           context.Locales.AddOrUpdate(l => new { l.Code, l.Name }, locale);
+            context.Locales.AddOrUpdate(l => new {l.Id, l.Code, l.Name }, locale);
 
             var role = new[]{
               new Role{Id=1,Name="Administrator",Active=true,CreatedBy="S3135114",CreatedDate=DateTime.Now},
               new Role{Id=2,Name="Viewer",CreatedBy="S3135114",Active=true,CreatedDate=DateTime.Now},
               };
 
-              context.Roles.AddOrUpdate(c => new { c.Name,c.Active,c.CreatedBy,c.CreatedDate }, role);
+            context.Roles.AddOrUpdate(c => new { c.Name, c.Active, c.CreatedBy, c.CreatedDate }, role);
 
 
 
-                 var user = new[]
-                 {
-                     new User {Id = 1, Username = "S3135114", Firstname = "sourabh", Lastname = "Padwad",Email = "sourabh.padwad@saint-gobain.com",Disabled =false,Active = true,LanguageId=1,Password="b6bc7b58510319a151d168ba3d5aecb3ac0a9708d06dd930f37fbc89b6cdc697"}
+            var user = new[]
+            {
+                     new User {Id = 1, Username = "S3135114", Firstname = "sourabh", Lastname = "Padwad",Email = "sourabh.padwad@saint-gobain.com",Disabled =false,Active = true,LanguageId=1,Password="b6bc7b58510319a151d168ba3d5aecb3ac0a9708d06dd930f37fbc89b6cdc697"},
+                      new User {Id = 2, Username = "S4769362", Firstname = "Shweta", Lastname = "Chavan",Email = "sourabh.padwad@saint-gobain.com",Disabled =false,Active = true,LanguageId=1,Password="b6bc7b58510319a151d168ba3d5aecb3ac0a9708d06dd930f37fbc89b6cdc697"},
+                       new User {Id = 3, Username = "A5523296", Firstname = "Abhiraj", Lastname = "Mane",Email = "sourabh.padwad@saint-gobain.com",Disabled =false,Active = true,LanguageId=1,Password="b6bc7b58510319a151d168ba3d5aecb3ac0a9708d06dd930f37fbc89b6cdc697"},
+                        new User {Id = 4, Username = "A8747475", Firstname = "Ashish", Lastname = "Mane",Email = "sourabh.padwad@saint-gobain.com",Disabled =false,Active = true,LanguageId=1,Password="b6bc7b58510319a151d168ba3d5aecb3ac0a9708d06dd930f37fbc89b6cdc697"},
+                         new User {Id = 5, Username = "U6779390", Firstname = "Ujwala", Lastname = "Daund",Email = "sourabh.padwad@saint-gobain.com",Disabled =false,Active = true,LanguageId=1,Password="b6bc7b58510319a151d168ba3d5aecb3ac0a9708d06dd930f37fbc89b6cdc697"}
+            };
+
+            context.Users.AddOrUpdate(c => new { c.Username, c.Firstname, c.Lastname, c.Email, c.LanguageId, c.Password, c.Active, c.Disabled }, user);
+
+
+
+            var userRights = new[]
+            {
+                     new UserRights {RoleId=1,UserId=1 },
+                     new UserRights {RoleId=1,UserId=2 },
+                     new UserRights {RoleId=1,UserId=3 },
+                     new UserRights {RoleId=1,UserId=4 },
+                     new UserRights {RoleId=1,UserId=5 }
+
                  };
 
-                 context.Users.AddOrUpdate(c => new {  c.Username, c.Firstname, c.Lastname, c.Email,c.LanguageId,c.Password, c.Active,c.Disabled }, user);
-
-
-
-                  var userRights = new[]
-                  {
-                     new UserRights {RoleId=1,UserId=1 }
-
-                 };
-
-                 context.UserRights.AddOrUpdate(c => new { c.RoleId, c.UserId }, userRights);
+            context.UserRights.AddOrUpdate(c => new { c.RoleId, c.UserId }, userRights);
 
 
 
 
-               var orgs = new[] {
-                  new Organization { Id = 1, ShortName = "Saint-Gobain", LongName = "Saint-Gobain",ParentId=0,CreatedBy="S3135114",CreatedDate=DateTime.Now }
+            var orgs = new[] {
+                  new Organization { Id = 1, ShortName = "Saint-Gobain", LongName = "Saint-Gobain",ParentId=null,CreatedBy="S3135114",CreatedDate=DateTime.Now }
               };
 
-              context.Organizations.AddOrUpdate(c => new { c.Id, c.ShortName, c.LongName,c.ParentId,c.CreatedBy,c.CreatedDate }, orgs);
+            context.Organizations.AddOrUpdate(c => new { c.Id, c.ShortName, c.LongName, c.ParentId, c.CreatedBy, c.CreatedDate }, orgs);
 
 
 
-              var userpref = new[] {
+            var userpref = new[] {
               new UserPreferences {DataLocal=1,TimeZone="",CatalogId=null, RoleId=1,Taxonomy=null,UserId=1,OrganizationId=1,CreatedBy="S3135114",CreatedDate=DateTime.Now},
+              new UserPreferences {DataLocal=1,TimeZone="",CatalogId=null, RoleId=1,Taxonomy=null,UserId=2,OrganizationId=1,CreatedBy="S3135114",CreatedDate=DateTime.Now},
+              new UserPreferences {DataLocal=1,TimeZone="",CatalogId=null, RoleId=1,Taxonomy=null,UserId=3,OrganizationId=1,CreatedBy="S3135114",CreatedDate=DateTime.Now},
+              new UserPreferences {DataLocal=1,TimeZone="",CatalogId=null, RoleId=1,Taxonomy=null,UserId=4,OrganizationId=1,CreatedBy="S3135114",CreatedDate=DateTime.Now},
+              new UserPreferences {DataLocal=1,TimeZone="",CatalogId=null, RoleId=1,Taxonomy=null,UserId=5,OrganizationId=1,CreatedBy="S3135114",CreatedDate=DateTime.Now},
 
               };
 
-              context.UserPreferences.AddOrUpdate(c => new { c.DataLocal, c.TimeZone,c.CatalogId,c.RoleId,c.Taxonomy,c.OrganizationId }, userpref);
+            context.UserPreferences.AddOrUpdate(c => new { c.DataLocal, c.TimeZone, c.CatalogId, c.RoleId, c.Taxonomy, c.OrganizationId }, userpref);
 
 
-               var dataType = new[] {
+            var dataType = new[] {
                    new DataType { Id=1,Name="Date"},
                    new DataType { Id=2,Name="String"},
                    new DataType { Id=3,Name="Decimal"},
@@ -95,9 +107,9 @@ namespace PIM.Data.Migrations
                    new DataType { Id=15,Name="Hierarchical"}
                };
 
-               context.DataTypes.AddOrUpdate(dt => new { dt.Id, dt.Name }, dataType);
+            context.DataTypes.AddOrUpdate(dt => new { dt.Id, dt.Name }, dataType);
 
-               var displayType = new[] {
+            var displayType = new[] {
                    new DisplayType { Id=1,Name="Date",DataTypeId=1},
                    new DisplayType { Id=3,Name="TextBox",DataTypeId=2},
                    new DisplayType { Id=8,Name="TextArea",DataTypeId=2},
@@ -121,51 +133,51 @@ namespace PIM.Data.Migrations
                };
 
 
-               context.DisplayTypes.AddOrUpdate(dt => new { dt.Id, dt.Name, dt.DataTypeId }, displayType);
+            context.DisplayTypes.AddOrUpdate(dt => new { dt.Id, dt.Name, dt.DataTypeId }, displayType);
 
 
-               var attrtype = new[] {
-                  new AttributeType { Id=1,ShortName="Common",LongName="Common",CreatedBy="S3135114",CreatedDate=DateTime.Now},
-                  new AttributeType { Id=2,ShortName="Technical",LongName="Technical",CreatedBy="S3135114",CreatedDate=DateTime.Now},
+            var attrtype = new[] {
+                  new AttributeType { Id=1,Name="Common",CreatedBy="S3135114",CreatedDate=DateTime.Now},
+                  new AttributeType { Id=2,Name="Technical",CreatedBy="S3135114",CreatedDate=DateTime.Now},
                };
 
-               context.AttributeTypes.AddOrUpdate(ag => new { ag.Id, ag.ShortName, ag.LongName,ag.CreatedBy,ag.CreatedDate }, attrtype);
+            context.AttributeTypes.AddOrUpdate(ag => new { ag.Id, ag.Name, ag.CreatedBy, ag.CreatedDate }, attrtype);
 
 
 
 
-               var action = new[] {
+            var action = new[] {
                   new Actions { Id=1,Name="Approve" },
                   new Actions { Id=2,Name="Reject"},
                   new Actions { Id=3,Name="Done"},
                };
 
-               context.Actions.AddOrUpdate(a => new { a.Id, a.Name}, action);
+            context.Actions.AddOrUpdate(a => new { a.Id, a.Name }, action);
 
 
-               foreach (IntegrationStatusEnum status in Enum.GetValues(typeof(IntegrationStatusEnum)))
-                   context.IntegrationStatus.AddOrUpdate(x => x.Id, new IntegrationStatus
-                   {
-                       Id = (int)status,
-                       Name = status.ToString()
-                   });
+            foreach (IntegrationStatusEnum status in Enum.GetValues(typeof(IntegrationStatusEnum)))
+                context.IntegrationStatus.AddOrUpdate(x => x.Id, new IntegrationStatus
+                {
+                    Id = (int)status,
+                    Name = status.ToString()
+                });
 
 
-               foreach (EnumJobType type in Enum.GetValues(typeof(EnumJobType)))
-                   context.JobTypes.AddOrUpdate(x => x.Id, new JobType
-                   {
-                       Id = (int)type,
-                       Name = type.ToString()
-                   });
+            foreach (EnumJobType type in Enum.GetValues(typeof(EnumJobType)))
+                context.JobTypes.AddOrUpdate(x => x.Id, new JobType
+                {
+                    Id = (int)type,
+                    Name = type.ToString()
+                });
 
-               foreach (EnumMessageType type in Enum.GetValues(typeof(EnumMessageType)))
-                   context.MessageTypes.AddOrUpdate(x => x.Id, new MessageType
-                   {
-                       Id = (int)type,
-                       Name = type.ToString()
-                   });
+            foreach (EnumMessageType type in Enum.GetValues(typeof(EnumMessageType)))
+                context.MessageTypes.AddOrUpdate(x => x.Id, new MessageType
+                {
+                    Id = (int)type,
+                    Name = type.ToString()
+                });
 
-               var uomType = new[] {
+            var uomType = new[] {
                        new UOMType { Id=1,Name="Angle"},
                 new UOMType { Id=2,Name="Angle - Plane"},
                 new UOMType { Id=3,Name="Angular Velocity"},
@@ -216,9 +228,9 @@ namespace PIM.Data.Migrations
                 new UOMType { Id=48,Name="Zoom"}
 
                                };
-               context.UOMTypes.AddOrUpdate(a => new { a.Id, a.Name }, uomType);
+            context.UOMTypes.AddOrUpdate(a => new { a.Id, a.Name }, uomType);
 
-               var uom = new[] {
+            var uom = new[] {
           new UOM {Id=1,Name="Degrees",Code="degrees",UomTypeId= 1},
     new UOM {Id=2,Name="deg",Code="deg",UomTypeId= 2},
     new UOM {Id=3,Name="Revolutions",Code="rev",UomTypeId= 2},
@@ -468,8 +480,8 @@ namespace PIM.Data.Migrations
 
                };
 
-               context.UOM.AddOrUpdate(a => new { a.Id, a.Name,a.Code,a.UomTypeId }, uom);
-              */
+            context.UOM.AddOrUpdate(a => new { a.Id, a.Name, a.Code, a.UomTypeId }, uom);
+            */
         }
     }
 }

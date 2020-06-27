@@ -15,12 +15,9 @@ namespace PIM.Data.Users
         [Index(IsUnique = true)]
         public string Name { get; set; }
 
-    public string Description { get; set; }
-
         public bool Active { get; set; }
 
         public virtual ICollection<UserRights> UserRights { get; set; }
 
-        public virtual ICollection<MenuRights> MenuRights { get; set; }
     }
 }

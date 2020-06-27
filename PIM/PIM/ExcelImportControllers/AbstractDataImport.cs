@@ -80,7 +80,7 @@
                 columnValues = string.IsNullOrEmpty(columnValues) ? "'" + lkc.value + "'" : columnValues + ",'" + lkc.value + "'";
             }
 
-            query = "INSERT INTO   [dbo].[lk_" + tableDetails.TableName + "](" + columnName + ") VALUES(" + columnValues + ")";
+            query = "INSERT INTO   [dbo].[lk_" + tableDetails.Name + "](" + columnName + ") VALUES(" + columnValues + ")";
             return query;
         }
 
@@ -96,7 +96,7 @@
                 update = string.IsNullOrEmpty(update) ? col.ColumnName + "='" + lkc.value + "'" : update + "," + col.ColumnName + "='" + lkc.value + "'";
             }
 
-            query = "UPDATE [dbo].[lk_" + tableDetails.TableName + "] SET " + update + " WHERE Id =" + id;
+            query = "UPDATE [dbo].[lk_" + tableDetails.Name + "] SET " + update + " WHERE Id =" + id;
             return query;
         }
 

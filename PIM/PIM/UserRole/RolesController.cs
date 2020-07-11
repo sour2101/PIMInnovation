@@ -104,7 +104,7 @@
             Repository.Save();
             var message = "The Role \"" + role.Name + "\" has been added";
             Log.MonitoringLogger.Info(message);
-            return Ok(message);
+            return Ok(role.Name);
         }
 
         [HttpPut]
@@ -122,24 +122,14 @@
                 return BadRequest(ModelState);
             }
 
-            var userRights = Repository.FindBy<UserRights>(u => u.RoleId == role.Id).ToList();
-            foreach (UserRights ur in userRights)
-                Repository.Delete(ur);
-            Repository.Save();
-
-            foreach (UserRights ur in role.UserRights)
-            {
-                ur.RoleId = role.Id;
-                Repository.Add(ur);
-            }
-
+            role.Active = true;
             role.ModifiedBy = principal.Username;
             role.ModifiedDate = DateTime.Now;
             Repository.Update(role);
             Repository.Save();
             var message = "The Role \"" + role.Name + "\" has been updated";
             Log.MonitoringLogger.Info(message);
-            return Ok(message);
+            return Ok(role.Name);
         }
 
         [HttpDelete]
@@ -164,7 +154,7 @@
             Repository.Save();
             var message = "The Role \"" + role.Name + "\" has been deleted";
             Log.MonitoringLogger.Info(message);
-            return Ok(message);
+            return Ok(role.Name);
         }
     }
 }

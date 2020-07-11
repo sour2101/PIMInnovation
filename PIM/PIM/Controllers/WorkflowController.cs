@@ -14,6 +14,7 @@ using System.Web.Http.Results;
 
 namespace PIM.API.Controllers
 {
+    [AllowAnonymous]
     public class WorkflowController : AbstractController
     {
         [HttpGet]

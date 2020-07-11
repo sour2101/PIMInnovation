@@ -35,11 +35,13 @@ namespace PIM.Data.Users
 
         public int OrganizationId { get; set; }
 
-        public int? RoleId { get; set; }
+        public int RoleId { get; set; }
 
         public bool Disabled { get; set; }
 
         public bool Sso { get; set; }
+
+        public bool Active { get; set; }
 
         // Navigation properties
         public virtual Token Token { get; set; }

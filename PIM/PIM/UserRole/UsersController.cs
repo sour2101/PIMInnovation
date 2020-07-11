@@ -13,6 +13,7 @@
     using System;
     using Providers;
     using Controllers;
+    using Data.Organizations;
 
     [AllowAnonymous]
     public class UsersController : AbstractController
@@ -25,7 +26,7 @@
         {
             get
             {
-                var users = Repository.GetAll<User>().Where(u=> u.Disabled);
+                var users = Repository.GetAll<User>().Where(u=> u.Active);
                 //var principal = (User)User.Identity;
                 ////if (principal.Role.Name == Roles.Administrator.ToString())
                 ////    return users;
@@ -39,33 +40,14 @@
         }
 
         [HttpGet]
-        public IHttpActionResult Get() {
-            var users = RestrictedActiveUsers.Where(r => r.Disabled)
-               .Select(r => new {
-                   r.Id,
-                   r.Username
-               }).ToList();
-            return Ok(users);
-        }
-
-
-        [HttpGet]
         [RoleAuthorize(Roles.Administrator)]
-        public IHttpActionResult Get(int pageSize, int pageNumber, string sortBy = null, string sortOrder = "false",
-            string username = null, string firstname = null, string lastname = null)
+        public IHttpActionResult Get()
         {
             var principal = (User)User.Identity;
             if (!principal.UserRights.Any(ur=>ur.RoleId==(int)Roles.Administrator))
                 return new StatusCodeResult(HttpStatusCode.Forbidden, Request);
 
             var filteredUsers = RestrictedActiveUsers;
-
-            if (!string.IsNullOrWhiteSpace(username))
-                filteredUsers = filteredUsers.Where(u => u.Username.StartsWith(username));
-            if (!string.IsNullOrWhiteSpace(lastname))
-                filteredUsers = filteredUsers.Where(u => u.Lastname.StartsWith(lastname));
-            if (!string.IsNullOrWhiteSpace(firstname))
-                filteredUsers = filteredUsers.Where(u => u.Firstname.StartsWith(firstname));
                    
 
             var pagedUser = filteredUsers.Select(u => new
@@ -97,11 +79,14 @@
                     u.Firstname,
                     u.Lastname,
                     u.Email,
+                    u.Active,
                     u.Disabled,
                     u.Username,
                     u.Password,                    
                     u.LanguageId, 
-                    UserRights =u.UserRights.Select(p=> new { id  = p.RoleId,p.Roles.Name }).ToList()
+                    u.OrganizationId,
+                    u.RoleId,
+                    UserRights =u.UserRights.Select(p=> new { roleId  = p.RoleId }).ToList()
                 }).SingleOrDefault();
             if (user == null)
             {
@@ -126,8 +111,12 @@
                 return BadRequest(ModelState);
             }
 
-
+            user.Active = true;
             user.Password = PasswordManagerProvider.Hash("UserPIM@123");
+            //user org mappings
+            UserOrgMappings uo = new UserOrgMappings();
+            uo.OrgId = user.OrganizationId;
+            user.UserOrgMappings.Add(uo);
             Repository.Add(user);
             Repository.Save();
             var message = "The username \"" + user.Username + "\" inserted successfully";
@@ -151,9 +140,9 @@
             }
 
             var userRights = Repository.FindBy<UserRights>(u => u.UserId == user.Id).ToList();
-            foreach(UserRights ur in userRights)
-                    Repository.Delete(ur);
-            Repository.Save();
+
+            foreach (UserRights ur in userRights)
+                Repository.Delete(ur);
 
             foreach (UserRights ur in user.UserRights)
             {
@@ -161,14 +150,17 @@
                 Repository.Add(ur);
             }
 
-            if(!string.IsNullOrEmpty(user.Password))
-                user.Password = PasswordManagerProvider.Hash(user.Password);
+            //user org mappings
+            UserOrgMappings uo = new UserOrgMappings();
+            uo.OrgId = user.OrganizationId;
+            user.UserOrgMappings.Add(uo);
 
+            user.Active = true;
             Repository.Update(user);
             Repository.Save();
             var message = "The user \"" + user.Username + "\" has been updated";
             Log.MonitoringLogger.Info(message);
-            return Ok(message);
+            return Ok(user.Username);
         }
 
         [HttpDelete]
@@ -197,7 +189,7 @@
             Repository.Save();
             var message = "The user \"" + user.Username + "\" has been deleted";
             Log.MonitoringLogger.Info(message);
-            return Ok(message);
+            return Ok(user.Username);
         }
     }
 }

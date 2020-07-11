@@ -6,6 +6,7 @@ using PIM.Data;
 
 namespace PIM.API.Controllers
 {
+    [AllowAnonymous]
     public abstract class AbstractController : ApiController
     {
         protected IRepository Repository

@@ -5,6 +5,7 @@ using PIM.Data.Organizations;
 
 namespace PIM.API.Controllers
 {
+    [AllowAnonymous]
     public class DashboardController : AbstractController
     {
         [HttpGet]

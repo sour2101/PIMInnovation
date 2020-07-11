@@ -12,6 +12,7 @@
     using ExcelImportControllers;
     using Controllers;
 
+    [AllowAnonymous]
     public class LookupColumnController : AbstractController
     {
         private AbstractDataImport de = new AbstractDataImport();

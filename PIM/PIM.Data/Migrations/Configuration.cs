@@ -21,7 +21,7 @@ namespace PIM.Data.Migrations
 
         protected override void Seed(PIMContext context)
         {
-          /*  var tax = new[] {
+            /*var tax = new[] {
                 new Taxonomy { Id = 1, Name = "Hierarchy", ParentId = null }
             };
 
@@ -46,11 +46,11 @@ namespace PIM.Data.Migrations
 
             var user = new[]
             {
-                     new User {Id = 1, Username = "S3135114", Firstname = "sourabh", Lastname = "Padwad",Email = "sourabh.padwad@saint-gobain.com",Disabled =false,Active = true,LanguageId=1,Password="b6bc7b58510319a151d168ba3d5aecb3ac0a9708d06dd930f37fbc89b6cdc697"},
-                      new User {Id = 2, Username = "S4769362", Firstname = "Shweta", Lastname = "Chavan",Email = "sourabh.padwad@saint-gobain.com",Disabled =false,Active = true,LanguageId=1,Password="b6bc7b58510319a151d168ba3d5aecb3ac0a9708d06dd930f37fbc89b6cdc697"},
-                       new User {Id = 3, Username = "A5523296", Firstname = "Abhiraj", Lastname = "Mane",Email = "sourabh.padwad@saint-gobain.com",Disabled =false,Active = true,LanguageId=1,Password="b6bc7b58510319a151d168ba3d5aecb3ac0a9708d06dd930f37fbc89b6cdc697"},
-                        new User {Id = 4, Username = "A8747475", Firstname = "Ashish", Lastname = "Mane",Email = "sourabh.padwad@saint-gobain.com",Disabled =false,Active = true,LanguageId=1,Password="b6bc7b58510319a151d168ba3d5aecb3ac0a9708d06dd930f37fbc89b6cdc697"},
-                         new User {Id = 5, Username = "U6779390", Firstname = "Ujwala", Lastname = "Daund",Email = "sourabh.padwad@saint-gobain.com",Disabled =false,Active = true,LanguageId=1,Password="b6bc7b58510319a151d168ba3d5aecb3ac0a9708d06dd930f37fbc89b6cdc697"}
+               new User {Id = 1, Username = "S3135114", Firstname = "sourabh", Lastname = "Padwad",Email = "sourabh.padwad@saint-gobain.com",Disabled =false,Active = true,OrganizationId=1,LanguageId=1,Password="b6bc7b58510319a151d168ba3d5aecb3ac0a9708d06dd930f37fbc89b6cdc697"},
+               new User {Id = 2, Username = "S4769362", Firstname = "Shweta", Lastname = "Chavan",Email = "sourabh.padwad@saint-gobain.com",Disabled =false,Active = true,OrganizationId=1,LanguageId=1,Password="b6bc7b58510319a151d168ba3d5aecb3ac0a9708d06dd930f37fbc89b6cdc697"},
+               new User {Id = 3, Username = "A5523296", Firstname = "Abhiraj", Lastname = "Mane",Email = "sourabh.padwad@saint-gobain.com",Disabled =false,Active = true,OrganizationId=1,LanguageId=1,Password="b6bc7b58510319a151d168ba3d5aecb3ac0a9708d06dd930f37fbc89b6cdc697"},
+               new User {Id = 4, Username = "A8747475", Firstname = "Ashish", Lastname = "Mane",Email = "sourabh.padwad@saint-gobain.com",Disabled =false,Active = true,OrganizationId=1,LanguageId=1,Password="b6bc7b58510319a151d168ba3d5aecb3ac0a9708d06dd930f37fbc89b6cdc697"},
+               new User {Id = 5, Username = "U6779390", Firstname = "Ujwala", Lastname = "Daund",Email = "sourabh.padwad@saint-gobain.com",Disabled =false,Active = true,OrganizationId=1,LanguageId=1,Password="b6bc7b58510319a151d168ba3d5aecb3ac0a9708d06dd930f37fbc89b6cdc697"}
             };
 
             context.Users.AddOrUpdate(c => new { c.Username, c.Firstname, c.Lastname, c.Email, c.LanguageId, c.Password, c.Active, c.Disabled }, user);
@@ -80,16 +80,16 @@ namespace PIM.Data.Migrations
 
 
 
-            var userpref = new[] {
-              new UserPreferences {DataLocal=1,TimeZone="",CatalogId=null, RoleId=1,Taxonomy=null,UserId=1,OrganizationId=1,CreatedBy="S3135114",CreatedDate=DateTime.Now},
-              new UserPreferences {DataLocal=1,TimeZone="",CatalogId=null, RoleId=1,Taxonomy=null,UserId=2,OrganizationId=1,CreatedBy="S3135114",CreatedDate=DateTime.Now},
-              new UserPreferences {DataLocal=1,TimeZone="",CatalogId=null, RoleId=1,Taxonomy=null,UserId=3,OrganizationId=1,CreatedBy="S3135114",CreatedDate=DateTime.Now},
-              new UserPreferences {DataLocal=1,TimeZone="",CatalogId=null, RoleId=1,Taxonomy=null,UserId=4,OrganizationId=1,CreatedBy="S3135114",CreatedDate=DateTime.Now},
-              new UserPreferences {DataLocal=1,TimeZone="",CatalogId=null, RoleId=1,Taxonomy=null,UserId=5,OrganizationId=1,CreatedBy="S3135114",CreatedDate=DateTime.Now},
+            //var userpref = new[] {
+            //  new UserPreferences {DataLocal=1,TimeZone="",CatalogId=null, RoleId=1,Taxonomy=null,UserId=1,OrganizationId=1,CreatedBy="S3135114",CreatedDate=DateTime.Now},
+            //  new UserPreferences {DataLocal=1,TimeZone="",CatalogId=null, RoleId=1,Taxonomy=null,UserId=2,OrganizationId=1,CreatedBy="S3135114",CreatedDate=DateTime.Now},
+            //  new UserPreferences {DataLocal=1,TimeZone="",CatalogId=null, RoleId=1,Taxonomy=null,UserId=3,OrganizationId=1,CreatedBy="S3135114",CreatedDate=DateTime.Now},
+            //  new UserPreferences {DataLocal=1,TimeZone="",CatalogId=null, RoleId=1,Taxonomy=null,UserId=4,OrganizationId=1,CreatedBy="S3135114",CreatedDate=DateTime.Now},
+            //  new UserPreferences {DataLocal=1,TimeZone="",CatalogId=null, RoleId=1,Taxonomy=null,UserId=5,OrganizationId=1,CreatedBy="S3135114",CreatedDate=DateTime.Now},
 
-              };
+            //  };
 
-            context.UserPreferences.AddOrUpdate(c => new { c.DataLocal, c.TimeZone, c.CatalogId, c.RoleId, c.Taxonomy, c.OrganizationId }, userpref);
+            //context.UserPreferences.AddOrUpdate(c => new { c.DataLocal, c.TimeZone, c.CatalogId, c.RoleId, c.Taxonomy, c.OrganizationId }, userpref);
 
 
             var dataType = new[] {

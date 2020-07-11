@@ -8,6 +8,7 @@
     using System.Text;
     using Controllers;
 
+    [AllowAnonymous]
     public class LookupTableController : AbstractController
     {
 

@@ -28,6 +28,11 @@ namespace PIM.API.Controllers
         public IHttpActionResult Sso(string ticket)
         {
             var token = string.Empty;
+            if(string.IsNullOrWhiteSpace(ticket))
+            {
+                return Unauthorized();
+            }
+
             if (!string.IsNullOrWhiteSpace(ticket))
             {
                 // Retrieve SGId from CAS server
@@ -39,14 +44,32 @@ namespace PIM.API.Controllers
                     var user = Repository.FindBy<User>(u => u.Username == sgId)
                         .Include(u => u.Token)
                         .FirstOrDefault();
+
+                    //check user is valid or not
+                    if (user == null)
+                    {
+                        var message = "SGID not exists in data base";
+                        Log.MonitoringLogger.Warn(message);
+                        return Unauthorized();
+                    }
+
                     if (user != null && user.Disabled)
                     {
                         UpsertToken(user);
                         token = user.Token.Value;
                     }
                 }
+                else
+                {
+                    var message = "SGID is not valid";
+                    Log.MonitoringLogger.Warn(message);
+                    ModelState.AddModelError("invalidSGID", message);
+                    return BadRequest(ModelState);
+                }
             }
-            return Redirect(Settings.Default.WebApplicationUrl + "sso?token=" + HttpUtility.UrlEncode(token));
+
+
+            return Ok(token);
         }
 
         [HttpPost]
@@ -68,7 +91,7 @@ namespace PIM.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (user != null && user.Disabled)
+            if (user != null && user.Active)
             {
                 Repository.Update(user);
                 Repository.Save();
@@ -103,7 +126,7 @@ namespace PIM.API.Controllers
             if (token == null || token.ExpirationDate < DateTime.Now)
                 // If the token doesn't exist, we return HTTP Response 401 Unauthorized
                 return Unauthorized();
-            if (!token.User.Disabled)
+            if (!token.User.Active)
                 // If the user isn't active, we return HTTP Response 403 Forbidden
                 return new StatusCodeResult(HttpStatusCode.Forbidden, Request);
             // We return user's informations
@@ -116,7 +139,8 @@ namespace PIM.API.Controllers
                 locale=token.User.Languages.Code,
                 OrganizationId = token.User.OrganizationId,
                 OrganizationName = token.User.Organization.LongName,
-                roleName=token.User.UserRights.Select(ur=>ur.Roles.Name).SingleOrDefault(),
+                roleId = token.User.UserRights.Select(ur => ur.RoleId).SingleOrDefault(),
+                roleName =token.User.UserRights.Select(ur=>ur.Roles.Name).SingleOrDefault(),
                 Token = new
                 {
                     token.UserId,
